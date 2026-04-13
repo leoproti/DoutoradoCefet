@@ -1,0 +1,76 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- PACOTES BÁSICOS ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{pdflscape}
+\usepackage{booktabs}
+\usepackage{pgffor}
+\usepackage{xifthen} % <--- melhora testes condicionais
+\usepackage[alf]{abntex2cite}
+
+\geometry{a4paper, left=3cm, top=3cm, right=2cm, bottom=2cm}
+
+\newcommand{\enunciado}[1]{\noindent \textit{\large #1}}
+
+% --- DOCUMENTO ---
+\begin{document}
+
+% --- CAPA ---
+\begin{titlepage}
+    \begin{center}
+        \textbf{Centro Federal de Educação Tecnológica de Minas Gerais (CEFET-MG)}\\[0.2cm]
+        \textbf{Programa de Pós-Graduação em Modelagem Matemática e Computacional}\\[3cm]
+
+        \large{Disciplina: Princípios de Modelagem Matemática}\\[3cm]
+
+        \LARGE\textbf{Principles of Mathematical Modeling (2nd Edition):\\
+            Solução dos Problemas 4.1 a 4.55}\\[3cm]
+
+        \large{
+        Alexandre Oliveira, Ariel, Ectori, Erasmo, Frederico,\\
+        Glauber Silveira, Israel, Jeancarlo Campos Leão, Júlia,\\
+        Leonardo V. Guimarães, Marcus Santos, Renan Machado,\\
+        Rodrigo Favato, Sergio.
+        }\\[3cm]
+
+        \large{Belo Horizonte -- MG -- Brazil}\\
+        \large{2026}
+    \end{center}
+\end{titlepage}
+
+% --- CONTEÚDO ---
+\foreach \i in {1,...,55} {
+
+    \section*{Problema 4.\i}
+
+    % Enunciado
+    \IfFileExists{enunciado/e\i.tex}{
+        \noindent \large \textit{\input{enunciado/e\i.tex}}
+    }{
+        \textbf{Enunciado não encontrado para o Problema 4.\i}
+    }
+
+    \vspace{1cm}
+
+    % Resposta
+    \IfFileExists{resposta/r\i.tex}{
+        \input{resposta/r\i.tex}
+    }{
+        \textbf{Resposta não encontrada para o Problema 4.\i}
+    }
+
+    \newpage
+}
+
+
+\bibliographystyle{abntex2-alf}
+\bibliography{references}
+
+\end{document}
+
+
