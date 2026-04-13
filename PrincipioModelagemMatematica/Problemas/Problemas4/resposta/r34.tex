@@ -1,10 +1,12 @@
-Principais armadilhas experimentais:
-\begin{itemize}
-\item amortecimento residual e atrito não nulo na pista;
-\item não linearidade da mola para amplitudes grandes;
-\item erro de cronometragem e reação humana;
-\item incertezas em $k$ e $m$;
-\item desalinhamento do conjunto e excitação fora do modo desejado.
-\end{itemize}
-Mitigações: usar muitas oscilações por medição, amplitudes pequenas, calibração de $k$, repetição estatística e instrumentação eletrônica de tempo.
-
+Partindo da definição de $s^{2}$,
+\[
+s^{2}=\frac{1}{n-1}\sum_{i=1}^{n}(x_i-\bar{x})^{2},
+\]
+expande-se o quadrado:
+\[
+\sum(x_i^2 -2x_i\bar{x}+\bar{x}^2)=\sum x_i^2 -2\bar{x}\sum x_i + n\bar{x}^2.
+\]
+Como $\sum x_i = n\bar{x}$, obtemos
+\[
+s^{2}=\frac{1}{n-1}\left(\sum x_i^2 - \frac{1}{n}(\sum x_i)^2\right).
+\]

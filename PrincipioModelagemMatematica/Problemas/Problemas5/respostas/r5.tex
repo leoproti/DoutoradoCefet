@@ -1,37 +1,5 @@
-O objetivo deste problema é aplicar o método básico de análise dimensional começando com a equação funcional (2.13), que testa a hipótese de incluir a massa ($m$) como uma das variáveis que supostamente afetam a velocidade de queda livre ($V$) de um corpo:
-$$ V = V(g, h, m) $$
-
-\vspace{0.3cm}
-\textbf{Passo 1: Identificar as dimensões físicas} \\
-As dimensões físicas fundamentais das quatro variáveis envolvidas na nossa hipótese são [1]:
-\begin{itemize}
-    \item Velocidade $[V] = L/T$
-    \item Aceleração da gravidade $[g] = L/T^2$
-    \item Altura $[h] = L$
-    \item Massa $[m] = M$
-\end{itemize}
-
-\vspace{0.3cm}
-\textbf{Passo 2: Eliminar a dimensão de Massa (M)} \\
-Ao aplicar o método básico, procuramos eliminar as dimensões primárias passo a passo. Se analisarmos a lista de dimensões acima, notamos um fato crucial: a dimensão primária de Massa ($M$) aparece em apenas \textbf{uma única variável} de todo o sistema (a própria massa $m$) [1].
-
-A análise dimensional baseia-se no princípio da homogeneidade dimensional. Para que possamos formar um grupo adimensional ou relacionar grandezas, as dimensões precisam se cancelar. Como não há nenhuma outra variável no problema que contenha a dimensão de massa (nem a velocidade $V$, nem a gravidade $g$, nem a altura $h$), é impossível cancelar o $M$ [1]. 
-
-Qualquer equação que tentasse igualar $V$ a um termo contendo $m$ resultaria em um lado da equação com dimensão de Massa e o outro sem, violando a consistência do modelo. Portanto, a única forma de a equação ser válida é se a massa $m$ não participar da relação, possuindo um expoente zero [1]. Isso nos obriga a concluir que a massa não é uma variável relevante para este problema e a equação funcional deve ser imediatamente reduzida para:
-$$ V = f_1(g, h) $$
-
-\vspace{0.3cm}
-\textbf{Passo 3: Eliminar as dimensões restantes (T e L)} \\
-Agora, o problema volta a ser exatamente o caso clássico da queda livre abordado no texto [2-4].
-\begin{itemize}
-    \item \textbf{Eliminando o Tempo ($T$):} Dividimos a velocidade pela raiz quadrada da gravidade [3]: 
-    $$ \left[ \frac{V}{\sqrt{g}} \right] = \frac{L/T}{\sqrt{L/T^2}} = \frac{L/T}{L^{1/2}/T} = L^{1/2} = \sqrt{L} $$
-    \item \textbf{Eliminando o Comprimento ($L$):} Dividimos o resultado pela raiz quadrada da altura $h$ [4]: 
-    $$ \left[ \frac{V}{\sqrt{gh}} \right] = \frac{\sqrt{L}}{\sqrt{L}} = 1 $$
-\end{itemize}
-
-\vspace{0.3cm}
-\textbf{Conclusão:} \\
-O método básico nos leva à formação de um único grupo adimensional. Como sobrou apenas um grupo, ele deve ser igual a uma constante [4]:
-$$ \frac{V}{\sqrt{gh}} = \text{constante} \implies V = \text{constante} \times \sqrt{gh} $$
-Este resultado prova matematicamente, usando apenas a consistência das dimensões, que a velocidade de descida de um corpo em queda livre depende apenas da gravidade e da altura, sendo completamente independente da sua massa [5].
+A população total é $5{,}63\times10^{15}$ pessoas. A 1000 pessoas/s, o tempo é
+\[
+\frac{5{,}63\times10^{15}}{10^{3}}=5{,}63\times10^{12}\ \mathrm{s} \approx1{,}79\times10^{5}\ \mathrm{anos}.
+\]
+Portanto, leva quase 200.000 anos, confirmando a afirmação. 

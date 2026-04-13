@@ -16,7 +16,9 @@
 \geometry{a4paper, left=3cm, top=3cm, right=2cm, bottom=2cm}
 
 \newcommand{\enunciado}[1]{%
-    \begin{sloppypar}\raggedright\noindent\large\itshape #1\end{sloppypar}%
+    \begin{sloppypar}%
+        \noindent\textit{\large #1}%
+    \end{sloppypar}%
 }
 
 % --- DOCUMENTO ---
@@ -68,11 +70,6 @@
 
     \newpage
 }
-
-
-\nocite{*}
-\bibliographystyle{abntex2-alf}
-\bibliography{references}
 
 \end{document}
 

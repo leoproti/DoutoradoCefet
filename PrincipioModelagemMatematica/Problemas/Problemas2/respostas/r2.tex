@@ -1,9 +1,15 @@
-Este problema propõe uma pesquisa e reflexão sobre as propriedades físicas dos fluidos discutidos no exemplo do misturador (Seção 2.3). O livro-texto não fornece os valores numéricos exatos em tabelas, estimulando a percepção da ordem de grandeza. O objetivo principal é a comparação qualitativa desses materiais:
+Os dados de referência mostram que as densidades dos três fluidos são todas da mesma ordem de grandeza, enquanto suas viscosidades diferem dramaticamente.
 
 \begin{itemize}
-    \item \textbf{Densidade de Massa ($\rho$):} Ao comparar a água, o mel e a manteiga de amendoim, constata-se que suas densidades são valores relativamente próximos. A água tem densidade de aproximadamente $1000 \text{ kg/m}^3$. O mel é um pouco mais denso (cerca de $1400 \text{ kg/m}^3$) e a manteiga de amendoim varia em torno de $1000$ a $1300 \text{ kg/m}^3$, dependendo da formulação. Todos estão na mesma ordem de grandeza e se comportam como fluidos de densidades comparáveis.
-    
-    \item \textbf{Viscosidade ($\mu$):} É na viscosidade que reside a diferença drástica que motiva o projeto de misturadores industriais potentes. A água possui uma viscosidade dinâmica baixíssima (cerca de $10^{-3} \text{ Pa}\cdot\text{s}$ a $20^\circ\text{C}$). O mel é consideravelmente mais viscoso, apresentando valores na ordem de $2$ a $10 \text{ Pa}\cdot\text{s}$ (milhares de vezes mais resistente ao escoamento que a água). Já a manteiga de amendoim possui uma viscosidade tão extrema (frequentemente superior a $250 \text{ Pa}\cdot\text{s}$, dependendo da temperatura e taxa de deformação) que chega a se comportar quase como um sólido quando em repouso.
+    \item \textbf{Água:} $\rho\approx1{,}00\times10^{3}\ \text{kg/m}^{3}$ e $\mu\approx1{,}0\times10^{-3}\ \text{Pa}\cdot\text{s}$.
+    \item \textbf{Mel:} $\rho\approx1{,}40\times10^{3}\ \text{kg/m}^{3}$ e $\mu$ tipicamente entre $2$ e $10\ \text{Pa}\cdot\text{s}$.
+    \item \textbf{Manteiga de amendoim:} $\rho$ varia aproximadamente entre $1{,}00\times10^{3}$ e $1{,}30\times10^{3}\ \text{kg/m}^{3}$; a viscosidade pode chegar a centenas de pascal-segundo, frequentemente $\gtrsim250\ \text{Pa}\cdot\text{s}$ dependendo da temperatura e do tipo.
 \end{itemize}
 
-\textbf{Conclusão Física:} Enquanto a densidade varia pouco (fator de $1.4\times$ entre a água e o mel), a viscosidade salta ordens de magnitude astronômicas entre esses mesmos fluidos. Isso ilustra perfeitamente a afirmação do texto de que ``mover uma faca através de um pote de manteiga de amendoim requer uma força visivelmente maior do que mexer um copo de água'' [1]. Consequentemente, justifica-se a necessidade de incluir a viscosidade ($\mu$) como uma variável fundamental na modelagem da força de arrasto no misturador [2].
+\textbf{Comparação:}
+\begin{itemize}
+    \item A densidade da água, do mel e da manteiga de amendoim difere em menos de um fator de 2.
+    \item A viscosidade difere em vários milhares de vezes: a água tem $10^{-3}\ \text{Pa}\cdot\text{s}$, o mel tem alguns pascal-segundo e a manteiga de amendoim pode exceder $250\ \text{Pa}\cdot\text{s}$.
+\end{itemize}
+
+Isso confirma que, na modelagem do misturador, a viscosidade é o parâmetro dominante para explicar por que a manteiga de amendoim requer muito mais força do que a água, enquanto a densidade por si só não explica essa diferença extrema.

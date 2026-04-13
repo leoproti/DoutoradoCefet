@@ -1,4 +1,12 @@
-Se aplicarmos diretamente a lei de escala geométrica ao robin (2 oz), obtemos uma estimativa de comprimento de pernas. Porém, a extrapolação pode ser fraca por ausência de semelhança estrita entre espécies.
-
-Portanto: pode-se estimar, mas com cautela biológica e erro potencial alto.
-
+Usando as somas da Tabela 4.3 e as fórmulas de mínimos quadrados,
+\[
+m = \frac{n\sum x_i y_i - (\sum x_i)(\sum y_i)}{n\sum x_i^{2} - (\sum x_i)^{2}}
+= \frac{9\cdot218{,}0 - 36{,}0\cdot41{,}8}{9\cdot204{,}0 - 36{,}0^{2}}
+\approx 1{,}25778,
+\]
+\[
+b = \frac{\sum y_i - m\sum x_i}{n}
+= \frac{41{,}8 - 1{,}25778\cdot36{,}0}{9}
+\approx 0{,}84667.
+\]
+Portanto, os cálculos de $m$ e $b$ da Tabela 4.3 estão verificados numericamente.  

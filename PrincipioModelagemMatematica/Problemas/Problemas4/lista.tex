@@ -15,8 +15,11 @@
 
 \geometry{a4paper, left=3cm, top=3cm, right=2cm, bottom=2cm}
 
-\newcommand{\enunciado}[1]{\noindent \textit{\large #1}}
-
+\newcommand{\enunciado}[1]{%
+    \begin{sloppypar}%
+        \noindent\textit{\large #1}%
+    \end{sloppypar}%
+}
 % --- DOCUMENTO ---
 \begin{document}
 
