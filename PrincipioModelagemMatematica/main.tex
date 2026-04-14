@@ -3,7 +3,6 @@
 % =====================================================================
 % PACOTES ESSENCIAIS
 % =====================================================================
-\usepackage[utf-8]{inputenc}
 \usepackage[portuguese]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
@@ -116,8 +115,39 @@ Para melhor aproveitamento:
 
 % Capítulo 2: Análise Dimensional
 % Nota: O arquivo capitulo2.tex é um documento completo independente
-% Aqui apenas importamos o conteúdo do capítulo
-\input{capitulo2/capitulo2.tex}
+% Use 'capitulo2/capitulo2.tex' para compilar o capítulo individualmente
+%
+% Para uma edição integrada de todos os capítulos, compile cada capítulo
+% separadamente e depois combine os PDFs resultantes.
+
+\chapter{Análise Dimensional}
+
+\section*{Nota sobre este capítulo}
+
+Este capítulo (Análise Dimensional) foi compilado como um documento independente.
+Para acessar o conteúdo completo, consulte o arquivo \texttt{capitulo2/capitulo2.pdf}.
+
+O arquivo \texttt{capitulo2/capitulo2.tex} contém:
+
+\begin{itemize}
+    \item Introdução à análise dimensional
+    \item Conceitos fundamentais de dimensões e unidades
+    \item Princípio da homogeneidade dimensional
+    \item Método básico (algoritmo de 7 passos)
+    \item Teorema de Buckingham Pi
+    \item Sistemas de unidades (SI e Imperial)
+    \item 4 exemplos resolvidos
+    \item 7 exercícios com gabarito (3 níveis de dificuldade)
+\end{itemize}
+
+\subsection*{Como usar este material}
+
+\begin{enumerate}
+    \item Leia o capítulo em \texttt{capitulo2/capitulo2.pdf}
+    \item Estude os exemplos práticos em \texttt{capitulo2/examples.py}
+    \item Realize os exercícios em \texttt{capitulo2/EXERCICIOS.md}
+    \item Consulte \texttt{capitulo2/README.md} para conceitos teóricos adicionais
+\end{enumerate}
 
 % =====================================================================
 % BACK MATTER - Referências e Apêndices
@@ -199,16 +229,16 @@ Descarregue e instale MiKTeX de \url{https://miktex.org/}
 
 \begin{verbatim}
 PrincipioModelagemMatematica/
-├── main.tex              (este arquivo)
-├── capitulo2/
-│   ├── capitulo2.tex     (conteúdo do capítulo)
-│   ├── dimensional_analysis.py
-│   ├── examples.py
-│   ├── README.md
-│   ├── EXERCICIOS.md
-│   └── INDEX.md
-├── capitulo3/            (próximos capítulos)
-└── README.md             (instruções do repositório)
+  main.tex                      (este arquivo)
+  capitulo2/
+    capitulo2.tex               (conteudo do capitulo)
+    dimensional_analysis.py
+    examples.py
+    README.md
+    EXERCICIOS.md
+    INDEX.md
+  capitulo3/                    (proximos capitulos)
+  README.md                     (instrucoes do repositorio)
 \end{verbatim}
 
 \chapter{Soluções dos Exercícios}
