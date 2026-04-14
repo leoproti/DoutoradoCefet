@@ -1,1 +1,21 @@
-Derivando a solução proposta da eq. (5.31), obtemos a taxa de variação de tensão no capacitor. Ao substituir essa derivada na eq. (5.29) e usar a definição $RC$, a igualdade é satisfeita, confirmando que a solução é consistente com a eq. (5.29).
+Tomando a solucao de carga do capacitor na forma
+\[
+V_C(t)=V_s\left(1-e^{-t/(RC)}\right),
+\]
+temos
+\[
+\frac{dV_C}{dt}=\frac{V_s}{RC}e^{-t/(RC)}.
+\]
+
+Substituindo em (5.29),
+\[
+\frac{dV_C}{dt}+\frac{1}{RC}V_C
+=\frac{V_s}{RC}e^{-t/(RC)}+\frac{1}{RC}V_s\left(1-e^{-t/(RC)}\right).
+\]
+Os termos exponenciais se cancelam e sobra
+\[
+\frac{dV_C}{dt}+\frac{1}{RC}V_C=\frac{V_s}{RC},
+\]
+que e exatamente o lado direito da eq. (5.29).
+
+Logo, a eq. (5.31) de fato satisfaz a eq. (5.29).

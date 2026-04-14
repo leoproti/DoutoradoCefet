@@ -1,1 +1,31 @@
-A verificação das formas finais das eqs. (4.51) e (4.52) é feita por substituição direta dos termos originais e simplificação algébrica. Ao aplicar as identidades e colecionar termos semelhantes, obtém-se as formas finais apresentadas nessas equações. 
+Seja a soma dos quadrados dos residuos da reta ajustada
+\[
+S(m,b)=\sum_{i=1}^{n}(y_i-mx_i-b)^2.
+\]
+As formas finais das eqs. (4.51) e (4.52) surgem impondo as condicoes de otimo
+\[
+\frac{\partial S}{\partial m}=0,
+\qquad
+\frac{\partial S}{\partial b}=0.
+\]
+
+Derivando em relacao a $m$,
+\[
+\frac{\partial S}{\partial m}=-2\sum_{i=1}^{n}x_i(y_i-mx_i-b)=0,
+\]
+o que fornece
+\[
+\sum_{i=1}^{n}x_i y_i=m\sum_{i=1}^{n}x_i^2+b\sum_{i=1}^{n}x_i.
+\]
+Essa e a forma final de uma das equacoes normais.
+
+Derivando em relacao a $b$,
+\[
+\frac{\partial S}{\partial b}=-2\sum_{i=1}^{n}(y_i-mx_i-b)=0,
+\]
+obtemos
+\[
+\sum_{i=1}^{n}y_i=m\sum_{i=1}^{n}x_i+nb.
+\]
+
+Portanto, as eqs. (4.51) e (4.52) sao exatamente as duas equacoes normais do ajuste linear por minimos quadrados, obtidas sem passos ocultos.
