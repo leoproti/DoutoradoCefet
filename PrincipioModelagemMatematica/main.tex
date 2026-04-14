@@ -1,0 +1,257 @@
+\documentclass[12pt,a4paper,oneside]{book}
+
+% =====================================================================
+% PACOTES ESSENCIAIS
+% =====================================================================
+\usepackage[utf-8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{makeidx}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage[nottoc,notlof,notlot]{tocbibind}
+
+% =====================================================================
+% CONFIGURAÇÕES DE GEOMETRIA
+% =====================================================================
+\geometry{
+    left=2.5cm,
+    right=2.5cm,
+    top=3cm,
+    bottom=3cm,
+    headheight=14pt
+}
+
+% =====================================================================
+% CONFIGURAÇÕES DE CABEÇALHO E RODAPÉ
+% =====================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{\rightmark}}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{\small Princípios de Modelagem Matemática}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% =====================================================================
+% METADADOS DO DOCUMENTO
+% =====================================================================
+\title{\textbf{Princípios de Modelagem Matemática} \\[1cm]
+        \Large Fundamentos e Aplicações}
+\author{Baseado em Dym, C. L. (2004) \\
+        \textit{Principles of Mathematical Modeling}}
+\date{\today}
+
+% =====================================================================
+% INÍCIO DO DOCUMENTO
+% =====================================================================
+\begin{document}
+
+% Capa
+\maketitle
+
+% =====================================================================
+% FRONT MATTER
+% =====================================================================
+\frontmatter
+
+\chapter*{Prefácio}
+
+Este material apresenta uma introdução ao processo de modelagem matemática,
+seguindo a abordagem clássica de Clifford L. Dym em sua obra
+\textit{Principles of Mathematical Modeling} (2ª edição, 2004).
+
+O curso é estruturado em capítulos progressivos, começando com os conceitos
+fundamentais de análise dimensional e evoluindo para técnicas mais avançadas
+de modelagem, validação e interpretação de resultados.
+
+\section*{Estrutura do Curso}
+
+\begin{enumerate}
+    \item \textbf{Capítulo 1:} Introdução à Modelagem Matemática
+    \item \textbf{Capítulo 2:} Análise Dimensional (\textcolor{red}{$\checkmark$ Completo})
+    \item \textbf{Capítulo 3:} Escalas e Similaridade
+    \item \textbf{Capítulo 4:} Modelagem de Sistemas Dinâmicos
+    \item \textbf{Capítulo 5:} Aplicações Práticas
+\end{enumerate}
+
+\chapter*{Como Usar este Material}
+
+Cada capítulo é autossuficiente e contém:
+
+\begin{itemize}
+    \item \textbf{Teoria:} Conceitos fundamentais com demonstrações rigorosas
+    \item \textbf{Exemplos:} Aplicações práticas com cálculos detalhados
+    \item \textbf{Código:} Implementações em Python para experimentação
+    \item \textbf{Exercícios:} Problemas propostos com gabarito
+\end{itemize}
+
+Para melhor aproveitamento:
+\begin{enumerate}
+    \item Leia a teoria e acompanhe os exemplos
+    \item Execute o código fornecido
+    \item Estude as soluções dos exercícios
+    \item Resolva os exercícios propostos
+    \item Implemente seus próprios problemas
+\end{enumerate}
+
+\tableofcontents
+
+% =====================================================================
+% MAIN MATTER
+% =====================================================================
+\mainmatter
+
+% Capítulo 2: Análise Dimensional
+% Nota: O arquivo capitulo2.tex é um documento completo independente
+% Aqui apenas importamos o conteúdo do capítulo
+\input{capitulo2/capitulo2.tex}
+
+% =====================================================================
+% BACK MATTER - Referências e Apêndices
+% =====================================================================
+\backmatter
+
+\begin{thebibliography}{99}
+
+\bibitem{Dym2004}
+Dym, C. L. (2004).
+\textit{Principles of Mathematical Modeling}.
+2nd Edition.
+Elsevier/Academic Press.
+ISBN: 978-0-12-226351-3.
+
+\bibitem{Buckingham1914}
+Buckingham, E. (1914).
+On Physically Similar Systems.
+Physical Review, 4(4), 345-376.
+doi: 10.1103/PhysRev.4.345
+
+\bibitem{Taylor1974}
+Taylor, E. S. (1974).
+\textit{Dimensional Analysis for Engineers}.
+2nd Edition.
+Clarendon Press, Oxford.
+
+\bibitem{Barenblatt1996}
+Barenblatt, G. I. (1996).
+\textit{Scaling, Self-similarity, and Intermediate Asymptotics}.
+Cambridge University Press.
+
+\bibitem{Szirtes1997}
+Szirtes, T., \& Rózsa, P. (1997).
+\textit{Applied Dimensional Analysis and Modeling}.
+Elsevier.
+
+\end{thebibliography}
+
+\appendix
+
+\chapter{Instalação e Configuração}
+
+\section{Requisitos}
+
+Para executar os exemplos em Python desta obra, você precisará de:
+
+\begin{itemize}
+    \item Python 3.8+
+    \item NumPy (análise numérica)
+    \item Matplotlib (visualização de gráficos)
+    \item TeX Live ou MiKTeX (para compilar documentos LaTeX)
+\end{itemize}
+
+\section{Instalação Rápida}
+
+\subsection{Python e Dependências}
+
+\begin{verbatim}
+pip install numpy matplotlib scipy
+\end{verbatim}
+
+\subsection{LaTeX}
+
+\textbf{Linux (Ubuntu/Debian):}
+\begin{verbatim}
+sudo apt-get install texlive-full
+\end{verbatim}
+
+\textbf{macOS:}
+\begin{verbatim}
+brew install --cask mactex
+\end{verbatim}
+
+\textbf{Windows:}
+Descarregue e instale MiKTeX de \url{https://miktex.org/}
+
+\section{Estrutura dos Arquivos}
+
+\begin{verbatim}
+PrincipioModelagemMatematica/
+├── main.tex              (este arquivo)
+├── capitulo2/
+│   ├── capitulo2.tex     (conteúdo do capítulo)
+│   ├── dimensional_analysis.py
+│   ├── examples.py
+│   ├── README.md
+│   ├── EXERCICIOS.md
+│   └── INDEX.md
+├── capitulo3/            (próximos capítulos)
+└── README.md             (instruções do repositório)
+\end{verbatim}
+
+\chapter{Soluções dos Exercícios}
+
+As soluções completas de todos os exercícios estão disponíveis em
+\texttt{capitulo2/EXERCICIOS.md} com gabarito resumido e dicas importantes
+para cada nível de dificuldade.
+
+\chapter{Tabela de Símbolos e Grandezas}
+
+\section{Dimensões Fundamentais}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Grandeza} & \textbf{Símbolo} & \textbf{Unidade SI} \\
+\hline
+Comprimento & $L$ & metro (m) \\
+Massa & $M$ & quilograma (kg) \\
+Tempo & $T$ & segundo (s) \\
+Temperatura & $\Theta$ & kelvin (K) \\
+Corrente elétrica & $A$ & ampère (A) \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Dimensões Derivadas Comuns}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Quantidade} & \textbf{Símbolo} & \textbf{Dimensão} \\
+\hline
+Velocidade & $v$ & $L/T$ \\
+Aceleração & $a$ & $L/T^2$ \\
+Força & $F$ & $ML/T^2$ \\
+Energia & $E$ & $ML^2/T^2$ \\
+Potência & $P$ & $ML^2/T^3$ \\
+Pressão & $p$ & $M/(LT^2)$ \\
+Viscosidade dinâmica & $\mu$ & $M/(LT)$ \\
+Número de Reynolds & $\text{Re}$ & $1$ (adimensional) \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}
