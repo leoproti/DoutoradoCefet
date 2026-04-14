@@ -1,6 +1,18 @@
-Para células geometricamente semelhantes, razão superfície/massa varia como inverso do comprimento característico.
-
-Se o volume cresce 1,5 vez antes da divisão, o comprimento cresce por $1{,}5^{1/3}$ e a razão superfície/massa diminui por $1{,}5^{-1/3}$, não permanecendo constante.
-
-Logo, esse comportamento não corresponde ao padrão descrito como normal.
+Escreva
+\[
+f(r)=\sqrt{a^2+r^2}=r\sqrt{1+\frac{a^2}{r^2}}.
+\]
+Para $r\gg a$, o termo $a^2/r^2$ e pequeno, e podemos usar a expansao binomial
+\[
+(1+u)^{1/2} \approx 1 + \frac{u}{2} - \frac{u^2}{8} + \cdots.
+\]
+Com $u=a^2/r^2$,
+\[
+f(r) \approx r\left(1+\frac{a^2}{2r^2}-\frac{a^4}{8r^4}+\cdots\right)
+= r + \frac{a^2}{2r} - \frac{a^4}{8r^3} + \cdots.
+\]
+Assim, a aproximacao de campo distante e
+\[
+\sqrt{a^2+r^2} \approx r + \frac{a^2}{2r}.
+\]
 
