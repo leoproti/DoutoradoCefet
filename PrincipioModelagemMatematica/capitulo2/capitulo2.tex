@@ -162,7 +162,7 @@ Com análise dimensional, reduzimos para apenas 2 grupos adimensionais, necessit
 % =====================================================================
 \section{Dimensões e Unidades}
 
-\subsection{Definiçōes Fundamentais}
+\subsection{Definições Fundamentais}
 
 \begin{definition}[Dimensão]
 A \textbf{dimensão} de uma quantidade física é sua natureza fundamental expressa em termos de grandezas primitivas, frequentemente denotadas como:
@@ -248,14 +248,14 @@ Verificamos a homogeneidade:
 
 Considere a equação:
 \begin{equation}
-    T_0 = 2\pi\sqrt{\frac{l}{g}} + 5 \text{ segundos}
+    T_0 = 2\pi\sqrt{\frac{l}{g}} + 5
 \end{equation}
 
 Esta equação é \textbf{dimensionalmente inconsistente} porque:
 \begin{align}
     \text{Termo 1} &: [2\pi\sqrt{l/g}] = T \\
-    \text{Termo 2} &: [5 \text{ s}] = T \\
-    \text{Mas } &: T + T \neq \text{(adicionar um vetor constante a uma função)}
+    \text{Termo 2} &: [5] = 1 \quad (\text{adimensional}) \\
+    \text{Logo } &: T + 1 \text{ é inválido}
 \end{align}
 
 A equação viola o princípio de homogeneidade dimensional e deve ser rejeitada.
@@ -446,7 +446,7 @@ O processo de aplicação é sistemático:
     n - m &= 2 \quad \text{(grupos adimensionais)}
 \end{align}
 
-\textbf{Grupos dimensionless}:
+\textbf{Grupos adimensionais}:
 
 Escolhemos como base: $l$, $g$, $m$ (contêm M, L, T)
 
@@ -701,7 +701,7 @@ Ao aplicar análise dimensional, certifique-se de:
     \item[$\square$] Formar grupos permutando as variáveis restantes
     \item[$\square$] Resolver o sistema linear para expoentes
     \item[$\square$] Verificar que cada grupo é dimensionless
-    \item[$\square$] Validar resultado com físicaconhecida
+    \item[$\square$] Validar resultado com física conhecida
     \item[$\square$] Documentar todas as suposições feitas
 \end{itemize}
 

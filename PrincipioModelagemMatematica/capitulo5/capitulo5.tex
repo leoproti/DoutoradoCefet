@@ -1,0 +1,284 @@
+\documentclass[12pt,a4paper,oneside]{book}
+
+% =====================================================================
+% PACOTES ESSENCIAIS
+% =====================================================================
+\usepackage[brazilian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{mathtools}
+
+% =====================================================================
+% GEOMETRIA
+% =====================================================================
+\geometry{
+    left=2.5cm,
+    right=2.5cm,
+    top=3cm,
+    bottom=3cm,
+    headheight=14pt
+}
+
+% =====================================================================
+% CABECALHO E RODAPE
+% =====================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{Capitulo 5: Comportamento Exponencial}}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{\small Principios de Modelagem Matematica}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% =====================================================================
+% AMBIENTES
+% =====================================================================
+\theoremstyle{definition}
+\newtheorem{definition}{Definicao}[chapter]
+\newtheorem{example}[definition]{Exemplo}
+\newtheorem{remark}[definition]{Observacao}
+\newtheorem{problem}{Problema}
+
+% =====================================================================
+% DOCUMENTO
+% =====================================================================
+\title{\textbf{Capitulo 5: Comportamento Exponencial}\\[0.4cm]
+\large Principios de Modelagem Matematica}
+\author{Baseado em Dym, C. L.}
+\date{2026-04-14}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\chapter{Comportamento Exponencial}
+
+\section{Ideia central do capitulo}
+
+Muitos processos fisicos, biologicos e economicos variam de forma proporcional ao proprio estado atual.
+Quando isso acontece, aparece naturalmente o comportamento exponencial.
+
+A ideia fundamental e:
+\begin{equation}
+\frac{dy}{dt} = ky,
+\end{equation}
+onde $k$ e uma constante.
+
+A solucao e:
+\begin{equation}
+y(t)=y_0e^{kt}.
+\end{equation}
+
+\begin{remark}
+Se $k>0$, temos crescimento exponencial. Se $k<0$, temos decaimento exponencial.
+\end{remark}
+
+\section{Modelo basico de crescimento e decaimento}
+
+\subsection{Derivacao rapida}
+
+Partindo de $dy/dt=ky$ com condicao inicial $y(0)=y_0$:
+\begin{equation}
+\frac{1}{y}dy = k\,dt
+\end{equation}
+\begin{equation}
+\int \frac{1}{y}dy = \int k\,dt
+\end{equation}
+\begin{equation}
+\ln|y| = kt + C
+\end{equation}
+\begin{equation}
+y(t)=Ce^{kt}
+\end{equation}
+
+Usando $y(0)=y_0$, segue $C=y_0$.
+
+\subsection{Constante de tempo e meia-vida}
+
+Para decaimento ($k<0$), definimos $k=-\lambda$ com $\lambda>0$:
+\begin{equation}
+y(t)=y_0e^{-\lambda t}.
+\end{equation}
+
+Constante de tempo:
+\begin{equation}
+\tau=\frac{1}{\lambda}.
+\end{equation}
+
+Meia-vida $t_{1/2}$:
+\begin{equation}
+\frac{y_0}{2}=y_0e^{-\lambda t_{1/2}} \Rightarrow t_{1/2}=\frac{\ln 2}{\lambda}.
+\end{equation}
+
+\section{Exemplos classicos de modelagem}
+
+\subsection{Exemplo 1: juros compostos continuos}
+
+Se um capital $C(t)$ rende proporcionalmente ao proprio valor:
+\begin{equation}
+\frac{dC}{dt}=rC,
+\end{equation}
+entao
+\begin{equation}
+C(t)=C_0e^{rt}.
+\end{equation}
+
+Se $C_0=1000$ e $r=0.08$ ao ano, em 3 anos:
+\begin{equation}
+C(3)=1000e^{0.24}\approx 1271.25.
+\end{equation}
+
+\subsection{Exemplo 2: decaimento radioativo}
+
+Numero de nucleos $N(t)$:
+\begin{equation}
+\frac{dN}{dt}=-\lambda N \Rightarrow N(t)=N_0e^{-\lambda t}.
+\end{equation}
+
+Se meia-vida e 5 dias, entao:
+\begin{equation}
+\lambda=\frac{\ln 2}{5}.
+\end{equation}
+
+Apos 15 dias:
+\begin{equation}
+N(15)=N_0e^{-\lambda 15}=N_0\left(\frac{1}{2}\right)^3=\frac{N_0}{8}.
+\end{equation}
+
+\subsection{Exemplo 3: resfriamento de Newton}
+
+Modelo:
+\begin{equation}
+\frac{dT}{dt}=-k(T-T_a),
+\end{equation}
+onde $T_a$ e temperatura ambiente.
+
+Definindo $\theta=T-T_a$:
+\begin{equation}
+\frac{d\theta}{dt}=-k\theta \Rightarrow \theta(t)=\theta_0e^{-kt}.
+\end{equation}
+
+Logo:
+\begin{equation}
+T(t)=T_a + (T_0-T_a)e^{-kt}.
+\end{equation}
+
+\subsection{Exemplo 4: carga e descarga de capacitor RC}
+
+Para descarga de capacitor:
+\begin{equation}
+\frac{dV}{dt}=-\frac{1}{RC}V,
+\end{equation}
+com solucao:
+\begin{equation}
+V(t)=V_0e^{-t/(RC)}.
+\end{equation}
+
+Constante de tempo do circuito:
+\begin{equation}
+\tau=RC.
+\end{equation}
+
+\section{Interpretacao em escala logaritmica}
+
+Tomando logaritmo de $y(t)=y_0e^{kt}$:
+\begin{equation}
+\ln y = \ln y_0 + kt.
+\end{equation}
+
+Isso e uma reta em grafico semilog ($\ln y$ vs $t$), com inclinacao $k$.
+
+\begin{remark}
+Em dados experimentais, linearizar em log ajuda a identificar rapidamente se o processo e exponencial.
+\end{remark}
+
+\section{Conexao com modelos nao lineares}
+
+Mesmo quando um sistema e nao linear, o comportamento perto de equilibrio pode ser exponencial apos linearizacao.
+
+Se $\dot{x}=f(x)$ e $x^*$ e equilibrio, para perturbacao $\eta=x-x^*$:
+\begin{equation}
+\dot{\eta}\approx f'(x^*)\eta.
+\end{equation}
+
+Assim:
+\begin{equation}
+\eta(t)\approx \eta_0e^{f'(x^*)t}.
+\end{equation}
+
+Sinal de $f'(x^*)$ decide estabilidade local.
+
+\section{Exemplo completo de ajuste de parametro}
+
+Suponha um processo de decaimento com dados:
+\begin{center}
+$t$ (h): $0, 2, 4$ \quad e \quad $y$: $80, 48.5, 29.4$
+\end{center}
+
+Modelo: $y(t)=y_0e^{-\lambda t}$ com $y_0=80$.
+
+Usando $t=2$:
+\begin{equation}
+48.5 = 80e^{-2\lambda}
+\end{equation}
+\begin{equation}
+e^{-2\lambda}=0.60625
+\end{equation}
+\begin{equation}
+\lambda\approx -\frac{1}{2}\ln(0.60625)\approx 0.25\,\text{h}^{-1}.
+\end{equation}
+
+Previsao em $t=4$:
+\begin{equation}
+y(4)=80e^{-1}\approx 29.4,
+\end{equation}
+coerente com os dados.
+
+\section{Roteiro pratico para identificar comportamento exponencial}
+
+\begin{enumerate}
+    \item Verifique se a taxa de variacao parece proporcional ao estado atual.
+    \item Escreva a EDO na forma $dy/dt=ky$ (ou equivalente apos mudanca de variavel).
+    \item Resolva e use condicao inicial para obter a constante.
+    \item Use grafico semilog para validar linearidade.
+    \item Estime parametros ($k$, $\lambda$, $\tau$, meia-vida) a partir dos dados.
+\end{enumerate}
+
+\section{Exercicios curtos}
+
+\begin{problem}
+Uma populacao cresce com taxa proporcional ao tamanho, com $P(0)=120$ e $k=0.03$ dia$^{-1}$. Encontre $P(20)$.
+\end{problem}
+
+\begin{problem}
+Um material tem meia-vida de 8 horas. Qual fracao resta apos 24 horas?
+\end{problem}
+
+\begin{problem}
+No modelo de resfriamento de Newton, derive a expressao para o tempo necessario para atingir uma temperatura alvo $T^*$.
+\end{problem}
+
+\section{Resumo final}
+
+Comportamento exponencial e um dos blocos mais importantes da modelagem matematica.
+Ele aparece quando a dinamica depende do proprio estado e permite previsoes simples e robustas.
+
+Ideias-chave do capitulo 5:
+\begin{itemize}
+    \item EDO linear de primeira ordem com coeficiente constante;
+    \item crescimento e decaimento exponencial;
+    \item meia-vida e constante de tempo;
+    \item leitura de dados em escala logaritmica;
+    \item conexao entre linearizacao local e estabilidade.
+\end{itemize}
+
+\end{document}

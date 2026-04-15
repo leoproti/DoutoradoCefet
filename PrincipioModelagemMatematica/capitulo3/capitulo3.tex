@@ -1,0 +1,263 @@
+\documentclass[12pt,a4paper,oneside]{book}
+
+% =====================================================================
+% PACOTES ESSENCIAIS
+% =====================================================================
+\usepackage[brazilian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{mathtools}
+
+% =====================================================================
+% GEOMETRIA
+% =====================================================================
+\geometry{
+    left=2.5cm,
+    right=2.5cm,
+    top=3cm,
+    bottom=3cm,
+    headheight=14pt
+}
+
+% =====================================================================
+% CABECALHO E RODAPE
+% =====================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{Capitulo 3: Escala, Escalabilidade e Fractais}}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{\small Principios de Modelagem Matematica}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% =====================================================================
+% AMBIENTES
+% =====================================================================
+\theoremstyle{definition}
+\newtheorem{definition}{Definicao}[chapter]
+\newtheorem{example}[definition]{Exemplo}
+\newtheorem{remark}[definition]{Observacao}
+\newtheorem{problem}{Problema}
+
+% =====================================================================
+% DOCUMENTO
+% =====================================================================
+\title{\textbf{Capitulo 3: Escala, Escalabilidade e Fractais}\\[0.4cm]
+\large Principios de Modelagem Matematica}
+\author{Baseado em Dym, C. L.}
+\date{2026-04-14}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\chapter{Escala, Escalabilidade e Fractais}
+
+\section{Ideia central do capitulo}
+
+Neste capitulo, o foco e entender como um sistema muda quando alteramos seu tamanho caracteristico.
+Esse tipo de pergunta aparece em engenharia, fisica, biologia e economia:
+
+\begin{itemize}
+    \item Se dobramos o tamanho, o efeito tambem dobra?
+    \item Quais grandezas crescem mais rapido e se tornam dominantes?
+    \item Existe uma lei de potencia do tipo $Y \propto X^\alpha$?
+\end{itemize}
+
+A analise de escala permite identificar termos relevantes sem resolver o problema completo.
+
+\section{Escala e analise por ordem de grandeza}
+
+\begin{definition}[Escala caracteristica]
+Escala caracteristica e o valor tipico de uma variavel no problema, como comprimento $L$, velocidade $U$, tempo $T$ ou concentracao $C$.
+\end{definition}
+
+\begin{definition}[Ordem de grandeza]
+Dizemos que duas quantidades sao da mesma ordem quando diferem por um fator pequeno (tipicamente menor que 10).
+\end{definition}
+
+\subsection{Nao dimensionalizacao rapida}
+
+Considere a equacao de transporte 1D:
+\begin{equation}
+\frac{\partial c}{\partial t} + u\frac{\partial c}{\partial x} = D\frac{\partial^2 c}{\partial x^2}.
+\end{equation}
+
+Definimos variaveis adimensionais:
+\begin{equation}
+\hat{x} = \frac{x}{L}, \quad \hat{t} = \frac{t}{T}, \quad \hat{c} = \frac{c}{C_0}, \quad \hat{u} = \frac{u}{U}.
+\end{equation}
+
+Escolhendo $T=L/U$, obtemos:
+\begin{equation}
+\frac{\partial \hat{c}}{\partial \hat{t}} + \hat{u}\frac{\partial \hat{c}}{\partial \hat{x}} = \frac{1}{Pe}\frac{\partial^2 \hat{c}}{\partial \hat{x}^2},
+\end{equation}
+com numero de Peclet:
+\begin{equation}
+Pe = \frac{UL}{D}.
+\end{equation}
+
+\begin{remark}
+Se $Pe \gg 1$, adveccao domina; se $Pe \ll 1$, difusao domina.
+\end{remark}
+
+\section{Leis de escala (power laws)}
+
+Em muitos sistemas, observa-se:
+\begin{equation}
+Y = kX^\alpha,
+\end{equation}
+onde $\alpha$ e o expoente de escala.
+
+Tomando logaritmo:
+\begin{equation}
+\log Y = \log k + \alpha \log X,
+\end{equation}
+logo, em grafico log-log, a inclinacao e $\alpha$.
+
+\subsection{Exemplo 1: area e volume}
+
+Para um corpo com comprimento caracteristico $L$:
+\begin{equation}
+A \propto L^2, \qquad V \propto L^3.
+\end{equation}
+
+Se aumentamos $L$ por fator 3:
+\begin{equation}
+A' = 3^2A = 9A, \qquad V' = 3^3V = 27V.
+\end{equation}
+
+\textbf{Conclusao}: volume cresce mais rapido que area. Isso explica, por exemplo, limites de troca termica em objetos grandes.
+
+\subsection{Exemplo 2: periodo de pendulo}
+
+Para pequenas amplitudes:
+\begin{equation}
+T = 2\pi\sqrt{\frac{\ell}{g}}.
+\end{equation}
+
+Logo:
+\begin{equation}
+T \propto \ell^{1/2}.
+\end{equation}
+
+Se $\ell$ quadruplica, o periodo dobra.
+
+\section{Escalabilidade de modelos}
+
+Escalabilidade significa como desempenho, custo ou erro variam com o tamanho do sistema.
+
+\subsection{Exemplo 3: custo computacional}
+
+Suponha um algoritmo com custo:
+\begin{equation}
+C(N) = aN^2.
+\end{equation}
+
+Se o tamanho de entrada dobra ($N \to 2N$):
+\begin{equation}
+C(2N) = a(2N)^2 = 4aN^2.
+\end{equation}
+
+Ou seja, dobrar o problema quadruplica o custo.
+
+\subsection{Exemplo 4: transferencia de calor em objeto geometricamente similar}
+
+Potencia termica aproximada por conveccao:
+\begin{equation}
+\dot{Q} \sim hA\Delta T.
+\end{equation}
+
+Como $A \propto L^2$, entao:
+\begin{equation}
+\dot{Q} \propto L^2.
+\end{equation}
+
+Energia armazenada (aprox. proporcional ao volume):
+\begin{equation}
+E \propto L^3.
+\end{equation}
+
+Tempo caracteristico de resfriamento:
+\begin{equation}
+\tau \sim \frac{E}{\dot{Q}} \propto L.
+\end{equation}
+
+Objetos maiores tendem a resfriar mais lentamente.
+
+\section{Fractais e dimensao fractal}
+
+Fractais sao estruturas com auto-similaridade: partes se parecem com o todo em diferentes escalas.
+
+\begin{definition}[Dimensao fractal por auto-similaridade]
+Se um objeto e composto por $N$ copias reduzidas por fator $r$ em cada escala,
+a dimensao fractal e:
+\begin{equation}
+D = \frac{\log N}{\log(1/r)}.
+\end{equation}
+\end{definition}
+
+\subsection{Exemplo 5: Curva de Koch}
+
+Na Curva de Koch, cada segmento e substituido por $N=4$ segmentos com reducao $r=1/3$:
+\begin{equation}
+D = \frac{\log 4}{\log 3} \approx 1.2619.
+\end{equation}
+
+A curva tem dimensao maior que uma linha ($D=1$), mas menor que uma superficie ($D=2$).
+
+\subsection{Exemplo 6: Triangulo de Sierpinski}
+
+No Triangulo de Sierpinski: $N=3$ e $r=1/2$:
+\begin{equation}
+D = \frac{\log 3}{\log 2} \approx 1.585.
+\end{equation}
+
+\section{Roteiro pratico para estudar o capitulo 3}
+
+\begin{enumerate}
+    \item Identifique as variaveis e escalas caracteristicas do problema.
+    \item Nao dimensionalize as equacoes.
+    \item Extraia numeros adimensionais (Re, Pe, etc.).
+    \item Compare ordens de grandeza para eliminar termos pequenos.
+    \item Verifique se ha lei de potencia em grafico log-log.
+    \item Quando houver auto-similaridade, estime dimensao fractal.
+\end{enumerate}
+
+\section{Exercicios curtos}
+
+\begin{problem}
+Se $Y \propto X^{1.7}$, por qual fator $Y$ muda quando $X$ dobra?
+\end{problem}
+
+\begin{problem}
+Um objeto geometrico similar tem aresta multiplicada por 5. Como mudam area e volume?
+\end{problem}
+
+\begin{problem}
+Em uma malha numerica 3D, o numero de celulas escala como $N \propto (L/\Delta x)^3$. Se $\Delta x$ cai pela metade, qual o fator de aumento em $N$?
+\end{problem}
+
+\section{Resumo final}
+
+O capitulo 3 mostra que escalar nao e apenas aumentar tamanho: e entender como os mecanismos mudam de importancia.
+A linguagem matematica dessa ideia aparece em:
+\begin{itemize}
+    \item leis de potencia,
+    \item numeros adimensionais,
+    \item eliminacao de termos por ordem de grandeza,
+    \item geometria fractal e dimensao nao inteira.
+\end{itemize}
+
+Essas tecnicas tornam a modelagem mais robusta, economica e explicativa.
+
+\end{document}
