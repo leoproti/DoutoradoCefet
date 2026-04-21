@@ -49,30 +49,150 @@ Fonte: \url{https://commons.wikimedia.org/wiki/Special:FilePath/Mandelbrot-29345
 \section*{Questao 2 - Relacao para a frequencia de oscilacao}
 Enunciado (resumo): uma viga de massa $m$ e cabo de comprimento $L$, sob gravidade $g$ e tensao $\tau$, oscila com frequencia $\omega$. Pedem uma relacao para estimar $\omega$ em funcao da altura $h$.
 
-Tomando as dimensoes indicadas no desenvolvimento da prova:
+\subsection*{Passo 1: Variaveis do problema}
 \begin{equation}
-[\omega]=T^{-1}, \quad [h]=L, \quad [m]=M, \quad [g]=LT^{-2}, \quad [\tau]=ML^{-1}T^{-2}.
+\omega,\; h,\; m,\; g,\; \tau,\; L.
 \end{equation}
 
-Aplicando Buckingham $\Pi$, obtemos grupos adimensionais equivalentes a:
+\subsection*{Passo 2: Dimensoes fundamentais}
+\begin{equation}
+[\omega]=T^{-1}, \quad [h]=L, \quad [L]=L, \quad [m]=M, \quad [g]=LT^{-2}, \quad [\tau]=MLT^{-2}.
+\end{equation}
+
+\subsection*{Passo 3: Numero de grupos adimensionais}
+Temos $n=6$ variaveis e $k=3$ dimensoes fundamentais ($M,L,T$). Pelo Teorema de Buckingham:
+\begin{equation}
+n-k=6-3=3.
+\end{equation}
+Logo, precisamos de 3 grupos adimensionais.
+
+\subsection*{Como escolher as variaveis adimensionais (regra pratica)}
+Para montar os grupos $\Pi$ sem erro, siga este roteiro curto:
+\begin{enumerate}
+  \item Escolha $k$ \textbf{variaveis repetidas} (aqui, $k=3$): elas devem ser dimensionalmente independentes e, juntas, conter $M$, $L$ e $T$.
+  \item Evite colocar a variavel dependente ($\omega$) no conjunto repetido, para facilitar o isolamento final de $\omega$.
+  \item Cada variavel restante gera um grupo $\Pi$: escreva essa variavel multiplicada pelas repetidas elevadas a expoentes desconhecidos.
+  \item Impoe adimensionalidade: zere os expoentes de $M$, $L$ e $T$ para resolver o sistema linear.
+  \item Se aparecerem grupos diferentes dos de outro colega/livro, tudo bem: bases diferentes sao equivalentes se forem combinacoes adimensionais entre si.
+\end{enumerate}
+
+Neste problema, uma escolha boa de repetidas e $m,\,g,\,h$, porque:
+\begin{equation}
+[m]=M,\qquad [g]=LT^{-2},\qquad [h]=L,
+\end{equation}
+ou seja, cobrem $M,L,T$ e sao independentes.
+
+\subsection*{Passo 4: Escolha dos grupos $\Pi$}
+Escolhemos como variaveis repetidas $m,\,g,\,h$ (independentes e cobrindo $M,L,T$).
+
+\textbf{Grupo envolvendo $L$:}
+\begin{equation}
+\Pi_1 = L\,m^{a}g^{b}h^{c}.
+\end{equation}
+Dimensoes:
+\begin{equation}
+[\Pi_1]=L\cdot M^{a}(LT^{-2})^{b}L^{c}=M^aL^{1+b+c}T^{-2b}.
+\end{equation}
+Para ser adimensional, os expoentes de $M,L,T$ devem ser zero:
+\begin{equation}
+a=0,\qquad -2b=0\Rightarrow b=0,\qquad 1+b+c=0\Rightarrow c=-1.
+\end{equation}
+Logo:
+\begin{equation}
+\Pi_1=\frac{L}{h}.
+\end{equation}
+
+\textbf{Grupo envolvendo $\omega$:}
+\begin{equation}
+\Pi_2 = \omega\,m^{a}g^{b}h^{c}.
+\end{equation}
+Dimensoes:
+\begin{equation}
+[\Pi_2]=T^{-1}\cdot M^{a}(LT^{-2})^{b}L^{c}=M^aL^{b+c}T^{-1-2b}.
+\end{equation}
+Sistema:
+\begin{equation}
+a=0,\qquad -1-2b=0\Rightarrow b=-\frac12,\qquad b+c=0\Rightarrow c=\frac12.
+\end{equation}
+Assim:
+\begin{equation}
+\Pi_2=\omega\sqrt{\frac{h}{g}}.
+\end{equation}
+Forma equivalente (inversa ao quadrado), usada na conta final:
+\begin{equation}
+\Pi_2' = \frac{g}{h\omega^2}.
+\end{equation}
+
+\textbf{Grupo envolvendo $\tau$:}
+\begin{equation}
+\Pi_3 = \tau\,m^{a}g^{b}h^{c}.
+\end{equation}
+Com $[\tau]=MLT^{-2}$:
+\begin{equation}
+[\Pi_3]=MLT^{-2}\cdot M^{a}(LT^{-2})^{b}L^{c}
+=M^{1+a}L^{1+b+c}T^{-2-2b}.
+\end{equation}
+Sistema:
+\begin{equation}
+1+a=0\Rightarrow a=-1,
+\qquad
+-2-2b=0\Rightarrow b=-1,
+\qquad
+1+b+c=0\Rightarrow c=0.
+\end{equation}
+Logo:
+\begin{equation}
+\Pi_3=\frac{\tau}{mg}.
+\end{equation}
+
+Portanto, uma base conveniente de grupos adimensionais e:
 \begin{equation}
 \Pi_1 = \frac{L}{h},
 \qquad
-\Pi_2 = \frac{g}{h\omega^2},
+\Pi_2' = \frac{g}{h\omega^2},
 \qquad
-\Pi_3 = \frac{h\tau}{m\omega^2}.
+\Pi_3 = \frac{\tau}{mg}.
 \end{equation}
 
-Logo, de $\Pi_2$ e $\Pi_3$ seguem as escalas de frequencia:
+Observacao: o expoente extra ($d$) aparece quando se escolhe montar um grupo misturando duas variaveis nao repetidas no mesmo $\Pi$ (por exemplo, $\tau$ e $\omega$). Isso cria uma familia equivalente de grupos, com um grau de liberdade. Para a construcao canonica de Buckingham, cada variavel nao repetida gera um grupo com expoentes apenas nas repetidas.
+
+\subsection*{Como verificar se duas bases de grupos sao equivalentes}
+Suponha que outro colega use a base:
 \begin{equation}
-\omega \propto \sqrt{\frac{g}{h}},
+\widetilde{\Pi}_1=\frac{L}{h},
 \qquad
-\omega \propto \sqrt{\frac{h\tau}{m}}.
+\widetilde{\Pi}_2=\omega\sqrt{\frac{h}{g}},
+\qquad
+\widetilde{\Pi}_3=\frac{\tau}{mg}.
 \end{equation}
 
-Uma forma geral consistente e:
+Para verificar equivalencia, basta escrever uma base em funcao da outra por combinacoes adimensionais:
 \begin{equation}
-\omega = \sqrt{\frac{g}{h}}\;\Phi\!\left(\frac{L}{h},\frac{h^2\tau}{mg}\right),
+\Pi_1=\widetilde{\Pi}_1,
+\qquad
+\Pi_2'=(\widetilde{\Pi}_2)^{-2},
+\qquad
+\Pi_3=\widetilde{\Pi}_3.
+\end{equation}
+
+Como cada grupo de uma base foi escrito como produto/potencia de grupos da outra (e a volta tambem e possivel), as duas bases sao equivalentes.
+
+\textbf{Regra pratica:} se voce consegue transformar uma base na outra usando apenas produto, quociente e potencia entre grupos adimensionais, entao ambas descrevem a mesma fisica e estao corretas.
+
+\subsection*{Passo 5: Relacao funcional e isolacao de $\omega$}
+A forma geral e:
+\begin{equation}
+F(\Pi_1,\Pi_2,\Pi_3)=0.
+\end{equation}
+
+Da definicao de $\Pi_2$:
+\begin{equation}
+\omega \propto \sqrt{\frac{g}{h}}.
+\end{equation}
+
+Portanto, uma forma adimensional consistente para a resposta final e:
+\begin{equation}
+\omega = \sqrt{\frac{g}{h}}\;\Phi\!\left(\frac{L}{h},\frac{\tau}{mg}\right),
 \end{equation}
 onde $\Phi$ e funcao adimensional.
 
