@@ -1,4 +1,27 @@
-A confirmação do número estimado de rotações é feita recalculando os valores da última coluna da Tabela 3.1 com a fórmula do capítulo e comparando linha a linha.
+A confirmação dos valores na última coluna da Tabela 3.1 é feita aplicando a fórmula de estimativa de rotações fornecida no texto e comparando os resultados com os valores tabelados.
 
-Quando os valores reconstituídos coincidem com a tabela (dentro de arredondamento), a estimativa está confirmada.
+\textbf{Fórmula de número de rotações:}
+Para um elemento rodante (por exemplo, uma roda de raio $r$ percorrendo distância $s$), o número de rotações completas é:
+\[
+N_{\rm rot} = \frac{s}{2\pi r}.
+\]
+Essa expressão é adimensional quando $s$ e $r$ têm a mesma unidade de comprimento:
+\[
+\left[\frac{s}{2\pi r}\right] = \frac{L}{1 \cdot L} = 1.\quad\checkmark
+\]
+
+\textbf{Procedimento de verificação linha a linha:}
+\begin{enumerate}
+\item Para cada linha da Tabela 3.1, extrair os dados físicos correspondentes (distância percorrida $s$ e raio $r$ ou parâmetro equivalente).
+\item Calcular $N_{\rm rot} = s/(2\pi r)$.
+\item Comparar o valor calculado com o valor na última coluna da tabela.
+\item Verificar que a diferença se deve apenas a arredondamento.
+\end{enumerate}
+
+\textbf{Exemplo numérico (valores ilustrativos):}
+Se $s = 628\,\mathrm{m}$ e $r = 1\,\mathrm{m}$:
+\[
+N_{\rm rot} = \frac{628}{2\pi\cdot 1} \approx \frac{628}{6{,}28} = 100\text{ rota\c{c}\~oes}.
+\]
+Quando os valores recalculados coincidem com a tabela (dentro de arredondamento), o número estimado de rotações fica confirmado.
 

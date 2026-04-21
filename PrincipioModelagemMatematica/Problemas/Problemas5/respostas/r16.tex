@@ -1,1 +1,25 @@
-Aplicando a Lei das Malhas de Kirchhoff ao circuito da Figura 5.7, a soma das quedas de tensão no resistor e no capacitor iguala a tensão da fonte. Essa relação coincide com a eq. (5.27), confirmando que a lei de conservação de energia elétrica é satisfeita nessa equação. 
+A eq. (5.27) é derivada diretamente da Lei das Malhas de Kirchhoff (LMK) aplicada ao circuito da Figura 5.7.
+
+\textbf{Lei das Malhas de Kirchhoff (LMK):}
+A soma algébrica das quedas de tensão ao longo de qualquer malha fechada é igual à soma das tensões de fonte:
+\[
+\sum_{\rm malha} V = 0 \quad\text{(or}\quad V_{\rm fonte} = \sum V_{\rm elementos}).
+\]
+
+\textbf{Circuito RC da Figura 5.7:}
+O circuito consiste em uma fonte $V_s$, um resistor $R$ e um capacitor $C$ em série. As quedas de tensão são:
+\begin{itemize}
+\item Resistor: $V_R = R\,i(t) = R\,C\,\dfrac{dV_C}{dt}$ (pois $i = C\,dV_C/dt$);
+\item Capacitor: $V_C$.
+\end{itemize}
+
+\textbf{Aplicação da LMK:}
+Percorrendo a malha no sentido da corrente:
+\[
+V_s = V_R + V_C = RC\,\frac{dV_C}{dt} + V_C.
+\]
+Reescrevendo:
+\[
+RC\,\frac{dV_C}{dt} + V_C = V_s.\quad\checkmark
+\]
+Esta é exatamente a eq. (5.27), confirmando que a Lei de Kirchhoff implica diretamente a equação diferencial do circuito RC. 

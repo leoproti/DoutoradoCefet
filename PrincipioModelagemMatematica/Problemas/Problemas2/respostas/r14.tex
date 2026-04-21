@@ -1,12 +1,52 @@
-$[V]=\frac{L}{T}$ 
-$[g]=\frac{L}{T^{2}}$ 
-$[h]=L$ 
-$[m]=M$ 
-$V=V(g,h,m)$ 
+O objetivo é aplicar o Teorema $\Pi$ de Buckingham para confirmar o resultado do Problema 2.13, que afirma que a tensão $T$ numa corda de comprimento $L$, conectada a uma rocha de massa $m$ girando com velocidade $v$, satisfaz:
+\[
+\frac{TL}{mv^2} = \text{constante.}
+\]
 
-Número de grupos $\pi=4-3=1$ 
-Variáveis que não formam $GA=4-1=3$ 
+\textbf{Passo 1 — Identificação das variáveis e dimensões:}
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Grandeza} & \textbf{Símbolo} & \textbf{Dimensão} \\
+\midrule
+Tensão & $T$ & $M\,L\,T^{-2}$ \\
+Comprimento da corda & $L$ & $L$ \\
+Massa & $m$ & $M$ \\
+Velocidade & $v$ & $L\,T^{-1}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\[ \pi_{1}=V^{\alpha}g^{\beta}m^{\delta}h \quad \pi_{1}=\left(\frac{L}{T}\right)^{\alpha}\left(\frac{L}{T^{2}}\right)^{\beta}M^{\delta}L \quad \begin{cases}\alpha+\beta+1=0\\ -\alpha-2\beta=0\\ \delta=0\end{cases} \] 
+Temos $n = 4$ variáveis e $r = 3$ dimensões fundamentais $(M, L, T)$. Portanto, o número de grupos adimensionais é $k = n - r = 4 - 3 = 1$.
 
-A velocidade de um objeto independe da massa. 
+\textbf{Passo 2 — Escolha das variáveis base:}
+Escolhemos $m$, $v$ e $L$ como variáveis base (contêm coletivamente $M$, $T$ e $L$, mas não formam grupo adimensional sozinhas).
+
+\textbf{Passo 3 — Formação do grupo $\Pi_1$:}
+\[
+\Pi_1 = m^{a}\,v^{b}\,L^{c}\cdot T
+\]
+Substituindo as dimensões:
+\[
+M^0\,L^0\,T^0 = M^{a}\,(L\,T^{-1})^{b}\,L^{c}\cdot (M\,L\,T^{-2})
+\]
+\[
+M^0\,L^0\,T^0 = M^{a+1}\;L^{b+c+1}\;T^{-b-2}
+\]
+
+\textbf{Passo 4 — Sistema de equações para os expoentes:}
+\[
+\begin{cases}
+M:\; a + 1 = 0 &\Rightarrow a = -1 \\
+T:\; -b - 2 = 0 &\Rightarrow b = -2 \\
+L:\; b + c + 1 = 0 &\Rightarrow c = 1
+\end{cases}
+\]
+
+\textbf{Passo 5 — Grupo adimensional resultante:}
+\[
+\Pi_1 = m^{-1}\,v^{-2}\,L^{1}\cdot T = \frac{TL}{mv^2}.
+\]
+
+\textbf{Conclusão:} O Teorema $\Pi$ de Buckingham confirma que $\Pi_1 = TL/(mv^2)$ é o único grupo adimensional independente, portanto $TL/(mv^2) = \text{constante}$, em acordo com o resultado do Problema 2.13.

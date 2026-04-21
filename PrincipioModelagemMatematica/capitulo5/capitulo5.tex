@@ -243,6 +243,103 @@ y(4)=80e^{-1}\approx 29.4,
 \end{equation}
 coerente com os dados.
 
+\section{Modelo logistico de crescimento}
+
+O modelo exponencial $dP/dt = rP$ preve crescimento ilimitado, o que nao e realista.
+O modelo logistico, proposto por Verhulst (1838), inclui uma capacidade de suporte $K$:
+\begin{equation}
+\frac{dP}{dt} = rP\!\left(1 - \frac{P}{K}\right).
+\end{equation}
+
+Interpretacao dos termos:
+\begin{itemize}
+    \item Para $P \ll K$: $(1 - P/K) \approx 1$ e o crescimento e praticamente exponencial.
+    \item Para $P \to K$: a taxa de crescimento tende a zero.
+    \item Equilibrios: $P^* = 0$ (instavel) e $P^* = K$ (estavel).
+\end{itemize}
+
+\subsection{Solucao analitica pelo metodo de fracoes parciais}
+
+Separando variaveis e usando fracoes parciais em $P(K-P)$:
+\begin{equation}
+\int \frac{dP}{P(K-P)} = \frac{1}{K}\int\left(\frac{1}{P}+\frac{1}{K-P}\right)dP = rt + C.
+\end{equation}
+
+Apos algebra e aplicando $P(0) = P_0$:
+\begin{equation}
+P(t) = \frac{K}{1 + \left(\dfrac{K - P_0}{P_0}\right)e^{-rt}}.
+\end{equation}
+
+Verificacao: $P(0) = P_0$ e $\lim_{t \to \infty} P(t) = K$. $\checkmark$
+
+O ponto de inflexao (maxima taxa de crescimento) ocorre em $P = K/2$, no instante:
+\begin{equation}
+t^* = \frac{1}{r}\ln\!\left(\frac{K - P_0}{P_0}\right).
+\end{equation}
+
+\begin{remark}
+O grafico de $P(t)$ tem forma de S (sigmoide): crescimento acelerado ate $K/2$, depois
+desacelerado ate saturar em $K$. Esse padrao e chamado de curva logistica.
+\end{remark}
+
+\subsection{Exemplo numerico}
+
+Seja $r = 0.3\,\text{dia}^{-1}$, $K = 1000$ e $P_0 = 50$.
+
+Ponto de inflexao: $t^* = \frac{1}{0.3}\ln(19) \approx 9.8\,\text{dias}$.
+
+Em $t = 10\,\text{dias}$:
+\begin{equation}
+P(10) = \frac{1000}{1 + 19\,e^{-3}} \approx \frac{1000}{1.949} \approx 513.
+\end{equation}
+
+\section{Equacoes de Lanchester}
+
+Em conflitos militares, Lanchester (1916) propôs modelos para a evolucao de duas forcas
+$E(t)$ e $F(t)$ em combate (aparece no Capitulo 5 do livro de Dym como aplicacao de EDOs
+acopladas):
+\begin{equation}
+\frac{dE}{dt} = -\lambda_F\,F, \qquad \frac{dF}{dt} = -\lambda_E\,E,
+\end{equation}
+onde $\lambda_E$ e $\lambda_F$ sao as eficacias de combate de cada forca.
+
+\subsection{Invariante de Lanchester}
+
+Multiplicando a primeira equacao por $2\lambda_E E$ e a segunda por $2\lambda_F F$ e somando:
+\begin{equation}
+\frac{d}{dt}\!\left(\lambda_E E^2 - \lambda_F F^2\right) = 0.
+\end{equation}
+
+Portanto:
+\begin{equation}
+\lambda_E E^2 - \lambda_F F^2 = \lambda_E E_0^2 - \lambda_F F_0^2 = \text{constante}.
+\end{equation}
+
+Essa e a \textbf{Lei Quadratica de Lanchester}: permite determinar o vencedor sem resolver
+o sistema completo. Se $\lambda_E E_0^2 > \lambda_F F_0^2$, a forca $E$ vence.
+
+\begin{remark}
+As equacoes de Lanchester mostram que tamanho quadra (lei quadratica), nao cresce linearmente.
+Dobrar o tamanho de uma forca quadriplica seu efeito de combate, dada eficacia constante.
+\end{remark}
+
+\section{Tabela comparativa de modelos de crescimento e decaimento}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Modelo} & \textbf{EDO} & \textbf{Solucao} & \textbf{Comportamento} \\
+\midrule
+Crescimento puro  & $\dot{y}=ky$ & $y_0e^{kt}$ & crescimento ilimitado \\
+Decaimento puro   & $\dot{y}=-\lambda y$ & $y_0e^{-\lambda t}$ & decai a zero \\
+Newton resfriamento & $\dot{T}=-k(T-T_a)$ & $T_a+(T_0-T_a)e^{-kt}$ & satura em $T_a$ \\
+Logistico (Verhulst) & $\dot{P}=rP(1-P/K)$ & sigmoide (secao~anterior) & satura em $K$ \\
+Lanchester & $\dot{E}=-\lambda_F F$ & hiperbolico & um lado zera \\
+RC (capacitor) & $\dot{V}=-V/(RC)$ & $V_0e^{-t/(RC)}$ & decai a zero \\
+\bottomrule
+\end{tabular}
+\end{center}
+
 \section{Roteiro pratico para identificar comportamento exponencial}
 
 \begin{enumerate}
@@ -266,6 +363,72 @@ Um material tem meia-vida de 8 horas. Qual fracao resta apos 24 horas?
 \begin{problem}
 No modelo de resfriamento de Newton, derive a expressao para o tempo necessario para atingir uma temperatura alvo $T^*$.
 \end{problem}
+
+% =====================================================================
+% EXEMPLO TIPO PROVA
+% =====================================================================
+\section{Exemplo tipo prova: datacao por carbono-14}
+
+\begin{problem}[Prova -- IIo semestre 2013]
+Suponha que uma amostra de fossil tenha sido datada por carbono-14 e o resultado
+obtido tenha sido de $570.000$ anos. Dado: concentracao natural em organismos
+vivos $= 1$ atomo em $10^{12}$; meia-vida do ${}^{14}$C $= 5700$ anos.
+\begin{enumerate}
+    \item Encontre a concentracao de ${}^{14}$C supostamente encontrada no osso.
+    \item Se a concentracao e determinada com precisao de 1 parte em $10^{23}$,
+    encontre a incerteza na estimativa da idade.
+    \item Em funcao dos valores encontrados, critique a estimativa feita para
+    a idade do osso.
+\end{enumerate}
+\end{problem}
+
+\textbf{Solucao}:
+
+A concentracao de ${}^{14}$C decai exponencialmente:
+\begin{equation}
+C(t) = C_0\,e^{-\lambda t}, \qquad \lambda = \frac{\ln 2}{t_{1/2}} = \frac{\ln 2}{5700}\;\text{anos}^{-1}.
+\end{equation}
+
+\textbf{1. Concentracao apos $t = 570.000$ anos}:
+\begin{align}
+n_{1/2} &= \frac{570.000}{5700} = 100 \quad \text{meias-vidas}, \\
+C &= C_0\cdot\left(\tfrac{1}{2}\right)^{100} = \frac{1}{10^{12}}\cdot\frac{1}{2^{100}}.
+\end{align}
+Como $2^{10} \approx 10^3$, temos $2^{100} \approx 10^{30}$, portanto:
+\begin{equation}
+C \approx \frac{1}{10^{12}} \cdot \frac{1}{10^{30}} = \frac{1}{10^{42}} \quad \text{atomos por atomo de carbono.}
+\end{equation}
+
+\textbf{2. Incerteza na idade via propagacao de erros}:
+
+De $t = -\ln(C/C_0)/\lambda$, derivando em relacao a $C$:
+\begin{equation}
+\delta t = \frac{1}{\lambda}\,\frac{\delta C}{C} = \frac{t_{1/2}}{\ln 2}\,\frac{\delta C}{C}.
+\end{equation}
+Com $\delta C/C = 10^{-23}$ e $t_{1/2}/\ln 2 = 5700/0{,}693 \approx 8225$ anos:
+\begin{equation}
+\delta t \approx 8225\;\text{anos} \times 10^{-23} \approx 8 \times 10^{-20}\;\text{anos.}
+\end{equation}
+
+\textbf{3. Critica}:
+
+A concentracao esperada ($\sim 10^{-42}$) e 19 ordens de grandeza abaixo da
+precisao instrumental citada ($\sim 10^{-23}$). Portanto:
+\begin{itemize}
+    \item O sinal de ${}^{14}$C seria absolutamente indetectavel apos 570.000 anos.
+    \item O metodo ${}^{14}$C so e confiavel ate $\sim 50.000$ anos
+    (cerca de 8--9 meias-vidas), pois apos isso a quantidade restante fica abaixo
+    do limiar de deteccao.
+    \item Qualquer ${}^{14}$C detectado em amostras suposta\-mente mais antigas
+    e provavelmente contaminacao moderna ou artefato instrumental.
+\end{itemize}
+
+\begin{remark}
+Esse problema testa tres competencias do capitulo 5: (1) calcular decaimento
+exponencial com meias-vidas, (2) propagar incertezas usando derivadas, (3) interpretar
+criticamente os limites do modelo. A conclusao central e que o modelo exponencial
+implica um limite pratico de datacao bem antes de 570.000 anos.
+\end{remark}
 
 \section{Resumo final}
 

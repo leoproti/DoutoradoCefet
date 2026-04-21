@@ -2,17 +2,27 @@
 \[
 \Pi = \frac{P}{E L^2},
 \]
-que é sem dimensão (força dividida por módulo vezes área equivalente de escala).
+cuja adimensionalidade se verifica substituindo as dimensões ($[P]=MLT^{-2}$, $[E]=ML^{-1}T^{-2}$, $[L^2]=L^2$):
+\[
+\left[\frac{P}{EL^2}\right] = \frac{MLT^{-2}}{ML^{-1}T^{-2}\cdot L^2} = \frac{MLT^{-2}}{MLT^{-2}} = 1.\quad\checkmark
+\]
 
 (b) Pela igualdade de grupos entre modelo (m) e protótipo (p):
 \[
 \frac{P_m}{E_m L_m^2}=\frac{P_p}{E_p L_p^2}
-\Rightarrow
-P_m=P_p\frac{E_m}{E_p}\left(\frac{L_m}{L_p}\right)^2.
+\implies
+P_m=P_p\,\frac{E_m}{E_p}\left(\frac{L_m}{L_p}\right)^2.
 \]
-Com $P_p=9000$ N, $L_m=0{,}20$ m e $L_p=3{,}6$ m:
+Dados: $P_p=9000$ N, $L_m=0{,}20$ m, $L_p=3{,}6$ m.
+
+Módulos de elasticidade típicos: a\c{c}o $E_m \approx 200\,\mathrm{GPa}$, madeira $E_p \approx 12\,\mathrm{GPa}$.
+
+Substituindo:
 \[
-P_m=9000\,\frac{E_m}{E_p}\left(\frac{0{,}20}{3{,}6}\right)^2.
+P_m=9000\times\frac{200}{12}\times\left(\frac{0{,}20}{3{,}6}\right)^2
+= 9000\times 16{,}7\times 0{,}00309
+\approx 463\,\mathrm{N}.
 \]
-Substituindo os módulos de aço e madeira adotados, obtém-se o valor numérico final.
+
+Portanto, deve-se aplicar uma carga de aproximadamente $\mathbf{463\,N}$ ao modelo de a\c{c}o para reproduzir as condi\c{c}\~oes do protótipo de madeira.
 

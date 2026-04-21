@@ -150,6 +150,72 @@ Com $x=0.2$ e truncando em ordem 2:
 \end{equation}
 Valor real: $\ln(1.2)\approx 0.1823$.
 
+\section{Tabela de series de Taylor mais usadas}
+
+A tabela abaixo reune as series mais frequentes em modelagem matematica.
+Todas sao expansoes em torno de $x=0$ (Maclaurin).
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Funcao} & \textbf{Expansao ate ordem 3 ou 4} & \textbf{Intervalo de validade} \\
+\midrule
+$e^x$           & $1 + x + \dfrac{x^2}{2!} + \dfrac{x^3}{3!} + \cdots$ & $x \in \mathbb{R}$ \\[6pt]
+$\sin x$        & $x - \dfrac{x^3}{3!} + \dfrac{x^5}{5!} - \cdots$ & $x \in \mathbb{R}$ \\[6pt]
+$\cos x$        & $1 - \dfrac{x^2}{2!} + \dfrac{x^4}{4!} - \cdots$ & $x \in \mathbb{R}$ \\[6pt]
+$\ln(1+x)$      & $x - \dfrac{x^2}{2} + \dfrac{x^3}{3} - \cdots$ & $|x| < 1$ \\[6pt]
+$(1+x)^n$       & $1 + nx + \dfrac{n(n-1)}{2!}x^2 + \cdots$ & $|x| < 1$, $n \in \mathbb{R}$ \\[6pt]
+$\tanh x$       & $x - \dfrac{x^3}{3} + \dfrac{2x^5}{15} - \cdots$ & $x \in \mathbb{R}$ \\[6pt]
+$(1+x)^{-1}$    & $1 - x + x^2 - x^3 + \cdots$ & $|x| < 1$ \\[6pt]
+$\sqrt{1+x}$    & $1 + \dfrac{x}{2} - \dfrac{x^2}{8} + \dfrac{x^3}{16} - \cdots$ & $|x| < 1$ \\[6pt]
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Aproximacao binomial}
+
+A serie $(1+x)^n$ para qualquer $n$ real com $|x| \ll 1$ reduz-se a:
+\begin{equation}
+(1+x)^n \approx 1 + nx.
+\end{equation}
+
+Casos praticos frequentes:
+\begin{itemize}
+    \item $\sqrt{1+x} = (1+x)^{1/2} \approx 1 + \dfrac{x}{2}$ \quad (variacao percentual pequena)
+    \item $(1+x)^{-1} \approx 1 - x$ \quad (denominador quase constante)
+    \item $(1+x)^{-3/2} \approx 1 - \dfrac{3}{2}x$ \quad (campo gravitacional, analise de erros)
+\end{itemize}
+
+\begin{remark}
+A aproximacao binomial e especialmente util em propagacao de incerteza:
+se $f = a^n$ e $a = a_0(1+\epsilon)$ com $\epsilon \ll 1$, entao $f \approx a_0^n(1+n\epsilon)$.
+O erro relativo em $f$ e $n$ vezes o erro relativo em $a$.
+\end{remark}
+
+\subsection{Pendulo simples: linearizacao via Taylor}
+
+A equacao exata do pendulo de comprimento $\ell$ e:
+\begin{equation}
+\ddot{\theta} + \frac{g}{\ell}\sin\theta = 0.
+\end{equation}
+
+Expandindo $\sin\theta$ em torno de $\theta = 0$:
+\begin{equation}
+\sin\theta = \theta - \frac{\theta^3}{6} + \cdots \approx \theta \quad \text{(para } |\theta| \ll 1\text{)}.
+\end{equation}
+
+O modelo linearizado e:
+\begin{equation}
+\ddot{\theta} + \frac{g}{\ell}\theta = 0,
+\end{equation}
+com solucao $\theta(t) = A\cos(\omega t + \phi)$, onde $\omega = \sqrt{g/\ell}$ e periodo:
+\begin{equation}
+T = \frac{2\pi}{\omega} = 2\pi\sqrt{\frac{\ell}{g}}.
+\end{equation}
+
+A analise dimensional (Capitulo 2) ja previa $T \propto \sqrt{\ell/g}$; a serie de Taylor fornece
+o coeficiente $2\pi$ e confirma a hipotese de angulos pequenos.
+
 \section{Linearizacao de modelos nao lineares}
 
 Considere uma EDO nao linear:
@@ -239,6 +305,56 @@ Linearize $f(x)=\cos x$ em torno de $x_0=\pi/4$.
 \begin{problem}
 Aproxime $\ln(1+x)$ em ordem 2 e estime o erro para $x=0.1$ usando o resto de Lagrange.
 \end{problem}
+
+% =====================================================================
+% EXEMPLO TIPO PROVA
+% =====================================================================
+\section{Exemplo tipo prova: aproximacao binomial e taxa de decaimento}
+
+\begin{problem}[Prova -- IIo semestre 2025]
+O valor de um carro novo e $V_0 = R\$\,51{.}500$ e o veiculo perde $12\%$ de seu valor
+por ano, de forma que $V(t) = V_0\,(0{,}88)^t$.
+\begin{enumerate}
+    \item Use a aproximacao binomial (Taylor ordem 1) para estimar a taxa de
+    depreciacao mensal.
+    \item Calcule o erro relativo da aproximacao em relacao ao valor exato.
+    \item Escreva a equacao diferencial equivalente e determine a constante de decaimento
+    $\lambda$ (em anos$^{-1}$).
+\end{enumerate}
+\end{problem}
+
+\textbf{Solucao}:
+
+\textbf{1. Aproximacao binomial}:
+
+A taxa mensal e obtida de $(0{,}88)^{1/12} = (1 - 0{,}12)^{1/12}$.
+Usando a aproximacao binomial $(1+x)^n \approx 1 + nx$ com $x = -0{,}12$ e $n = 1/12$:
+\begin{equation}
+(1 - 0{,}12)^{1/12} \approx 1 + \frac{1}{12}(-0{,}12) = 1 - 0{,}01 = 0{,}99.
+\end{equation}
+Taxa de depreciacao mensal $\approx 1\%$ ao mes.
+
+\textbf{2. Valor exato e erro relativo}:
+\begin{equation}
+(0{,}88)^{1/12} = e^{\ln(0{,}88)/12} \approx e^{-0{,}12783/12} = e^{-0{,}01065} \approx 0{,}9894.
+\end{equation}
+Taxa exata: $1 - 0{,}9894 = 1{,}06\%$ ao mes.
+Erro relativo: $\dfrac{|1{,}06\% - 1\%|}{1{,}06\%} \approx 5{,}7\%$.
+
+\textbf{3. Equacao diferencial e constante $\lambda$}:
+
+Reescrevendo $V(t) = V_0\,e^{-\lambda t}$, identificamos $\lambda$ por:
+\begin{equation}
+e^{-\lambda} = 0{,}88 \implies \lambda = -\ln(0{,}88) = \ln\!\left(\frac{1}{0{,}88}\right) \approx 0{,}128\;\text{ano}^{-1}.
+\end{equation}
+A equacao governante e $\dot{V} = -\lambda V$, com solucao $V(t) = V_0\,e^{-0{,}128\,t}$.
+
+\begin{remark}
+A aproximacao binomial fornece $1\%$ ao mes, enquanto o valor exato e $1{,}06\%$ ao mes
+--- erro de $5{,}7\%$. Para maior precisao, usa-se a segunda ordem:
+$(1+x)^n \approx 1 + nx + \frac{n(n-1)}{2}x^2$, que daria
+$1 - 0{,}01 - \frac{1}{288}(0{,}12)^2 \approx 1 - 0{,}0106$, ou seja, $1{,}06\%$. $\checkmark$
+\end{remark}
 
 \section{Resumo final}
 

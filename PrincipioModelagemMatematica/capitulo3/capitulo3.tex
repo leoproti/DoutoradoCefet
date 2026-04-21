@@ -23,7 +23,7 @@
     right=2.5cm,
     top=3cm,
     bottom=3cm,
-    headheight=14pt
+    headheight=14.5pt
 }
 
 % =====================================================================
@@ -194,6 +194,61 @@ Tempo caracteristico de resfriamento:
 
 Objetos maiores tendem a resfriar mais lentamente.
 
+\section{Escala isometrica e alometrica}
+
+Quando todos os comprimentos de um objeto crescem proporcionalmente, chamamos de
+\textbf{escala isometrica}. Quando a proporcao entre dimensoes muda, chamamos de
+\textbf{escala alometrica}.
+
+\subsection{Escala isometrica: lei do quadrado-cubo}
+
+Na escala isometrica, se o comprimento caracteristico $L$ e multiplicado por fator $\lambda$:
+\begin{equation}
+L' = \lambda L, \qquad A' = \lambda^2 A, \qquad V' = \lambda^3 V.
+\end{equation}
+
+Consequencia biologica importante: um animal duas vezes maior tem 4 vezes mais superficie
+(respiracao, troca termica) mas 8 vezes mais massa. Isso impoe limites biologicos ao tamanho maximo.
+
+\subsection{Lei de Kleiber: escala alometrica do metabolismo}
+
+Em escala alometrica, os expoentes diferem dos isometricos. Um exemplo classico e a
+\textbf{Lei de Kleiber} (1932), que relaciona a taxa metabolica basal $q_0$ com a massa
+corporal $M$ de mamiferos:
+\begin{equation}
+q_0 \approx 70\,M^{3/4} \qquad [\text{kcal/dia},\; M \text{ em kg}].
+\end{equation}
+
+Se a escala fosse isometrica (proporcional a area superficial), esperariamos $q_0 \propto M^{2/3}$.
+O expoente $3/4$ observado e maior, indicando escala alometrica positiva.
+
+\begin{remark}
+Um elefante ($M \sim 5000\,\text{kg}$) tem metabolismo total muito maior que um rato
+($M \sim 0.02\,\text{kg}$), mas seu metabolismo especifico (por kg) e muito menor.
+O rato queima energia mais rapido por unidade de massa.
+\end{remark}
+
+\subsection{Tabela de leis alometricas em mamiferos}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Grandeza} & \textbf{Escala isometrica esperada} & \textbf{Escala observada} \\
+\midrule
+Taxa metabolica $q_0$ & $M^{2/3}$ & $M^{3/4}$ \\
+Frequencia cardiaca $f_c$ & $M^{-1/3}$ & $M^{-1/4}$ \\
+Tempo de vida $t_v$ & $M^{1/3}$ & $M^{1/4}$ \\
+Volume de sangue $V_s$ & $M^{1}$ & $M^{1.0}$ (isometrico) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}
+Em grafico log-log, a Lei de Kleiber aparece como uma reta com inclinacao $3/4$,
+abrangendo desde camundongos ($\sim 10^{-2}$ kg) ate baleias ($\sim 10^5$ kg) ---
+uma faixa de 7 ordens de grandeza, confirmando a universalidade da lei de potencia.
+\end{remark}
+
 \section{Fractais e dimensao fractal}
 
 Fractais sao estruturas com auto-similaridade: partes se parecem com o todo em diferentes escalas.
@@ -246,6 +301,59 @@ Um objeto geometrico similar tem aresta multiplicada por 5. Como mudam area e vo
 \begin{problem}
 Em uma malha numerica 3D, o numero de celulas escala como $N \propto (L/\Delta x)^3$. Se $\Delta x$ cai pela metade, qual o fator de aumento em $N$?
 \end{problem}
+
+% =====================================================================
+% EXEMPLO TIPO PROVA
+% =====================================================================
+\section{Exemplo tipo prova: dimensao fractal}
+
+\begin{problem}[Prova -- IIo semestre 2013 e 2025]
+Determine a dimensao fractal dos seguintes conjuntos auto-similares:
+\begin{enumerate}
+    \item \textbf{Curva tipo Koch}: a cada iteracao, cada segmento e substituido por
+    4 copias de si mesmo com escala $1/3$.
+    \item \textbf{Piramide tipo Sierpinski}: a cada iteracao, a figura e composta por
+    4 copias em escala $1/2$.
+\end{enumerate}
+\end{problem}
+
+\textbf{Solucao}: A formula geral para fractal auto-similar e:
+\begin{equation}
+D_f = \frac{\ln N_p}{\ln(1/p)},
+\end{equation}
+onde $N_p$ e o numero de copias por iteracao e $p$ e o fator de escala linear.
+
+\textbf{1. Curva tipo Koch}: $N_p = 4$, $p = 1/3$:
+\begin{equation}
+D_f = \frac{\ln 4}{\ln 3} = \frac{2\ln 2}{\ln 3} \approx \frac{1{,}386}{1{,}099} \approx \boxed{1{,}26}.
+\end{equation}
+Como $1 < D_f < 2$: o objeto e mais complexo que uma curva 1D, mas nao preenche o plano 2D.
+
+\textbf{2. Piramide tipo Sierpinski}: $N_p = 4$, $p = 1/2$:
+\begin{equation}
+D_f = \frac{\ln 4}{\ln 2} = \frac{2\ln 2}{\ln 2} = 2 \implies \boxed{D_f = 2}.
+\end{equation}
+
+\textbf{Verificacao iterativa do item 2}:
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+Iteracao $k$ & Numero de copias $N$ & Escala $p^k$ \\
+\midrule
+1 & 4 & $1/2$ \\
+2 & 16 & $1/4$ \\
+$n$ & $4^n$ & $1/2^n$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+$D_f = \displaystyle\lim_{k\to\infty}\frac{\ln 4^k}{\ln 2^k} = \frac{\ln 4}{\ln 2} = 2.\quad\checkmark$
+
+\begin{remark}
+$D_f = 2$ para a piramide Sierpinski e surpreendente: apesar da aparencia rendada
+com infinitos buracos, ela tem a mesma dimensao fractal de um plano solido.
+Isso ocorre porque o numero de copias ($N=4$) cresce tao rapido quanto a reducao de escala
+($p=1/2$ em 2D implica area $\propto p^2 = 1/4$), resultando em ``densidade'' plena.
+\end{remark}
 
 \section{Resumo final}
 

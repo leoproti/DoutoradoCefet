@@ -1,1 +1,22 @@
-Ao diferenciar $F(t)=F_{0}\cosh\alpha t-\sqrt{\frac{\lambda_E}{\lambda_F}}E_{0}\sinh\alpha t$, obtemos $dF/dt=\alpha F_{0}\sinh\alpha t-\alpha\sqrt{\frac{\lambda_E}{\lambda_F}}E_{0}\cosh\alpha t$. Substituindo esse resultado e a expressão dada para $F(t)$ na eq. (5.53), verifica-se que a igualdade é satisfeita. O mesmo procede para $E(t)$. 
+O sistema de equações de Lanchester é $dF/dt = -\lambda_E E$ e $dE/dt = -\lambda_F F$, com $\alpha^2=\lambda_E\lambda_F$.
+
+\textbf{Verificação para $F(t) = F_0\cosh\alpha t - \sqrt{\lambda_E/\lambda_F}\,E_0\sinh\alpha t$:}
+
+Derivando:
+\[
+\frac{dF}{dt} = \alpha F_0\sinh\alpha t - \alpha\sqrt{\frac{\lambda_E}{\lambda_F}}\,E_0\cosh\alpha t.
+\]
+
+O lado direito da equação do sistema, $-\lambda_E E(t)$:
+\begin{align*}
+-\lambda_E E &= -\lambda_E\!\left[E_0\cosh\alpha t - \sqrt{\frac{\lambda_F}{\lambda_E}}F_0\sinh\alpha t\right] \\
+&= -\lambda_E E_0\cosh\alpha t + \sqrt{\lambda_E\lambda_F}\,F_0\sinh\alpha t \\
+&= -\lambda_E E_0\cosh\alpha t + \alpha F_0\sinh\alpha t.
+\end{align*}
+
+Comparando com $dF/dt$: usando $\alpha\sqrt{\lambda_E/\lambda_F} = \lambda_E/\sqrt{\lambda_E/\lambda_F}\cdot\sqrt{\lambda_E/\lambda_F} = \lambda_E$, temos
+\[
+\frac{dF}{dt} = \alpha F_0\sinh\alpha t - \lambda_E E_0\cosh\alpha t = -\lambda_E E(t).\quad\checkmark
+\]
+
+\textbf{Verificação para $E(t)$:} Por argumento inteiramente análogo (trocando $F\leftrightarrow E$ e $\lambda_E\leftrightarrow\lambda_F$), confirma-se que $dE/dt = -\lambda_F F(t).\quad\checkmark$ 

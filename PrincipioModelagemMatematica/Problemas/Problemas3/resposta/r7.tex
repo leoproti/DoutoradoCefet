@@ -1,6 +1,23 @@
-A forma adequada para gráfico log-log é linear em logaritmos:
+Seja a eq. (3.6) uma lei de potência da forma
 \[
-\log(\text{variável dependente}) = \text{constante} + (\text{expoente})\,\log(\text{variável independente}).
+y = C\,x^{n},
 \]
-Assim, os parâmetros da reta representam diretamente os parâmetros de escala da equação original.
+onde $C > 0$ é a constante de proporcionalidade e $n$ é o expoente de escala.
+
+Aplicando o logaritmo (base 10) a ambos os membros:
+\[
+\log_{10} y = \log_{10} C + n\,\log_{10} x.
+\]
+Definindo as variáveis transformadas $Y = \log_{10} y$ e $X = \log_{10} x$, obtém-se a equação de uma reta:
+\[
+Y = n\,X + \log_{10} C.
+\]
+
+Essa é a \textbf{forma linear para gráfico log-log} da eq. (3.6). No plano log-log:
+\begin{itemize}
+\item a \textbf{inclinação} da reta é o expoente $n$;
+\item o \textbf{intercepto vertical} é $\log_{10} C$, do qual se extrai a constante $C = 10^{\mathrm{intercepto}}$.
+\end{itemize}
+
+Portanto, um gráfico log-log transforma a lei de potência em uma reta cujos parâmetros identificam diretamente o expoente e a amplitude da equação original.
 

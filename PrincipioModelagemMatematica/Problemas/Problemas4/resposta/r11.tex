@@ -1,5 +1,13 @@
-Para $z\ll R$, a expansão binomial de $1/(R+z)$ dá
+Para $z\ll R$, expande-se $1/(R+z) = (1/R)\cdot 1/(1+z/R)$ usando a série binomial:
 \[
-V_g(z) \approx -\frac{GM_E m}{R}\left(1 - \frac{z}{R}\right)
-= -\frac{GM_E m}{R} + \frac{GM_E m}{R^{2}} z.
+\frac{1}{R+z} = \frac{1}{R}\left(1 - \frac{z}{R} + \frac{z^{2}}{R^{2}} - \cdots\right).
 \]
+Truncando na primeira ordem:
+\[
+V_g(z) \approx -\frac{GM_E m}{R}\left(1 - \frac{z}{R}\right) = -\frac{GM_E m}{R} + \frac{GM_E m}{R^{2}}\,z.
+\]
+Como $g_0 = GM_E/R^{2}$ é a aceleração gravitacional na superfície, o segundo termo é exatamente a expressão clássica da energia potencial gravitacional:
+\[
+V_g(z) \approx -\frac{GM_E m}{R} + m\,g_0\,z = V_g(0) + m\,g_0\,z.\quad\checkmark
+\]
+Assim, a aproximação linear em $z$ recupera o resultado elementar $\Delta V_g = m\,g_0\,z$, válido para $z \ll R \approx 6400\,\mathrm{km}$.

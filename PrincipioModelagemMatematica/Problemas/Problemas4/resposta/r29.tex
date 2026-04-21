@@ -1,1 +1,14 @@
-A eq. (4.53) para $m$ tem dimensão de $y/x$ (razão entre as variáveis), enquanto a eq. (4.54) para $b$ tem dimensão de $y$ (intercepto). Portanto, as duas equações não são dimensionalmente iguais: uma fornece a inclinação da reta e a outra dá a altura do ponto de corte no eixo $y$. 
+As eqs. (4.53) e (4.54) representam, respectivamente, a \textbf{inclinação} $m$ e o \textbf{intercepto} $b$ da reta ajustada pelo método dos mínimos quadrados. As suas dimensões são distintas:
+
+\begin{itemize}
+\item \textbf{Eq. (4.53) --- inclinação} $m$:
+\[
+m = \frac{n\sum x_i y_i - \sum x_i\sum y_i}{n\sum x_i^{2}-(\sum x_i)^{2}} \implies [m] = \frac{[y]}{[x]}.
+\]
+\item \textbf{Eq. (4.54) --- intercepto} $b$:
+\[
+b = \frac{\sum y_i - m\sum x_i}{n} \implies [b] = [y] - \frac{[y]}{[x]}\cdot[x] = [y].
+\]
+\end{itemize}
+
+A diferença dimensional essencial é: $m$ tem as dimensões de \textbf{razão} entre as variáveis ($y/x$), enquanto $b$ tem as dimensões da \textbf{própria variável dependente} ($y$). As duas equações não podem ser somadas ou comparadas diretamente; cada uma contribui com um papel físico diferente na equação da reta $y = mx + b$. 

@@ -1,1 +1,23 @@
-A eq. (5.22) combina termos de mesma dimensão física. Por exemplo, em um circuito RC típico, cada termo representa uma tensão ou uma taxa de variação de carga com unidades de volts por segundo. A resistência $R$ e a capacitância $C$ aparecem de forma que $RC$ tem dimensão de tempo, garantindo que todos os termos na equação tenham unidades consistentes. 
+Para confirmar que a eq. (5.22) é dimensionalmente correta, verifica-se que todos os termos têm a mesma dimensão física.
+
+\textbf{Dimensões dos elementos do circuito RC:}
+\begin{itemize}
+\item Resistência $R$: $[R] = \Omega = \mathrm{V\cdot A^{-1}}$
+\item Capacitância $C$: $[C] = \mathrm{F} = \mathrm{A\cdot s\cdot V^{-1}}$
+\item Produto $RC$: $[RC] = \mathrm{s}$ (dimensão de tempo)
+\item Tensão $V$: $[V] = \mathrm{V}$
+\end{itemize}
+
+\textbf{Verificação dimensional term a termo:}
+A eq. (5.22) é do tipo $RC\,\dfrac{dV_C}{dt} + V_C = V_s$. Verificando cada parcela:
+\[
+\left[RC\,\frac{dV_C}{dt}\right] = [\mathrm{s}]\cdot\left[\frac{\mathrm{V}}{\mathrm{s}}\right] = \mathrm{V},
+\]
+\[
+[V_C] = \mathrm{V},\qquad [V_s] = \mathrm{V}.
+\]
+Portanto, todos os termos têm dimensão de tensão (volts):
+\[
+[RC\,dV_C/dt]\;=\;[V_C]\;=\;[V_s]\;=\;\mathrm{V}.\quad\checkmark
+\]
+\textbf{Conclusão:} A eq. (5.22) é dimensionalmente correta e consistente com a análise de circuitos elétricos. 

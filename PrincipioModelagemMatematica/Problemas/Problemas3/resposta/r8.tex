@@ -1,4 +1,21 @@
-A confirmação dimensional da eq. (3.10) consiste em substituir cada grandeza por dimensões fundamentais $(M,L,T)$ e verificar igualdade dos expoentes em ambos os lados.
+A relação dimensional da eq. (3.10) é verificada expressando cada grandeza em dimensões fundamentais $[M,\,L,\,T]$ e confirmando a homogeneidade.
 
-Como os expoentes coincidem termo a termo, a eq. (3.10) é dimensionalmente homogênea.
+\textbf{Dimensões das grandezas envolvidas:}
+\begin{itemize}
+\item Potência mecânica: $[P] = M\,L^{2}\,T^{-3}$
+\item Força: $[F] = M\,L\,T^{-2}$
+\item Velocidade: $[v] = L\,T^{-1}$
+\item Energia cinética: $[E_k] = M\,L^{2}\,T^{-2}$
+\item Taxa de variação de energia: $\bigl[dE_k/dt\bigr] = M\,L^{2}\,T^{-3}$
+\end{itemize}
+
+\textbf{Verificação explícita:} O produto $F\cdot v$ tem dimensão:
+\[
+[F\cdot v] = [M\,L\,T^{-2}]\cdot[L\,T^{-1}] = M\,L^{2}\,T^{-3} = [P].\quad\checkmark
+\]
+Igualmente, $dE_k/dt$ tem dimensão:
+\[
+\left[\frac{dE_k}{dt}\right] = \frac{M\,L^{2}\,T^{-2}}{T} = M\,L^{2}\,T^{-3} = [P].\quad\checkmark
+\]
+Portanto, ambos os lados da eq. (3.10) possuem a mesma combinação de $M$, $L$ e $T$, confirmando que a relação dimensional é correta e a equação é fisicamente consistente.
 

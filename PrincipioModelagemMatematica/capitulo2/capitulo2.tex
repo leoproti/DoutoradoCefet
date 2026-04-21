@@ -3,7 +3,7 @@
 % =====================================================================
 % PACOTES ESSENCIAIS
 % =====================================================================
-\usepackage[portuguese]{babel}
+\usepackage[brazilian]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -704,6 +704,120 @@ Ao aplicar análise dimensional, certifique-se de:
     \item[$\square$] Validar resultado com física conhecida
     \item[$\square$] Documentar todas as suposições feitas
 \end{itemize}
+
+% =====================================================================
+% SEÇÃO 8: PRINCIPAIS GRUPOS ADIMENSIONAIS
+% =====================================================================
+\section{Principais Grupos Adimensionais em Engenharia}
+
+Os grupos adimensionais mais importantes aparecem repetidamente em problemas de fluidos,
+transferência de calor e massa. A tabela abaixo serve como referência rápida.
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Nome} & \textbf{Símbolo} & \textbf{Definição} & \textbf{Interpretação física} \\
+\midrule
+Reynolds    & $Re$ & $\rho U L/\mu$   & inércia / viscosidade \\
+Froude      & $Fr$ & $U/\sqrt{gL}$    & inércia / gravidade \\
+Mach        & $Ma$ & $U/c$            & inércia / compressibilidade \\
+Weber       & $We$ & $\rho U^2 L/\sigma$ & inércia / tensão superficial \\
+Peclet      & $Pe$ & $U L/D$          & advecção / difusão \\
+Nusselt     & $Nu$ & $hL/k$           & convecção / condução \\
+Prandtl     & $Pr$ & $\mu c_p/k$      & difusividade momentum / calor \\
+Biot        & $Bi$ & $hL/k_s$         & resistência superficial / interna \\
+Stokes      & $St$ & $f L/U$          & frequência não estacionária \\
+Euler       & $Eu$ & $\Delta p/(\rho U^2)$ & pressão / inércia \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}
+Interpretar o valor de um grupo adimensional é tão importante quanto calculá-lo:
+$Re \gg 1$ indica regime turbulento; $Re \ll 1$ indica regime laminar (Stokes).
+$Pe \gg 1$ indica que advecção domina; $Pe \ll 1$ indica difusão dominante.
+\end{remark}
+
+\subsection{Roteiro de estudo do Capítulo 2}
+
+Para dominar a análise dimensional, percorra a seguinte sequência:
+
+\begin{enumerate}
+    \item \textbf{Memorize as 7 dimensões fundamentais} do SI: M, L, T, $\Theta$, I, N, J.
+    \item \textbf{Pratique derivar dimensões} de grandezas compostas (pressão, energia, viscosidade).
+    \item \textbf{Aplique o Método Básico} em problemas com 2--3 variáveis.
+    \item \textbf{Aplique o Teorema Pi} em problemas com 4 ou mais variáveis.
+    \item \textbf{Identifique grupos físicos conhecidos} (Re, Fr, Pe) e interprete-os.
+    \item \textbf{Compare com resultados analíticos} quando disponíveis para validar.
+\end{enumerate}
+
+% =====================================================================
+% EXEMPLO TIPO PROVA
+% =====================================================================
+\section{Exemplo tipo prova: grua no estádio de futebol}
+
+\begin{problem}[Prova -- IIo semestre 2013 e 2025]
+Uma grua próxima a um estádio de futebol carrega uma viga de massa $m$ sob ação da
+gravidade $g$. A tensão no cabo é $\tau$, o comprimento do cabo é $L$ e a altura da viga
+acima do solo é $h$. Usando análise dimensional, encontre uma estimativa para a
+frequência de oscilação $\omega$ da viga.
+\end{problem}
+
+\textbf{Solução passo a passo}:
+
+\textbf{Passo 1 -- Variáveis e dimensões}:
+\begin{align}
+    [\omega] &= T^{-1} &
+    [m] &= M \\
+    [g] &= LT^{-2} &
+    [L] &= L \\
+    [\tau] &= MLT^{-2} \quad \text{(força no cabo)} &
+    [h] &= L
+\end{align}
+
+\textbf{Passo 2 -- Contagem Pi}: $n = 6$ variáveis, $r = 3$ dimensões fundamentais (M, L, T).
+Número de grupos adimensionais: $n - r = 3$.
+
+\textbf{Passo 3 -- Variáveis repetidoras}: escolha $\omega$, $h$, $m$
+(cobrem T, L, M de forma independente).
+
+\textbf{Passo 4 -- Construir os grupos} $\Pi_i = \omega^{a_i} h^{b_i} m^{c_i} \cdot Q_i$:
+
+\medskip
+\textbf{Grupo $\Pi_1$} com $Q_1 = L$ (comprimento do cabo):
+\begin{equation}
+T^{-a_1} L^{b_1} M^{c_1} \cdot L = 1
+\implies a_1=0,\; b_1=-1,\; c_1=0
+\implies \boxed{\Pi_1 = \frac{L}{h}}
+\end{equation}
+
+\textbf{Grupo $\Pi_2$} com $Q_2 = g$:
+\begin{equation}
+T^{-a_2} L^{b_2} M^{c_2} \cdot LT^{-2} = 1
+\implies a_2=-2,\; b_2=-1,\; c_2=0
+\implies \boxed{\Pi_2 = \frac{g}{h\,\omega^2}}
+\end{equation}
+
+\textbf{Grupo $\Pi_3$} com $Q_3 = \tau$ (com $[\tau]=MLT^{-2}$):
+\begin{equation}
+T^{-a_3} L^{b_3} M^{c_3} \cdot MLT^{-2} = 1
+\implies a_3=-2,\; b_3=-1,\; c_3=-1
+\implies \boxed{\Pi_3 = \frac{\tau}{m\,h\,\omega^2}}
+\end{equation}
+
+\textbf{Passo 5 -- Resultado}: $f\!\left(\Pi_1, \Pi_2, \Pi_3\right) = 0$, portanto:
+\begin{equation}
+\omega \propto \sqrt{\frac{g}{h}} \qquad \text{(de } \Pi_2\text{)}
+\qquad\text{e}\qquad
+\omega \propto \sqrt{\frac{\tau}{m\,h}} \qquad \text{(de } \Pi_3\text{)}.
+\end{equation}
+
+\begin{remark}
+O resultado $\omega \propto \sqrt{g/h}$ é análogo ao pêndulo simples (Capítulo~3),
+confirmando que a análise dimensional captura a física essencial mesmo sem resolver
+as equações de movimento. O grupo $\Pi_1 = L/h$ indica que a relação entre comprimento
+do cabo e altura influencia o modo de oscilação.
+\end{remark}
 
 % =====================================================================
 % APÊNDICE: EXERCÍCIOS
