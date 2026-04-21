@@ -1,12 +1,41 @@
-O enunciado remete a eq. (3.28), mas essa equacao nao esta presente no material salvo na pasta de enunciados. Sem a expressao explicita, nao ha como repetir a verificacao literal passo a passo.
+A equação (3.28) relaciona a constante de decaimento $\lambda$ ao tempo de meia-vida $t_{1/2}$ (ou tempo de decaimento):
+\[
+\lambda \cong \frac{2{,}303}{t_{\text{decaimento}}}.
+\]
 
-Ainda assim, a confirmacao correta de uma equacao desse capitulo exige dois testes:
+\textbf{Dedução:} a lei de decaimento exponencial é
 \[
-\text{(i) homogeneidade dimensional dos dois lados,}
+N(t) = N_0\,e^{-\lambda t}.
 \]
-e
+
+No tempo de meia-vida $t_{1/2}$, tem-se $N(t_{1/2})=N_0/2$:
 \[
-\text{(ii) invariancia da forma quando escrita em grupos adimensionais.}
+\frac{N_0}{2}=N_0\,e^{-\lambda t_{1/2}}
+\implies e^{-\lambda t_{1/2}}=\frac{1}{2}
+\implies -\lambda t_{1/2}=\ln\frac{1}{2}=-\ln 2.
 \]
-Portanto, a resposta tecnicamente adequada e registrar que a verificacao depende da forma explicita da eq. (3.28), ausente no enunciado resumido.
+Portanto:
+\[
+\lambda = \frac{\ln 2}{t_{1/2}}.
+\]
+
+Como $\ln 2 \approx 0{,}6931$ e $\log_{10}2=\log_{10}2$, usando $\ln 2 = \log_{10}2\times\ln 10$:
+\[
+\ln 2 = \log_{10}2\times\ln 10 \approx 0{,}30103\times 2{,}30259 \approx 0{,}6931.
+\]
+E em termos de $\log_{10}$:
+\[
+\lambda = \frac{\ln 2}{t_{1/2}} = \frac{\log_{10}2\,\cdot\ln10}{t_{1/2}} \approx \frac{2{,}303\times\log_{10}2}{t_{1/2}}.
+\]
+
+No contexto do livro, $t_{\text{decaimento}}$ refere-se ao tempo para que $\log_{10}N$ caia de uma unidade, i.e.,
+\[
+N(t_{\text{dec}}) = \frac{N_0}{10} \implies e^{-\lambda t_{\text{dec}}}=\frac{1}{10} \implies \lambda t_{\text{dec}}=\ln 10 \approx 2{,}303.
+\]
+Assim:
+\[
+\boxed{\lambda = \frac{\ln 10}{t_{\text{decaimento}}} \approx \frac{2{,}303}{t_{\text{decaimento}}}.}\quad\checkmark
+\]
+
+\textbf{Verificação dimensional:} $[\lambda]=\mathrm{s}^{-1}$, $[t_{\text{decaimento}}]=\mathrm{s}$, logo $[2{,}303/t_{\text{dec}}]=\mathrm{s}^{-1}$. $\checkmark$
 

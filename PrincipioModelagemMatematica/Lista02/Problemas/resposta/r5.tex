@@ -1,18 +1,51 @@
-Tomando as variaveis relevantes
+\textbf{Variáveis envolvidas e suas dimensões:}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Variável & Símbolo & Dimensões \\
+\hline
+Deflexão máxima & $w_{mp}$ & $[L]$ \\
+Rigidez à flexão & $EI$ & $[M\,L^3\,T^{-2}]$ \\
+Comprimento da viga & $L$ & $[L]$ \\
+Carga concentrada & $P$ & $[M\,L\,T^{-2}]$ \\
+Posição da carga & $x_p$ & $[L]$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Aplicação do Teorema de Buckingham--$\Pi$:}
+
+Temos $n=5$ variáveis e $k=3$ dimensões fundamentais ($M,L,T$), logo o número de grupos adimensionais é $n-k=2$.
+
+\textbf{Grupo $\Pi_1$:} buscamos combinação $w_{mp}^a\,(EI)^b\,L^c\,P^d$ adimensional:
 \[
-w_{mp},\ E,\ I,\ L,\ P,\ x_p,
+[L]^a\,[M\,L^3\,T^{-2}]^b\,[L]^c\,[M\,L\,T^{-2}]^d=M^0\,L^0\,T^0.
 \]
-uma forma natural para a deflexao adimensional e
+Do sistema:
 \[
-\Pi_1 = \frac{w_{mp}EI}{PL^3}.
+M:\;b+d=0,\quad T:\;-2b-2d=0,\quad L:\;a+3b+c+d=0.
 \]
-O segundo grupo independente e geometrico:
+Escolhendo $b=1,d=-1$: $c=-3+a$. Para $a=1$: $c=-2$. Mas precisamos adimensional em $w_{mp}$:
+
+Escolhendo $d=1,\,b=-1,\,a=1,\,c=2$:
 \[
-\Pi_2 = \frac{x_p}{L}.
+\Pi_1 = \frac{w_{mp}\,EI}{P\,L^3}.
 \]
-Logo, a relacao funcional pode ser escrita como
+
+\textbf{Verificação dimensional:}
 \[
-\frac{w_{mp}EI}{PL^3} = \Phi\!\left(\frac{x_p}{L}\right),
+\left[\frac{w_{mp}\,EI}{P\,L^3}\right]=\frac{L\cdot M\,L^3\,T^{-2}}{M\,L\,T^{-2}\cdot L^3}=\frac{M\,L^4\,T^{-2}}{M\,L^4\,T^{-2}}=1.\quad\checkmark
 \]
-que e exatamente a estrutura dos dois grupos adimensionais citados na eq. (3.34).
+
+\textbf{Grupo $\Pi_2$:} como $x_p$ e $L$ têm a mesma dimensão:
+\[
+\Pi_2 = \frac{x_p}{L}.\quad\checkmark
+\]
+
+\textbf{Conclusão:} pelo Teorema de Buckingham--$\Pi$, a relação funcional é:
+\[
+\Pi_1 = \Phi(\Pi_2),\qquad\text{ou seja,}\quad\frac{w_{mp}\,EI}{P\,L^3}=\Phi\!\left(\frac{x_p}{L}\right),
+\]
+que é exatamente a estrutura de dois grupos adimensionais da eq. (3.34). $\blacksquare$
 

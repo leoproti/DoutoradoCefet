@@ -1,0 +1,76 @@
+\textbf{Modelo de Lanchester para combate:}
+
+As equações de Lanchester para combat regular (Lei dos Quadrados) são:
+\[
+\frac{dF}{dt} = -\lambda_E\,E,\qquad \frac{dE}{dt} = -\lambda_F\,F.
+\]
+
+\textbf{Dados do problema:}
+\[
+F_0=54{.}000,\quad E_0=21{.}500,\quad \lambda_F=0{,}0106\,\text{dia}^{-1},\quad \lambda_E=0{,}0544\,\text{dia}^{-1}.
+\]
+
+\textbf{Critério de vitória (Princípio de Lanchester):}
+
+O lado $F$ vence se $\lambda_F F_0^2 > \lambda_E E_0^2$.
+\[
+\lambda_F F_0^2 = 0{,}0106\times(54000)^2 = 0{,}0106\times2{,}916\times10^9 \approx 3{,}091\times10^7,
+\]
+\[
+\lambda_E E_0^2 = 0{,}0544\times(21500)^2 = 0{,}0544\times4{,}6225\times10^8 \approx 2{,}515\times10^7.
+\]
+
+Como $3{,}091\times10^7 > 2{,}515\times10^7$, o lado $F$ (americanos) vence. $\checkmark$
+
+\textbf{Cálculo do tempo de batalha:}
+
+A constante de forma é:
+\[
+\alpha = \sqrt{\lambda_F\lambda_E} = \sqrt{0{,}0106\times0{,}0544} = \sqrt{5{,}766\times10^{-4}} \approx 0{,}02402\,\text{dia}^{-1}.
+\]
+
+A solução geral fornece:
+\[
+\tanh(\alpha\,t^*) = \sqrt{\frac{\lambda_F}{\lambda_E}}\cdot\frac{F_0}{E_0} = \sqrt{\frac{0{,}0106}{0{,}0544}}\cdot\frac{54000}{21500}.
+\]
+
+Calculando:
+\[
+\sqrt{\frac{0{,}0106}{0{,}0544}} = \sqrt{0{,}19485} \approx 0{,}4414,
+\]
+\[
+\frac{F_0}{E_0}=\frac{54000}{21500}\approx2{,}5116,
+\]
+\[
+\tanh(\alpha\,t^*)=0{,}4414\times2{,}5116\approx1{,}109.
+\]
+
+Mas $\tanh$ não pode exceder 1! Isso indica que o cálculo deve usar a forma correta:
+\[
+\tanh(\alpha\,t^*) = \sqrt{\frac{\lambda_E}{\lambda_F}}\cdot\frac{E_0}{F_0} = \sqrt{\frac{0{,}0544}{0{,}0106}}\cdot\frac{21500}{54000}\approx2{,}267\times0{,}3981\approx0{,}9025.
+\]
+
+Portanto:
+\[
+\alpha\,t^* = \text{arctanh}(0{,}9025) = \frac{1}{2}\ln\left(\frac{1+0{,}9025}{1-0{,}9025}\right)=\frac{1}{2}\ln\left(\frac{1{,}9025}{0{,}0975}\right)=\frac{1}{2}\ln(19{,}51)\approx\frac{1}{2}\times2{,}970\approx1{,}485.
+\]
+
+\[
+t^*=\frac{1{,}485}{0{,}02402}\approx\mathbf{61{,}8\ \text{dias}}.
+\]
+
+\textbf{Tropas restantes do vencedor ($F$) quando $E=0$:}
+
+Usando a lei de conservação de Lanchester:
+\[
+\lambda_F F^2 - \lambda_E E^2 = \lambda_F F_0^2 - \lambda_E E_0^2.
+\]
+
+Com $E=0$:
+\[
+F^* = \sqrt{F_0^2 - \frac{\lambda_E}{\lambda_F}E_0^2} = \sqrt{(54000)^2 - \frac{0{,}0544}{0{,}0106}(21500)^2}.
+\]
+\[
+= \sqrt{2{,}916\times10^9 - 5{,}132\times\!4{,}6225\times10^8} = \sqrt{2{,}916\times10^9 - 2{,}373\times10^9}
+= \sqrt{5{,}43\times10^8}\approx\mathbf{23{.}300\ \text{tropas}}.
+\] 

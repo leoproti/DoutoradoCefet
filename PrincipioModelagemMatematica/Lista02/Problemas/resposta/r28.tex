@@ -1,16 +1,38 @@
-O enunciado resumido nao inclui a tabela de leituras nem a curva de calibracao do voltimetro, entao a correcao numerica nao pode ser reproduzida aqui.
+\textbf{Comparação das séries:}
 
-O procedimento correto e:
-\begin{enumerate}
-\item usar a calibracao do instrumento para converter cada leitura indicada $V_{\text{lida}}$ na leitura corrigida $V_{\text{corr}}$;
-\item calcular o erro absoluto por
 \[
-\Delta V = V_{\text{corr}}-V_{\text{lida}};
+\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots = x - \frac{x^3}{6} + \frac{x^5}{120} - \cdots
 \]
-\item calcular o erro percentual por
 \[
-\%\,\text{erro} = \frac{|V_{\text{corr}}-V_{\text{lida}}|}{|V_{\text{corr}}|}\times 100\%.
+\tan x = x + \frac{x^3}{3} + \frac{2x^5}{15} + \cdots
 \]
-\end{enumerate}
-Sem os valores da tabela original, essa e a resposta metodologica correta.
 
+Aproximando pelo primeiro termo: $\sin x \approx x$ e $\tan x \approx x$. \textbf{Sim, são semelhantes para $|x|\ll1$}.
+
+\textbf{Diferença relativa (erro em $\sin x \approx x$):}
+\[
+\frac{\sin x - x}{x}\approx -\frac{x^2}{6}.
+\]
+
+\textbf{Diferença relativa (erro em $\tan x \approx x$):}
+\[
+\frac{\tan x - x}{x}\approx +\frac{x^2}{3}.
+\]
+
+O erro em $\tan x$ é \emph{o dobro} do erro em $\sin x$ e tem sinal oposto.
+
+\textbf{Avaliação numérica:}
+\begin{center}
+\begin{tabular}{llll}
+\hline
+$x$ (rad) & $\sin x$ & $\tan x$ & $x$ (aprox.) \\
+\hline
+$0{,}1$ & $0{,}09983$ & $0{,}10033$ & $0{,}1$ \\
+$0{,}3$ & $0{,}29552$ & $0{,}30934$ & $0{,}3$ \\
+$0{,}5$ & $0{,}47943$ & $0{,}54630$ & $0{,}5$ \\
+$1{,}0$ & $0{,}84147$ & $1{,}557$ & $1{,}0$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Conclusão:} para $x\leq0{,}1$ rad ($\approx5{,}7$\textdegree) ambas as aproximações são excelentes (erro $<0{,}2\%$). Para $x>0{,}5$ rad, $\tan x$ diverge rapidamente de $x$, enquanto $\sin x\approx x$ ainda é razoável. 

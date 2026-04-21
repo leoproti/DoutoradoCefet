@@ -1,13 +1,37 @@
-Pela analise dimensional,
+\textbf{Série de $\tanh x$:}
+
+Partindo de $\tanh x = \sinh x/\cosh x$, com:
 \[
-[c]=L, \qquad [T_0]=F, \qquad [\gamma]=\frac{F}{L}.
+\sinh x = x + \frac{x^3}{6} + \frac{x^5}{120} + \frac{x^7}{5040}+\cdots,
 \]
-A unica combinacao de $T_0$ e $\gamma$ com dimensao de comprimento e
 \[
-c \propto \frac{T_0}{\gamma}.
-\]
-No resultado exato da catenaria, a constante de proporcionalidade e $1$, logo
-\[
-c = \frac{T_0}{\gamma}.
+\cosh x = 1 + \frac{x^2}{2} + \frac{x^4}{24} + \frac{x^6}{720}+\cdots.
 \]
 
+Dividindo $\sinh x$ por $\cosh x$ de forma análoga ao caso trigonométrico, mas agora \emph{sem alternancia de sinais} nos termos de $\cosh x$:
+\begin{align*}
+\tanh x &= \left(x+\frac{x^3}{6}+\cdots\right)\left(1-\frac{x^2}{2}+\frac{x^4}{4}-\frac{x^4}{24}+\cdots\right)\\
+&= x - \frac{x^3}{2}+\frac{x^3}{6}+\cdots\\
+&= x - \frac{x^3}{3} + \frac{2x^5}{15} - \frac{17x^7}{315} + \cdots
+\end{align*}
+
+\textbf{Comparação com $\tan x$:}
+
+Os coeficientes são iguais, mas os sinais alternam-se:
+\[
+\tan x = x + \frac{x^3}{3} + \frac{2x^5}{15}+\cdots,\qquad
+\tanh x = x - \frac{x^3}{3} + \frac{2x^5}{15}-\cdots
+\]
+
+Isso é consistente com a relação $\tanh x = -i\tan(ix)$.
+
+\textbf{Série de $\coth x = \cosh x/\sinh x$:}
+
+De forma análoga a $\cot x$, multiplicando por $1/x$ e expandindo:
+
+\[
+\boxed{\tanh x = x - \frac{x^{3}}{3} + \frac{2x^{5}}{15} - \frac{17x^{7}}{315} + \cdots,}
+\]
+\[
+\boxed{\coth x = \frac{1}{x} + \frac{x}{3} - \frac{x^{3}}{45} + \frac{2x^{5}}{945} + \cdots.}
+\]

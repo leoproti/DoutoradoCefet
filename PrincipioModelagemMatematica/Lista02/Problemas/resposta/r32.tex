@@ -1,18 +1,38 @@
-Escreva
+Usando os dados do Problema 4.45 e ajustando a reta
 \[
-f(r)=\sqrt{a^2+r^2}=r\sqrt{1+\frac{a^2}{r^2}}.
+V=aI+b,
 \]
-Para $r\gg a$, o termo $a^2/r^2$ e pequeno, e podemos usar a expansao binomial
+temos, para $n=8$ pontos,
 \[
-(1+u)^{1/2} \approx 1 + \frac{u}{2} - \frac{u^2}{8} + \cdots.
-\]
-Com $u=a^2/r^2$,
-\[
-f(r) \approx r\left(1+\frac{a^2}{2r^2}-\frac{a^4}{8r^4}+\cdots\right)
-= r + \frac{a^2}{2r} - \frac{a^4}{8r^3} + \cdots.
-\]
-Assim, a aproximacao de campo distante e
-\[
-\sqrt{a^2+r^2} \approx r + \frac{a^2}{2r}.
+\sum I_i=29.8,
+\qquad
+\sum V_i=360,
+\qquad
+\sum I_iV_i=1688,
+\qquad
+\sum I_i^2=140.92.
 \]
 
+Pelas formulas de minimos quadrados,
+\[
+a=\frac{n\sum I_iV_i-(\sum I_i)(\sum V_i)}{n\sum I_i^2-(\sum I_i)^2}
+=\frac{8\cdot1688-29.8\cdot360}{8\cdot140.92-29.8^2}
+\approx 11.60,
+\]
+\[
+b=\frac{\sum V_i-a\sum I_i}{n}
+=\frac{360-11.60\cdot29.8}{8}
+\approx 1.79.
+\]
+
+Logo, a reta de ajuste e
+\[
+V\approx 11.60I+1.79.
+\]
+
+Se o ajuste for forcado a passar pela origem, entao
+\[
+R=\frac{\sum I_iV_i}{\sum I_i^2}=\frac{1688}{140.92}\approx 11.98\,\Omega.
+\]
+
+Portanto, o resultado quantitativo confirma a estimativa visual do Problema 4.45: a resistencia efetiva e da ordem de $12\,\Omega$, com intercepto pequeno e positivo.

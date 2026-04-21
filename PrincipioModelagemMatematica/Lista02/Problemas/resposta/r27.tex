@@ -1,14 +1,36 @@
-As duas aproximacoes coincidem no termo linear:
+\textbf{Série de Taylor de $\sin x$ com 4 termos ($n=4$):}
 \[
-\sin x = x - \frac{x^3}{6} + O(x^5),
-\qquad
-\tan x = x + \frac{x^3}{3} + O(x^5).
+y_4(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!}.
 \]
-Portanto, para $x$ pequeno,
-\[
-\sin x \approx x,
-\qquad
-\tan x \approx x.
-\]
-Elas sao semelhantes apenas em primeira ordem. A diferenca aparece no termo cubico, e o erro de $\tan x \approx x$ cresce mais rapidamente, com coeficiente duas vezes maior em modulo que o de $\sin x \approx x$.
 
+\textbf{Fórmula do resto de Lagrange:}
+
+O erro cometido ao truncar após $n=4$ termos é:
+\[
+R_5(x) = \frac{f^{(5)}(\xi)}{5!}\,x^5,\qquad\text{para algum }\xi\in(0,x).
+\]
+
+Como a quinta derivada de $\sin x$ é:
+\[
+f^{(5)}(x) = \cos x,\quad |f^{(5)}(\xi)|\leq1,
+\]
+tem-se a cota superior:
+\[
+|R_5(x)|\leq \frac{|x|^5}{5!}=\frac{|x|^5}{120}.
+\]
+
+\textbf{Avaliações numéricas da cota $|R_5|$:}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+$x$ & $|R_5|\leq|x|^5/120$ & Erro exato $|\sin x - y_4(x)|$ \\
+\hline
+$0{,}1$ & $8{,}3\times10^{-8}$ & $<8{,}3\times10^{-8}$ \\
+$0{,}5$ & $2{,}6\times10^{-4}$ & $<2{,}6\times10^{-4}$ \\
+$1{,}0$ & $8{,}3\times10^{-3}$ & $<8{,}3\times10^{-3}$ \\
+$\pi/4$ & $1{,}4\times10^{-3}$ & $<1{,}4\times10^{-3}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Conclusão:} para $|x|\ll1$ rad, o erro de 4 termos é excessivamente pequeno. Para $x=1{,}0$ rad o erro ainda é menor que $1\%$.

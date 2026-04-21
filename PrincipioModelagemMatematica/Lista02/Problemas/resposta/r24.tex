@@ -1,14 +1,26 @@
-Como o periodo de um pendulo simples satisfaz
-\[
-T \propto \sqrt{L},
-\]
-temos:
-\begin{align*}
-L \to \frac{L}{2} &\Rightarrow T \to \frac{T}{\sqrt{2}} \approx 0.7071T,
-\quad \text{reducao de } 29.3\%, \\
-L \to \frac{2L}{3} &\Rightarrow T \to \sqrt{\frac{2}{3}}\,T \approx 0.8165T,
-\quad \text{reducao de } 18.4\%, \\
-L \to \frac{L}{3} &\Rightarrow T \to \frac{T}{\sqrt{3}} \approx 0.5774T,
-\quad \text{reducao de } 42.3\%.
-\end{align*}
+\textbf{Regra:} o último algarismo significativo indica a precisão; o valor real encontra-se no intervalo $[x-\frac{1}{2}\,\text{ULP},\;x+\frac{1}{2}\,\text{ULP}]$, onde ULP é a unidade do último algarismo significativo.
 
+\begin{enumerate}
+\item $7{,}7$: último sig. na casa dos décimos (ULP$=0{,}1$), logo intervalo:
+\[
+7{,}7 \in [7{,}65,\;7{,}75].
+\]
+
+\item $7{,}70$: o zero final indica precisão de centésimos (ULP$=0{,}01$):
+\[
+7{,}70 \in [7{,}695,\;7{,}705].
+\]
+
+\item $1200$: se assumirmos 2 algarismos significativos ($1$ e $2$), ULP$=100$:
+\[
+1200 \in [1150,\;1250].
+\]
+(Para eliminar ambiguidade, escreve-se $1{,}2\times10^3$.)
+
+\item $1{,}200\times10^{-3}$: 4 algarismos significativos, ULP$=0{,}001\times10^{-3}=10^{-6}$:
+\[
+1{,}200\times10^{-3} \in [1{,}1995\times10^{-3},\;1{,}2005\times10^{-3}].
+\]
+\end{enumerate}
+
+\textbf{Observação:} a notação científica elimina a ambiguidade sobre quantos zeros são significativos.

@@ -1,16 +1,53 @@
-O peso a uma altitude $z$ acima da superficie da Terra e
-\[
-W(z)=W_0\left(\frac{R_E}{R_E+z}\right)^2,
-\]
-com $W_0=10\,\text{N}$ e $R_E\approx 6.371\times 10^6\,\text{m}$.
+\textbf{Variáveis e suas dimensões:}
 
-Para $z=10\,\text{m}$,
-\[
-W(10) \approx 9.99997\,\text{N}.
-\]
-Para o Everest, com $z\approx 8848.86\,\text{m}$,
-\[
-W(8848.86) \approx 9.9723\,\text{N}.
-\]
-Portanto, a variacao a $10$ m e praticamente nula, e no Everest a reducao e de cerca de $0.28\%$.
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Variável & Símbolo & Dimensões \\
+\hline
+Parâmetro catenário & $c$ & $[L]$ \\
+Tensão horizontal & $T_0$ & $[M\,L\,T^{-2}]$ (força) \\
+Peso por unidade de comprimento & $\gamma$ & $[M\,L^{-1}\,T^{-2}]$ \\
+\hline
+\end{tabular}
+\end{center}
 
+\textbf{Aplicação do Teorema de Buckingham--$\Pi$:}
+
+São $n=3$ variáveis e $k=3$ dimensões ($M,L,T$), mas apenas $n-k=3-3=0$ grupos adimensionais independentes. Isso indica que a relação entre as variáveis é \emph{única} (a menos de uma constante adimensional).
+
+\textbf{Dedução por inspecção dimensional:}
+
+Buscamos $c=K\,T_0^a\,\gamma^b$ com dimensões $[L]$:
+\[
+[L] = [M\,L\,T^{-2}]^a\,[M\,L^{-1}\,T^{-2}]^b.
+\]
+
+Sistema:
+\[
+M:\;a+b=0,\quad T:\;-2a-2b=0\;(\text{redundante}),\quad L:\;a-b=1.
+\]
+
+De $a+b=0$: $b=-a$. Substituindo em $a-b=1$: $a-(-a)=2a=1$, logo $a=1/2$ e $b=-1/2$.
+
+Portanto:
+\[
+c\propto\frac{T_0^{1/2}}{\gamma^{1/2}}=\sqrt{\frac{T_0}{\gamma}}.
+\]
+
+\textbf{Verificação a partir da equação da catenária:}
+
+A equação diferencial de equilíbrio do cabo é:
+\[
+\frac{d^2y}{dx^2}=\frac{\gamma}{T_0}\sqrt{1+\left(\frac{dy}{dx}\right)^2}.
+\]
+
+A solução é $y=c\cosh(x/c)$ com $c=T_0/\gamma$. Confirmando:
+\[
+c = \frac{T_0}{\gamma}.\quad\checkmark
+\]
+
+\textbf{Verificação dimensional:}
+\[
+\left[\frac{T_0}{\gamma}\right]=\frac{M\,L\,T^{-2}}{M\,L^{-1}\,T^{-2}}=L.\quad\checkmark
+\]

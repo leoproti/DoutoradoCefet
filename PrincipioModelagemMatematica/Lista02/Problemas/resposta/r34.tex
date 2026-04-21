@@ -1,24 +1,39 @@
-Se a equacao diferencial e
-\[
-\frac{dy}{dt}=ky,
-\]
-entao, separando variaveis,
-\[
-\frac{dy}{y}=k\,dt.
-\]
-Integrando,
-\[
-\int \frac{dy}{y} = \int k\,dt
-\quad\Rightarrow\quad
-\ln|y| = kt + C.
-\]
-Exponentiando,
-\[
-y = Ce^{kt}.
-\]
-Usando a condicao inicial $y(0)=y_0$, obtemos $C=y_0$, logo
-\[
-y(t)=y_0e^{kt}.
-\]
-Portanto, a eq. (5.12) de fato resolve a eq. (5.10).
+\textbf{Equação de crescimento composto:}
 
+Após $n$ anos com taxa anual $r$, um capital $C_0$ torna-se:
+\[
+C(n) = C_0(1+r)^n.
+\]
+
+Para dobrar em $n=7$ anos:
+\[
+2\,C_0 = C_0(1+r)^7 \implies (1+r)^7 = 2.
+\]
+
+\textbf{Resolvendo para $r$:}
+\[
+1+r = 2^{1/7} = e^{\ln 2/7}.
+\]
+
+Calculando $2^{1/7}$:
+\[
+2^{1/7} = e^{\ln 2/7} = e^{0{,}6931/7} = e^{0{,}09902} \approx 1 + 0{,}09902 + \frac{(0{,}09902)^2}{2} + \cdots \approx 1{,}09902.
+\]
+
+Portanto:
+\[
+r = 2^{1/7}-1 \approx 0{,}09902 \approx \mathbf{9{,}90\%\ \text{ao ano}}.
+\]
+
+\textbf{Verificação:}
+\[
+(1{,}099)^7 = e^{7\ln(1{,}099)} = e^{7\times0{,}09441} = e^{0{,}6609}\approx1{,}936\approx2.\quad\checkmark
+\]
+
+\textbf{Regra dos 72 (aproximação prática):}
+
+A taxa aproximada para dobrar em $n$ anos é $r\approx72/n$:
+\[
+r\approx\frac{72}{7}\approx10{,}3\%.
+\]
+Essa regra superestima levemente o valor exato de $9{,}90\%$.

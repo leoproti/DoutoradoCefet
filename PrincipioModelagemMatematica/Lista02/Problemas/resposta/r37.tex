@@ -1,28 +1,38 @@
-No modelo quadratico de Lanchester,
-\[
-\frac{dF}{dt}=-\lambda_E E,
-\qquad
-\frac{dE}{dt}=-\lambda_F F.
-\]
-Daqui segue o invariante
-\[
-\lambda_F F^2 - \lambda_E E^2 = \lambda_F F_0^2 - \lambda_E E_0^2.
-\]
-Com $F_0=54000$, $E_0=21500$, $\lambda_F=0.0106$ e $\lambda_E=0.0544$,
-\[
-\lambda_F F_0^2 - \lambda_E E_0^2 > 0,
-\]
-portanto a forca $F$ vence a batalha.
+\textbf{Fórmula do valor presente:}
 
-Usando a forma fechada da solucao, o tempo ate $E(t)=0$ e
+O valor presente $PV$ de um montante futuro $FV$ após $n$ anos com taxa anual $r$ é:
 \[
-T = \frac{1}{2\sqrt{\lambda_F\lambda_E}}
-\ln\left(\frac{\sqrt{\lambda_F}F_0+\sqrt{\lambda_E}E_0}{\sqrt{\lambda_F}F_0-\sqrt{\lambda_E}E_0}\right)
-\approx 61.74\ \text{dias}.
+PV = \frac{FV}{(1+r)^n}.
 \]
-O numero de sobreviventes da forca vencedora e
+
+Dados: $FV=\$1{.}000{.}000$, $r=5{,}5\%=0{,}055$.
+
+\textbf{Para 2022 (depositado em 2002, $n=20$ anos):}
 \[
-F_{\text{final}} = \sqrt{F_0^2-\frac{\lambda_E}{\lambda_F}E_0^2}
-\approx 23317.
+(1{,}055)^{20}=e^{20\ln(1{,}055)}=e^{20\times0{,}05354}=e^{1{,}0707}\approx2{,}9178.
 \]
-Assim, a batalha duraria cerca de $61.7$ dias, e a forca $F$ terminaria com aproximadamente $2.33\times 10^4$ sobreviventes.
+\[
+PV_{2022}=\frac{1{.}000{.}000}{2{,}9178}\approx\mathbf{\$342{.}729}.
+\]
+
+\textbf{Para 2042 (depositado em 2002, $n=40$ anos):}
+\[
+(1{,}055)^{40}=\left[(1{,}055)^{20}\right]^2\approx(2{,}9178)^2\approx8{,}5136.
+\]
+\[
+PV_{2042}=\frac{1{.}000{.}000}{8{,}5136}\approx\mathbf{\$117{.}463}.
+\]
+
+\textbf{Resumo:}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Meta & Anos & Valor a depositar em 2002 \\
+\hline
+\$1.000.000 em 2022 & 20 & \$342.729 \\
+\$1.000.000 em 2042 & 40 & \$117.463 \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Interpretação:} quanto maior o horizonte de investimento, menor o valor necessário agora, devido ao efeito dos juros compostos ao longo do tempo. Dobrar o prazo (de 20 para 40 anos) reduz o depósito necessário em aproximadamente $66\%$.

@@ -1,13 +1,25 @@
-Os intervalos correspondem a metade da unidade da ultima casa significativa:
-\begin{align*}
-(a)\;&7.7 \Rightarrow 7.65 \le x < 7.75, \\
-(b)\;&7.70 \Rightarrow 7.695 \le x < 7.705, \\
-(c)\;&1200 \Rightarrow 1150 \le x < 1250,
-\end{align*}
-se a ultima casa significativa for a das centenas. Alem disso,
-\[
-(d)\quad 1.1995\times 10^{-3} \le x < 1.2005\times 10^{-3}
-\]
-para o valor $1.200\times 10^{-3}$.
-No item (c), ha ambiguidade se o numero nao for escrito em notacao cientifica.
+\textbf{Definição de algarismo significativo:} são todos os dígitos certos mais o primeiro duvidoso, excluindo zeros à esquerda que servem apenas como espaçadores.
 
+\textbf{Análise de $99{,}9$:}
+
+$9$, $9$ e $9$ são todos dígitos não-nulos $\Rightarrow$ \textbf{3 algarismos significativos}.
+
+\textbf{Análise de $100{,}1$:}
+
+O dígito $1$ (centenas) é significativo. O zero das dezenas é \emph{interno} (entre dígitos significativos), portanto é significativo. O zero das unidades é também interno, logo significativo. O dígito $1$ (décimos) é significativo.
+
+$\Rightarrow$ \textbf{4 algarismos significativos}.
+
+\textbf{Resposta:} \textbf{Não}, $99{,}9$ e $100{,}1$ \textbf{não têm} o mesmo número de algarismos significativos:
+\begin{center}
+\begin{tabular}{lc}
+\hline
+Número & Al. significativos \\
+\hline
+$99{,}9$ & 3 \\
+$100{,}1$ & 4 \\
+\hline
+\end{tabular}
+\end{center}
+
+Isso ilustra que acrescentar uma unidade a um número pode aumentar o número de algarismos significativos, pois zeros internos são sempre significativos. 

@@ -1,14 +1,22 @@
-Para ajustar $V$ em funcao de $I$ por minimos quadrados na forma
-\[
-V = aI + b,
-\]
-os coeficientes sao
-\[
-a = \frac{n\sum IV - \sum I\sum V}{n\sum I^2 - (\sum I)^2},
-\qquad
-b = \frac{\sum V - a\sum I}{n}.
-\]
-O coeficiente angular $a$ representa a resistencia efetiva do ajuste, e $b$ mede um possivel deslocamento sistematico.
+(a) Os dados contêm os dois tipos classicos de erro.
 
-Como a tabela de dados do problema 4.45 nao foi incluída no enunciado resumido, nao ha como fechar os valores numericos aqui; a formula acima e a resolucao correta.
+\begin{itemize}
+\item \textbf{Erro sistematico:} se os medidores analogicos estiverem descalibrados, todas as leituras de $V$ ou de $I$ podem ficar deslocadas para cima ou para baixo.
+\item \textbf{Erro aleatorio:} ha espalhamento visivel nos pontos, causado por resolucao limitada, leitura do ponteiro e pequenas flutuacoes experimentais.
+\end{itemize}
 
+(b) Colocando $I$ no eixo horizontal e $V$ no eixo vertical, os pontos
+\begin{gather*}
+(0{,}8;\,10),\ (1{,}1;\,20),\ (2{,}5;\,30),\ (4{,}2;\,40),\\
+(4{,}3;\,50),\ (4{,}7;\,60),\ (5{,}8;\,70),\ (6{,}4;\,80)
+\end{gather*}
+ficam aproximadamente alinhados. Uma reta "a olho" razoavel e
+\[
+V\approx 12I,
+\]
+ou, se quisermos admitir pequeno deslocamento vertical,
+\[
+V\approx 11.5I+2.
+\]
+
+Em ambos os casos, a inclinacao sugere resistencia da ordem de $12\,\Omega$, com os pontos de baixa corrente e os proximos de $I\approx4.2$--$4.3$ A mostrando o maior espalhamento em torno da reta.

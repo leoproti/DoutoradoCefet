@@ -1,21 +1,39 @@
-Se o solido tem coeficiente linear de expansao $\alpha$, entao cada dimensao varia como
+\textbf{Séries de Taylor (dois termos) para $\sinh x$ e $\cosh x$:}
+
+Das definições exponenciais:
 \[
-L=L_0(1+\alpha\Delta T),\quad W=W_0(1+\alpha\Delta T),\quad H=H_0(1+\alpha\Delta T).
-\]
-Logo,
-\[
-V=LWH=V_0(1+\alpha\Delta T)^3.
-\]
-Para pequenas variacoes de temperatura,
-\[
-V \approx V_0(1+3\alpha\Delta T).
-\]
-Portanto, o coeficiente de expansao volumetrica e
-\[
-\beta=3\alpha.
-\]
-Como o coeficiente superficial satisfaz $\gamma\approx2\alpha$, segue tambem que
-\[
-\beta=\frac{3}{2}\gamma.
+\sinh x = \frac{e^x-e^{-x}}{2},\qquad \cosh x = \frac{e^x+e^{-x}}{2}.
 \]
 
+Usando $e^x=1+x+x^2/2!+x^3/3!+\cdots$:
+\[
+e^x-e^{-x} = 2x + \frac{2x^3}{3!}+\frac{2x^5}{5!}+\cdots \implies \sinh x = x+\frac{x^3}{6}+\frac{x^5}{120}+\cdots\approx x+\frac{x^3}{6},
+\]
+\[
+e^x+e^{-x} = 2+\frac{2x^2}{2!}+\frac{2x^4}{4!}+\cdots \implies \cosh x = 1+\frac{x^2}{2}+\frac{x^4}{24}+\cdots\approx 1+\frac{x^2}{2}.
+\]
+
+\textbf{Computação de $1-\sinh x$ e $1-\cosh x$:}
+\[
+1-\sinh x = 1 - x - \frac{x^3}{6} + \cdots,
+\]
+\[
+1-\cosh x = -\frac{x^2}{2} - \frac{x^4}{24} + \cdots \approx -\frac{x^2}{2}.
+\]
+
+\textbf{Comparação com as funções trigonométricas:}
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Circular & Hiperbólica \\
+\hline
+$\sin x \approx x - x^3/6$ & $\sinh x \approx x + x^3/6$ \\
+$\cos x \approx 1 - x^2/2$ & $\cosh x \approx 1 + x^2/2$ \\
+$1-\sin x \approx 1-x+x^3/6$ & $1-\sinh x \approx 1-x-x^3/6$ \\
+$1-\cos x \approx x^2/2$ & $1-\cosh x \approx -x^2/2$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Note que o sinal de $x^2/2$ se inverte: enquanto $\cos x<1$ para $x\ne0$, temos $\cosh x>1$ para todo $x\ne0$.

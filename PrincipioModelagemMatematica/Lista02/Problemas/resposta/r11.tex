@@ -1,10 +1,40 @@
-As primeiras parcelas das expansoes sao
-\[
-\tanh x = x - \frac{x^3}{3} + \frac{2x^5}{15} - \frac{17x^7}{315} + O(x^9),
-\]
-e
-\[
-\coth x = \frac{1}{x} + \frac{x}{3} - \frac{x^3}{45} + \frac{2x^5}{945} + O(x^7).
-\]
-Novamente, $\coth x$ tem singularidade em $0$, entao a expansao correta ali tambem e de Laurent.
+\textbf{Série de $\tan x$ via divisão de séries:}
 
+Partindo de $\tan x = \sin x/\cos x$, com:
+\[
+\sin x = x - \frac{x^3}{6} + \frac{x^5}{120} - \frac{x^7}{5040}+\cdots,
+\]
+\[
+\cos x = 1 - \frac{x^2}{2} + \frac{x^4}{24} - \frac{x^6}{720}+\cdots,
+\]
+
+divide-se a série de $\sin x$ pela de $\cos x$ por divisão longa:
+\[
+\tan x = \frac{x - \frac{x^3}{6}+\frac{x^5}{120}-\cdots}{1-\frac{x^2}{2}+\frac{x^4}{24}-\cdots} = \left(x-\frac{x^3}{6}+\cdots\right)\left(1+\frac{x^2}{2}+\frac{x^4}{24}+\frac{x^4}{4}+\cdots\right).
+\]
+
+Multiplicando os primeiros termos:
+\begin{align*}
+\tan x &= x\cdot1 + x\cdot\frac{x^2}{2} + x\cdot\left(\frac{1}{4}+\frac{1}{24}\right)x^4 - \frac{x^3}{6}\cdot1 - \frac{x^3}{6}\cdot\frac{x^2}{2}+\frac{x^5}{120}+\cdots\\
+&= x + \frac{x^3}{2} - \frac{x^3}{6} + \left(\frac{1}{4}+\frac{1}{24}-\frac{1}{12}\right)x^5 + \cdots\\
+&= x + \frac{x^3}{3} + \frac{2x^5}{15} + \frac{17x^7}{315} + \cdots
+\end{align*}
+
+\textbf{Série de $\cot x$ via $\cot x = \cos x/\sin x$:}
+
+\[
+\cot x = \frac{1-\frac{x^2}{2}+\frac{x^4}{24}-\cdots}{x-\frac{x^3}{6}+\cdots} = \frac{1}{x}\cdot\frac{1-\frac{x^2}{2}+\cdots}{1-\frac{x^2}{6}+\cdots}.
+\]
+
+Usando $(1-u)/(1-v)\approx(1-u)(1+v)$ para $u,v$ pequenos:
+\[
+\cot x = \frac{1}{x}\left(1-\frac{x^2}{2}+\frac{x^4}{24}+\cdots\right)\left(1+\frac{x^2}{6}+\frac{x^4}{180}+\cdots\right).
+\]
+
+Resultado:
+\[
+\boxed{\tan x = x + \frac{x^{3}}{3} + \frac{2x^{5}}{15} + \frac{17x^{7}}{315} + \cdots,}
+\]
+\[
+\boxed{\cot x = \frac{1}{x} - \frac{x}{3} - \frac{x^{3}}{45} - \frac{2x^{5}}{945} + \cdots.}
+\]

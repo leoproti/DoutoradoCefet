@@ -1,11 +1,43 @@
-A serie de Taylor de $e^x$ em torno de $0$ e
-\[
-e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \cdots.
-\]
-Usando os primeiros quatro termos em $x=0.5$,
-\[
-e^{0.5} \approx 1 + 0.5 + \frac{0.5^2}{2} + \frac{0.5^3}{6}
-= 1.645833\ldots
-\]
-O valor exato e aproximadamente $1.64872$, entao a aproximacao de quatro termos e razoavel, mas nao atinge cinco algarismos significativos.
+\textbf{Determinação do modelo de erro:}
 
+O erro varia \emph{linearmente} com a leitura $R$. Usando os dois pontos dados:
+\[
+(R_1, E_1)=(5,1),\quad (R_2, E_2)=(80,4).
+\]
+
+A equação da reta:
+\[
+m=\frac{E_2-E_1}{R_2-R_1}=\frac{4-1}{80-5}=\frac{3}{75}=0{,}04.
+\]
+\[
+E(R)=E_1+m(R-R_1)=1+0{,}04(R-5)=0{,}04R+0{,}8\ \mathrm{V}.
+\]
+
+Verificação: $E(5)=0{,}04\times5+0{,}8=1{,}0$ $\checkmark$; $E(80)=0{,}04\times80+0{,}8=4{,}0$ $\checkmark$.
+
+\textbf{(a) Tensão correta $T(R)=R-E(R)$:}
+\[
+T(R)=R-(0{,}04R+0{,}8)=0{,}96R-0{,}8.
+\]
+
+\begin{center}
+\begin{tabular}{llll}
+\hline
+Leitura $R$ (V) & Erro $E(R)$ (V) & Tensão correta $T$ (V) & Erro $\%$ \\
+\hline
+$80$ & $4{,}00$ & $76{,}00$ & $5{,}26\%$ \\
+$100$ & $4{,}80$ & $95{,}20$ & $5{,}04\%$ \\
+$50$ & $2{,}80$ & $47{,}20$ & $5{,}93\%$ \\
+$1$ & $0{,}84$ & $0{,}16$ & $525\%$ \\
+$35$ & $2{,}20$ & $32{,}80$ & $6{,}71\%$ \\
+$10$ & $1{,}20$ & $8{,}80$ & $13{,}64\%$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{(b) Observações:}
+\begin{itemize}
+\item O erro percentual é aproximadamente constante ($\approx5\%$) para leituras altas.
+\item Para leituras baixas (ex: $R=1\,\mathrm{V}$), o erro percentual é enorme (525\%) devido ao erro fixo de offset ($0{,}8$).
+\item O voltímetro é confiável apenas para leituras acima de $\approx20\,\mathrm{V}$.
+\end{itemize}

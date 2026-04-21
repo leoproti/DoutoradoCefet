@@ -1,14 +1,33 @@
-As aproximacoes a dois termos sao
+\textbf{Resultado do Problema 4.10:}
 \[
-\sin x \approx x - \frac{x^3}{6},
-\]
-\[
-\cos x \approx 1 - \frac{x^2}{2},
-\]
-\[
-1-\sin x \approx 1 - x + \frac{x^3}{6},
-\]
-\[
-1-\cos x \approx \frac{x^2}{2} - \frac{x^4}{24}.
+V_g(z)=-\frac{GM_E m}{R+z}=-\frac{GM_E m}{R}\cdot\frac{1}{1+z/R}.
 \]
 
+\textbf{Expansão binomial:}
+
+Para $z\ll R$, seja $\varepsilon=z/R\ll1$. Usando a expansão $(1+\varepsilon)^{-1}\approx1-\varepsilon+\varepsilon^2-\cdots$:
+\[
+\frac{1}{1+z/R}\approx 1 - \frac{z}{R} + \left(\frac{z}{R}\right)^2-\cdots
+\]
+
+Substituindo:
+\[
+V_g(z) \approx -\frac{GM_E m}{R}\left(1 - \frac{z}{R}\right) = -\frac{GM_E m}{R} + \frac{GM_E m}{R^{2}}\,z.
+\]
+
+\textbf{Identificação com a energia potencial gravitacional clássica:}
+
+O primeiro termo é uma constante (energia de referência). Usando $g=GM_E/R^2$:
+\[
+V_g(z) \approx -\frac{GM_E m}{R} + mgz.
+\]
+
+O termo $mgz$ é exatamente a energia potencial gravitacional da mecânica elementar! $\checkmark$
+
+\textbf{Verificação do erro da aproximação:}
+
+O próximo termo na expansão é $(z/R)^2$:
+\[
+\left|\frac{\Delta V_g}{V_g}\right|\approx\left(\frac{z}{R}\right)^2.
+\]
+Para $z=1\,\mathrm{km}$: $\varepsilon\approx1{,}57\times10^{-4}$, erro $\approx2{,}5\times10^{-8}$. A aproximação é excelente para $z\ll R$.

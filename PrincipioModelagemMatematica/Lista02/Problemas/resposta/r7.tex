@@ -1,18 +1,35 @@
-Para celulas geometricamente semelhantes,
+\textbf{Padrão ``normal'' de divisão celular:}
+
+Para células geometricamente semelhantes com comprimento característico $L$:
 \[
-\text{area} \sim L^2, \qquad \text{massa} \sim \text{volume} \sim L^3.
+\text{superfície} \propto L^2,\qquad \text{massa} \propto \rho L^3.
 \]
-Assim,
+A razão superfície/massa é:
 \[
-\frac{\text{area}}{\text{massa}} \sim \frac{1}{L}.
+\frac{S}{m}\propto\frac{L^2}{L^3}=\frac{1}{L}.
 \]
-Se a celula se divide quando o volume atinge $1.5$ vezes o valor original, entao o comprimento cresce por
+Para que $S/m$ seja constante, o comprimento $L$ deve ser constante, ou seja, a célula se divide mantendo o tamanho típico.
+
+\textbf{Análise do pepino:}
+
+O pepino divide suas células quando o volume cresce $1{,}5$ vezes. Se o volume inicial é $V_0\propto L_0^3$, o volume na divisão é $1{,}5\,V_0$. O comprimento correspondente é:
 \[
-L \mapsto 1.5^{1/3}L.
+L_d = L_0\left(\frac{V_d}{V_0}\right)^{1/3} = L_0\cdot(1{,}5)^{1/3}.
 \]
-Logo, a razao area/massa passa a ser multiplicada por
+
+Nessa divisão, a razão $S/m$ muda por um fator:
 \[
-1.5^{-1/3},
+\frac{(S/m)_d}{(S/m)_0}=\frac{L_0}{L_d}=\frac{1}{(1{,}5)^{1/3}}.
 \]
-isto e, ela diminui. Portanto, esse comportamento nao preserva a proporcao entre superficie e massa, e o pepino nao pode ser descrito como normal segundo o criterio dado.
+
+\textbf{Cálculo numérico:}
+\[
+(1{,}5)^{1/3}\approx1{,}1447,\qquad \frac{1}{(1{,}5)^{1/3}}\approx0{,}8736.
+\]
+
+Portanto, no momento da divisão a razão $S/m$ diminuiu em aproximadamente $12{,}6\%$ em relação ao valor inicial.
+
+\textbf{Conclusão:}
+
+Como a razão $S/m$ \emph{não permanece constante} (diminui $\approx12{,}6\%$), o pepino \textbf{não} satisfaz o padrão de crescimento normal descrito.
 

@@ -1,15 +1,41 @@
-Usando valores historicos globais aproximados, a populacao mundial foi:
-\begin{center}
-\begin{tabular}{lr}
-\toprule
-Ano & Populacao \\
-\midrule
-1970 & $3.70\times 10^9$ \\
-1980 & $4.46\times 10^9$ \\
-1990 & $5.33\times 10^9$ \\
-2000 & $6.14\times 10^9$ \\
-\bottomrule
-\end{tabular}
-\end{center}
-Esses numeros mostram crescimento sustentado, mas com taxa percentual ja menor do que a observada nas decadas anteriores. Para atualizar as Figuras 5.1 e 5.2, basta substituir os pontos antigos por esses valores e refazer o grafico linear e, se for o caso, o grafico semilog.
+\textbf{Equação diferencial exponencial (eq. 5.10):}
+\[
+\frac{dN}{dt} = \lambda N.
+\]
 
+\textbf{Verificação de que $N(t)=N_0 e^{\lambda t}$ (eq. 5.12) é solução:}
+
+\textbf{Método 1 --- substituição direta:}
+
+Calculando a derivada:
+\[
+\frac{dN}{dt} = \frac{d}{dt}\left(N_0 e^{\lambda t}\right) = N_0\lambda e^{\lambda t} = \lambda\underbrace{N_0 e^{\lambda t}}_{=N(t)} = \lambda N(t).\quad\checkmark
+\]
+
+\textbf{Método 2 --- integração usando $\int du/u = \ln u + C$ (conforme solicitado):}
+
+Separando variáveis na eq. (5.10):
+\[
+\frac{dN}{N} = \lambda\,dt.
+\]
+
+Integrando ambos os lados:
+\[
+\int\frac{dN}{N} = \int\lambda\,dt \implies \ln N = \lambda t + C,
+\]
+onde $C$ é a constante de integração.
+
+Aplicando a condição inicial $N(0)=N_0$:
+\[
+\ln N_0 = \lambda\cdot0 + C \implies C = \ln N_0.
+\]
+
+Portanto:
+\[
+\ln N = \lambda t + \ln N_0 \implies \ln\frac{N}{N_0} = \lambda t \implies \frac{N}{N_0} = e^{\lambda t}.
+\]
+
+Concluindo:
+\[
+\boxed{N(t) = N_0\,e^{\lambda t}.}\quad\blacksquare
+\]

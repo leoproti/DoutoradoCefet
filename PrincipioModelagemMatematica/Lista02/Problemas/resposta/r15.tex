@@ -1,21 +1,33 @@
-Escrevendo o resultado do problema anterior como
+A lei da gravitação de Newton é:
 \[
-V_g(z)=-\frac{GM_E m}{R_E}\left(1+\frac{z}{R_E}\right)^{-1},
+F = \frac{GM_E m}{r^2},
 \]
-e usando a expansao binomial
+onde $r$ é a distância ao centro da Terra.
+
+\textbf{Definição de potencial gravitacional:}
+
+O potencial gravitacional $V_g$ é a energia potencial por unidade de massa (trabalho para trazer a massa $m$ do infinito até $r$):
 \[
-(1+u)^{-1} \approx 1-u \qquad (|u|\ll 1),
-\]
-obtemos
-\[
-V_g(z) \approx -\frac{GM_E m}{R_E} + \frac{GM_E m}{R_E^2}z.
-\]
-Como $g=GM_E/R_E^2$, segue que
-\[
-V_g(z) \approx -\frac{GM_E m}{R_E} + mgz.
-\]
-Assim, a energia potencial relativa a superficie, em primeira ordem, e
-\[
-\Delta V_g(z) \approx mgz.
+V_g(r) = -\int_{\infty}^{r} F\,dr' = -\int_{\infty}^{r} \frac{GM_E m}{r'^2}\,dr'.
 \]
 
+Calculando a integral:
+\[
+V_g(r) = -GM_E m\int_{\infty}^{r}\frac{dr'}{r'^2}
+= -GM_E m\left[-\frac{1}{r'}\right]_{\infty}^{r}
+= -\frac{GM_E m}{r}.
+\]
+
+\textbf{Expressão em função da altitude $z$:}
+
+Com $r=R+z$:
+\[
+\boxed{V_g(z)=-\frac{GM_E m}{R+z}.}
+\]
+
+\textbf{Verificação dimensional:}
+\[
+\left[\frac{GM_E m}{R+z}\right]=\frac{\mathrm{m^3\,kg^{-1}\,s^{-2}}\cdot\mathrm{kg}\cdot\mathrm{kg}}{\mathrm{m}}=\mathrm{kg\,m^2\,s^{-2}}=\mathrm{J}.\quad\checkmark
+\]
+
+\textbf{Relação com $g$:} na superfície, $g=GM_E/R^2$, portanto $GM_E=gR^2\approx9{,}81\times(6{,}371\times10^6)^2\approx3{,}982\times10^{14}\,\mathrm{m^3\,s^{-2}}$.

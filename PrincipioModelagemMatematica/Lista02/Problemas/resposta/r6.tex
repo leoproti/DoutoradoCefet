@@ -1,22 +1,55 @@
-Se $L$ representa o tamanho caracteristico do animal, entao a forca muscular maxima escala como area:
+\textbf{Hipótese de semelhança geométrica:}
+
+Seja $L$ o comprimento característico do animal. Por semelhança geométrica:
 \[
-F \sim \sigma L^2,
+m \sim \rho L^3,
 \]
-onde $\sigma$ e a tensao muscular tipica. O trabalho por passada escala como
+onde $\rho$ é a densidade corporal média.
+
+\textbf{Força muscular máxima:}
+
+A força que um músculo pode exercer é proporcional à sua área de seção transversal $A_m\sim L^2$:
 \[
-W \sim FL \sim \sigma L^3.
+F_{\max}\sim \sigma_m\, L^2,
 \]
-A massa corporal escala como
+onde $\sigma_m$ é a tensão muscular máxima (em Pa), que é aproximadamente constante para mamíferos.
+
+\textbf{Trabalho mecânico por passada:}
+
+A passada tem comprimento $\ell\sim L$. O trabalho realizado pela força muscular ao longo de uma passada é:
 \[
-m \sim \rho L^3.
+W \sim F_{\max}\cdot\ell \sim \sigma_m L^2 \cdot L = \sigma_m L^3.
 \]
-Igualando o trabalho disponivel a energia cinetica de ordem $mv^2$,
+
+\textbf{Balanço energético:}
+
+Esse trabalho é convertido em energia cinética máxima do centro de massa:
 \[
-\rho L^3 v^2 \sim \sigma L^3,
+W \sim \frac{1}{2}m v_{\max}^2 \sim \frac{1}{2}\rho L^3 v_{\max}^2.
 \]
-logo
+
+Igualando as duas expressões:
 \[
-v \sim \sqrt{\frac{\sigma}{\rho}}.
+\sigma_m L^3 \sim \rho L^3 v_{\max}^2.
 \]
-O fator $L$ cancela, mostrando que, nesse modelo de escala, a velocidade maxima independe do tamanho do animal.
+
+O fator $L^3$ cancela-se em ambos os lados:
+\[
+\sigma_m \sim \rho v_{\max}^2
+\implies
+v_{\max} \sim \sqrt{\frac{\sigma_m}{\rho}}.
+\]
+
+\textbf{Verificação dimensional:}
+\[
+\left[\sqrt{\frac{\sigma_m}{\rho}}\right]=\sqrt{\frac{\mathrm{Pa}}{\mathrm{kg\,m^{-3}}}}=\sqrt{\frac{\mathrm{kg\,m^{-1}\,s^{-2}}}{\mathrm{kg\,m^{-3}}}}=\sqrt{\mathrm{m^2\,s^{-2}}}=\mathrm{m\,s^{-1}}.\quad\checkmark
+\]
+
+\textbf{Conclusão:}
+
+A velocidade máxima $v_{\max}\sim\sqrt{\sigma_m/\rho}$ depende apenas de propriedades \emph{do material muscular}, e não do tamanho $L$. Para mamíferos, $\sigma_m\approx2\times10^5\,\mathrm{Pa}$ e $\rho\approx1000\,\mathrm{kg\,m^{-3}}$, dando:
+\[
+v_{\max}\sim\sqrt{\frac{2\times10^5}{10^3}}=\sqrt{200}\approx14\,\mathrm{m/s}\approx50\,\mathrm{km/h},
+\]
+coerente com velocidades máximas de mamíferos de médio porte observadas na natureza.
 

@@ -1,15 +1,44 @@
-Se a altitude acima da superficie e $z$, a distancia ao centro da Terra e
+A lei da gravitação de Newton dá o peso a uma distância $r$ do centro da Terra:
 \[
-R=R_E+z.
-\]
-Substituindo na formula dada,
-\[
-V_g(z)=-\frac{GM_E m}{R_E+z}.
-\]
-Se quisermos a energia potencial relativa a superficie,
-\[
-\Delta V_g(z)=V_g(z)-V_g(0)
-=-\frac{GM_E m}{R_E+z}+\frac{GM_E m}{R_E}
-=\frac{GM_E m\,z}{R_E(R_E+z)}.
+W(r)=\frac{GM_E m}{r^2}.
 \]
 
+Na superfície ($r=R$), $W_0=mg=10\,\mathrm{N}$, logo $GM_E m=g R^2$. A altitude é $h=r-R$:
+\[
+W(h)=W_0\left(\frac{R}{R+h}\right)^{2}.
+\]
+
+\textbf{Dados:} $R=6{,}371\times10^{6}\,\mathrm{m}$, $W_0=10\,\mathrm{N}$.
+
+\textbf{A $h=10\,\mathrm{m}$:}
+\[
+\frac{R}{R+h}=\frac{6{,}371\times10^{6}}{6{,}371\times10^{6}+10}=\frac{1}{1+10/(6{,}371\times10^6)}\approx1-1{,}570\times10^{-6}.
+\]
+\[
+W(10)=10\times\left(1-1{,}570\times10^{-6}\right)^{2}\approx10\times\left(1-3{,}14\times10^{-6}\right)\approx9{,}99997\,\mathrm{N}.
+\]
+
+A variação relativa: $\Delta W/W_0\approx3{,}1\times10^{-4}\%$. Imperceptível na prática.
+
+\textbf{No Monte Everest ($h=8848\,\mathrm{m}$):}
+\[
+\frac{R}{R+h}=\frac{6{,}371\times10^{6}}{6{,}379848\times10^{6}}\approx0{,}99861.
+\]
+\[
+W(8848)=10\times(0{,}99861)^{2}=10\times0{,}99723\approx9{,}9723\,\mathrm{N}.
+\]
+
+A variação relativa: $\Delta W/W_0\approx0{,}277\%$.
+
+\textbf{Resumo:}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Altitude & Peso & Variação \\
+\hline
+Superfície & $10{,}0000\,\mathrm{N}$ & --- \\
+$h=10\,\mathrm{m}$ & $9{,}99997\,\mathrm{N}$ & $-0{,}0003\%$ \\
+$h=8848\,\mathrm{m}$ & $9{,}9723\,\mathrm{N}$ & $-0{,}277\%$ \\
+\hline
+\end{tabular}
+\end{center}

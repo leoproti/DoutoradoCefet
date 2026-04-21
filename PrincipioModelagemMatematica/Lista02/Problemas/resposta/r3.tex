@@ -1,18 +1,33 @@
-A energia cinetica tem dimensoes
+\textbf{Verificação dimensional:}
 \[
-[K] = M L^2 T^{-2}.
+[P]=\mathrm{W}=\mathrm{J\,s^{-1}},\qquad \left[\frac{dE_k}{dt}\right]=\mathrm{J\,s^{-1}}.\quad\checkmark
 \]
-Derivando em relacao ao tempo,
+
+\textbf{Dedução:}
+
+A potência mecânica instantânea de uma força $\mathbf{F}$ agindo sobre um corpo em movimento com velocidade $\mathbf{v}$ é definida como:
 \[
-\left[\frac{dK}{dt}\right] = M L^2 T^{-3}.
+P = \mathbf{F}\cdot\mathbf{v} = Fv\cos\theta,
 \]
-Por outro lado, potencia e forca vezes velocidade:
+onde $\theta$ é o ângulo entre força e velocidade. Para movimento unidimensional:
 \[
-[P] = (M L T^{-2})(L T^{-1}) = M L^2 T^{-3}.
+P = Fv.
 \]
-Como as dimensoes coincidem, conclui-se que
+
+A energia cinética é:
 \[
-P = \frac{dK}{dt}
+E_k=\frac{1}{2}mv^2.
 \]
-e dimensionalmente correta.
+
+Derivando em relação ao tempo, pela regra da cadeia:
+\[
+\frac{dE_k}{dt}=\frac{d}{dt}\!\left(\frac{1}{2}mv^2\right)=\frac{1}{2}m\cdot 2v\frac{dv}{dt}=mv\frac{dv}{dt}.
+\]
+
+Pela Segunda Lei de Newton, $F=ma=m\dfrac{dv}{dt}$, logo:
+\[
+\frac{dE_k}{dt}=mv\frac{dv}{dt}=\underbrace{m\frac{dv}{dt}}_{=F}\cdot v = Fv = P.\quad\blacksquare
+\]
+
+Portanto, a potência é a taxa temporal de variação da energia cinética, $P=\dfrac{dE_k}{dt}$.
 
