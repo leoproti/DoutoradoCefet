@@ -1,33 +1,35 @@
-\textbf{Resultado do Problema 4.10:}
+\textbf{Ponto de partida — resultado do Problema 4.10:}
 \[
-V_g(z)=-\frac{GM_E m}{R+z}=-\frac{GM_E m}{R}\cdot\frac{1}{1+z/R}.
+V_g(z) = -\frac{GM_E m}{R+z} = -\frac{GM_E m}{R}\cdot\frac{1}{1+z/R}.
 \]
 
-\textbf{Expansão binomial:}
+\textbf{Expansão binomial até a primeira ordem em $z$:}
 
-Para $z\ll R$, seja $\varepsilon=z/R\ll1$. Usando a expansão $(1+\varepsilon)^{-1}\approx1-\varepsilon+\varepsilon^2-\cdots$:
+Definindo $\varepsilon = z/R$ e usando $(1+\varepsilon)^{-1} = 1 - \varepsilon + \varepsilon^2 - \cdots$,
+truncada na primeira ordem:
 \[
-\frac{1}{1+z/R}\approx 1 - \frac{z}{R} + \left(\frac{z}{R}\right)^2-\cdots
+V_g(z) \approx -\frac{GM_E m}{R}\left(1 - \frac{z}{R}\right)
+= \underbrace{-\frac{GM_E m}{R}}_{\text{constante}} + \frac{GM_E m}{R^2}\,z.
 \]
 
-Substituindo:
+Como $g = GM_E/R^2$:
 \[
-V_g(z) \approx -\frac{GM_E m}{R}\left(1 - \frac{z}{R}\right) = -\frac{GM_E m}{R} + \frac{GM_E m}{R^{2}}\,z.
+\boxed{V_g(z) \approx -\frac{GM_E m}{R} + mgz.}
 \]
 
-\textbf{Identificação com a energia potencial gravitacional clássica:}
+O segundo termo é exatamente a energia potencial gravitacional da mecânica clássica. $\checkmark$
 
-O primeiro termo é uma constante (energia de referência). Usando $g=GM_E/R^2$:
+\textbf{Erro da aproximação:}
+
+O primeiro termo desprezado é de segunda ordem:
 \[
-V_g(z) \approx -\frac{GM_E m}{R} + mgz.
+\delta V \sim \frac{GM_E m}{R}\left(\frac{z}{R}\right)^2 = mgR\left(\frac{z}{R}\right)^2.
 \]
 
-O termo $mgz$ é exatamente a energia potencial gravitacional da mecânica elementar! $\checkmark$
-
-\textbf{Verificação do erro da aproximação:}
-
-O próximo termo na expansão é $(z/R)^2$:
+O erro relativo em relação ao termo $mgz$ é:
 \[
-\left|\frac{\Delta V_g}{V_g}\right|\approx\left(\frac{z}{R}\right)^2.
+\frac{\delta V}{mgz} \sim \frac{z}{R}.
 \]
-Para $z=1\,\mathrm{km}$: $\varepsilon\approx1{,}57\times10^{-4}$, erro $\approx2{,}5\times10^{-8}$. A aproximação é excelente para $z\ll R$.
+
+Para $z = 1\,\mathrm{km}$ e $R = 6371\,\mathrm{km}$: $z/R \approx 1{,}6\times10^{-4}$, ou seja, erro $< 0{,}02\%$.
+A aproximação é excelente para $z \ll R$.

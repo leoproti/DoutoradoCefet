@@ -368,4 +368,165 @@ A linguagem matematica dessa ideia aparece em:
 
 Essas tecnicas tornam a modelagem mais robusta, economica e explicativa.
 
+% =====================================================================
+% RESUMO: EXPLICACAO E EXEMPLO DE CADA CONCEITO
+% =====================================================================
+\section{Resumo: explicacao e exemplo de cada conceito}
+
+% -------------------------------------------------------------------
+\subsection*{1. Escala caracteristica e ordem de grandeza}
+
+\textbf{O que e:}
+Escala caracteristica e o valor tipico que uma variavel assume no problema
+(ex.: comprimento $L$, velocidade $U$, tempo $T$).
+Duas grandezas sao da mesma ordem de grandeza quando seu quociente e proximo de 1
+(nao difere por mais de uma potencia de 10).
+
+\textbf{Para que serve:}
+Permite comparar termos de uma equacao e descartar os pequenos antes de resolver.
+
+\textbf{Exemplo:}
+Na equacao do calor
+$\rho c_p \dfrac{\partial T}{\partial t} = k\nabla^2 T$,
+as escalas tipicas sao $\Delta T$, $L$ e $\tau$.
+Estimando cada termo:
+\[
+\rho c_p \frac{\Delta T}{\tau} \sim k\frac{\Delta T}{L^2}
+\quad\Rightarrow\quad
+\tau \sim \frac{\rho c_p L^2}{k}.
+\]
+Sem resolver a EDP, ja sabemos que o tempo caracteristico de difusao termica
+escala com $L^2$.
+
+% -------------------------------------------------------------------
+\subsection*{2. Nao dimensionalizacao e numero de Peclet}
+
+\textbf{O que e:}
+Substituir variaveis fisicas por versoes adimensionais ($\hat{x}=x/L$, etc.)
+para revelar os parametros que realmente controlam o fenomeno.
+
+\textbf{Para que serve:}
+Reduz o numero de parametros do problema e mostra qual mecanismo domina.
+
+\textbf{Exemplo:}
+Para a equacao de transporte de soluto
+$\partial_t c + u\,\partial_x c = D\,\partial_{xx} c$,
+apos nao dimensionalizar com $\hat{x}=x/L$, $\hat{t}=tU/L$, $\hat{c}=c/C_0$:
+\[
+\partial_{\hat{t}}\hat{c} + \hat{u}\,\partial_{\hat{x}}\hat{c}
+= \frac{1}{Pe}\,\partial_{\hat{x}\hat{x}}\hat{c},
+\qquad Pe = \frac{UL}{D}.
+\]
+Se $Pe = 10^4$ (agua em rio), a difusao e desprezivel e o transporte e puramente advectivo.
+Se $Pe = 10^{-3}$ (difusao molecular em gel), a adveccao e desprezivel.
+
+% -------------------------------------------------------------------
+\subsection*{3. Lei de potencia (power law)}
+
+\textbf{O que e:}
+Relacao do tipo $Y = kX^\alpha$, onde $\alpha$ e o expoente de escala.
+
+\textbf{Para que serve:}
+Descreve sistemas que obedecem auto-similaridade ou escalonamento em varias ordens
+de grandeza. Em grafico log-log, aparece como reta de inclinacao $\alpha$.
+
+\textbf{Exemplo:}
+O periodo de um pendulo simples obedece $T \propto \ell^{1/2}$.
+Se medirmos $T$ para varios valores de $\ell$ e plotarmos $\log T \times \log \ell$,
+obtemos uma reta com inclinacao $1/2$, confirmando a lei de potencia sem precisar
+conhecer $2\pi/\sqrt{g}$ a priori.
+
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+$\ell$ (m) & $T$ (s) & $\log_{10} T$ \\
+\midrule
+0.25 & 1.00 & 0.00 \\
+1.00 & 2.00 & 0.30 \\
+4.00 & 4.00 & 0.60 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Inclinacao no grafico log-log: $\Delta(\log T)/\Delta(\log \ell) = 0.30/0.60 = 0.5$. $\checkmark$
+
+% -------------------------------------------------------------------
+\subsection*{4. Escalabilidade: lei do quadrado-cubo}
+
+\textbf{O que e:}
+Quando um objeto e ampliado por fator $\lambda$ em todas as dimensoes,
+area cresce com $\lambda^2$ e volume com $\lambda^3$.
+
+\textbf{Para que serve:}
+Explica limites fisicos e biologicos: por que animais gigantes nao existem,
+por que microprocessadores aquecem mais ao miniaturizar, etc.
+
+\textbf{Exemplo:}
+Um cubo de lado $L=1\,\text{m}$ tem $A=6\,\text{m}^2$ e $V=1\,\text{m}^3$.
+Se dobrarmos o lado ($\lambda=2$):
+\[
+A' = 4\times 6 = 24\,\text{m}^2,\qquad V' = 8\times 1 = 8\,\text{m}^3.
+\]
+A razao $A/V$ caiu de 6 para 3: o objeto maior troca calor proporcionalmente menos
+por unidade de volume, ou seja, resfria mais devagar.
+
+% -------------------------------------------------------------------
+\subsection*{5. Escala alometrica e Lei de Kleiber}
+
+\textbf{O que e:}
+Escala alometrica ocorre quando os expoentes reais diferem dos esperados pela
+geometria isometrica. A Lei de Kleiber e o exemplo canonico:
+\[
+q_0 \approx 70\,M^{3/4} \qquad [\text{kcal/dia}].
+\]
+
+\textbf{Para que serve:}
+Revela que biologias, redes vasculares e sistemas complexos nao escalam
+simplesmente com area ($M^{2/3}$), mas seguem leis proprias.
+
+\textbf{Exemplo:}
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Animal & Massa $M$ (kg) & $q_0$ previsto por $70M^{3/4}$ (kcal/dia) \\
+\midrule
+Rato       & 0{,}02 & $\approx 3{,}5$ \\
+Gato       & 3{,}0  & $\approx 152$  \\
+Ser humano & 70{,}0 & $\approx 1680$ \\
+Elefante   & 4000   & $\approx 44000$\\
+\bottomrule
+\end{tabular}
+\end{center}
+O metabolismo especifico (kcal/dia/kg) do rato e $\approx 175$ vezes maior que
+o do elefante --- consequencia direta do expoente $3/4 < 1$.
+
+% -------------------------------------------------------------------
+\subsection*{6. Dimensao fractal}
+
+\textbf{O que e:}
+Medida de complexidade geometrica de objetos auto-similares.
+Para um fractal composto por $N$ copias reduzidas por fator $r$:
+\[
+D = \frac{\log N}{\log(1/r)}.
+\]
+
+\textbf{Para que serve:}
+Quantifica estruturas que nao tem dimensao inteira (nem curva nem superficie):
+costas litoraneas, flocos de neve, redes de rios, pulmoes, etc.
+
+\textbf{Exemplo comparativo:}
+\begin{center}
+\begin{tabular}{llccc}
+\toprule
+Fractal & Regra de construcao & $N$ & $r$ & $D$ \\
+\midrule
+Segmento (referencia) & 2 copias, escala $1/2$ & 2 & $1/2$ & 1{,}00 \\
+Curva de Koch         & 4 copias, escala $1/3$ & 4 & $1/3$ & 1{,}26 \\
+Triangulo de Sierpinski & 3 copias, escala $1/2$ & 3 & $1/2$ & 1{,}58 \\
+Quadrado (referencia) & 4 copias, escala $1/2$ & 4 & $1/2$ & 2{,}00 \\
+\bottomrule
+\end{tabular}
+\end{center}
+A Curva de Koch e ``mais complexa'' que uma linha ($D>1$), mas ainda ``cabe'' dentro
+do plano sem preenche-lo ($D<2$).
+
 \end{document}

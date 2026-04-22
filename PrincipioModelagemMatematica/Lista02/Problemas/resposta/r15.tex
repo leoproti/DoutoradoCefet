@@ -1,33 +1,102 @@
-A lei da gravitação de Newton é:
+O enunciado fornece o potencial gravitacional newtoniano na superfície da Terra ($r = R$):
 \[
-F = \frac{GM_E m}{r^2},
-\]
-onde $r$ é a distância ao centro da Terra.
-
-\textbf{Definição de potencial gravitacional:}
-
-O potencial gravitacional $V_g$ é a energia potencial por unidade de massa (trabalho para trazer a massa $m$ do infinito até $r$):
-\[
-V_g(r) = -\int_{\infty}^{r} F\,dr' = -\int_{\infty}^{r} \frac{GM_E m}{r'^2}\,dr'.
+V_g = -\frac{GM_E m}{R}.
 \]
 
-Calculando a integral:
-\[
-V_g(r) = -GM_E m\int_{\infty}^{r}\frac{dr'}{r'^2}
-= -GM_E m\left[-\frac{1}{r'}\right]_{\infty}^{r}
-= -\frac{GM_E m}{r}.
-\]
+% ---------------------------------------------------------------
+\textbf{Parte 1 — Expressão exata em função da altitude $z$}
+% ---------------------------------------------------------------
 
-\textbf{Expressão em função da altitude $z$:}
-
-Com $r=R+z$:
+Para um objeto a uma altitude $z$ acima da superfície, a distância ao centro da Terra é
+$r = R + z$. Substituindo:
 \[
-\boxed{V_g(z)=-\frac{GM_E m}{R+z}.}
+\boxed{V_g(z) = -\frac{GM_E m}{R + z}.}
 \]
 
 \textbf{Verificação dimensional:}
 \[
-\left[\frac{GM_E m}{R+z}\right]=\frac{\mathrm{m^3\,kg^{-1}\,s^{-2}}\cdot\mathrm{kg}\cdot\mathrm{kg}}{\mathrm{m}}=\mathrm{kg\,m^2\,s^{-2}}=\mathrm{J}.\quad\checkmark
+\left[\frac{GM_E m}{R+z}\right]
+= \frac{\mathrm{m^3\,kg^{-1}\,s^{-2}}\cdot\mathrm{kg}\cdot\mathrm{kg}}{\mathrm{m}}
+= \mathrm{kg\,m^2\,s^{-2}} = \mathrm{J}.\quad\checkmark
 \]
 
-\textbf{Relação com $g$:} na superfície, $g=GM_E/R^2$, portanto $GM_E=gR^2\approx9{,}81\times(6{,}371\times10^6)^2\approx3{,}982\times10^{14}\,\mathrm{m^3\,s^{-2}}$.
+% ---------------------------------------------------------------
+\textbf{Parte 2 — Expansão de Taylor e recuperação de $mgz$}
+% ---------------------------------------------------------------
+
+\textbf{Passo 1: definir a função a expandir.}
+
+Defina $f(z) = V_g(z) = -\dfrac{GM_E m}{R+z}$.
+Queremos expandir em torno de $z = 0$ (superfície da Terra), onde $z \ll R$.
+
+\textbf{Passo 2: fórmula geral de Taylor.}
+
+A série de Taylor de $f(z)$ em torno de $z = 0$ é:
+\[
+f(z) = f(0) + f'(0)\,z + \frac{f''(0)}{2!}\,z^2 + \frac{f'''(0)}{3!}\,z^3 + \cdots
+\]
+
+\textbf{Passo 3: calcular as derivadas de $f(z)$.}
+
+\begin{align*}
+f(z)   &= -\frac{GM_E m}{R+z} = -GM_E m\,(R+z)^{-1},\\[6pt]
+f'(z)  &= GM_E m\,(R+z)^{-2},\\[6pt]
+f''(z) &= -2\,GM_E m\,(R+z)^{-3},\\[6pt]
+f'''(z)&= 6\,GM_E m\,(R+z)^{-4}.
+\end{align*}
+
+\textbf{Passo 4: avaliar em $z = 0$.}
+
+\begin{align*}
+f(0)    &= -\frac{GM_E m}{R},\\[4pt]
+f'(0)   &= \frac{GM_E m}{R^2},\\[4pt]
+f''(0)  &= -\frac{2\,GM_E m}{R^3},\\[4pt]
+f'''(0) &= \frac{6\,GM_E m}{R^4}.
+\end{align*}
+
+\textbf{Passo 5: substituir na série.}
+
+\[
+V_g(z)
+= -\frac{GM_E m}{R}
+  + \frac{GM_E m}{R^2}\,z
+  - \frac{GM_E m}{R^3}\,z^2
+  + \frac{GM_E m}{R^4}\,z^3
+  - \cdots
+\]
+
+\textbf{Passo 6: truncar em primeira ordem ($z \ll R$).}
+
+Para $z \ll R$, os termos com $z^2, z^3, \ldots$ são desprezíveis em relação ao linear.
+Retendo apenas até $z^1$:
+\[
+V_g(z) \approx -\frac{GM_E m}{R} + \frac{GM_E m}{R^2}\,z.
+\]
+
+\textbf{Passo 7: calcular a variação de potencial.}
+
+A variação em relação à superfície ($z = 0$) é:
+\[
+\Delta V_g = V_g(z) - V_g(0)
+= \left(-\frac{GM_E m}{R} + \frac{GM_E m}{R^2}\,z\right)
+  - \left(-\frac{GM_E m}{R}\right)
+= \frac{GM_E m}{R^2}\,z.
+\]
+
+\textbf{Passo 8: identificar $g$.}
+
+A aceleração da gravidade na superfície é definida por:
+\[
+g = \frac{GM_E}{R^2}.
+\]
+Portanto:
+\[
+\boxed{\Delta V_g \approx mgz, \qquad z \ll R.}
+\]
+
+\textbf{Interpretação física:}
+A série de Taylor mostra que a expressão exata $V_g(z) = -GM_Em/(R+z)$ se reduz
+à forma clássica $\Delta V_g = mgz$ sempre que a altitude $z$ for muito menor que
+o raio da Terra $R \approx 6{,}4 \times 10^6\,\mathrm{m}$.
+O erro relativo cometido ao truncar em primeira ordem é da ordem de $z/R$:
+para $z = 1\,\mathrm{km}$, esse erro é de apenas $\sim 0{,}016\,\%$.

@@ -1,44 +1,90 @@
-A lei da gravitação de Newton dá o peso a uma distância $r$ do centro da Terra:
+%------------------------------------------------------------------
+% Questão 4.6 – Variação do peso com altitude
+%------------------------------------------------------------------
+
+\textbf{Fórmula da gravitação}
+
+O peso a uma altura $h$ acima da superfície é:
 \[
-W(r)=\frac{GM_E m}{r^2}.
+W(h) = \frac{GM_E m}{(R+h)^2}
 \]
 
-Na superfície ($r=R$), $W_0=mg=10\,\mathrm{N}$, logo $GM_E m=g R^2$. A altitude é $h=r-R$:
+Na superfície ($h=0$): $W_0 = mg = 10\,\text{N}$.
+
+Reescrevendo em termos de $W_0$:
 \[
-W(h)=W_0\left(\frac{R}{R+h}\right)^{2}.
+W(h) = W_0 \left(\frac{R}{R+h}\right)^2
 \]
 
-\textbf{Dados:} $R=6{,}371\times10^{6}\,\mathrm{m}$, $W_0=10\,\mathrm{N}$.
+%------------------------------------------------------------------
+\textbf{Dados:} $R = 6371\,\text{km}$, $W_0 = 10\,\text{N}$
 
-\textbf{A $h=10\,\mathrm{m}$:}
+%------------------------------------------------------------------
+\textbf{Caso 1: $h = 10\,\text{m}$ (apartamento no 10º andar)}
+
+Usando diretamente a fórmula exata:
 \[
-\frac{R}{R+h}=\frac{6{,}371\times10^{6}}{6{,}371\times10^{6}+10}=\frac{1}{1+10/(6{,}371\times10^6)}\approx1-1{,}570\times10^{-6}.
+W(10) = 10\left(\frac{6{,}371\times10^6}{6{,}371\times10^6+10}\right)^2
 \]
 \[
-W(10)=10\times\left(1-1{,}570\times10^{-6}\right)^{2}\approx10\times\left(1-3{,}14\times10^{-6}\right)\approx9{,}99997\,\mathrm{N}.
+W(10) \approx 9{,}99997\,\text{N}
 \]
 
-A variação relativa: $\Delta W/W_0\approx3{,}1\times10^{-4}\%$. Imperceptível na prática.
-
-\textbf{No Monte Everest ($h=8848\,\mathrm{m}$):}
+Agora calculamos a variação relativa:
 \[
-\frac{R}{R+h}=\frac{6{,}371\times10^{6}}{6{,}379848\times10^{6}}\approx0{,}99861.
+\frac{\Delta W}{W_0} = \frac{W(10)-W_0}{W_0}
+= \frac{9{,}99997-10}{10}
+= -3\times 10^{-6}
 \]
 \[
-W(8848)=10\times(0{,}99861)^{2}=10\times0{,}99723\approx9{,}9723\,\mathrm{N}.
+\frac{\Delta W}{W_0}\times 100\% = -3\times 10^{-4}\% \approx \boxed{-0{,}0003\%}
 \]
 
-A variação relativa: $\Delta W/W_0\approx0{,}277\%$.
+(imperceptível!)
 
-\textbf{Resumo:}
+%------------------------------------------------------------------
+\textbf{Caso 2: $h = 8848\,\text{m}$ (Monte Everest)}
+
+\[
+\frac{R}{R+h} = \frac{6{,}371 \times 10^6}{6{,}371 \times 10^6 + 8848} \approx 0{,}99861
+\]
+
+\[
+W(8848) = 10 \times (0{,}99861)^2 = 10 \times 0{,}99723 = 9{,}9723\,\text{N}
+\]
+
+Agora a conta da variação percentual:
+\[
+\frac{\Delta W}{W_0} = \frac{W(8848)-W_0}{W_0}
+= \frac{9{,}9723-10}{10}
+= -0{,}00277
+\]
+\[
+\frac{\Delta W}{W_0}\times 100\% = -0{,}277\% \approx \boxed{-0{,}277\%}
+\]
+
+(notável, mas pequena)
+
+\medskip
+\textit{Observação (aproximação de Taylor):} para $h\ll R$, vale
+\[
+\left(\frac{R}{R+h}\right)^2 = (1+h/R)^{-2} \approx 1-2\frac{h}{R},
+\]
+o que leva à mesma conclusão física de que a variação é muito pequena para altitudes baixas.
+
+%------------------------------------------------------------------
+\textbf{Resumo}
+
 \begin{center}
-\begin{tabular}{lll}
+\begin{tabular}{lrr}
 \hline
-Altitude & Peso & Variação \\
+\textbf{Local} & \textbf{Peso (N)} & \textbf{Variação} \\
 \hline
-Superfície & $10{,}0000\,\mathrm{N}$ & --- \\
-$h=10\,\mathrm{m}$ & $9{,}99997\,\mathrm{N}$ & $-0{,}0003\%$ \\
-$h=8848\,\mathrm{m}$ & $9{,}9723\,\mathrm{N}$ & $-0{,}277\%$ \\
+Superfície & $10{,}0000$ & --- \\
+Apartamento 10º andar ($10\,\text{m}$) & $9{,}99997$ & $-0{,}0003\%$ \\
+Monte Everest ($8848\,\text{m}$) & $9{,}9723$ & $-0{,}277\%$ \\
 \hline
 \end{tabular}
 \end{center}
+
+\textbf{Conclusão:} O peso diminui muito pouco com altitude! Para uso prático, $g \approx 10\,\text{m/s}^2$ em qualquer lugar na superfície terrestre.

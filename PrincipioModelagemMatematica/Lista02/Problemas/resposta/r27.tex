@@ -1,36 +1,72 @@
-\textbf{Série de Taylor de $\sin x$ com 4 termos ($n=4$):}
+\textbf{Expansao de Taylor de $\sin x$ em torno de $x_0=0$ (Maclaurin), com $n=4$:}
+
+A formula de Taylor com resto de Lagrange e:
 \[
-y_4(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!}.
+f(x)=P_4(x)+R_5(x),
+\]
+onde
+\[
+P_4(x)=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2+\frac{f^{(3)}(0)}{3!}x^3+\frac{f^{(4)}(0)}{4!}x^4,
+\]
+\[
+R_5(x)=\frac{f^{(5)}(\xi)}{5!}x^5,\qquad \xi\in(0,x).
 \]
 
-\textbf{Fórmula do resto de Lagrange:}
+\textbf{O que e $R_5(x)$, em palavras simples?}
 
-O erro cometido ao truncar após $n=4$ termos é:
+\begin{itemize}
+\item $P_4(x)$ e a parte que usamos para aproximar $\sin x$.
+\item $R_5(x)$ e o que ficou de fora da aproximacao.
+\item Portanto, $R_5(x)$ e exatamente o erro:
 \[
-R_5(x) = \frac{f^{(5)}(\xi)}{5!}\,x^5,\qquad\text{para algum }\xi\in(0,x).
+R_5(x)=\sin x-P_4(x).
+\]
+\end{itemize}
+
+Ou seja, se $R_5(x)$ for pequeno, a aproximacao por Taylor e boa.
+
+Para $f(x)=\sin x$:
+\[
+f(0)=0,\quad f'(0)=1,\quad f''(0)=0,\quad f^{(3)}(0)=-1,\quad f^{(4)}(0)=0.
 \]
 
-Como a quinta derivada de $\sin x$ é:
+Logo, o polinomio de Taylor de ordem 4 e:
 \[
-f^{(5)}(x) = \cos x,\quad |f^{(5)}(\xi)|\leq1,
-\]
-tem-se a cota superior:
-\[
-|R_5(x)|\leq \frac{|x|^5}{5!}=\frac{|x|^5}{120}.
+P_4(x)=x-\frac{x^3}{3!}=x-\frac{x^3}{6}.
 \]
 
-\textbf{Avaliações numéricas da cota $|R_5|$:}
+Assim, a aproximacao pedida fica:
+\[
+\sin x\approx x-\frac{x^3}{6},
+\]
+e o erro e exatamente o resto:
+\[
+R_5(x)=\frac{f^{(5)}(\xi)}{5!}x^5=\frac{\cos(\xi)}{120}x^5.
+\]
+
+Como $|\cos(\xi)|\le 1$, obtemos a cota:
+\[
+|R_5(x)|\le \frac{|x|^5}{120}.
+\]
+
+\textbf{Exemplo rapido:} para $x=0{,}5$,
+\[
+|R_5(0{,}5)|\le \frac{0{,}5^5}{120}=2{,}60\times10^{-4}.
+\]
+Isso quer dizer que o erro ao usar $\sin(0{,}5)\approx 0{,}5-0{,}5^3/6$ e, no maximo, da ordem de $10^{-4}$.
+
+\textbf{Exemplos numericos da cota do erro:}
 \begin{center}
-\begin{tabular}{lll}
+\begin{tabular}{ll}
 \hline
-$x$ & $|R_5|\leq|x|^5/120$ & Erro exato $|\sin x - y_4(x)|$ \\
+$x$ & $|R_5(x)|\le |x|^5/120$ \\
 \hline
-$0{,}1$ & $8{,}3\times10^{-8}$ & $<8{,}3\times10^{-8}$ \\
-$0{,}5$ & $2{,}6\times10^{-4}$ & $<2{,}6\times10^{-4}$ \\
-$1{,}0$ & $8{,}3\times10^{-3}$ & $<8{,}3\times10^{-3}$ \\
-$\pi/4$ & $1{,}4\times10^{-3}$ & $<1{,}4\times10^{-3}$ \\
+$0{,}1$ & $8{,}33\times 10^{-8}$ \\
+$0{,}5$ & $2{,}60\times 10^{-4}$ \\
+$1{,}0$ & $8{,}33\times 10^{-3}$ \\
+$\pi/4$ & $2{,}49\times 10^{-3}$ \\
 \hline
 \end{tabular}
 \end{center}
 
-\textbf{Conclusão:} para $|x|\ll1$ rad, o erro de 4 termos é excessivamente pequeno. Para $x=1{,}0$ rad o erro ainda é menor que $1\%$.
+\textbf{Conclusao:} com $n=4$, o erro da aproximacao de $\sin x$ por $x-\frac{x^3}{6}$ e da ordem de $x^5$ e fica limitado por $|x|^5/120$, sendo muito pequeno para $|x|<1$.

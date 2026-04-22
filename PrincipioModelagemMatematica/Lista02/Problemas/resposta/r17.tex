@@ -1,41 +1,22 @@
-\textbf{Séries de Taylor (dois termos) para $\sin x$ e $\cos x$:}
+Para ordem de dois termos, as expansoes pedidas sao:
 \[
-\sin x = \sum_{n=0}^{\infty}\frac{(-1)^n x^{2n+1}}{(2n+1)!}
-= x - \frac{x^3}{6} + \frac{x^5}{120} - \cdots \approx x - \frac{x^3}{6},
+\sin x \approx x - \frac{x^3}{6},
 \]
 \[
-\cos x = \sum_{n=0}^{\infty}\frac{(-1)^n x^{2n}}{(2n)!}
-= 1 - \frac{x^2}{2} + \frac{x^4}{24} - \cdots \approx 1 - \frac{x^2}{2}.
-\]
-
-\textbf{Computação de $1-\sin x$ e $1-\cos x$:}
-\[
-1-\sin x = 1 - x + \frac{x^3}{6} + \cdots,
+\cos x \approx 1 - \frac{x^2}{2},
 \]
 \[
-1-\cos x = \frac{x^2}{2} - \frac{x^4}{24} + \cdots \approx \frac{x^2}{2}.
+1-\sin x \approx 1 - x + \frac{x^3}{6},
+\]
+\[
+1-\cos x \approx \frac{x^2}{2} - \frac{x^4}{24}
+\approx \frac{x^2}{2}.
 \]
 
-\textbf{Verificação numérica com $x=0{,}1$:}
-\begin{center}
-\begin{tabular}{lll}
-\hline
-Função & Exato & Aproximado \\
-\hline
-$\sin(0{,}1)$ & $0{,}09983$ & $0{,}1-0{,}000167=0{,}09983$ \\
-$\cos(0{,}1)$ & $0{,}99500$ & $1-0{,}005=0{,}99500$ \\
-$1-\sin(0{,}1)$ & $0{,}90017$ & $0{,}90017$ \\
-$1-\cos(0{,}1)$ & $0{,}00500$ & $0{,}005$ \\
-\hline
-\end{tabular}
-\end{center}
-
-\textbf{Tabela completa:}
+Logo, os elementos da tabela ficam:
 \[
-\sin x \approx x - \frac{x^{3}}{6},\quad
-\cos x \approx 1 - \frac{x^{2}}{2},
-\]
-\[
-1-\sin x \approx 1 - x + \frac{x^{3}}{6},\quad
-1-\cos x \approx \frac{x^{2}}{2}.
+\sin x:~x-\frac{x^3}{6},\quad
+\cos x:~1-\frac{x^2}{2},\quad
+1-\sin x:~1-x+\frac{x^3}{6},\quad
+1-\cos x:~\frac{x^2}{2}-\frac{x^4}{24}.
 \]

@@ -1,41 +1,58 @@
-A equação (3.28) relaciona a constante de decaimento $\lambda$ ao tempo de meia-vida $t_{1/2}$ (ou tempo de decaimento):
+Queremos mostrar que
 \[
-\lambda \cong \frac{2{,}303}{t_{\text{decaimento}}}.
+\lambda \approx \frac{2{,}303}{t_{\text{decaimento}}}
+\]
+implica
+\[
+V(t) \approx V_0\,e^{-2{,}303\left(\frac{t}{t_{\text{decaimento}}}\right)}.
 \]
 
-\textbf{Dedução:} a lei de decaimento exponencial é
+\textbf{Demonstracao.}
+
+A descarga de um capacitor em circuito RC e modelada por
 \[
-N(t) = N_0\,e^{-\lambda t}.
+V(t)=V_0e^{-t/\tau},
+\]
+onde $\tau=RC$.
+
+Usando mudanca de base,
+\[
+e^x=10^{x/\ln 10},
+\]
+logo
+\[
+e^{-t/\tau}=10^{-t/(\tau\ln 10)}.
 \]
 
-No tempo de meia-vida $t_{1/2}$, tem-se $N(t_{1/2})=N_0/2$:
+Como $\ln 10\approx 2{,}303$, segue que
 \[
-\frac{N_0}{2}=N_0\,e^{-\lambda t_{1/2}}
-\implies e^{-\lambda t_{1/2}}=\frac{1}{2}
-\implies -\lambda t_{1/2}=\ln\frac{1}{2}=-\ln 2.
-\]
-Portanto:
-\[
-\lambda = \frac{\ln 2}{t_{1/2}}.
+e^{-t/\tau}\approx 10^{-t/(2{,}303\,\tau)}.
 \]
 
-Como $\ln 2 \approx 0{,}6931$ e $\log_{10}2=\log_{10}2$, usando $\ln 2 = \log_{10}2\times\ln 10$:
+Definindo o tempo de decaimento decimal por
 \[
-\ln 2 = \log_{10}2\times\ln 10 \approx 0{,}30103\times 2{,}30259 \approx 0{,}6931.
+t_{\text{decaimento}}=2{,}303\,\tau,
 \]
-E em termos de $\log_{10}$:
+obtemos
 \[
-\lambda = \frac{\ln 2}{t_{1/2}} = \frac{\log_{10}2\,\cdot\ln10}{t_{1/2}} \approx \frac{2{,}303\times\log_{10}2}{t_{1/2}}.
-\]
-
-No contexto do livro, $t_{\text{decaimento}}$ refere-se ao tempo para que $\log_{10}N$ caia de uma unidade, i.e.,
-\[
-N(t_{\text{dec}}) = \frac{N_0}{10} \implies e^{-\lambda t_{\text{dec}}}=\frac{1}{10} \implies \lambda t_{\text{dec}}=\ln 10 \approx 2{,}303.
-\]
-Assim:
-\[
-\boxed{\lambda = \frac{\ln 10}{t_{\text{decaimento}}} \approx \frac{2{,}303}{t_{\text{decaimento}}}.}\quad\checkmark
+V(t)\approx V_0\,10^{-t/t_{\text{decaimento}}}.
 \]
 
-\textbf{Verificação dimensional:} $[\lambda]=\mathrm{s}^{-1}$, $[t_{\text{decaimento}}]=\mathrm{s}$, logo $[2{,}303/t_{\text{dec}}]=\mathrm{s}^{-1}$. $\checkmark$
+Agora, usando $10^{-x}=e^{-x\ln 10}\approx e^{-2{,}303x}$,
+\[
+V(t)\approx V_0\,e^{-2{,}303\left(\frac{t}{t_{\text{decaimento}}}\right)}.
+\]
+
+Equivalentemente, se
+\[
+\lambda\approx\frac{2{,}303}{t_{\text{decaimento}}},
+\]
+entao
+\[
+V(t)=V_0e^{-\lambda t}\approx V_0\,e^{-2{,}303\left(\frac{t}{t_{\text{decaimento}}}\right)}.
+\]
+
+Portanto, a forma proposta esta demonstrada.
+
+
 

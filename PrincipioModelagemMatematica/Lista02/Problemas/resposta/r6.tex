@@ -1,55 +1,67 @@
-\textbf{Hipótese de semelhança geométrica:}
+%------------------------------------------------------------------
+% Questão 4.6 – Velocidade máxima de um animal por análise dimensional
+%------------------------------------------------------------------
 
-Seja $L$ o comprimento característico do animal. Por semelhança geométrica:
+\textbf{Passo 1 – Massa em função do tamanho}
+
+Todos os animais têm densidade similar (próxima à da água). Logo, a massa é proporcional ao volume:
 \[
-m \sim \rho L^3,
+m = \rho L^3,
 \]
-onde $\rho$ é a densidade corporal média.
+onde $L$ é o tamanho característico (comprimento) e $\rho \approx 1000\,\text{kg/m}^3$.
 
-\textbf{Força muscular máxima:}
+\textbf{Passo 2 – Força muscular máxima}
 
-A força que um músculo pode exercer é proporcional à sua área de seção transversal $A_m\sim L^2$:
+Um músculo pode exercer força proporcional à sua área de seção transversal:
 \[
-F_{\max}\sim \sigma_m\, L^2,
+F_{\max} = \sigma_m A_m,
 \]
-onde $\sigma_m$ é a tensão muscular máxima (em Pa), que é aproximadamente constante para mamíferos.
+onde $\sigma_m$ é a tensão máxima do tecido muscular (constante para mamíferos) e $A_m \sim L^2$ (área cresce com $L^2$).
 
-\textbf{Trabalho mecânico por passada:}
+Portanto: $F_{\max} = \sigma_m L^2$.
 
-A passada tem comprimento $\ell\sim L$. O trabalho realizado pela força muscular ao longo de uma passada é:
+\textbf{Passo 3 – Trabalho por passada}
+
+Uma passada tem comprimento $\ell \sim L$. O trabalho realizado é:
 \[
-W \sim F_{\max}\cdot\ell \sim \sigma_m L^2 \cdot L = \sigma_m L^3.
-\]
-
-\textbf{Balanço energético:}
-
-Esse trabalho é convertido em energia cinética máxima do centro de massa:
-\[
-W \sim \frac{1}{2}m v_{\max}^2 \sim \frac{1}{2}\rho L^3 v_{\max}^2.
-\]
-
-Igualando as duas expressões:
-\[
-\sigma_m L^3 \sim \rho L^3 v_{\max}^2.
+W = F_{\max} \cdot \ell = \sigma_m L^2 \cdot L = \sigma_m L^3.
 \]
 
-O fator $L^3$ cancela-se em ambos os lados:
+\textbf{Passo 4 – Conversão em energia cinética}
+
+Esse trabalho vira velocidade máxima do animal:
 \[
-\sigma_m \sim \rho v_{\max}^2
+W = \frac{1}{2}m v_{\max}^2
 \implies
-v_{\max} \sim \sqrt{\frac{\sigma_m}{\rho}}.
+\sigma_m L^3 = \frac{1}{2}\rho L^3 v_{\max}^2.
 \]
+
+\textbf{Passo 5 – Cancelar $L^3$ e resolver}
+
+\[
+\sigma_m = \frac{1}{2}\rho v_{\max}^2
+\implies
+v_{\max} = \sqrt{\frac{2\sigma_m}{\rho}}.
+\]
+
+\textbf{Resultado importante:}
+
+A velocidade máxima \emph{não depende do tamanho} $L$! Depende apenas de propriedades do material.
 
 \textbf{Verificação dimensional:}
 \[
-\left[\sqrt{\frac{\sigma_m}{\rho}}\right]=\sqrt{\frac{\mathrm{Pa}}{\mathrm{kg\,m^{-3}}}}=\sqrt{\frac{\mathrm{kg\,m^{-1}\,s^{-2}}}{\mathrm{kg\,m^{-3}}}}=\sqrt{\mathrm{m^2\,s^{-2}}}=\mathrm{m\,s^{-1}}.\quad\checkmark
+[v_{\max}] = \sqrt{\frac{\text{Pa}}{\text{kg/m}^3}} = \sqrt{\frac{\text{m/s}^2}{\text{m/s}^2 \cdot \text{m}^{-3}}} = \sqrt{\text{m}^2/\text{s}^2} = \text{m/s}\quad\checkmark
 \]
 
-\textbf{Conclusão:}
+\textbf{Aplicação numérica:}
 
-A velocidade máxima $v_{\max}\sim\sqrt{\sigma_m/\rho}$ depende apenas de propriedades \emph{do material muscular}, e não do tamanho $L$. Para mamíferos, $\sigma_m\approx2\times10^5\,\mathrm{Pa}$ e $\rho\approx1000\,\mathrm{kg\,m^{-3}}$, dando:
+Para mamíferos: $\sigma_m \approx 2\times10^5\,\text{Pa}$ e $\rho \approx 1000\,\text{kg/m}^3$.
+
 \[
-v_{\max}\sim\sqrt{\frac{2\times10^5}{10^3}}=\sqrt{200}\approx14\,\mathrm{m/s}\approx50\,\mathrm{km/h},
+v_{\max} = \sqrt{\frac{2 \times 2\times10^5}{1000}} = \sqrt{400} = 20\,\text{m/s} = 72\,\text{km/h}.
 \]
-coerente com velocidades máximas de mamíferos de médio porte observadas na natureza.
+
+Este valor concorda com velocidades máximas observadas na natureza (cavalos, guepardos).
+
+\textbf{Conclusão:} Um rato e um cavalo têm aproximadamente a mesma velocidade máxima porque ambos dependem das mesmas propriedades do tecido muscular!
 
