@@ -47,12 +47,18 @@ Calculando:
 
 Mas $\tanh$ não pode exceder 1! Isso indica que o cálculo deve usar a forma correta:
 \[
-\tanh(\alpha\,t^*) = \sqrt{\frac{\lambda_E}{\lambda_F}}\cdot\frac{E_0}{F_0} = \sqrt{\frac{0{,}0544}{0{,}0106}}\cdot\frac{21500}{54000}\approx2{,}267\times0{,}3981\approx0{,}9025.
+\begin{split}
+\tanh(\alpha\,t^*) &= \sqrt{\frac{\lambda_E}{\lambda_F}}\cdot\frac{E_0}{F_0} \\
+&= \sqrt{\frac{0{,}0544}{0{,}0106}}\cdot\frac{21500}{54000}\approx 2{,}267\times0{,}3981\approx0{,}9025.
+\end{split}
 \]
 
 Portanto:
 \[
-\alpha\,t^* = \text{arctanh}(0{,}9025) = \frac{1}{2}\ln\left(\frac{1+0{,}9025}{1-0{,}9025}\right)=\frac{1}{2}\ln\left(\frac{1{,}9025}{0{,}0975}\right)=\frac{1}{2}\ln(19{,}51)\approx\frac{1}{2}\times2{,}970\approx1{,}485.
+\begin{split}
+\alpha\,t^* &= \operatorname{arctanh}(0{,}9025) = \frac{1}{2}\ln\!\left(\frac{1+0{,}9025}{1-0{,}9025}\right) \\
+&= \frac{1}{2}\ln\!\left(\frac{1{,}9025}{0{,}0975}\right) = \frac{1}{2}\ln(19{,}51) \approx \frac{1}{2}\times2{,}970 \approx 1{,}485.
+\end{split}
 \]
 
 \[
@@ -68,9 +74,8 @@ Usando a lei de conservação de Lanchester:
 
 Com $E=0$:
 \[
-F^* = \sqrt{F_0^2 - \frac{\lambda_E}{\lambda_F}E_0^2} = \sqrt{(54000)^2 - \frac{0{,}0544}{0{,}0106}(21500)^2}.
-\]
-\[
-= \sqrt{2{,}916\times10^9 - 5{,}132\times\!4{,}6225\times10^8} = \sqrt{2{,}916\times10^9 - 2{,}373\times10^9}
-= \sqrt{5{,}43\times10^8}\approx\mathbf{23{.}300\ \text{tropas}}.
+\begin{split}
+F^* &= \sqrt{F_0^2 - \frac{\lambda_E}{\lambda_F}E_0^2} = \sqrt{(54000)^2 - \frac{0{,}0544}{0{,}0106}(21500)^2} \\
+&= \sqrt{2{,}916\times10^9 - 2{,}373\times10^9} = \sqrt{5{,}43\times10^8}\approx\mathbf{23{.}300\ \text{tropas}}.
+\end{split}
 \] 

@@ -1,38 +1,34 @@
-A eq.~(4.6) é a série de Taylor de $\cos x$:
-\[
-\cos x = 1 - \frac{x^{2}}{2!} + \frac{x^{4}}{4!} - \frac{x^{6}}{6!} + \cdots \quad \text{(eq.~4.6)}.
-\]
+O objetivo é demonstrar que a equação para o cosseno hiperbólico pode ser obtida
+substituindo $ix$ por $x$ na série do cosseno trigonométrico.
 
-\textbf{Substituição $x \to ix$:}
+\subsection*{1. Definições Iniciais}
+A expansão em série de Taylor para $\cos x$ (Equação 4.6) é dada por:
+\begin{equation}
+    \cos x = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n}}{(2n)!}
+           = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \dots
+\end{equation}
 
-Aplicando $x \mapsto ix$ com $i=\sqrt{-1}$, calcula-se cada potência:
-\[
-(ix)^1=ix,\quad (ix)^2=i^2x^2=-x^2,\quad (ix)^3=i^3x^3=-ix^3,
-\]
-\[
-(ix)^4=i^4x^4=x^4,\quad (ix)^5=ix^5,\quad (ix)^6=i^6x^6=-x^6,\ldots
-\]
+\subsection*{2. Substituição Complexa}
+Substituindo $x$ por $ix$ na expressão acima, obtemos:
+\begin{equation}
+    \cos(ix) = 1 - \frac{(ix)^2}{2!} + \frac{(ix)^4}{4!} - \frac{(ix)^6}{6!} + \dots
+\end{equation}
 
-Portanto:
-\[
-\cos(ix) = 1 - \frac{(ix)^{2}}{2!} + \frac{(ix)^{4}}{4!} - \frac{(ix)^{6}}{6!} + \cdots
-= 1 - \frac{-x^{2}}{2!} + \frac{x^{4}}{4!} - \frac{-x^{6}}{6!} + \cdots
-\]
-\[
-= 1 + \frac{x^{2}}{2!} + \frac{x^{4}}{4!} + \frac{x^{6}}{6!} + \cdots
-\]
+\subsection*{3. Desenvolvimento das Potências de $i$}
+Considerando que $i^2 = -1$, as potências pares de $i$ resultam em:
+\begin{itemize}
+    \item $(ix)^2 = i^2 x^2 = -x^2$
+    \item $(ix)^4 = i^4 x^4 = 1 \cdot x^4 = x^4$
+    \item $(ix)^6 = i^6 x^6 = -1 \cdot x^6 = -x^6$
+\end{itemize}
 
-Mas a definição da função cosseno hiperbólico é:
-\[
-\cosh x = \frac{e^x+e^{-x}}{2} = 1 + \frac{x^{2}}{2!} + \frac{x^{4}}{4!} + \frac{x^{6}}{6!} + \cdots \quad \text{(eq.~4.7)}.
-\]
-
-\textbf{Conclusão:} as duas séries coincidem, portanto:
-\[
-\boxed{\cos(ix) = \cosh x.}\quad\blacksquare
-\]
-
-De forma análoga, substituindo $x\to ix$ na série de $\sin x$:
-\[
-\sin(ix) = ix + \frac{(ix)^3}{3!} + \cdots = ix - \frac{ix^3}{3!}+\cdots = i\left(x+\frac{x^3}{3!}+\cdots\right) = i\sinh x.
-\]
+\subsection*{4. Conclusão}
+Substituindo estes valores na série expandida:
+\begin{equation}
+    \cos(ix) = 1 - \left( \frac{-x^2}{2!} \right) + \frac{x^4}{4!}
+             - \left( \frac{-x^6}{6!} \right) + \dots
+\end{equation}
+\begin{equation}
+    \cos(ix) = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \frac{x^6}{6!} + \dots = \cosh x
+\end{equation}
+A expressão final corresponde à Equação~(4.7) do livro.

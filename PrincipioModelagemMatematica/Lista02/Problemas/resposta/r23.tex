@@ -1,25 +1,12 @@
-\textbf{Definição de algarismo significativo:} são todos os dígitos certos mais o primeiro duvidoso, excluindo zeros à esquerda que servem apenas como espaçadores.
+\subsection*{Resposta Técnica}
+Não, eles não possuem o mesmo número de algarismos significativos.
 
-\textbf{Análise de $99{,}9$:}
+\subsection*{Análise}
+\begin{itemize}
+    \item \textbf{Para 99,9:} Todos os três dígitos são diferentes de zero. De acordo com as regras de algarismos significativos, todos os dígitos não nulos são sempre significativos. Portanto, 99,9 possui \textbf{3 algarismos significativos}.
 
-$9$, $9$ e $9$ são todos dígitos não-nulos $\Rightarrow$ \textbf{3 algarismos significativos}.
+    \item \textbf{Para 100,1:} Este número possui quatro dígitos. Os zeros estão localizados entre dígitos significativos (o 1 inicial e o 1 final). Zeros ``aprisionados'' entre dígitos significativos são, por regra, significativos. Portanto, 100,1 possui \textbf{4 algarismos significativos}.
+\end{itemize}
 
-\textbf{Análise de $100{,}1$:}
-
-O dígito $1$ (centenas) é significativo. O zero das dezenas é \emph{interno} (entre dígitos significativos), portanto é significativo. O zero das unidades é também interno, logo significativo. O dígito $1$ (décimos) é significativo.
-
-$\Rightarrow$ \textbf{4 algarismos significativos}.
-
-\textbf{Resposta:} \textbf{Não}, $99{,}9$ e $100{,}1$ \textbf{não têm} o mesmo número de algarismos significativos:
-\begin{center}
-\begin{tabular}{lc}
-\hline
-Número & Al. significativos \\
-\hline
-$99{,}9$ & 3 \\
-$100{,}1$ & 4 \\
-\hline
-\end{tabular}
-\end{center}
-
-Isso ilustra que acrescentar uma unidade a um número pode aumentar o número de algarismos significativos, pois zeros internos são sempre significativos. 
+\subsection*{Conclusão de Modelagem}
+Embora a contagem seja diferente (3 contra 4), a precisão relativa de ambos é muito similar sob uma incerteza de $\pm 0{,}1$. Contudo, seguindo estritamente as convenções de medição e representação numérica, o número de algarismos significativos é distinto.

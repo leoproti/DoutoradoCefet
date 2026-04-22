@@ -1,41 +1,51 @@
-\textbf{Equação diferencial exponencial (eq. 5.10):}
-\[
-\frac{dN}{dt} = \lambda N.
-\]
+\subsection*{Objetivo}
+Verificar que a função exponencial $y(t) = y_0 e^{rt}$ (Equação 5.12) é a solução da equação diferencial ordinária (EDO) de crescimento/decaimento dada pela Equação (5.10):
+\begin{equation}
+    \frac{dy}{dt} = ry
+\end{equation}
+utilizando o resultado da integração $\int \frac{du}{u} = \ln u + C$.
 
-\textbf{Verificação de que $N(t)=N_0 e^{\lambda t}$ (eq. 5.12) é solução:}
+\subsection*{Desenvolvimento Passo a Passo}
 
-\textbf{Método 1 --- substituição direta:}
+\textbf{1. Separação de Variáveis:}
+Para resolver a EDO, isolamos os termos dependentes de $y$ no lado esquerdo e os termos dependentes de $t$ no lado direito:
+\begin{equation}
+    \frac{1}{y} dy = r\, dt
+\end{equation}
 
-Calculando a derivada:
-\[
-\frac{dN}{dt} = \frac{d}{dt}\left(N_0 e^{\lambda t}\right) = N_0\lambda e^{\lambda t} = \lambda\underbrace{N_0 e^{\lambda t}}_{=N(t)} = \lambda N(t).\quad\checkmark
-\]
+\textbf{2. Integração de Ambos os Lados:}
+Aplicamos a integral em ambos os lados da igualdade:
+\begin{equation}
+    \int \frac{1}{y}\, dy = \int r\, dt
+\end{equation}
+Utilizando a primitiva fundamental fornecida pelo enunciado, obtemos:
+\begin{equation}
+    \ln |y| = rt + K
+\end{equation}
+onde $K$ representa a constante de integração.
 
-\textbf{Método 2 --- integração usando $\int du/u = \ln u + C$ (conforme solicitado):}
+\textbf{3. Exponenciação:}
+Para isolar a variável de estado $y$, aplicamos a função exponencial (base $e$) em ambos os lados da equação:
+\begin{equation}
+    e^{\ln |y|} = e^{rt + K} \implies |y| = e^K \cdot e^{rt}
+\end{equation}
 
-Separando variáveis na eq. (5.10):
-\[
-\frac{dN}{N} = \lambda\,dt.
-\]
+\textbf{4. Definição da Condição Inicial:}
+Considerando que $e^K$ é uma constante positiva, definimos uma constante arbitrária $C$. Para determinar $C$, avaliamos o sistema no instante inicial $t=0$:
+\begin{equation}
+    y(0) = C \cdot e^{r(0)} = C \cdot 1 = C
+\end{equation}
+Portanto, a constante $C$ corresponde ao valor inicial $y_0$. Substituindo na expressão geral, obtemos:
+\begin{equation}
+    y(t) = y_0 e^{rt}
+\end{equation}
 
-Integrando ambos os lados:
-\[
-\int\frac{dN}{N} = \int\lambda\,dt \implies \ln N = \lambda t + C,
-\]
-onde $C$ é a constante de integração.
+\subsection*{Verificação por Substituição Direta}
+Derivando a solução obtida em relação ao tempo:
+\begin{equation}
+    \frac{d}{dt} \left( y_0 e^{rt} \right) = r \left( y_0 e^{rt} \right) = ry
+\end{equation}
+Como a derivada da função resulta na própria função multiplicada pela taxa $r$, a igualdade $\frac{dy}{dt} = ry$ é satisfeita.
 
-Aplicando a condição inicial $N(0)=N_0$:
-\[
-\ln N_0 = \lambda\cdot0 + C \implies C = \ln N_0.
-\]
-
-Portanto:
-\[
-\ln N = \lambda t + \ln N_0 \implies \ln\frac{N}{N_0} = \lambda t \implies \frac{N}{N_0} = e^{\lambda t}.
-\]
-
-Concluindo:
-\[
-\boxed{N(t) = N_0\,e^{\lambda t}.}\quad\blacksquare
-\]
+\subsection*{Conclusão}
+A demonstração confirma que a Equação (5.12) é a solução analítica única para a dinâmica exponencial descrita na Equação (5.10).

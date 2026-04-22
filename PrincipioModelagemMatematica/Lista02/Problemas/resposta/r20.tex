@@ -1,13 +1,12 @@
-\textbf{Regra de arredondamento:} identificar o $n$-ésimo algarismo significativo e verificar o $(n+1)$-ésimo; se $\geq5$, arredonda para cima.
+\textbf{Solução:}
 
-Arredondando para \textbf{dois} algarismos significativos:
-\begin{align*}
-\text{(a)}&\quad 5{,}237 \to \text{2º sig: }2,\ \text{próximo } 3<5 \to \mathbf{5{,}2},\\
-\text{(b)}&\quad 0{,}82549 \to \text{2º sig: }2,\ \text{próximo }5\geq5 \to \mathbf{0{,}83},\\
-\text{(c)}&\quad 81{,}356 \to \text{2º sig: }1,\ \text{próximo }3<5 \to \mathbf{81},\\
-\text{(d)}&\quad \pi=3{,}14159\ldots \to \text{2º sig: }1,\ \text{próximo }4<5 \to \mathbf{3{,}1},\\
-\text{(e)}&\quad 6{,}2305 \to \text{2º sig: }2,\ \text{próximo }3<5 \to \mathbf{6{,}2},\\
-\text{(f)}&\quad 0{,}0428 \to \text{1º sig: }4,\ \text{2º sig: }2,\ \text{próximo }8\geq5 \to \mathbf{0{,}043},\\
-\text{(g)}&\quad 10{,}45 \to \text{2º sig: }0,\ \text{próximo }4<5 \to \mathbf{10},\\
-\text{(h)}&\quad 4{,}035 \to \text{2º sig: }0,\ \text{próximo }3<5 \to \mathbf{4{,}0}.
-\end{align*}
+\begin{itemize}
+    \item \textbf{(a) 5,2} (O 3º algarismo é 3, então mantém-se o 2).
+    \item \textbf{(b) 0,83} (Os primeiros algarismos significativos são 8 e 2. O 3º é 5, logo arredonda-se para cima).
+    \item \textbf{(c) 81} (O 3º algarismo é 3, então mantém-se o 1).
+    \item \textbf{(d) 3,1} ($\pi \approx 3{,}14159\ldots$, o 3º algarismo é 4, então mantém-se o 1).
+    \item \textbf{(e) 6,2} (O 3º algarismo é 3, então mantém-se o 2).
+    \item \textbf{(f) 0,043} (Zeros à esquerda não contam. O 3º algarismo é 8, logo arredonda-se o 2 para 3).
+    \item \textbf{(g) 10} (O 3º algarismo é 4, então mantém-se o zero).
+    \item \textbf{(h) 4,0} (O 3º algarismo é 3, então mantém-se o zero, que aqui é significativo).
+\end{itemize}

@@ -1,33 +1,20 @@
-\textbf{Reescrita da função para $r\gg a$:}
+\textbf{Solução:}
 
+Como $r \gg a$, a razão $a/r$ é muito pequena. Colocando $r^2$ em evidência:
 \[
-f(r)=\sqrt{a^2+r^2}=\sqrt{r^2\left(1+\frac{a^2}{r^2}\right)}=r\sqrt{1+\left(\frac{a}{r}\right)^{2}}.
+f(r) = \sqrt{r^2\!\left(1 + \frac{a^2}{r^2}\right)} = r\left(1 + \frac{a^2}{r^2}\right)^{1/2}.
 \]
 
-\textbf{Expansão binomial} $(1+u)^{1/2}$ para $u=\left(\dfrac{a}{r}\right)^2\ll1$:
+Aplicando a expansão binomial $(1+x)^{1/2} = 1 + \dfrac{1}{2}x - \dfrac{1}{8}x^2 + \cdots$,
+com $x = \dfrac{a^2}{r^2} \ll 1$:
 \[
-(1+u)^{1/2}=1+\frac{1}{2}u-\frac{1}{8}u^2+\frac{1}{16}u^3-\cdots
+f(r) = r\left(1 + \frac{1}{2}\frac{a^2}{r^2} - \frac{1}{8}\frac{a^4}{r^4} + \cdots\right)
+      = r + \frac{a^2}{2r} - \frac{a^4}{8r^3} + \cdots
 \]
 
-Substituindo $u=(a/r)^2$:
-\begin{align*}
-\sqrt{1+\left(\frac{a}{r}\right)^2}&=1+\frac{1}{2}\cdot\frac{a^2}{r^2}-\frac{1}{8}\cdot\frac{a^4}{r^4}+\frac{1}{16}\cdot\frac{a^6}{r^6}-\cdots
-\end{align*}
-
-Multiplicando por $r$:
+Para $r \gg a$, o termo de segunda ordem $a^4/(8r^3)$ é desprezível em relação ao termo de primeira ordem $a^2/(2r)$. A \textbf{aproximação de campo distante} de primeira ordem é, portanto:
 \[
-\boxed{f(r)\approx r+\frac{a^{2}}{2r}-\frac{a^{4}}{8r^{3}}+\frac{a^6}{16r^5}-\cdots}
+f(r) \approx r + \frac{a^2}{2r}.
 \]
 
-\textbf{Verificação do erro da aproximação de campo distante $f(r)\approx r+a^2/(2r)$:}
-
-O erro relativo ao ignorar o terceiro e demais termos é:
-\[
-\frac{|\Delta f|}{f}\approx\frac{a^4/(8r^3)}{r}=\frac{1}{8}\left(\frac{a}{r}\right)^4.
-\]
-
-\textbf{Exemplo numérico} com $a=1$, $r=10$:
-\[
-f(10)=\sqrt{1+100}=\sqrt{101}\approx10{,}0499.
-\]
-Aproximação: $10+1/(2\times10)=10{,}0500$. Erro $\approx10^{-4}$. $\checkmark$
+O erro relativo desta aproximação é da ordem de $(a/r)^2 \ll 1$.
