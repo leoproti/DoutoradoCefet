@@ -139,6 +139,18 @@ Dados dimensionais:
 \noindent\textbf{Objetivo.} Encontrar a forma funcional de $Q$ usando o Teorema $\Pi$ de Buckingham.
 
 \medskip
+\noindent\textbf{Nomes das vari\'aveis usadas.}
+\begin{itemize}
+  \item $Q$: fluxo volum\'etrico (vaz\~ao volum\'etrica) do fluido.
+  \item $\Delta p$: queda de press\~ao entre dois pontos do canal.
+  \item $L$: comprimento do trecho considerado do canal.
+  \item $\Delta p/L$: gradiente de press\~ao (queda de press\~ao por unidade de comprimento).
+  \item $\mu$ (mu): viscosidade din\^amica do fluido.
+  \item $d$: di\^ametro interno do canal.
+  \item $C$: constante adimensional (depende da geometria e do regime de escoamento).
+\end{itemize}
+
+\medskip
 \noindent\textbf{Passo 1: Vari\'aveis do problema.}
 
 Assumimos que
@@ -359,6 +371,53 @@ Verifica\c{c}\~ao: $I(8) = 100\,e^{-0{,}08664\times 8} = 100\,e^{-\ln 2} = 100 \
 
 \medskip
 \noindent\textbf{(b) Incerteza na quantidade ap\'os 80 dias}
+
+\medskip
+\noindent\textbf{Defini\c{c}\~oes importantes (antes da conta).}
+\begin{itemize}
+  \item \textbf{Precis\~ao:} indica o quanto medidas repetidas ficam pr\'oximas entre si (repetibilidade).\\
+  Exemplo: medir 10 vezes e obter $9{,}98$, $9{,}99$, $10{,}00$ g indica alta precis\~ao.
+
+  \item \textbf{Exatid\~ao:} indica o qu\~ao pr\'oximo o resultado est\'a do valor verdadeiro.\\
+  Exemplo: se o valor verdadeiro \'e $10{,}00$ g e a m\'edia medida \'e $9{,}20$ g, a exatid\~ao \'e ruim.
+
+  \item \textbf{Erro} (quando o valor verdadeiro \'e conhecido):
+  \[
+    e_a = x_{\text{medido}} - x_{\text{verdadeiro}},
+    \qquad
+    e_r = \frac{|e_a|}{|x_{\text{verdadeiro}}|}.
+  \]
+  \textit{Observa\c{c}\~ao:} na pr\'atica experimental, muitas vezes $x_{\text{verdadeiro}}$ n\~ao \'e conhecido; por isso reportamos \textbf{incerteza}.
+
+  \item \textbf{Incerteza absoluta:} intervalo na mesma unidade da grandeza, por exemplo $\delta N$ (\'atomos) ou $\delta n$ (mol).
+
+  \item \textbf{Incerteza relativa:}
+  \[
+    \delta_r = \frac{\delta x}{|x|}.
+  \]
+
+  \item \textbf{Incerteza percentual:}
+  \[
+    \delta_\% = 100\,\delta_r\%.
+  \]
+  Exemplo simples: se $x=200$ e $\delta x=2$, ent\~ao $\delta_r=2/200=0{,}01$ e $\delta_\%=1\%$.
+\end{itemize}
+
+\noindent\textbf{F\'ormulas gerais usadas nesta quest\~ao.}
+\begin{align}
+  \delta x &= |x|\,\delta_r, \\
+  \delta_r &= \frac{\delta x}{|x|}, \\
+  \text{se } y = a x \text{ (com } a \text{ constante), }\quad \delta y &= |a|\,\delta x \quad\text{e}\quad \frac{\delta y}{|y|} = \frac{\delta x}{|x|}.
+\end{align}
+
+\noindent No enunciado, ``1 parte em $10^{10}$'' significa
+\[
+\delta_r = 10^{-10}.
+\]
+Assim, para a quantidade remanescente de iodo, usamos diretamente
+\[
+\delta N = N\,\delta_r = N\times 10^{-10}.
+\]
 
 \medskip
 \noindent\textit{Passo 1 -- Quantidade inicial em \'atomos.}
