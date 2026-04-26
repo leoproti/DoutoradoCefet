@@ -1,0 +1,98 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Diferen\c{c}as Finitas I}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 24}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Derivar e aplicar aproxima\c{c}\~oes de diferen\c{c}as finitas para derivadas, o m\'etodo de Euler expl\'icito e a equa\c{c}\~ao do calor com estabilidade CFL.
+
+\section*{Aproxima\c{c}\~oes de Derivadas}
+
+Da s\'erie de Taylor: $f(x+h) = f(x) + hf'(x) + \frac{h^2}{2}f''(x) + \cdots$
+
+\begin{itemize}
+  \item \textbf{Forward (progressiva):} $f'(x) \approx \frac{f(x+h)-f(x)}{h}$ --- erro $O(h)$.
+  \item \textbf{Backward (regressiva):} $f'(x) \approx \frac{f(x)-f(x-h)}{h}$ --- erro $O(h)$.
+  \item \textbf{Central:} $f'(x) \approx \frac{f(x+h)-f(x-h)}{2h}$ --- erro $O(h^2)$.
+  \item \textbf{Segunda derivada:} $f''(x) \approx \frac{f(x+h)-2f(x)+f(x-h)}{h^2}$ --- erro $O(h^2)$.
+\end{itemize}
+
+\section*{M\'etodo de Euler Expl\'icito}
+
+Para $dy/dt = f(y, t)$, $y(t_0) = y_0$:
+\[
+y_{n+1} = y_n + \Delta t\,f(y_n, t_n).
+\]
+\begin{itemize}
+  \item Erro local por passo: $O(\Delta t^2)$.
+  \item Erro global acumulado: $O(\Delta t)$.
+  \item \textbf{Condicionalmente est\'avel:} $\Delta t$ deve ser suficientemente pequeno.
+\end{itemize}
+
+\section*{Equa\c{c}\~ao do Calor (Difus\~ao)}
+
+\[
+\frac{\partial u}{\partial t} = \kappa\frac{\partial^2 u}{\partial x^2}.
+\]
+
+Discretizando com Euler expl\'icito no tempo e central no espa\c{c}o:
+\[
+u_i^{n+1} = u_i^n + r(u_{i-1}^n - 2u_i^n + u_{i+1}^n), \quad r = \frac{\kappa\Delta t}{(\Delta x)^2}.
+\]
+
+\textbf{Condi\c{c}\~ao de estabilidade CFL:} $r \le 1/2$.
+Se $r > 1/2$, o erro cresce exponencialmente (inst\'avel).
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Derivada central}
+$f(x) = \sin x$, $x=\pi/4$, $h=0{,}1$:
+$f'_\text{central} = (\sin(0{,}885) - \sin(0{,}685))/(0{,}2) = (0{,}774 - 0{,}633)/0{,}2 = 0{,}705$.
+Valor exato: $\cos(\pi/4) = 0{,}707$. Erro: $0{,}3\%$.
+
+\subsection*{Exemplo 2 --- Euler expl\'icito para crescimento exponencial}
+$dy/dt = y$, $y(0)=1$, $\Delta t=0{,}1$:
+$y_1 = 1 + 0{,}1\times1 = 1{,}1$; $y_2 = 1{,}1+0{,}1\times1{,}1=1{,}21$; $\ldots$
+Ap\'os 10 passos: $y_{10} = 1{,}1^{10} \approx 2{,}594$ vs.\ exato $e^1 = 2{,}718$. Erro: $\sim4\%$.
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Derivadas)} Estime $f'(2)$ para $f(x) = x^3$ usando: (a) forward com $h=0{,}5$; (b) central com $h=0{,}5$; (c) compare com o valor exato. Qual \'e mais acurado?
+  
+  \item \textbf{(Euler)} Resolva $dy/dt = -2y$, $y(0)=4$ por Euler expl\'icito com $\Delta t = 0{,}5$ para $t \in [0, 2]$. Compare com a solu\c{c}\~ao exata $y=4e^{-2t}$.
+  
+  \item \textbf{(CFL)} Para a equa\c{c}\~ao do calor com $\kappa=0{,}01$ e $\Delta x = 0{,}1$: (a) qual o $\Delta t$ m\'aximo est\'avel? (b) Se $\Delta x$ for reduzido pela metade, como $\Delta t$ muda?
+  
+  \item \textbf{(Equa\c{c}\~ao do calor)} Grade de 5 pontos ($x = 0, 0{,}25, 0{,}5, 0{,}75, 1$), $\kappa=1$, $\Delta t=0{,}01$, $\Delta x=0{,}25$. Condi\c{c}\~ao inicial: $u(0)=u(1)=0$, $u(0{,}25)=u(0{,}75)=0{,}5$, $u(0{,}5)=1$. Calcule $r$ e evolua 1 passo.
+  
+  \item \textbf{(Ordem de erro)} Calcule $d(\sin x)/dx$ em $x=1$ usando diferen\c{c}as finitas com $h=0{,}1, 0{,}01, 0{,}001$ (forward e central). Mostre que o erro da central cai com $h^2$ enquanto o da forward cai com $h$.
+  
+  \item \textbf{(Euler vs.\ exacto)} Para $dy/dt = \cos t$, $y(0)=0$: (a) qual a solu\c{c}\~ao exata? (b) Aplique Euler com $\Delta t=0{,}5$ at\'e $t=2$. (c) Calcule o erro global.
+  
+  \item \textbf{(Instabilidade)} Aplique Euler expl\'icito \`a equa\c{c}\~ao do calor com $r=1$ (violando CFL). O que acontece com a solu\c{c}\~ao? Por qu\^e?
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item Central: $O(h^2)$; forward/backward: $O(h)$.
+  \item Euler expl\'icito: $y_{n+1} = y_n + \Delta t f(y_n, t_n)$; erro $O(\Delta t)$.
+  \item CFL: $r = \kappa\Delta t/(\Delta x)^2 \le 1/2$ para estabilidade.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item LeVeque, R.\ J.\ \textit{Finite Difference Methods for Ordinary and PDEs}. SIAM, 2007.
+  \item Burden, R.\ L.; Faires, J.\ D.\ \textit{Numerical Analysis}. Cengage, 2011.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,100 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Apresenta\c{c}\~ao e Ciclo de Modelagem}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 01}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Entender o que \'e modelagem matem\'atica, por que \'e \'util e como o ciclo de modelagem funciona na pr\'atica.
+
+\section*{O que \'e um Modelo Matem\'atico?}
+Um modelo matem\'atico \'e uma representa\c{c}\~ao simplificada de um fen\^omeno real usando linguagem matem\'atica (equa\c{c}\~oes, gr\'aficos, algoritmos). Nenhum modelo \'e perfeito --- o objetivo \'e ser \textbf{\'util} para responder uma pergunta espec\'ifica.
+
+\subsection*{Ciclo de Modelagem (6 etapas)}
+\begin{enumerate}
+  \item \textbf{Problema real:} identificar o fen\^omeno e a pergunta a ser respondida.
+  \item \textbf{Hip\'oteses:} simplificar o problema (o que ignorar?).
+  \item \textbf{Modelo:} traduzir hip\'oteses em equa\c{c}\~oes ou algoritmos.
+  \item \textbf{Solu\c{c}\~ao:} resolver o modelo (analiticamente ou numericamente).
+  \item \textbf{Valida\c{c}\~ao:} comparar com dados reais.
+  \item \textbf{Interpreta\c{c}\~ao:} tirar conclus\~oes e refinar o modelo se necess\'ario.
+\end{enumerate}
+
+\subsection*{Tipos de Modelos}
+\begin{itemize}
+  \item \textbf{Determin\'istico vs.\ estoc\'astico:} resultados fixos ou com aleatoriedade.
+  \item \textbf{Anal\'itico vs.\ num\'erico:} solu\c{c}\~ao exata ou aproximada por computador.
+  \item \textbf{Cont\'inuo vs.\ discreto:} tempo/espa\c{c}o cont\'inuos (EDOs) ou em passos (autômatos celulares).
+  \item \textbf{Linear vs.\ n\~ao-linear:} respos superpos\'ivel ou complexa.
+\end{itemize}
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Crescimento de bact\'erias (ciclo completo)}
+\textbf{Passo 1 (Problema):} Bact\'erias crescem num frasco com nutrientes ilimitados. Quantas haver\'a ap\'os 3 horas?\\
+\textbf{Passo 2 (Hip\'oteses):} Cada bact\'eria se divide uma vez por hora; sem mortalidade; espa\c{c}o infinito.\\
+\textbf{Passo 3 (Modelo):} Taxa de crescimento proporcional ao n\'umero atual:
+\[
+\frac{dN}{dt} = rN, \quad r = 1\,\text{h}^{-1},\; N(0)=100.
+\]
+\textbf{Passo 4 (Solu\c{c}\~ao):}
+\[
+N(t) = 100\,e^{t}.
+\]
+\textbf{Passo 5 (Valida\c{c}\~ao):} Em $t=3\,\text{h}$: $N(3)=100\,e^3 \approx 2009$ bact\'erias. Comparar com contagem real.\\
+\textbf{Passo 6 (Interpreta\c{c}\~ao):} O modelo \'e v\'alido enquanto os nutrientes n\~ao se esgotam.
+
+\subsection*{Exemplo 2 --- Escolha do tipo de modelo}
+Dada a descri\c{c}\~ao de cada fen\^omeno, identifique o tipo de modelo adequado:
+\begin{itemize}
+  \item Queda livre de um objeto: \textbf{determin\'istico, anal\'itico, cont\'inuo}.
+  \item Movimento de vento no mercado financeiro: \textbf{estoc\'astico, num\'erico, cont\'inuo}.
+  \item Tr\'afego de carros numa rua: \textbf{determin\'istico OU estoc\'astico, discreto (cel. autômato)}.
+\end{itemize}
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Ciclo)} Uma cidade quer prever o consumo de \'agua nos pr\'oximos 10 anos. Descreva cada etapa do ciclo de modelagem para esse problema. Quais hip\'oteses voc\^e faria?
+  
+  \item \textbf{(Classifica\c{c}\~ao)} Classifique cada modelo abaixo como (i) determin\'istico ou estoc\'astico, (ii) cont\'inuo ou discreto:
+    \begin{enumerate}
+      \item[$a.$] Equa\c{c}\~ao de calor $\partial T/\partial t = k\,\partial^2 T/\partial x^2$.
+      \item[$b.$] Jogo da Vida de Conway.
+      \item[$c.$] Modelo epidemiol\'ogico SIR.
+      \item[$d.$] Lan\c{c}amento de dados repetido $N$ vezes.
+    \end{enumerate}
+  
+  \item \textbf{(Hip\'oteses)} O modelo $N(t)=N_0 e^{rt}$ \'e um dos mais simples de crescimento. Liste 3 raz\~oes pelas quais ele falha na pr\'atica para popula\c{c}\~oes reais.
+  
+  \item \textbf{(Hist\'orico)} Pesquise o modelo de Lotka-Volterra (predador-presa). Escreva as duas equa\c{c}\~oes e explique o significado biol\'ogico de cada par\^ametro.
+  
+  \item \textbf{(Sua \'area)} Identifique um fen\^omeno da sua \'area de pesquisa. Escreva: (a) a pergunta que voc\^e quer responder; (b) as hip\'oteses simplificadoras; (c) qual tipo de modelo seria mais adequado e por qu\^e.
+  
+  \item \textbf{(V\&V)} Explique com suas palavras a diferen\c{c}a entre \emph{verifica\c{c}\~ao} e \emph{valida\c{c}\~ao} de um modelo. Por que ambas s\~ao necess\'arias?
+  
+  \item \textbf{(Desafio)} O modelo log\'istico \'e $\frac{dN}{dt}=rN\!\left(1-\frac{N}{K}\right)$. Compare com $\frac{dN}{dt}=rN$: qual hip\'otese foi relaxada? O que $K$ representa fisicamente?
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item Modelo = simplifica\c{c}\~ao \'util, n\~ao a realidade completa.
+  \item Ciclo: problema $\to$ hip\'oteses $\to$ modelo $\to$ solu\c{c}\~ao $\to$ valida\c{c}\~ao $\to$ interpreta\c{c}\~ao.
+  \item Sempre questione: \emph{as hip\'oteses s\~ao razo\'aveis?}
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Strogatz, S.\ \textit{Nonlinear Dynamics and Chaos}. Westview Press, 2015.
+  \item Giordano, N.; Nakanishi, H.\ \textit{Computational Physics}. Prentice Hall, 1997.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

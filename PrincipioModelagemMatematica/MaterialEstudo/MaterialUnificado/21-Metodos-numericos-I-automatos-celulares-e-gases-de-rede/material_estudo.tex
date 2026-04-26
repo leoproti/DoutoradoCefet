@@ -1,0 +1,102 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Aut\^omatos Celulares e Gases de Rede}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 21}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Compreender os fundamentos dos aut\^omatos celulares (AC), as 4 classes de Wolfram, e os modelos de gases de rede (HPP e FHP).
+
+\section*{Aut\^omatos Celulares: Conceitos}
+
+Um \textbf{aut\^omato celular} consiste de:
+\begin{enumerate}
+  \item \textbf{Grade:} conjunto de c\'elulas (1D, 2D, etc.).
+  \item \textbf{Estado:} cada c\'elula tem um estado (ex.: 0 ou 1).
+  \item \textbf{Vizinhan\c{c}a:} quais c\'elulas influenciam o pr\'oximo estado.
+  \item \textbf{Regra:} fun\c{c}\~ao determinista que atualiza o estado de cada c\'elula.
+\end{enumerate}
+
+\subsection*{Vizinhan\c{c}as 2D}
+\begin{itemize}
+  \item \textbf{Von Neumann:} 4 vizinhos (N, S, L, O).
+  \item \textbf{Moore:} 8 vizinhos (inclui diagonais).
+\end{itemize}
+
+\subsection*{AC Elementar (1D)}
+C\'elulas biol\'arias (0 ou 1); vizinhan\c{c}a de 3 c\'elulas (esquerda, centro, direita).
+Existem $2^3 = 8$ configura\c{c}\~oes poss\'iveis de entrada, logo $2^8 = 256$ regras.
+\textbf{Regra 110:} produz comportamento complexo (Classe IV de Wolfram).
+
+\subsection*{Classifica\c{c}\~ao de Wolfram}
+\begin{enumerate}
+  \item \textbf{Classe I:} evolui para estado uniforme (morto).
+  \item \textbf{Classe II:} evolui para padr\~oes peri\'odicos est\'aveis.
+  \item \textbf{Classe III:} comportamento ca\'otico, aperiodico.
+  \item \textbf{Classe IV:} comportamento complexo, estruturas de vida longa (ex.: Regra 110, Jogo da Vida).
+\end{enumerate}
+
+\section*{Gases de Rede}
+
+Modelos de flu\'ido onde part\'iculas discretas se movem e colidem numa grade.
+
+\subsection*{HPP (Hardy-Pomeau-Pazzis)}
+Grade quadrada; 4 dire\c{c}\~oes poss\'iveis por c\'elula. Regra de colis\~ao conserva n\'umero de part\'iculas e momento. Problema: anisotropia da grade quadrada $\Rightarrow$ n\~ao recupera Navier-Stokes isotropicamente.
+
+\subsection*{FHP (Frisch-Hasslacher-Pomeau)}
+Grade hexagonal; 6 dire\c{c}\~oes. Corrige a anisotropia do HPP e recupera as equa\c{c}\~oes de Navier-Stokes no limite macrosc\'opico.
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Regra 110: 2 passos}
+Estado inicial: $\ldots0\,0\,1\,0\,0\ldots$
+Regra 110 (em bin\'ario, regra $110 = 01101110_2$):
+\begin{itemize}
+  \item Entrada 000$\to$0, 001$\to$1, 010$\to$1, 011$\to$1, 100$\to$0, 101$\to$1, 110$\to$1, 111$\to$0.
+\end{itemize}
+Ap\'os 1 passo: $\ldots0\,1\,1\,1\,0\ldots$ (a c\'elula 1 ativa seus vizinhos).
+
+\subsection*{Exemplo 2 --- Classe IV vs.\ III}
+Regra 30 (Classe III): padr\~ao parece aleat\'orio, usado como RNG.
+Regra 110 (Classe IV): padr\~oes estruturados que interagem complexamente.
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(AC Elementar)} Para a Regra 90: $111\to0$, $110\to1$, $101\to0$, $100\to1$, $011\to1$, $010\to0$, $001\to1$, $000\to0$. Simule 3 passos para o estado inicial $\{0,0,1,0,0,0,0\}$ (7 c\'elulas, bordas peri\'odicas).
+  
+  \item \textbf{(Classe de Wolfram)} Classifique os seguintes comportamentos: (a) Regra 0 (tudo vira 0); (b) Regra 8 (pontos isolados); (c) Regra 22 (padr\~ao ca\'otico). Justifique.
+  
+  \item \textbf{(Vizinhan\c{c}a)} Uma grade 2D $5\times5$ tem a c\'elula central ativa. (a) Liste os vizinhos de Von Neumann. (b) Liste os vizinhos de Moore. (c) Se a regra diz ``ativa se exatamente 1 vizinho de Moore est\'a ativo'', qual o pr\'oximo estado?
+  
+  \item \textbf{(HPP)} No HPP, duas part\'iculas se movem uma em dire\c{c}\~ao \`a outra (esquerda e direita). Elas colidem e saem para cima e para baixo. Mostre que o n\'umero de part\'iculas e o momento linear total s\~ao conservados.
+  
+  \item \textbf{(Anisotropia)} Por que o HPP (grade quadrada) n\~ao recupera Navier-Stokes isotropicamente? O que o FHP (grade hexagonal) tem de diferente?
+  
+  \item \textbf{(Emergência)} O Jogo da Vida \'e Classe IV. Pesquise: o que \'e um \textit{glider} (planador) no Jogo da Vida? Como estruturas complexas surgem de regras simples?
+  
+  \item \textbf{(Conexão)} Qual \'e a rela\c{c}\~ao entre o caminhante aleat\'orio (Unidade 20) e um gas de rede sem colis\~oes? E com colis\~oes (HPP/FHP)?
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item AC: grade + estado + vizinhan\c{c}a + regra.
+  \item 4 classes de Wolfram: uniforme, peri\'odico, ca\'otico, complexo.
+  \item HPP (quadrado) $\to$ anisotropia; FHP (hexagonal) $\to$ Navier-Stokes.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Wolfram, S.\ \textit{A New Kind of Science}. Wolfram Media, 2002.
+  \item Frisch, U.\ et al.\ \textit{Phys.\ Rev.\ Lett.}, 56, 1505, 1986.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

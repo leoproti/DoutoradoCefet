@@ -1,0 +1,114 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: M\'etodo de Runge-Kutta}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 26}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Compreender o m\'etodo de Runge-Kutta de quarta ordem (RK4), tabelas de Butcher, e aplicar ao sistema de Lorenz.
+
+\section*{Motiva\c{c}\~ao}
+
+O m\'etodo de Euler tem erro $O(\Delta t)$. Queremos maior precis\~ao sem usar passos muito pequenos. A ideia do RK \'e calcular v\'arias estimativas de $f$ dentro do intervalo $[t_n, t_{n+1}]$ e combin\'a-las.
+
+\section*{Runge-Kutta de 4\textordfeminine\ Ordem (RK4)}
+
+Para $dy/dt = f(y, t)$:
+\[
+k_1 = f(y_n, t_n),
+\]
+\[
+k_2 = f\!\left(y_n + \frac{\Delta t}{2}k_1,\; t_n + \frac{\Delta t}{2}\right),
+\]
+\[
+k_3 = f\!\left(y_n + \frac{\Delta t}{2}k_2,\; t_n + \frac{\Delta t}{2}\right),
+\]
+\[
+k_4 = f(y_n + \Delta t\,k_3,\; t_n + \Delta t),
+\]
+\[
+y_{n+1} = y_n + \frac{\Delta t}{6}(k_1 + 2k_2 + 2k_3 + k_4).
+\]
+\begin{itemize}
+  \item Erro local: $O(\Delta t^5)$; erro global: $O(\Delta t^4)$.
+  \item 4 avalia\c{c}\~oes de $f$ por passo.
+  \item Expl\'icito: n\~ao requer resolu\c{c}\~ao de sistema linear.
+\end{itemize}
+
+\section*{Tabela de Butcher}
+
+A tabela de Butcher organiza os coeficientes de m\'etodos RK:
+\[
+\begin{array}{c|cccc}
+0 & & & & \\
+1/2 & 1/2 & & & \\
+1/2 & 0 & 1/2 & & \\
+1 & 0 & 0 & 1 & \\
+\hline
+& 1/6 & 2/6 & 2/6 & 1/6
+\end{array}
+\]
+
+\section*{Sistema de Lorenz}
+
+\[
+\dot x = \sigma(y-x), \quad \dot y = x(\rho-z)-y, \quad \dot z = xy-\beta z.
+\]
+Par\^ametros cl\'assicos: $\sigma=10$, $\rho=28$, $\beta=8/3$.
+\begin{itemize}
+  \item Comportamento ca\'otico: trajet\'orias pr\'oximas divergem exponencialmente.
+  \item Atrator estranho: dimens\~ao fractal $\approx 2{,}05$.
+  \item Sensibilidade a condi\c{c}\~oes iniciais: efeito borboleta.
+\end{itemize}
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- RK4 para $dy/dt = y$, $y(0)=1$, $\Delta t=0{,}5$}
+$k_1 = 1$; $k_2 = f(1{,}25, 0{,}25) = 1{,}25$; $k_3 = 1{,}3125$; $k_4 = f(1{,}65625, 0{,}5) = 1{,}65625$.
+$y_1 = 1 + (0{,}5/6)(1 + 2{,}5 + 2{,}625 + 1{,}65625) = 1 + (0{,}5/6)\times7{,}78125 = 1{,}648$.
+Exato: $e^{0{,}5} = 1{,}6487$. Erro: $0{,}04\%$.
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(RK4: manual)} Aplique RK4 com $\Delta t=0{,}5$ para $dy/dt = -2y$, $y(0)=1$. Calcule $y(0{,}5)$ e compare com $e^{-1}$.
+  
+  \item \textbf{(Compara\c{c}\~ao)} Para $dy/dt = y^2$, $y(0)=1$ (solu\c{c}\~ao exata: $y=1/(1-t)$, explode em $t=1$): compare Euler expl\'icito e RK4 com $\Delta t=0{,}1$ at\'e $t=0{,}9$. Qual \'e mais acurado?
+  
+  \item \textbf{(Sistema 2D)} Resolva o sistema pend\^ulo simples:
+  \[
+  \dot\theta = \omega, \quad \dot\omega = -\frac{g}{\ell}\sin\theta,
+  \]
+  com $g=9{,}8$, $\ell=1$, $\theta(0)=0{,}5$, $\omega(0)=0$. Use RK4 com $\Delta t=0{,}1$ por 5 passos.
+  
+  \item \textbf{(Lorenz)} Para o sistema de Lorenz com par\^ametros cl\'assicos e $(x_0, y_0, z_0) = (1, 1, 1)$: escreva as 4 etapas do RK4 para o primeiro passo com $\Delta t=0{,}01$.
+  
+  \item \textbf{(Sensibilidade)} Repita o Lorenz com $(x_0, y_0, z_0) = (1{,}0001, 1, 1)$. Ap\'os quantos passos as trajet\'orias divergem visivelmente? Relate qualitat\'ivamente.
+  
+  \item \textbf{(Passo adapt\'ativo)} O RK-Fehlberg usa RK4 e RK5 juntos para estimar o erro e adaptar $\Delta t$. Por que isso \'e vantajoso? Em que tipo de problema isso \'e especialmente \'util?
+  
+  \item \textbf{(Lorenz: atrator)} O atrator de Lorenz tem dimens\~ao fractal $d_f \approx 2{,}05$. Compare com um atrator peri\'odico (ciclo limite, $d_f=1$) e um ponto fixo ($d_f=0$). O que a dimens\~ao fracion\'aria significa?
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item RK4: 4 estimativas de $f$; erro $O(\Delta t^4)$; 4$\times$ mais trabalho que Euler.
+  \item Lorenz: $\sigma=10$, $\rho=28$, $\beta=8/3$; ca\'otico e sens\'ivel a CI.
+  \item Tabela de Butcher: organiza coeficientes de qualquer m\'etodo RK.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Lorenz, E.\ N.\ \textit{J.\ Atmos.\ Sci.}, 20, 130--141, 1963.
+  \item Numerical Recipes: \textit{Chapter 17 --- Integration of ODEs}. Cambridge, 2007.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

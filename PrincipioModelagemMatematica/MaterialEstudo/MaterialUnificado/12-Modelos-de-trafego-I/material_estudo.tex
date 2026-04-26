@@ -1,0 +1,92 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Modelos de Tr\'afego I}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 12}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Compreender os modelos macrosc\'opicos de fluxo de tr\'afego, interpretar o diagrama fundamental e aplicar a equa\c{c}\~ao de LWR.
+
+\section*{Vari\'aveis Fundamentais}
+\begin{itemize}
+  \item $\rho$ [ve\'ic/km]: \textbf{densidade} de ve\'iculos.
+  \item $v$ [km/h]: \textbf{velocidade} m\'edia dos ve\'iculos.
+  \item $q$ [ve\'ic/h]: \textbf{fluxo} (vaz\~ao) de ve\'iculos.
+  \item Rela\c{c}\~ao fundamental: $q = \rho v$.
+\end{itemize}
+
+\subsection*{Modelo de Greenshields (1935)}
+Rela\c{c}\~ao linear entre velocidade e densidade:
+\[
+v(\rho) = v_f\!\left(1 - \frac{\rho}{\rho_\text{max}}\right),
+\]
+onde $v_f$ = velocidade livre (via vazia) e $\rho_\text{max}$ = densidade de bloqueio (congestionamento total).
+\[
+q(\rho) = v_f\rho\!\left(1 - \frac{\rho}{\rho_\text{max}}\right).
+\]
+Fluxo m\'aximo: $q_\text{max} = v_f\rho_\text{max}/4$ em $\rho^* = \rho_\text{max}/2$.
+
+\subsection*{Equa\c{c}\~ao de LWR (Lighthill-Whitham-Richards)}
+Conserva\c{c}\~ao de ve\'iculos:
+\[
+\frac{\partial\rho}{\partial t} + \frac{\partial q}{\partial x} = 0.
+\]
+Com $q = q(\rho)$: $\frac{\partial\rho}{\partial t} + q'(\rho)\frac{\partial\rho}{\partial x} = 0$.
+
+A velocidade de propaga\c{c}\~ao de uma perturba\c{c}\~ao \'e $c(\rho) = dq/d\rho$ (\textbf{velocidade de onda}).
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Diagrama fundamental de Greenshields}
+$v_f = 100$ km/h, $\rho_\text{max} = 200$ ve\'ic/km.
+\begin{itemize}
+  \item Fluxo m\'aximo: $q_\text{max} = 100 \times 200/4 = 5000$ ve\'ic/h.
+  \item Densidade \'otima: $\rho^* = 100$ ve\'ic/km.
+  \item Com $\rho = 50$ ve\'ic/km: $v = 100(1-50/200) = 75$ km/h, $q = 50\times75 = 3750$ ve\'ic/h.
+\end{itemize}
+
+\subsection*{Exemplo 2 --- Velocidade de onda}
+Para Greenshields: $q'(\rho) = v_f(1-2\rho/\rho_\text{max})$.
+Em $\rho=50$: $c = 100(1-100/200) = 50$ km/h (propaga na dire\c{c}\~ao do tr\'afego).
+Em $\rho=150$: $c = 100(1-300/200) = -50$ km/h (propaga contra o tr\'afego $\to$ congestionamento).
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Greenshields)} Uma rodovia tem $v_f=120$ km/h e $\rho_\text{max}=150$ ve\'ic/km. (a) Escreva $q(\rho)$. (b) Calcule $q_\text{max}$ e $\rho^*$. (c) Para $\rho=30$ ve\'ic/km, qual a velocidade e o fluxo?
+  
+  \item \textbf{(Diagrama)} Plote esboço do diagrama $q \times \rho$ para Greenshields com $v_f=100$ km/h e $\rho_\text{max}=200$ ve\'ic/km. Marque o ponto de capacidade m\'axima.
+  
+  \item \textbf{(Conserva\c{c}\~ao)} A equa\c{c}\~ao de LWR \'e $\partial_t\rho + \partial_x q = 0$. Explique em palavras o que essa equa\c{c}\~ao diz fisicamente (use ``o que entra menos o que sai...'').
+  
+  \item \textbf{(Velocidade de onda)} Para Greenshields, a velocidade de onda \'e $c(\rho) = v_f(1-2\rho/\rho_\text{max})$. (a) Em que densidade $c=0$? (b) Para que densidades a onda propaga no sentido contr\'ario ao tr\'afego? O que isso significa fisicamente?
+  
+  \item \textbf{(Compara\c{c}\~ao de modelos)} O modelo de Greenberg prop\~oe $v = v_0\ln(\rho_\text{max}/\rho)$. Calcule $q(\rho)$ e $q_\text{max}$. Qual a densidade no ponto de capacidade?
+  
+  \item \textbf{(Capacidade vi\'aria)} Uma avenida tem 3 faixas, cada uma com capacidade de 1800 ve\'ic/h. Num per\'iodo de pico, 4500 ve\'ic/h tentam passar. Qual o grau de satura\c{c}\~ao? Espera-se congestionamento?
+  
+  \item \textbf{(Tempo de viagem)} Numa via de 20 km, a densidade \'e uniforme a $\rho = 80$ ve\'ic/km com $v_f=100$ km/h, $\rho_\text{max}=200$. Qual o tempo de viagem? Se $\rho$ dobrar, quanto aumenta o tempo?
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item $q = \rho v$: rela\c{c}\~ao fundamental.
+  \item Greenshields: $v = v_f(1-\rho/\rho_\text{max})$; $q_\text{max} = v_f\rho_\text{max}/4$.
+  \item LWR: $\partial_t\rho + \partial_x q = 0$ (conserva\c{c}\~ao de ve\'iculos).
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Daganzo, C.\ F.\ \textit{Fundamentals of Transportation and Traffic Operations}. Elsevier, 1997.
+  \item Lighthill, M.\ J.; Whitham, G.\ B.\ \textit{Proc.\ Roy.\ Soc.\ A}, 229, 1955.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

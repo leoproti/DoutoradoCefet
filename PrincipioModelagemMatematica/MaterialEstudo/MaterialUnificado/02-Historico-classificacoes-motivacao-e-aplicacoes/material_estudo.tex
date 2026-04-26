@@ -1,0 +1,120 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Hist\'orico, Classifica\c{c}\~oes e Motiva\c{c}\~ao}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 02}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Conhecer a evolu\c{c}\~ao hist\'orica da modelagem matem\'atica e compreender as principais classifica\c{c}\~oes de modelos, motivando o estudo atrav\'es de aplica\c{c}\~oes reais.
+
+\section*{Linha do Tempo da Modelagem}
+\begin{itemize}
+  \item \textbf{S\'ec.\ XVII:} Newton formula\c{c}\~ao das leis do movimento ($F=ma$) e lei da gravita\c{c}\~ao.
+  \item \textbf{1798:} Malthus prop\~oe crescimento populacional exponencial.
+  \item \textbf{1838:} Verhulst introduz o modelo log\'istico $dN/dt = rN(1-N/K)$.
+  \item \textbf{1926:} Lotka e Volterra desenvolvem o modelo predador-presa.
+  \item \textbf{1927:} Kermack-McKendrick criam o modelo SIR para epidemias.
+  \item \textbf{1952:} Turing publica ``The Chemical Basis of Morphogenesis'' (forma\c{c}\~ao de padr\~oes).
+  \item \textbf{1963:} Lorenz descobre o atrator ca\'otico em modelos meteorol\'ogicos.
+  \item \textbf{S\'ec.\ XXI:} Modelos computacionais de larga escala (clima, epidemias, f\'isica de part\'iculas).
+\end{itemize}
+
+\section*{Classifica\c{c}\~ao de Modelos}
+\subsection*{Por natureza da solu\c{c}\~ao}
+\begin{itemize}
+  \item \textbf{Anal\'itico:} solu\c{c}\~ao exata em forma fechada. \textit{Ex.:} $N(t)=N_0 e^{rt}$.
+  \item \textbf{Num\'erico:} aproxima\c{c}\~ao computacional. \textit{Ex.:} simula\c{c}\~ao de din\^amica molecular.
+\end{itemize}
+\subsection*{Por tipo de vari\'avel}
+\begin{itemize}
+  \item \textbf{Cont\'inuo:} vari\'aveis mudam continuamente (EDOs, EDPs).
+  \item \textbf{Discreto:} vari\'aveis em passos (cadeias de Markov, autômatos).
+\end{itemize}
+\subsection*{Por incerteza}
+\begin{itemize}
+  \item \textbf{Determin\'istico:} mesma entrada $\Rightarrow$ mesma sa\'ida.
+  \item \textbf{Estoc\'astico:} inclui aleatoriedade (ex.: equa\c{c}\~oes de Langevin).
+\end{itemize}
+
+\section*{Modelo SIR --- Um Cl\'assico}
+O modelo de Kermack-McKendrick (1927) descreve epidemias com tr\^es grupos:
+\begin{align*}
+\frac{dS}{dt} &= -\beta SI, \\
+\frac{dI}{dt} &= \beta SI - \gamma I, \\
+\frac{dR}{dt} &= \gamma I.
+\end{align*}
+\begin{itemize}
+  \item $S$: suscet\'iveis, $I$: infectados, $R$: recuperados (imunes).
+  \item $\beta$: taxa de transmiss\~ao; $\gamma$: taxa de recupera\c{c}\~ao.
+  \item N\'umero reprodutivo b\'asico: $\mathcal{R}_0 = \beta S_0 / \gamma$. Se $\mathcal{R}_0>1$, epidemia cresce.
+\end{itemize}
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Calculando $\mathcal{R}_0$ para COVID-19 (estimativa inicial)}
+Par\^ametros estimados: $\beta \approx 0{,}3\,\text{dia}^{-1}$, $\gamma \approx 0{,}1\,\text{dia}^{-1}$, $S_0 \approx 1$ (toda a popula\c{c}\~ao).
+\[
+\mathcal{R}_0 = \frac{\beta}{\gamma} = \frac{0{,}3}{0{,}1} = 3.
+\]
+Cada infectado contagia em m\'edia 3 pessoas. A epidemia cresce ($\mathcal{R}_0 > 1$). Para control\'a-la, precisamos reduzir $\mathcal{R}_0 < 1$ via vacinação ou isolamento.
+
+\subsection*{Exemplo 2 --- Identifica\c{c}\~ao de tipo}
+O modelo log\'istico $\frac{dN}{dt}=rN(1-N/K)$ \'e:
+\begin{itemize}
+  \item Determin\'istico (sem aleatoriedade).
+  \item Cont\'inuo (EDO em tempo cont\'inuo).
+  \item N\~ao-linear (por causa do termo $N^2$).
+  \item Anal\'itico (tem solu\c{c}\~ao fechada: $N(t) = K/(1 + Ce^{-rt})$).
+\end{itemize}
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(SIR)} Para $\beta=0{,}5\,\text{dia}^{-1}$ e $\gamma=0{,}25\,\text{dia}^{-1}$, calcule $\mathcal{R}_0$. A doen\c{c}a se espalharia? Qual percen\-tual m\'inimo de vacina\c{c}\~ao seria necess\'ario para evitar a epidemia?
+  \textit{(Dica: a popula\c{c}\~ao vacinada deve reduzir $S_0$ at\'e $\mathcal{R}_0 < 1$.)}
+  
+  \item \textbf{(Hist\'orico)} Explique em 3 linhas a import\^ancia da contribui\c{c}\~ao de Turing (1952) para a modelagem matem\'atica de sistemas biol\'ogicos.
+  
+  \item \textbf{(Classifica\c{c}\~ao)} Classifique os modelos abaixo nos 3 eixos (determin\'istico/estoc\'astico; cont\'inuo/discreto; anal\'itico/num\'erico):
+    \begin{enumerate}
+      \item[$a.$] $\frac{dx}{dt} = -kx$ com $k>0$ constante.
+      \item[$b.$] Jogo da Vida de Conway.
+      \item[$c.$] Modelo de Monte Carlo para decaimento radioativo.
+      \item[$d.$] Simula\c{c}\~ao de din\^amica molecular.
+    \end{enumerate}
+  
+  \item \textbf{(SIR estendido)} O modelo SEIR acrescenta um compartimento $E$ (exposto). Escreva as equa\c{c}\~oes do SEIR. Que processo f\'isico o compartimento $E$ representa?
+  
+  \item \textbf{(Lorenz)} O atrator de Lorenz \'e descrito por:
+    \[
+    \dot x = \sigma(y-x),\quad \dot y = x(\rho-z)-y,\quad \dot z = xy-\beta z.
+    \]
+    Com $\sigma=10$, $\rho=28$, $\beta=8/3$: o sistema \'e determin\'istico, mas exibe depend\^encia sens\'ivel \`as condi\c{c}\~oes iniciais. Explique por que isso limita a previs\~ao meteorol\'ogica.
+  
+  \item \textbf{(Malthus vs.\ Verhulst)} O modelo de Malthus prev\^e crescimento ilimitado; o de Verhulst inclui uma capacidade de suporte $K$. Cite um exemplo real em que o modelo de Malthus \'e adequado e outro em que \'e necess\'ario usar Verhulst.
+  
+  \item \textbf{(Pandemia)} No per\'iodo inicial da COVID-19, $\mathcal{R}_0 \approx 2{,}5$. Se uma vacina reduz a transmiss\~ao em 70\%, calcule o novo $\mathcal{R}_0$ efetivo e determine se a pandemia seria controlada. (Assuma 60\% de vacinados.)
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item Modelos evolu\'iram de equa\c{c}\~oes simples (Newton) a simula\c{c}\~oes computacionais de alta escala.
+  \item Classifica\c{c}\~ao ajuda a escolher o m\'etodo de solu\c{c}\~ao correto.
+  \item $\mathcal{R}_0$ \'e o n\'umero reprodutivo b\'asico: $\mathcal{R}_0 > 1 \Rightarrow$ epidemia cresce.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Kermack, W.\ O.; McKendrick, A.\ G.\ \textit{Proc.\ Roy.\ Soc.\ London A}, 115, 1927.
+  \item Murray, J.\ D.\ \textit{Mathematical Biology}. Springer, 2002.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

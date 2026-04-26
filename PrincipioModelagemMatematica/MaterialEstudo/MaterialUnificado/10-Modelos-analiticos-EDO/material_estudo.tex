@@ -1,0 +1,118 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Modelos Anal\'iticos com EDO}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 10}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Classificar e resolver equa\c{c}\~oes diferenciais ordin\'arias (EDOs), aplicando-as a modelos f\'isicos e biol\'ogicos.
+
+\section*{Classifica\c{c}\~ao de EDOs}
+\begin{itemize}
+  \item \textbf{Ordem:} a maior derivada. $y' + y = 0$ \'e de 1\textordfeminine\ ordem; $y'' + y = 0$ \'e de 2\textordfeminine\ ordem.
+  \item \textbf{Linear vs.\ n\~ao-linear:} linear se os coeficientes de $y, y', y'',\ldots$ n\~ao dependem de $y$. Ex.: $y'' + 2y' + y = 0$ (linear); $yy' = 1$ (n\~ao-linear).
+  \item \textbf{Homog\^enea vs.\ n\~ao-homog\^enea:} se o lado direito \'e zero ou n\~ao.
+  \item \textbf{Aut\^onoma:} n\~ao dep. explicitamente de $t$. Ex.: $dy/dt = f(y)$.
+\end{itemize}
+
+\subsection*{M\'etodos de Solu\c{c}\~ao}
+\begin{enumerate}
+  \item \textbf{Separa\c{c}\~ao de vari\'aveis:} $dy/dt = f(y)g(t) \Rightarrow \int dy/f(y) = \int g(t)\,dt$.
+  \item \textbf{Equa\c{c}\~ao caracter\'istica:} para $ay'' + by' + cy = 0$, tente $y = e^{\lambda t}$.
+  \item \textbf{Fator integrante:} para $y' + P(t)y = Q(t)$: $\mu = e^{\int P\,dt}$.
+\end{enumerate}
+
+\subsection*{Modelo Log\'istico}
+\[
+\frac{dN}{dt} = rN\!\left(1-\frac{N}{K}\right), \quad N(0)=N_0.
+\]
+Solu\c{c}\~ao anal\'itica (sigmoide):
+\[
+N(t) = \frac{K}{1 + \left(\frac{K}{N_0}-1\right)e^{-rt}}.
+\]
+\begin{itemize}
+  \item Para $N \ll K$: crescimento exponencial $\approx e^{rt}$.
+  \item Para $N \to K$: crescimento desacelera.
+  \item $K$: capacidade de suporte; $r$: taxa de crescimento intr\'inseca.
+\end{itemize}
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Separa\c{c}\~ao de vari\'aveis}
+Resolver $\frac{dy}{dt} = -2ty$, $y(0)=3$.
+\[
+\frac{dy}{y} = -2t\,dt \quad\Rightarrow\quad \ln|y| = -t^2 + C \quad\Rightarrow\quad y = Ae^{-t^2}.
+\]
+Com $y(0)=3$: $A=3$. Solu\c{c}\~ao: $y(t) = 3e^{-t^2}$.
+
+\subsection*{Exemplo 2 --- Equa\c{c}\~ao caracter\'istica}
+Resolver $y'' - 5y' + 6y = 0$.
+$\lambda^2 - 5\lambda + 6 = 0 \Rightarrow \lambda = 2$ ou $\lambda = 3$.
+Solu\c{c}\~ao geral: $y(t) = C_1 e^{2t} + C_2 e^{3t}$.
+
+\subsection*{Exemplo 3 --- Modelo log\'istico: popula\c{c}\~ao de coelhos}
+$r=0{,}5$/ano, $K=1000$, $N_0=50$. Em $t=5$ anos:
+\[
+N(5) = \frac{1000}{1 + (20-1)e^{-2{,}5}} = \frac{1000}{1 + 19\times0{,}082} = \frac{1000}{1+1{,}558} \approx 391.
+\]
+Ponto de inflex\~ao (crescimento m\'aximo): $N = K/2 = 500$.
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Separa\c{c}\~ao)} Resolva as EDOs com as condi\c{c}\~oes iniciais dadas:
+    \begin{enumerate}
+      \item[$a.$] $dy/dt = y^2$, $y(0)=1$.
+      \item[$b.$] $dy/dt = (t+1)/(y+1)$, $y(0)=0$.
+      \item[$c.$] $dy/dt = -ky$, $y(0)=y_0$ (crescimento/decaimento).
+    \end{enumerate}
+  
+  \item \textbf{(Caracter\'istica)} Encontre a solu\c{c}\~ao geral:
+    \begin{enumerate}
+      \item[$a.$] $y'' + 4y = 0$ (raizes complexas).
+      \item[$b.$] $y'' - 4y' + 4y = 0$ (raiz repetida).
+      \item[$c.$] $y'' + 3y' + 2y = 0$.
+    \end{enumerate}
+  
+  \item \textbf{(Log\'istico)} Uma popula\c{c}\~ao de peixes tem $K=5000$, $r=0{,}8$/ano. Partindo de $N_0=200$: (a) calcule $N(2)$; (b) em que momento $N = K/2$? (c) qual a taxa de crescimento no ponto de inflex\~ao?
+  
+  \item \textbf{(Fator integrante)} Resolva $y' + 2y = 4t$, $y(0)=1$.
+  
+  \item \textbf{(Estabilidade)} Para a EDO $\dot x = f(x)$, analise os pontos de equil\'ibrio e estabilidade:
+    \begin{enumerate}
+      \item[$a.$] $\dot x = x(1-x)$ (log\'istico simplificado).
+      \item[$b.$] $\dot x = x^2 - 1$.
+    \end{enumerate}
+    (Dica: $f'(x^*) < 0 \Rightarrow$ est\'avel; $f'(x^*)>0 \Rightarrow$ inst\'avel.)
+  
+  \item \textbf{(Mec\^anica)} O movimento de uma mola amortecida \'e $m\ddot x + b\dot x + kx = 0$. Com $m=1$, $b=2$, $k=1$: (a) encontre a equa\c{c}\~ao caracter\'istica; (b) classifique o amortecimento (superamortecido/cr\'itico/subamortecido); (c) escreva a solu\c{c}\~ao geral.
+  
+  \item \textbf{(Predador-presa)} O sistema de Lotka-Volterra \'e:
+    \[
+    \dot x = \alpha x - \beta xy, \quad \dot y = \delta xy - \gamma y.
+    \]
+    Encontre os pontos de equil\'ibrio. Para $\alpha=1$, $\beta=0{,}1$, $\delta=0{,}05$, $\gamma=0{,}5$: calcule os equil\'ibrios numericamente.
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item Tipos: linear/n\~ao-linear, homog\^enea/n\~ao-homog\^enea, aut\^onoma.
+  \item M\'etodos: separa\c{c}\~ao, fator integrante, equa\c{c}\~ao caracter\'istica.
+  \item Log\'istico: $N(t) = K/(1 + Ce^{-rt})$; inflex\~ao em $N=K/2$.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Boyce, W.\ E.; DiPrima, R.\ C.\ \textit{Equa\c{c}\~oes Diferenciais Elementares}. LTC, 2012.
+  \item Strogatz, S.\ \textit{Nonlinear Dynamics and Chaos}. Westview, 2015.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

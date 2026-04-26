@@ -1,0 +1,115 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: An\'alise Dimensional}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 03}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Usar a an\'alise dimensional para verificar equa\c{c}\~oes, deduzir rela\c{c}\~oes entre vari\'aveis e simplificar modelos sem resolver as equa\c{c}\~oes completas.
+
+\section*{Conceitos Fundamentais}
+
+\subsection*{Dimens\~oes e Unidades}
+Dimens\~oes s\~ao categorias f\'isicas fundamentais: comprimento $[L]$, massa $[M]$, tempo $[T]$, temperatura $[\Theta]$, corrente $[I]$.
+Unidades s\~ao escolhas de escala (metro, quilograma, segundo, \ldots).
+
+\textbf{Regra de ouro:} equa\c{c}\~oes f\'isicas v\'alidas t\^em \emph{dimens\~oes homog\^eneas} --- s\'o se somam termos de mesma dimens\~ao.
+
+\subsection*{Teorema $\Pi$ de Buckingham}
+Se um fen\^omeno depende de $n$ vari\'aveis com $k$ dimens\~oes independentes, ent\~ao pode ser descrito por $n - k$ grupos adimensionais $\Pi_i$.
+
+\textbf{Procedimento:}
+\begin{enumerate}
+  \item Liste as $n$ vari\'aveis e suas dimens\~oes.
+  \item Identifique $k$ vari\'aveis \emph{repetidas} (que cobrem todas as dimens\~oes).
+  \item Forme os grupos $\Pi_i$ combinando as repetidas com cada vari\'avel restante.
+  \item Determine os expoentes pela condi\c{c}\~ao de adimensionalidade.
+\end{enumerate}
+
+\subsection*{N\'umeros Adimensionais Importantes}
+\begin{itemize}
+  \item \textbf{Reynolds:} $Re = \rho v L / \mu$ \quad (iner\'cia/viscosidade --- regime laminar vs.\ turbulento).
+  \item \textbf{Froude:} $Fr = v/\sqrt{gL}$ \quad (iner\'cia/gravidade --- escoamentos com superf\'icie livre).
+  \item \textbf{Mach:} $Ma = v/c$ \quad (velocidade/velocidade do som).
+  \item \textbf{Prandtl:} $Pr = \mu c_p / \kappa$ \quad (difusividade moment\^anea/t\'ermica).
+\end{itemize}
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Verifica\c{c}\~ao de equa\c{c}\~ao}
+Verifique se $F = mv^2/r$ \'e dimensionalmente correta (for\c{c}a centr\'ipeta).
+\[
+[F] = \frac{[M][L/T]^2}{[L]} = \frac{[M][L^2/T^2]}{[L]} = [ML/T^2] = [F]\quad\checkmark
+\]
+
+\subsection*{Exemplo 2 --- Per\'iodo do p\^endulo simples (Buckingham)}
+Vari\'aveis relevantes: per\'iodo $T$ $[T]$, comprimento $\ell$ $[L]$, gravidade $g$ $[L/T^2]$, massa $m$ $[M]$.
+\begin{itemize}
+  \item $n=4$ vari\'aveis, $k=3$ dimens\~oes ($M, L, T$).
+  \item $n-k = 1$ grupo adimensional.
+\end{itemize}
+Formando $\Pi = T^a\,\ell^b\,g^c\,m^d$:
+\[
+[T]^a[L]^b[LT^{-2}]^c[M]^d = T^0L^0M^0
+\]
+\[
+M:\; d=0;\quad L:\; b+c=0;\quad T:\; a-2c=0.
+\]
+Escolhendo $c=-1 \Rightarrow b=1,\; a=2$. Logo $\Pi = T^2 g / \ell$, ou seja:
+\[
+T = C\sqrt{\ell/g}, \quad C = 2\pi \text{ (determinado experimentalmente)}.
+\]
+\textbf{An\'alise dimensional deu a forma correta sem resolver nenhuma EDO!}
+
+\subsection*{Exemplo 3 --- C\'alculo de Reynolds}
+\'Agua ($\rho=1000\,\text{kg/m}^3$, $\mu=10^{-3}\,\text{Pa}\cdot\text{s}$) em cano de di\^ametro $D=2\,\text{cm}$ com velocidade $v=1\,\text{m/s}$:
+\[
+Re = \frac{\rho v D}{\mu} = \frac{1000 \times 1 \times 0{,}02}{10^{-3}} = 20\,000.
+\]
+$Re > 4000 \Rightarrow$ escoamento turbulento.
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Verifica\c{c}\~ao)} Verifique a homogeneidade dimensional de cada equa\c{c}\~ao:
+    \begin{enumerate}
+      \item[$a.$] $E = \frac{1}{2}mv^2$ (energia cin\'etica).
+      \item[$b.$] $p = \rho g h$ (press\~ao hidrost\'atica).
+      \item[$c.$] $\lambda = h/(mv)$ (comprimento de onda de de Broglie, $[h]=[ML^2/T]$).
+    \end{enumerate}
+  
+  \item \textbf{(Buckingham)} A velocidade de uma onda na superf\'icie de um l\'iquido depende de $\rho$ $[M/L^3]$, $\sigma$ (tens\~ao superficial) $[M/T^2]$ e $\lambda$ (comprimento de onda) $[L]$. Use o teorema $\Pi$ para deduzir a forma da velocidade $v$.
+  
+  \item \textbf{(Reynolds)} Para qual velocidade m\'inima o escoamento de \'oleo ($\rho=900\,\text{kg/m}^3$, $\mu=0{,}1\,\text{Pa}\cdot\text{s}$) em cano de $D=5\,\text{cm}$ se torna turbulento ($Re > 4000$)?
+  
+  \item \textbf{(Queda livre)} A velocidade terminal de uma esfera caindo num fluido depende de $g$ $[L/T^2]$, $r$ (raio) $[L]$, $\rho_s$ (densidade da esfera), $\rho_f$ (densidade do fluido) e $\mu$ (viscosidade). Quantos grupos adimensionais existem?
+  
+  \item \textbf{(Energia nuclear)} A energia liberada por uma explos\~ao nuclear depende de $E$ $[ML^2/T^2]$, $\rho_0$ (densidade do ar) $[M/L^3]$ e $t$ (tempo) $[T]$. G.I.\ Taylor (1950) usou fotos secretas da bomba at\^omica para estimar $E$ a partir do raio $R$ da bola de fogo. Mostre que $R \propto (E/\rho_0)^{1/5}\,t^{2/5}$.
+  
+  \item \textbf{(Froude)} Um navio de comprimento $L=100\,\text{m}$ viaja a $v=10\,\text{m/s}$. Calcule $Fr$ e interprete o resultado.
+  
+  \item \textbf{(Interpreta\c{c}\~ao)} Explique por que o n\'umero de Reynolds \'e o mesmo para \'agua num r\'io e ar num t\'unel de vento se as velocidades e dimens\~oes forem ajustadas proporcionalmente. Qual \'e a utilidade pr\'atica disso?
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item Toda equa\c{c}\~ao f\'isica v\'alida \'e dimensionalmente homog\^enea.
+  \item Buckingham: $n$ vari\'aveis, $k$ dimens\~oes $\Rightarrow$ $n-k$ grupos adimensionais.
+  \item N\'umeros adimensionais ($Re$, $Fr$, $Ma$) caracterizam regimes f\'isicos.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Barenblatt, G.\ I.\ \textit{Scaling, Self-similarity, and Intermediate Asymptotics}. Cambridge, 1996.
+  \item White, F.\ M.\ \textit{Fluid Mechanics}. McGraw-Hill, 2011.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

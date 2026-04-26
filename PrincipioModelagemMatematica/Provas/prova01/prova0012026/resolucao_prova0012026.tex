@@ -117,6 +117,115 @@ C & Tri\^angulo de Sierpinski & 3 & $1/2$ & $1{,}585$ \\
 \end{solucao}
 
 % =====================================================================
+% QUESTÃO 2 -- Análise dimensional (Buckingham) para fluxo em tubo
+% =====================================================================
+\begin{questao}
+Encontre uma express\~ao para o fluxo volum\'etrico $Q$ de um fluido de viscosidade din\^amica $\mu$ escoando em um canal de di\^ametro $d$, sob queda de press\~ao por unidade de comprimento $\Delta p/L$.
+
+Dados dimensionais:
+\[
+\left[\frac{\Delta p}{L}\right] = M L^{-2}T^{-2},
+\qquad
+[\mu] = M L^{-1}T^{-1},
+\qquad
+[d]=L,
+\qquad
+[Q]=L^3T^{-1}.
+\]
+\end{questao}
+
+\begin{solucao}
+
+\noindent\textbf{Objetivo.} Encontrar a forma funcional de $Q$ usando o Teorema $\Pi$ de Buckingham.
+
+\medskip
+\noindent\textbf{Passo 1: Vari\'aveis do problema.}
+
+Assumimos que
+\[
+Q = f\!\left(\mu,\,d,\,\frac{\Delta p}{L}\right).
+\]
+Temos $n=4$ vari\'aveis e $k=3$ dimens\~oes fundamentais ($M$, $L$, $T$), logo o n\'umero de grupos adimensionais \'e:
+\[
+n-k = 4-3 = 1.
+\]
+
+\medskip
+\noindent\textbf{Passo 2: Construir o grupo adimensional.}
+
+Tomamos
+\[
+\Pi = Q\,\mu^a\,d^b\left(\frac{\Delta p}{L}\right)^c.
+\]
+Substituindo dimens\~oes:
+\[
+[\Pi] = (L^3T^{-1})\,(ML^{-1}T^{-1})^a\,(L)^b\,(ML^{-2}T^{-2})^c.
+\]
+Portanto,
+\[
+[\Pi] = M^{a+c}\,L^{3-a+b-2c}\,T^{-1-a-2c}.
+\]
+Para $\Pi$ ser adimensional:
+\begin{align}
+M:&\quad a+c=0, \\
+L:&\quad 3-a+b-2c=0, \\
+T:&\quad -1-a-2c=0.
+\end{align}
+
+Da equa\c{c}\~ao de $M$: $a=-c$.
+
+Na de $T$: $-1-(-c)-2c=0 \Rightarrow -1-c=0 \Rightarrow c=-1$.
+
+Logo $a=1$.
+
+Na de $L$: $3-1+b-2(-1)=0 \Rightarrow 4+b=0 \Rightarrow b=-4$.
+
+Assim,
+\[
+\Pi = Q\,\mu\,d^{-4}\left(\frac{\Delta p}{L}\right)^{-1}
+= \frac{Q\,\mu}{d^4\left(\frac{\Delta p}{L}\right)}.
+\]
+
+Como h\'a apenas um grupo $\Pi$, ele deve ser constante:
+\[
+\frac{Q\,\mu}{d^4\left(\frac{\Delta p}{L}\right)} = C
+\quad\Longrightarrow\quad
+\boxed{Q = C\,\frac{d^4}{\mu}\,\frac{\Delta p}{L}.}
+\]
+
+\medskip
+\noindent\textbf{Passo 3: Interpreta\c{c}\~ao f\'isica.}
+
+\begin{itemize}
+  \item $Q \propto \Delta p/L$: quanto maior o gradiente de press\~ao, maior o fluxo.
+  \item $Q \propto d^4$: o di\^ametro impacta fortemente a vaz\~ao.
+  \item $Q \propto 1/\mu$: maior viscosidade reduz o fluxo.
+\end{itemize}
+
+\medskip
+\noindent\textbf{Passo 4: Rela\c{c}\~ao com a lei de Hagen--Poiseuille.}
+
+A an\'alise dimensional n\~ao determina $C$. Para escoamento laminar totalmente desenvolvido em tubo circular,
+\[
+Q = \frac{\pi}{128}\,\frac{d^4}{\mu}\,\frac{\Delta p}{L},
+\]
+ou seja, nesse caso espec\'ifico:
+\[
+\boxed{C=\frac{\pi}{128}.}
+\]
+
+\medskip
+\noindent\textbf{Conclus\~ao.}
+
+Pelo Teorema de Buckingham, a forma correta procurada na prova \'e
+\[
+\boxed{Q \sim \frac{d^4}{\mu}\,\frac{\Delta p}{L}}
+\]
+e, com solu\c{c}\~ao hidrodin\^amica completa para tubo circular laminar, obt\'em-se o fator num\'erico $\pi/128$.
+
+\end{solucao}
+
+% =====================================================================
 % QUESTÃO 3 -- Expansão de Virial / Van der Waals
 % =====================================================================
 \begin{questao}
@@ -134,65 +243,82 @@ Uma aproxima\c{c}\~ao mais consistente com gases reais \'e a equa\c{c}\~ao de Va
 
 \begin{solucao}
 
-\noindent\textbf{Passo 1: Isolar $P$ na equa\c{c}\~ao de Van der Waals.}
+\noindent\textbf{Passo 1: Escrever a EoS de Van der Waals em forma conveniente.}
 
+Usaremos a forma f\'isica usual da equa\c{c}\~ao de Van der Waals,
 \[
-  P = \frac{nRT}{V - nb} - \frac{an^2}{V^2}.
+\left(P + a\frac{n^2}{V^2}\right)(V-nb)=nRT,
+\]
+equivalente a
+\[
+P=\frac{nRT}{V-nb}-a\frac{n^2}{V^2}.
 \]
 
-\medskip
-\noindent\textbf{Passo 2: Calcular $PV/(nRT)$ em fun\c{c}\~ao da densidade molar $\rho = n/V$.}
-
+Definindo densidade molar $\rho=n/V$ e fator de compressibilidade $Z$,
+\[
+Z\equiv\frac{PV}{nRT},
+\]
+temos
 \begin{align}
-  \frac{PV}{nRT} &= \frac{V}{V - nb} - \frac{an^2}{V^2 \cdot \frac{nRT}{V}} \notag \\
-                 &= \frac{V}{V - nb} - \frac{a\rho}{RT} \notag \\
-                 &= \frac{1}{1 - b\rho} - \frac{a\rho}{RT}.
+Z &= \frac{V}{V-nb} - \frac{a n^2}{V^2}\,\frac{V}{nRT} \notag \\
+  &= \frac{1}{1-b\rho} - \frac{a}{RT}\rho.
 \end{align}
 
 \medskip
-\noindent\textbf{Passo 3: Expandir $\dfrac{1}{1-b\rho}$ em s\'erie de pot\^encias (s\'erie geom\'etrica, v\'alida para $b\rho < 1$).}
+\noindent\textbf{Passo 2: Expans\~ao em s\'erie de virial (pot\^encias de $\rho$).}
 
+Para $|b\rho|<1$,
 \[
-  \frac{1}{1 - b\rho} = \sum_{k=0}^{\infty}(b\rho)^k = 1 + b\rho + b^2\rho^2 + b^3\rho^3 + \cdots
+\frac{1}{1-b\rho}=1+b\rho+b^2\rho^2+b^3\rho^3+\cdots.
 \]
-
-Portanto:
+Logo,
 \begin{equation}
-  \frac{PV}{nRT} = 1 + \left(b - \frac{a}{RT}\right)\rho + b^2\rho^2 + b^3\rho^3 + \cdots
+Z=1+\left(b-\frac{a}{RT}\right)\rho+b^2\rho^2+b^3\rho^3+\cdots
+\label{eq:virial-rho-vdw}
 \end{equation}
-
-\medskip
-\noindent\textbf{Passo 4: Identificar os coeficientes da Expans\~ao de Virial.}
 
 Comparando com
 \[
-  \frac{PV}{nRT} = 1 + c_0 + c_1\rho + c_2\rho^2 + c_3\rho^3 + \cdots
+Z=1+c_1\rho+c_2\rho^2+c_3\rho^3+\cdots,
 \]
-obt\'em-se:
+resulta
 \begin{align}
-  c_0 &= 0, \\
-  c_1 &= b - \frac{a}{RT}, \\
-  c_2 &= b^2, \\
-  c_3 &= b^3, \\
-  c_i &= b^i \quad (i \geq 2).
+c_1(T) &= b-\frac{a}{RT}, \\
+c_2(T) &= b^2, \\
+c_3(T) &= b^3, \\
+c_i(T) &= b^i \quad (i\ge 2).
 \end{align}
 
 \medskip
-\noindent\textbf{Conclus\~ao sobre a ordem de truncamento.}
+\noindent\textbf{Passo 3: Mesma conclus\~ao na forma padr\~ao em volume molar.}
 
-A equa\c{c}\~ao de Van der Waals corresponde a uma \textbf{s\'erie de Virial de ordem infinita}, cujos coeficientes s\~ao todos determinados por apenas dois par\^ametros ($a$ e $b$):
+Se $v=V/n=1/\rho$, ent\~ao
 \[
-  \frac{PV}{nRT} = 1 + \underbrace{\left(b - \frac{a}{RT}\right)}_{c_1}\rho \;+\; \underbrace{b^2}_{c_2}\rho^2 \;+\; \underbrace{b^3}_{c_3}\rho^3 \;+\; \cdots
+P=\frac{RT}{v-b}-\frac{a}{v^2},
+\qquad
+Z=\frac{Pv}{RT}=1+\frac{B(T)}{v}+\frac{C(T)}{v^2}+\frac{D(T)}{v^3}+\cdots
+\]
+com
+\[
+B(T)=b-\frac{a}{RT},\qquad C(T)=b^2,\qquad D(T)=b^3,\ldots
 \]
 
-Na pr\'atica, \textbf{truncando na ordem $i = 3$} (at\'e $\rho^3$), obt\'em-se a aproxima\c{c}\~ao mais usual consistente com Van der Waals:
+\medskip
+\noindent\textbf{Conclus\~ao sobre truncamento.}
+
+A equa\c{c}\~ao de Van der Waals \textbf{n\~ao corresponde a um truncamento finito} da s\'erie de virial; ela gera uma s\'erie \textbf{infinita} (Eq.~\eqref{eq:virial-rho-vdw}).
+
+Se for pedido truncamento pr\'atico at\'e ordem $i$, escreve-se:
+\[
+Z\approx 1+\left(b-\frac{a}{RT}\right)\rho+b^2\rho^2+\cdots+b^i\rho^i.
+\]
+Por exemplo, at\'e terceira ordem:
 \begin{equation}
-  \boxed{\frac{PV}{nRT} \approx 1 + \left(b - \frac{a}{RT}\right)\rho + b^2\rho^2 + b^3\rho^3,}
+\boxed{\frac{PV}{nRT}\approx 1+\left(b-\frac{a}{RT}\right)\rho+b^2\rho^2+b^3\rho^3.}
 \end{equation}
-com $\rho = n/V$, o que captura tanto a repuls\~ao de volume exclu\'ido (par\^ametro $b$) quanto a atra\c{c}\~ao intermolecular (par\^ametro $a$) presentes na equa\c{c}\~ao de Van der Waals.
 
 \medskip
-\textit{Observa\c{c}\~ao:} O segundo coeficiente de Virial $c_1 = b - a/(RT)$ pode ser positivo ou negativo dependendo da temperatura; quando $T > a/(Rb)$ ele \'e positivo (repuls\~ao domina) e quando $T < a/(Rb)$ \'e negativo (atra\c{c}\~ao domina). A temperatura em que $c_1 = 0$ \'e chamada \textbf{temperatura de Boyle}.
+\textit{Observa\c{c}\~ao importante:} $c_1(T)=b-a/(RT)$ muda de sinal na temperatura de Boyle $T_B=a/(Rb)$.
 
 \end{solucao}
 
@@ -247,16 +373,30 @@ Verifica\c{c}\~ao: $I(8) = 100\,e^{-0{,}08664\times 8} = 100\,e^{-\ln 2} = 100 \
   N(80) = N_0\!\left(\tfrac{1}{2}\right)^{80/8} = N_0\!\left(\tfrac{1}{2}\right)^{10} = \frac{6{,}022\times 10^{18}}{1024} \approx 5{,}881\times 10^{15}\,\text{\'atomos}.
 \]
 
+Equivalentemente, em mol:
+\[
+n(80)=10^{-5}\left(\tfrac{1}{2}\right)^{10}=9{,}765625\times 10^{-9}\,\text{mol}.
+\]
+
 \noindent\textit{Passo 3 -- Incerteza absoluta.}
 
 Precis\~ao de 1 parte em $10^{10}$ significa precis\~ao \textit{relativa}:
 \[
   \frac{\delta N}{N(80)} = \frac{1}{10^{10}} = 10^{-10}.
 \]
+Pela propaga\c{c}\~ao de incerteza de uma grandeza multiplicativa ($N\mapsto \alpha N$):
+\[
+\delta N = N\,\delta_r,\qquad \delta_r=10^{-10}.
+\]
 Portanto, a incerteza absoluta na quantidade \'e:
 \begin{equation}
   \boxed{\delta N = N(80)\times 10^{-10} \approx 5{,}881\times 10^{15} \times 10^{-10} \approx 5{,}881\times 10^{5}\,\text{\'atomos}.}
 \end{equation}
+
+Em mol, isso equivale a:
+\[
+\delta n = n(80)\times 10^{-10} = 9{,}765625\times 10^{-19}\,\text{mol}.
+\]
 
 \noindent\textit{Interpreta\c{c}\~ao:} Mesmo com uma precis\~ao de 1 parte em $10^{10}$, a incerteza absoluta ainda corresponde a cerca de $\mathbf{5{,}9\times 10^5}$ \'atomos de iodo-131. Isto ocorre porque a quantidade total ap\'os 80 dias (ap\'os 10 meias-vidas) ainda \'e enorme em escala at\^omica: $\sim 5{,}9\times 10^{15}$ \'atomos.
 
@@ -270,7 +410,9 @@ Portanto, a incerteza absoluta na quantidade \'e:
 Constante $k$                         & $-\ln 2/8 \approx -0{,}0866\;\text{dia}^{-1}$ \\
 Quantidade inicial $N_0$              & $6{,}022\times 10^{18}\;\text{\'atomos}$ \\
 Quantidade ap\'os 80 dias $N(80)$     & $5{,}881\times 10^{15}\;\text{\'atomos}$ \\
+Quantidade ap\'os 80 dias $n(80)$     & $9{,}766\times 10^{-9}\;\text{mol}$ \\
 Incerteza $\delta N$                  & $\approx 5{,}881\times 10^{5}\;\text{\'atomos}$ \\
+Incerteza $\delta n$                  & $\approx 9{,}766\times 10^{-19}\;\text{mol}$ \\
 \hline
 \end{tabular}
 \end{center}

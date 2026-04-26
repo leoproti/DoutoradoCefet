@@ -1,0 +1,97 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Crescimento e Decaimento Exponencial}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 11}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Modelar fen\^omenos de crescimento e decaimento exponencial, interpretar os par\^ametros fisicamente e aplicar em contextos reais (radioatividade, juros, resfriamento, epidemias).
+
+\section*{Conceitos Fundamentais}
+
+\subsection*{O Modelo}
+\[
+\frac{dx}{dt} = kx \quad \Rightarrow \quad x(t) = x_0\,e^{kt}.
+\]
+\begin{itemize}
+  \item $k > 0$: crescimento ($x(t) \to \infty$).
+  \item $k < 0$: decaimento ($x(t) \to 0$).
+\end{itemize}
+
+\subsection*{Tempo de Duplica\c{c}\~ao e Meia-vida}
+\begin{itemize}
+  \item \textbf{Duplica\c{c}\~ao} ($k>0$): $T_2 = \ln 2 / k \approx 0{,}693/k$.
+  \item \textbf{Meia-vida} ($k<0$): $t_{1/2} = \ln 2 / |k|$.
+  \item Regra pr\'atica: $\ln 2 \approx 0{,}693$; para $k$ em \%/ano: $T_2 \approx 70/k\%$.
+\end{itemize}
+
+\subsection*{Decaimento Radioativo}
+\[
+N(t) = N_0\,e^{-\lambda t}, \quad \lambda = \ln 2 / t_{1/2}.
+\]
+\textbf{Data\c{c}\~ao por ${}^{14}$C:} $t_{1/2} = 5730$ anos. Se uma amostra tem 25\% do ${}^{14}$C original:
+\[
+0{,}25 = e^{-\lambda t} \Rightarrow t = \frac{\ln 4}{\lambda} = 2t_{1/2} = 11\,460\,\text{anos}.
+\]
+
+\subsection*{Lei de Resfriamento de Newton}
+\[
+\frac{dT}{dt} = -k(T - T_\text{amb}), \quad T(t) = T_\text{amb} + (T_0 - T_\text{amb})e^{-kt}.
+\]
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Crescimento de investimento}
+Capital inicial $C_0 = R\$\,1000$, juros cont\'inuos de 10\%/ano ($k=0{,}10$). Ap\'os 7 anos:
+\[
+C(7) = 1000\,e^{0{,}7} \approx 1000 \times 2{,}014 = R\$\,2014.
+\]
+Tempo de duplica\c{c}\~ao: $T_2 = \ln 2/0{,}10 \approx 6{,}93$ anos (``regra dos 70'': $70/10 = 7$ anos).
+
+\subsection*{Exemplo 2 --- Resfriamento de caf\'e}
+Caf\'e começa a $90^\circ$C, ambiente a $20^\circ$C, $k=0{,}05\,\text{min}^{-1}$. Temperatura em 10 min:
+\[
+T(10) = 20 + 70\,e^{-0{,}5} = 20 + 70 \times 0{,}607 = 20 + 42{,}5 = 62{,}5^\circ\text{C}.
+\]
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Meia-vida)} O pol\^onio-210 tem meia-vida de 138 dias. (a) Qual a constante de decaimento $\lambda$? (b) Que fra\c{c}\~ao resta ap\'os 1 ano? (c) Ap\'os quantos dias sobra apenas 10\%?
+  
+  \item \textbf{(Juros)} Calcule o tempo necess\'ario para triplicar um capital com juros cont\'inuos de: (a) 5\%/ano; (b) 8\%/ano; (c) 12\%/ano. Use $t = \ln 3/k$.
+  
+  \item \textbf{(Bacteria)} Uma colonia de bact\'erias dobra a cada 20 min. (a) Qual a taxa $k$ em min$^{-1}$? (b) Partindo de 100 bact\'erias, quantas haver\'a ap\'os 2 horas?
+  
+  \item \textbf{(Carbon-14)} Uma amostra org\^anica tem 60\% do ${}^{14}$C de uma amostra viva atual. Estime sua idade. ($t_{1/2} = 5730$ anos.)
+  
+  \item \textbf{(Resfriamento)} Uma sopa sai do fog\~ao a $95^\circ$C. O ambiente est\'a a $22^\circ$C. Ap\'os 5 min, a sopa est\'a a $75^\circ$C. (a) Calcule $k$. (b) Quando a sopa atingir $40^\circ$C?
+  
+  \item \textbf{(Modelo duplo)} Em alguns casos, o decaimento \'e a soma de dois exponenciais: $N(t)=A e^{-\lambda_1 t}+B e^{-\lambda_2 t}$. Isso ocorre em f\'armacos com duas fases de elimina\c{c}\~ao. Se $A=100$, $B=50$, $\lambda_1=0{,}5\,\text{h}^{-1}$, $\lambda_2=0{,}1\,\text{h}^{-1}$: calcule $N(2)$ e $N(10)$.
+  
+  \item \textbf{(Limite do modelo)} O modelo $dN/dt = kN$ prev\^e crescimento infinito. Cite duas limita\c{c}\~oes f\'isicas que tornam esse modelo inv\'alido a longo prazo para: (a) uma popula\c{c}\~ao de animais; (b) um tumor.
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item $x(t) = x_0 e^{kt}$: crescimento ($k>0$) ou decaimento ($k<0$).
+  \item Meia-vida: $t_{1/2} = \ln 2/|k| \approx 0{,}693/|k|$.
+  \item Regra dos 70: $T_2 \approx 70/k\%$.
+  \item Newton (resfriamento): $T(t) = T_\text{amb} + (T_0-T_\text{amb})e^{-kt}$.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Braun, M.\ \textit{Differential Equations and Their Applications}. Springer, 1993.
+  \item Libretexts Mathematics: \textit{Exponential Decay and Radioactive Dating}.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,69 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Discuss\~ao de Exerc\'icios III}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 30}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Integrar os t\'opicos das Unidades 19--29: m\'etodos num\'ericos (RK4, Crank-Nicolson), aut\^omatos celulares e din\^amica molecular.
+
+\section*{Problemas Integrados}
+
+\subsection*{F1 --- RK4 + Lotka-Volterra}
+Sistema de preda\c{c}\~ao com $\alpha=1{,}0$, $\beta=0{,}1$, $\delta=0{,}05$, $\gamma=0{,}5$. Estado inicial: $x(0)=10$ (presa), $y(0)=2$ (predador).
+\begin{enumerate}
+  \item[$a.$] Escreva o sistema de EDOs.
+  \item[$b.$] Calcule $k_1$ para ambas as vari\'aveis com $\Delta t=0{,}1$.
+  \item[$c.$] Qual \'e o per\'iodo aproximado das oscila\c{c}\~oes? (Use a lineariza\c{c}\~ao em torno do equil\'ibrio: $\omega = \sqrt{\alpha\gamma}$.)
+  \item[$d.$] Por que RK4 \'e prefer\'ivel a Euler para sistemas peri\'odicos?
+\end{enumerate}
+
+\subsection*{F2 --- Nagel-Schreckenberg + LWR}
+Uma rodovia de 50 c\'elulas tem 10 carros ($\rho=0{,}2$), $v_\text{max}=5$, $p=0{,}1$.
+\begin{enumerate}
+  \item[$a.$] Simule 5 passos do NaSch (assumindo $p=0$ para simplificar). Calcule o fluxo m\'edio.
+  \item[$b.$] O fluxo concorda com o LWR de Greenshields? ($v_f=5$, $\rho_\text{max}=1$ ve\'ic/c\'elula.)
+  \item[$c.$] Como a aleatoriedade $p=0{,}1$ modificaria o fluxo?
+\end{enumerate}
+
+\subsection*{F3 --- Din\^amica Molecular: an\'alise}
+Uma simula\c{c}\~ao de LJ em 3D com $N=100$ part\'iculas a $T^*=1{,}5$ produz MSD $= \{0, 0{,}6, 1{,}2, 1{,}8, 2{,}4\}$ para $t = \{0, 1, 2, 3, 4\}$ (unidades reduzidas).
+\begin{enumerate}
+  \item[$a.$] Estime $D$ pela rela\c{c}\~ao de Einstein.
+  \item[$b.$] O sistema est\'a em fase gasosa, l\'iquida ou s\'olida? Justifique com o padr\~ao do MSD.
+  \item[$c.$] Qual seria o padr\~ao do RDF para essa condi\c{c}\~ao?
+\end{enumerate}
+
+\section*{Exerc\'icios de Revis\~ao}
+
+\begin{enumerate}
+  \item \textbf{(Crank-Nicolson)} Resolva a equa\c{c}\~ao do calor com $\kappa=0{,}1$ em uma grade de 4 pontos internos ($\Delta x=0{,}2$) com $\Delta t=0{,}1$. Use a condi\c{c}\~ao inicial $u = (0, 1, 1, 0)$. Aplique 2 passos de Crank-Nicolson.
+  
+  \item \textbf{(AC: perola\c{c}\~ao vs.\ epidemia)} Compare o modelo de inc\^endio florestal (perola\c{c}\~ao) com o SIR: (a) qual \'e o par\^ametro de controle de cada um? (b) qual \'e o limiar cr\'itico? (c) como $\mathcal{R}_0$ do SIR se relaciona com $p_c$ da perola\c{c}\~ao?
+  
+  \item \textbf{(DM: energia)} Numa simula\c{c}\~ao NVE, a energia cin\'etica $K$ flutua em torno de $\langle K\rangle = 3Nk_BT/2$. Para $N=50$ e $T^*=2{,}0$: calcule $\langle K\rangle$ em unidades reduzidas.
+  
+  \item \textbf{(RNG + Monte Carlo)} Use o Box-Muller para gerar 4 amostras de $\mathcal{N}(0,1)$ a partir de pares uniformes e use-as para estimar $\mathbb{E}[X^2] = 1$ (vari\^ancia da normal padr\~ao) por Monte Carlo.
+  
+  \item \textbf{(Integra\c{c}\~ao: compara\c{c}\~ao)} Para $\int_0^1 e^{-x^2}dx$ (valor exato $\approx 0{,}7468$): compare (a) Monte Carlo com $N=10$ amostras uniformes; (b) regra do trap\'ezio com 5 intervalos.
+\end{enumerate}
+
+\section*{Gabarito Parcial}
+\textbf{F1c:} $\omega = \sqrt{1{,}0\times0{,}5} = \sqrt{0{,}5} \approx 0{,}707$ rad/unidade tempo; per\'iodo $T = 2\pi/0{,}707 \approx 8{,}9$.\\
+\textbf{F3a:} inclinac\~ao de MSD vs.\ $t$ \'e $0{,}6$; $D = 0{,}6/6 = 0{,}1$ (unidades reduzidas).\\
+\textbf{Rev.\ 3:} $\langle K\rangle = 3\times50\times2{,}0/2 = 150$ (unidades reduzidas).
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Material das Unidades 19--29.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

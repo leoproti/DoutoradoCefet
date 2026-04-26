@@ -1,0 +1,106 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Guia para Prova II}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 31}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Consolidar as f\'ormulas e conceitos das Unidades 16--30 para a segunda prova.
+
+\section*{F\'ormulas Essenciais}
+
+\subsection*{Equa\c{c}\~oes Diferenciais Estoc\'asticas}
+\begin{itemize}
+  \item Equa\c{c}\~ao de Langevin: $m\dot{v} = -\gamma v + \sigma\xi(t)$.
+  \item Ornstein-Uhlenbeck: $dx = -\theta x\,dt + \sigma\,dW$; $\langle x^2(\infty)\rangle = \sigma^2/(2\theta)$.
+  \item Fokker-Planck: $\partial_t P = -\partial_x(f(x)P) + \frac{\sigma^2}{2}\partial_{xx}P$.
+\end{itemize}
+
+\subsection*{Cadeias de Markov}
+\begin{itemize}
+  \item Distribui\c{c}\~ao estacion\'aria: $\pi P = \pi$, $\sum_i\pi_i = 1$.
+  \item Ergodicidade: $P^n$ converge se cadeia for irredut\'ivel e aperi\'odica.
+  \item PageRank: $\pi_i = (1-d)/N + d\sum_j\pi_j/\text{grau}(j)$, $d\approx0{,}85$.
+\end{itemize}
+
+\subsection*{RNG e Monte Carlo}
+\begin{itemize}
+  \item LCG: $x_{n+1} = (ax_n + c)\bmod m$.
+  \item Box-Muller: $Z_1 = \sqrt{-2\ln U_1}\cos(2\pi U_2)$.
+  \item Estimativa MC: $\mu = \frac{1}{N}\sum f(x_i)$; erro $\sim 1/\sqrt{N}$.
+\end{itemize}
+
+\subsection*{M\'etodos Num\'ericos}
+\begin{itemize}
+  \item Euler: $y_{n+1} = y_n + hf(t_n,y_n)$. Ordem 1.
+  \item RK4: $y_{n+1} = y_n + h(k_1 + 2k_2 + 2k_3 + k_4)/6$. Ordem 4.
+  \item Crank-Nicolson para equa\c{c}\~ao do calor: $r = \kappa\Delta t/\Delta x^2$; incondicionalmente est\'avel; ordem $O(\Delta t^2)$.
+\end{itemize}
+
+\subsection*{Din\^amica Molecular}
+\begin{itemize}
+  \item LJ: $V = 4\varepsilon[(\sigma/r)^{12} - (\sigma/r)^6]$; m\'inimo em $r = 2^{1/6}\sigma$.
+  \item Velocity-Verlet: atualiza $\vec{r}$ e $\vec{v}$ simultaneamente.
+  \item Temperatura: $T = 2K/(3Nk_B)$ (com 3 graus livres removidos do CM).
+  \item MSD $= 6Dt$ (3D); RDF $g(r)$ mostra estrutura local.
+\end{itemize}
+
+\subsection*{Aut\^omatos Celulares}
+\begin{itemize}
+  \item NaSch (tr\'afego): acelerac\~ao, freagem por seguran\c{c}a, aleatoriedade $p$, mover.
+  \item Jogo da Vida: B3/S23 (nasce com 3, sobrevive com 2--3 vizinhos).
+  \item SIR-CA: taxa de infec\c{c}\~ao por vizinhos infectados.
+  \item Perola\c{c}\~ao: limiar $p_c \approx 0{,}593$ (2D quadrada).
+\end{itemize}
+
+\section*{Checklist de Revis\~ao}
+Antes da prova, confirme que voc\^e sabe:
+\begin{itemize}
+  \item[$\square$] Aplicar Velocity-Verlet para 1--2 passos.
+  \item[$\square$] Calcular a temperatura instant\^anea a partir de velocidades.
+  \item[$\square$] Aplicar RK4 para um sistema de 2 EDOs.
+  \item[$\square$] Construir a matriz de Crank-Nicolson e resolver 1 passo.
+  \item[$\square$] Calcular distribui\c{c}\~ao estacion\'aria de cadeia de Markov 3$\times$3.
+  \item[$\square$] Usar Box-Muller para gerar 2 amostras normais.
+  \item[$\square$] Interpretar RDF e MSD de uma simula\c{c}\~ao.
+  \item[$\square$] Simular 1 passo do NaSch e calcular fluxo.
+\end{itemize}
+
+\section*{Exerc\'icios-Modelo de Prova}
+
+\begin{enumerate}
+  \item \textbf{(DM)} Uma simula\c{c}\~ao LJ 3D com $N=32$ part\'iculas tem energia cin\'etica total $K=48$ (unidades reduzidas). Calcule a temperatura $T^*$.
+  
+  \item \textbf{(Markov)} Cadeia de 3 estados com $P = \begin{pmatrix}0{,}5 & 0{,}3 & 0{,}2 \\ 0{,}1 & 0{,}7 & 0{,}2 \\ 0{,}2 & 0{,}3 & 0{,}5\end{pmatrix}$. Encontre $\pi$ resolvendo $\pi P = \pi$.
+  
+  \item \textbf{(RK4)} Para $y' = -y$, $y(0)=1$, $h=0{,}5$: calcule $y(0{,}5)$ pelo RK4. Compare com $e^{-0{,}5} \approx 0{,}6065$.
+  
+  \item \textbf{(Crank-Nicolson)} Equa\c{c}\~ao do calor com $\kappa=1$, $\Delta x=0{,}5$, $\Delta t=0{,}1$. Calcule $r$ e monte a matriz tridiagonal para 3 pontos internos.
+  
+  \item \textbf{(Monte Carlo)} Estime $\pi$ usando o m\'etodo de Buffon-Laplace: pontos em $[0,1]^2$, contando os que caem no c\'irculo de raio 1. Com os pontos $(0{,}2, 0{,}3)$, $(0{,}8, 0{,}8)$, $(0{,}5, 0{,}4)$, $(0{,}9, 0{,}1)$, estime $\pi$.
+  
+  \item \textbf{(NaSch)} Estrada peri\'odica de 8 c\'elulas, $v_\text{max}=3$, $p=0$. Carros em posi\c{c}\~oes 1, 4 com velocidades $v=2, 1$. Execute 2 passos. Calcule o fluxo.
+  
+  \item \textbf{(MSD)} MSD medido: $\{0, 1, 2, 3, 4, 5\}$ para $t = \{0, 0{,}5, 1{,}0, 1{,}5, 2{,}0, 2{,}5\}$ (unidades reduzidas 3D). Determine $D$.
+\end{enumerate}
+
+\section*{Gabarito}
+\textbf{1.} $T^* = 2\times48/(3\times32-3) = 96/93 \approx 1{,}032$.\\
+\textbf{3.} $k_1=-1$; $k_2=-0{,}75$; $k_3=-0{,}8125$; $k_4=-0{,}594$; $y(0{,}5)\approx0{,}6065$.\\
+\textbf{5.} Dist\^ancias: $0{,}36, 1{,}28, 0{,}41, 0{,}82$. Dentro do c\'irculo ($d<1$): 3. Estimativa: $4\times3/4 = 3{,}0$. (Mais pontos = melhor estimativa.)\\
+\textbf{7.} Inclinac\~ao = $5/(2{,}5-0) = 2$; $D = 2/6 \approx 0{,}333$ (unidades reduzidas).
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Material das Unidades 16--30.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

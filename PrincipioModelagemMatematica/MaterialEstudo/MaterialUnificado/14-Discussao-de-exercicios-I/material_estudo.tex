@@ -1,0 +1,76 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Discuss\~ao de Exerc\'icios I}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 14}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Revisar e consolidar os t\'opicos das Unidades 1--13 por meio de exerc\'icios integrados que combinam an\'alise dimensional, escalas, EDOs, Taylor, regress\~ao e modelos de tr\'afego.
+
+\section*{Problemas Integrados}
+
+\subsection*{D1 --- An\'alise dimensional + escalas (Unidades 3--4)}
+A pot\^encia dissipada por arrasto num flu\'ido depende de $F_D$ [N] (for\c{c}a de arrasto), $v$ (velocidade), $\rho$ (densidade do flu\'ido), $D$ (di\^ametro do objeto) e $\mu$ (viscosidade din\^amica).
+\begin{enumerate}
+  \item[$a.$] Use o teorema $\Pi$ para encontrar os grupos adimensionais relevantes.
+  \item[$b.$] Identifique o n\'umero de Reynolds como um dos grupos.
+  \item[$c.$] Para um objeto escalado por fator $\lambda$ mantendo $Re$ constante, como $v$ deve ser ajustada?
+\end{enumerate}
+
+\subsection*{D2 --- Taylor + regress\~ao (Unidades 7--9)}
+Dados de um experimento de resfriamento Newton sugerem $T(t) = T_\infty + A e^{-kt}$.
+\begin{enumerate}
+  \item[$a.$] Linearize o problema fazendo $\ln(T - T_\infty) = \ln A - kt$. O que plotar contra o qu\^e?
+  \item[$b.$] Dados: $t = \{0, 5, 10, 15\}$ min; $T-T_\infty = \{70, 42, 26, 16\}$ $^\circ$C. Fa\c{c}a a regress\~ao linear em $\ln(T-T_\infty)$ vs.\ $t$ e estime $k$ e $A$.
+  \item[$c.$] Calcule $R^2$ do ajuste linearizado.
+\end{enumerate}
+
+\subsection*{D3 --- EDO + crescimento exponencial (Unidades 10--11)}
+Uma epidemia simples \'e modelada por $dI/dt = \beta I(N-I)$, onde $N=10^6$ e $I(0)=100$. Essa equa\c{c}\~ao \'e sep\'avel.
+\begin{enumerate}
+  \item[$a.$] Resolva por separa\c{c}\~ao de vari\'aveis e mostre que a solu\c{c}\~ao \'e sigmoidal.
+  \item[$b.$] Para $\beta = 10^{-6}$ dia$^{-1}$, calcule $I(30)$.
+  \item[$c.$] Em que momento $I = N/2$ (pico da epidemia)?
+\end{enumerate}
+
+\subsection*{D4 --- Tr\'afego + ondas de choque (Unidades 12--13)}
+Uma via urbana tem $v_f=60$ km/h e $\rho_\text{max}=120$ ve\'ic/km (Greenshields). Um sinal vermelho para todo o tr\'afego por 3 min.
+\begin{enumerate}
+  \item[$a.$] Se $\rho_L = 30$ ve\'ic/km antes do sinal, qual a velocidade da onda de choque?
+  \item[$b.$] Quantos ve\'iculos ficam presos na fila durante os 3 min?
+  \item[$c.$] Quando o sinal abre, o que acontece com a onda de rarefac\c{c}\~ao?
+\end{enumerate}
+
+\section*{Exerc\'icios de Revis\~ao R\'apida}
+
+\begin{enumerate}
+  \item Em 1 linha cada: explique a diferen\c{c}a entre (a) exatid\~ao e precis\~ao; (b) verifica\c{c}\~ao e valida\c{c}\~ao; (c) fractal determinista e fractal estat\'istico.
+  
+  \item A s\'erie $\sum_{n=0}^\infty x^n = 1/(1-x)$ diverge para $|x|\ge1$. Usando a expans\~ao de $e^x$, mostre que $e^x > x^n/n!$ para todo $n$ e $x > 0$.
+  
+  \item Um poluente num rio decai com meia-vida de 10 dias. Se a concentra\c{c}\~ao inicial \'e 200 mg/L, abaixo de que valor a concentra\c{c}\~ao fica ap\'os 1 m\^es?
+  
+  \item No modelo de Greenshields, a capacidade \'e $q_\text{max} = v_f\rho_\text{max}/4$. Mostre que isso corresponde a $\rho^* = \rho_\text{max}/2$ e $v^* = v_f/2$.
+  
+  \item Um dado conjunto de dados segue $y = ax^b$ com $b = 1{,}5$. Se $x$ triplica, por quanto $y$ multiplica?
+\end{enumerate}
+
+\section*{Gabarito Parcial}
+\textbf{D2b:} $k \approx 0{,}093$ min$^{-1}$, $A \approx 70\,^\circ$C.\\
+\textbf{D4a:} $w = -\frac{q_R-q_L}{\rho_R-\rho_L}$; com $q_L = 30\times60(1-30/120) = 1350$ ve\'ic/h e $q_R=0$, $\rho_R=120$: $w = -1350/90 = -15$ km/h.\\
+\textbf{Rev.\ 3:} $C(30) = 200\times2^{-3} = 25$ mg/L.
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Material das Unidades 1--13.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

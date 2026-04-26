@@ -1,0 +1,101 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Din\^amica Molecular II --- Ensembles e Termostatos}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 28}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Compreender os ensembles termodin\^amicos NVE, NVT e NPT, e como termostatos e barostatos os implementam na DM.
+
+\section*{Ensembles Termodin\^amicos}
+
+\begin{itemize}
+  \item \textbf{NVE (microcan\^onico):} N\'umero de part\'iculas $N$, volume $V$ e energia $E$ fixos. O mais natural para DM Newtoniana.
+  \item \textbf{NVT (can\^onico):} $N$, $V$ e temperatura $T$ fixos. Requer termostato.
+  \item \textbf{NPT (iso\'obarico-isot\'ermico):} $N$, press\~ao $P$ e $T$ fixos. Requer termostato + barostato.
+\end{itemize}
+
+\section*{Temperatura Instant\^anea}
+
+Da equiparti\c{c}\~ao:
+\[
+T_\text{inst} = \frac{2K}{(3N-3)k_B} = \frac{2}{(3N-3)k_B}\sum_{i=1}^N \frac{m_iv_i^2}{2}.
+\]
+Onde $3N-3$ s\~ao os graus de liberdade (removendo os 3 do CM).
+
+\section*{Termostato de Nos\'e-Hoover}
+
+Acopla o sistema a um reservat\'orio t\'ermico via uma vari\'avel extra $\zeta$ (``fric\c{c}\~ao''):
+\[
+\dot{\vec{r}}_i = \vec{v}_i, \quad \dot{\vec{v}}_i = \frac{\vec{F}_i}{m_i} - \zeta\vec{v}_i,
+\]
+\[
+\dot\zeta = \frac{1}{\tau_T^2}\left(\frac{T_\text{inst}}{T_\text{target}} - 1\right).
+\]
+$\tau_T$: tempo de relaxa\c{c}\~ao. Produz ensemble NVT correto.
+
+\subsection*{Termostato de Berendsen (mais simples)}
+Reescala as velocidades a cada passo:
+\[
+\vec{v}_i \leftarrow \vec{v}_i\sqrt{1 + \frac{\Delta t}{\tau_T}\!\left(\frac{T_\text{target}}{T_\text{inst}} - 1\right)}.
+\]
+F\'acil de implementar mas n\~ao gera ensemble NVT correto.
+
+\section*{Press\~ao: Tensor de Virial}
+
+\[
+P = \frac{Nk_BT}{V} + \frac{1}{3V}\sum_{i<j}r_{ij}F(r_{ij}).
+\]
+Primeiro termo: press\~ao cin\'etica (g\'as ideal); segundo: corre\c{c}\~ao de intera\c{c}\~oes.
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Temperatura de 10 part\'iculas}
+$N=10$, $k_B=1$ (unidades reduzidas), $\sum m_iv_i^2 = 50$.
+$T = 2\times(50/2)/(3\times10-3) = 50/27 \approx 1{,}85$.
+
+\subsection*{Exemplo 2 --- Berendsen: 1 passo}
+$T_\text{inst}=1{,}5$, $T_\text{target}=1{,}0$, $\tau_T=1{,}0$, $\Delta t=0{,}002$.
+$\lambda = \sqrt{1 + 0{,}002\times(1{,}0/1{,}5-1)} = \sqrt{1 + 0{,}002\times(-1/3)} = \sqrt{0{,}9993} \approx 0{,}9997$.
+Velocidades multiplicadas por $\approx 0{,}9997$ (leve resfriamento).
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Temperatura)} Um sistema de 5 part\'iculas (massa 1) com velocidades $v = (1{,}0,\;-0{,}5,\;0{,}8,\;-1{,}2,\;0{,}3)$ m/s em 1D. Calcule $T_\text{inst}$ em unidades SI ($k_B = 1{,}38\times10^{-23}$ J/K).
+  
+  \item \textbf{(NVE vs.\ NVT)} Por que um sistema NVE tem flutua\c{c}\~oes de temperatura, enquanto NVT tem flutua\c{c}\~oes de energia? Explique qualitat\'ivamente.
+  
+  \item \textbf{(Berendsen)} Para $T_\text{target}=300$ K, $T_\text{inst}=320$ K, $\tau_T=1$ ps, $\Delta t=0{,}002$ ps: calcule $\lambda$ e a nova temperatura esperada.
+  
+  \item \textbf{(Nos\'e-Hoover)} Descreva em palavras como o mecanismo de Nos\'e-Hoover regula a temperatura: o que acontece quando $T_\text{inst} > T_\text{target}$? E quando $T_\text{inst} < T_\text{target}$?
+  
+  \item \textbf{(Press\~ao ideal)} Para $N=100$ part\'iculas de argônio ($m=6{,}63\times10^{-26}$ kg) em $V=(3{,}4\text{ nm})^3$ a $T^*=1{,}0$ (em unidades reduzidas): calcule a press\~ao cin\'etica $P = Nk_BT/V$ em Pa.
+  
+  \item \textbf{(Barostato)} Um barostato NPT ajusta o volume: quando $P_\text{inst} > P_\text{target}$, o sistema expande. Como isso afeta a densidade e a temperatura (se NVT n\~ao for mantido)?
+  
+  \item \textbf{(Eq.\ de estado)} Na DM de LJ, a equa\c{c}\~ao de estado num\'erica \'e tabelada. Para $T^*=1{,}5$ e $\rho^*=0{,}8$ (l\'iquido denso), $P^*\approx3{,}0$. Para $\rho^*=0{,}1$ (g\'as), compare com o g\'as ideal: $P^* = \rho^* T^* = 0{,}15$. Qual a diferen\c{c}a e o que a causa?
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item NVE: energia conservada; NVT: termostato controla $T$; NPT: termostato + barostato.
+  \item $T_\text{inst} = 2K/((3N-3)k_B)$.
+  \item Nos\'e-Hoover: ensemble NVT rigoroso; Berendsen: simples, mas aproximado.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Frenkel, D.; Smit, B.\ \textit{Understanding Molecular Simulation}. Academic Press, 2002.
+  \item Nos\'e, S.\ \textit{Mol.\ Phys.}, 52, 255, 1984.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

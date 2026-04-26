@@ -1,0 +1,101 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Precis\~ao, Exatid\~ao, Erros e An\'alise Estat\'istica}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 08}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Distinguir precis\~ao de exatid\~ao, quantificar incertezas em medidas e propagar erros em c\'alculos.
+
+\section*{Conceitos Fundamentais}
+
+\subsection*{Exatid\~ao vs.\ Precis\~ao}
+\begin{itemize}
+  \item \textbf{Exatid\~ao (accuracy):} qu\~ao pr\'oximo est\'a do valor verdadeiro. Relacionada ao \textbf{vi\'es} (bias).
+  \item \textbf{Precis\~ao (precision):} qu\~ao reproduz\'ivel \'e a medida. Relacionada \`a \textbf{vari\^ancia}.
+\end{itemize}
+Analogia: um atirador pode ser preciso (tiros agrupados) mas inexato (longe do alvo), ou exato (perto do alvo) mas impreciso (tiros espalhados).
+
+\subsection*{Erros em Medidas}
+\begin{itemize}
+  \item \textbf{Erro sistem\'atico (vi\'es):} desvia sempre no mesmo sentido. Causa: calibra\c{c}\~ao errada.
+  \item \textbf{Erro aleat\'orio:} flutuac\~oes. Reduz com mais medidas.
+  \item \textbf{Erro de truncamento:} perda de informa\c{c}\~ao ao arredondar.
+\end{itemize}
+
+\subsection*{Estat\'istica B\'asica}
+Para $N$ medidas $x_1, x_2, \ldots, x_N$:
+\[
+\bar x = \frac{1}{N}\sum_{i=1}^N x_i, \qquad
+s^2 = \frac{1}{N-1}\sum_{i=1}^N (x_i - \bar x)^2, \qquad
+s_{\bar x} = \frac{s}{\sqrt{N}}.
+\]
+$s_{\bar x}$ \'e o \textbf{erro padr\~ao da m\'edia}: diminui com $\sqrt{N}$ ao aumentar medidas.
+
+\subsection*{Propaga\c{c}\~ao de Incertezas}
+Se $z = f(x, y, \ldots)$ e $\sigma_x, \sigma_y$ s\~ao os desvios-padr\~ao das vari\'aveis independentes:
+\[
+\sigma_z^2 = \left(\frac{\partial f}{\partial x}\right)^2\sigma_x^2 + \left(\frac{\partial f}{\partial y}\right)^2\sigma_y^2 + \cdots
+\]
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- M\'edia e erro padr\~ao}
+Medidas de temperatura: $\{20{,}1;\; 19{,}8;\; 20{,}3;\; 20{,}0;\; 19{,}9\}$ $^\circ$C.
+\[
+\bar x = \frac{20{,}1+19{,}8+20{,}3+20{,}0+19{,}9}{5} = \frac{100{,}1}{5} = 20{,}02\,^\circ\text{C}.
+\]
+\[
+s^2 = \frac{(0{,}08)^2+(0{,}22)^2+(0{,}28)^2+(0{,}02)^2+(0{,}12)^2}{4} = \frac{0{,}0064+0{,}0484+0{,}0784+0{,}0004+0{,}0144}{4} \approx 0{,}037.
+\]
+$s \approx 0{,}19\,^\circ$C;\quad $s_{\bar x} = 0{,}19/\sqrt{5} \approx 0{,}085\,^\circ$C.
+
+Resultado: $T = (20{,}02 \pm 0{,}09)\,^\circ$C.
+
+\subsection*{Exemplo 2 --- Propaga\c{c}\~ao para \'area de ret\^angulo}
+\'Area $A = L \times W$, com $L = (10{,}0 \pm 0{,}1)$ cm e $W = (5{,}0 \pm 0{,}1)$ cm.
+\[
+\sigma_A = \sqrt{(W\sigma_L)^2 + (L\sigma_W)^2} = \sqrt{(5{,}0 \times 0{,}1)^2 + (10{,}0 \times 0{,}1)^2} = \sqrt{0{,}25+1{,}00} = \sqrt{1{,}25} \approx 1{,}12\,\text{cm}^2.
+\]
+Resultado: $A = (50{,}0 \pm 1{,}1)\,\text{cm}^2$.
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Estat\'istica)} Dadas as medidas de resist\^encia el\'etrica: $\{98, 102, 99, 101, 100, 103, 97\}$ $\Omega$. Calcule: m\'edia, desvio-padr\~ao e erro padr\~ao da m\'edia. Express\~ao a nota\c{c}\~ao $(\bar x \pm s_{\bar x})\,\Omega$.
+  
+  \item \textbf{(Propaga\c{c}\~ao)} A velocidade de um projétil \'e $v = d/t$, com $d = (50 \pm 0{,}5)$ m e $t = (0{,}10 \pm 0{,}005)$ s. Calcule $v$ e sua incerteza absoluta e relativa.
+  
+  \item \textbf{(Propaga\c{c}\~ao)} O volume de uma esfera \'e $V = (4/3)\pi r^3$. Se $r = (3{,}00 \pm 0{,}05)$ cm, calcule a incerteza em $V$.
+  
+  \item \textbf{(Vi\'es)} Um bal\~ao de vi\'es \'e medido 5 vezes e d\'a sempre $100{,}5$ g quando o valor verdadeiro \'e 100 g. Outro medidor d\'a $\{99, 101, 100, 102, 98\}$ g. Qual tem maior exatid\~ao? Qual tem maior precis\~ao?
+  
+  \item \textbf{(Dist. normal)} Medidas de comprimento de uma pe\c{c}a t\^em $\mu = 50{,}0$ mm e $\sigma = 0{,}5$ mm. Usando a distribui\c{c}\~ao normal, calcule a probabilidade de uma pe\c{c}a ter comprimento fora de $[49, 51]$ mm. (Use regra 68-95-99,7\%.)
+  
+  \item \textbf{(Erro relativo)} Num c\'alculo de energia cin\'etica $E_k = mv^2/2$, a massa tem incerteza de 2\% e a velocidade de 3\%. Qual a incerteza relativa em $E_k$? (Dica: propaga\c{c}\~ao de incertezas relativas: $\delta E_k/E_k = \sqrt{(\delta m/m)^2 + (2\delta v/v)^2}$.)
+  
+  \item \textbf{(Amostragem)} Para reduzir o erro padr\~ao da m\'edia de $\sigma/\sqrt{N}$ de $0{,}5$ para $0{,}1$ (dado $\sigma = 1{,}5$), quantas medidas s\~ao necess\'arias?
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item Exatid\~ao $\neq$ precis\~ao: vi\'es (sistem\'atico) vs.\ vari\^ancia (aleat\'orio).
+  \item Erro padr\~ao: $s_{\bar x} = s/\sqrt{N}$ --- mais medidas reduzem a incerteza da m\'edia.
+  \item Propaga\c{c}\~ao: $\sigma_z^2 = (\partial f/\partial x)^2\sigma_x^2 + (\partial f/\partial y)^2\sigma_y^2$.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Taylor, J.\ R.\ \textit{An Introduction to Error Analysis}. University Science Books, 1997.
+  \item Bevington, P.\ R.\ \textit{Data Reduction and Error Analysis for the Physical Sciences}. McGraw-Hill, 2003.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,107 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Escalas e Escalabilidade}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 04}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Compreender como as propriedades de sistemas mudam com a escala (tamanho, tempo, energia) e usar leis de pot\^encia para modelar essas rela\c{c}\~oes.
+
+\section*{Leis de Pot\^encia}
+Uma lei de pot\^encia tem a forma:
+\[
+Y = a\,X^b,
+\]
+onde $b$ \'e o \textbf{expoente de escala}. Em escala log-log, essa rela\c{c}\~ao \'e uma reta:
+\[
+\log Y = \log a + b \log X.
+\]
+
+\subsection*{Interpreta\c{c}\~ao do Expoente}
+\begin{itemize}
+  \item $b=1$: escala linear (ex.: comprimento).
+  \item $b=2$: escala quadr\'atica (ex.: \'area).
+  \item $b=3$: escala c\'ubica (ex.: volume, massa se densidade \'e constante).
+  \item $b<1$: \textbf{sub-linear} --- o recurso cresce mais devagar que o tamanho (efici\^encia de escala).
+  \item $b>1$: \textbf{super-linear} --- crescimento acelerado com o tamanho.
+\end{itemize}
+
+\subsection*{Leis de Escala Biol\'ogicas (Alometria)}
+\begin{itemize}
+  \item \textbf{Lei de Kleiber} (1932): metabolismo basal $B \propto M^{3/4}$.
+  \item Freq\"u\^encia card\'iaca: $f \propto M^{-1/4}$.
+  \item Tempo de vida: $\tau \propto M^{1/4}$.
+  \item Massa do c\'erebro: $M_\text{c\'ereb} \propto M^{3/4}$.
+\end{itemize}
+\textbf{Conseq\"u\^encia:} um elefante (5000 kg) consome menos energia por kg que um camundongo (20 g).
+
+\subsection*{Escalas Urbanas (West, Bettencourt)}
+Para cidades com popula\c{c}\~ao $P$:
+\begin{itemize}
+  \item Infra-estrutura (ruas, cabos): $\propto P^{0{,}85}$ (sub-linear $\to$ economia de escala).
+  \item PIB, patentes, crime: $\propto P^{1{,}15}$ (super-linear $\to$ efeito de aglomera\c{c}\~ao).
+\end{itemize}
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Lei de Kleiber}
+Um camundongo tem $M = 20\,\text{g} = 0{,}02\,\text{kg}$ e um elefante $M_E = 5000\,\text{kg}$. Usando $B = k M^{3/4}$ com $k$ determinado para humanos ($B_H = 80\,\text{W}$, $M_H = 70\,\text{kg}$):
+\[
+k = \frac{80}{70^{3/4}} \approx \frac{80}{21{,}6} \approx 3{,}70\,\text{W/kg}^{3/4}.
+\]
+Metabolismo do camundongo: $B_m = 3{,}70 \times 0{,}02^{3/4} \approx 0{,}137\,\text{W}$.\\
+Por kg: $B_m/M_m = 0{,}137/0{,}02 = 6{,}85\,\text{W/kg}$ vs.\ humano: $80/70 \approx 1{,}14\,\text{W/kg}$.
+
+\textbf{O camundongo consome $\sim$6$\times$ mais energia por kg que o humano.}
+
+\subsection*{Exemplo 2 --- Confirma\c{c}\~ao gr\'afica}
+Para confirmar que $B \propto M^{3/4}$, plotamos $\log B$ vs.\ $\log M$. Se o resultado \'e uma reta com inclin\-a\c{c}\~ao $\approx 0{,}75$, a lei est\'a confirmada. Dados de Kleiber abrangem 20 ordens de magnitude de massa!
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Lei de pot\^encia)} A resist\^encia de um condutor \'e $R = \rho L / A$, onde $L$ \'e o comprimento e $A$ a \'area da se\c{c}\~ao. Se um fio \'e escalado uniformemente por fator $\lambda$ ($L \to \lambda L$, $r \to \lambda r$), como $R$ muda? Expresse como lei de pot\^encia em $\lambda$.
+  
+  \item \textbf{(Kleiber)} Um bale\-ia azul tem $M \approx 150\,000\,\text{kg}$. Usando a lei de Kleiber com $k = 3{,}70$ W/kg$^{3/4}$, estime seu metabolismo basal e compare com o de um humano por unidade de massa.
+  
+  \item \textbf{(Log-log)} Dada a tabela de dados:
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    $x$ & 1 & 2 & 4 & 8 \\ \hline
+    $y$ & 3 & 8{,}5 & 24 & 68 \\ \hline
+    \end{tabular}
+    \end{center}
+    Verifique se $y \propto x^b$ calculando $b = \log(y_4/y_1)/\log(x_4/x_1)$.
+  
+  \item \textbf{(Cidades)} Duas cidades t\^em $P_1 = 100\,000$ e $P_2 = 1\,000\,000$ habitantes. Usando o expoente 0{,}85 para infra-estrutura, quanto maior \'e o custo de infra-estrutura por habitante na cidade menor relativo \`a cidade maior?
+  
+  \item \textbf{(Freq\"u\^encia card\'iaca)} Dado que $f \propto M^{-1/4}$, estime a freq\"u\^encia card\'iaca de um camundongo ($M=0{,}02\,\text{kg}$) usando como refer\^encia o humano ($M=70\,\text{kg}$, $f=70\,\text{bpm}$).
+  
+  \item \textbf{(Ossos e for\c{c}a)} Galileu notou que ossos de animais grandes t\^em se\c{c}\~ao transversal desproporcionalmente maior. Se a for\c{c}a muscular $\propto$ \'area do m\'usculo $\propto L^2$ e o peso $\propto L^3$, mostre que para suportar o pr\'oprio peso o osso deve ter \'area $\propto L^3$, n\~ao $L^2$.
+  
+  \item \textbf{(Terremoto)} A escala Richter define magnitude $M = \log(A/A_0)$. Um terremoto de magnitude 7 libera quanto mais energia que um de magnitude 5? (Energia $\propto 10^{1{,}5 M}$.)
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item Leis de pot\^encia $Y = aX^b$: reta em escala log-log.
+  \item $b < 1$: sub-linear (economia de escala); $b > 1$: super-linear (retornos crescentes).
+  \item Biologia: metabolismo $\propto M^{3/4}$; engenharia e cidades seguem padr\~oes similares.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item West, G.\ \textit{Scale: The Universal Laws of Growth, Innovation, Sustainability}. Penguin, 2017.
+  \item Kleiber, M.\ \textit{The Fire of Life}. Wiley, 1961.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

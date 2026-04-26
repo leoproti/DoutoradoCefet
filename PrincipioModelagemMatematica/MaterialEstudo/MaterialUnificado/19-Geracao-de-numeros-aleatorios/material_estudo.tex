@@ -1,0 +1,104 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Gera\c{c}\~ao de N\'umeros Aleat\'orios}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 19}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Entender como computadores geram n\'umeros pseudo-aleat\'orios, m\'etodos de transforma\c{c}\~ao de distribui\c{c}\~oes e testes de qualidade.
+
+\section*{N\'umeros Pseudo-Aleat\'orios}
+
+Computadores geram sequ\^encias \textbf{determin\'isticas} que parecem aleat\'orias. S\~ao chamadas \textbf{pseudo-aleat\'orias} e dependem de uma \textbf{semente}.
+
+\subsection*{Gerador Congruente Linear (LCG)}
+\[
+X_{n+1} = (aX_n + c) \bmod m.
+\]
+\begin{itemize}
+  \item $m$: m\'odulo (determina o per\'iodo m\'aximo $m$).
+  \item $a$: multiplicador; $c$: incremento; $X_0$: semente.
+  \item N\'umero uniforme: $U_n = X_n/m \in [0, 1)$.
+\end{itemize}
+\textbf{Exemplo:} $a=5$, $c=1$, $m=16$, $X_0=0$: sequ\^encia $\{1, 6, 15, 12, 13, 2, 11, 8, 9, 14, 7, 4, 5, 10, 3, 0, 1, \ldots\}$ (per\'iodo 16).
+
+\subsection*{Mersenne Twister (MT19937)}
+O gerador mais comum em linguagens modernas (Python \texttt{random}, NumPy). Per\'iodo: $2^{19937}-1$. Excelente para simula\c{c}\~ao, inadequado para criptografia.
+
+\section*{Transforma\c{c}\~ao de Distribui\c{c}\~oes}
+
+\subsection*{M\'etodo da Transformada Inversa}
+Se $U \sim \text{Uniforme}(0,1)$ e $F$ \'e a CDF de $X$:
+\[
+X = F^{-1}(U).
+\]
+\textbf{Exemplo:} Exponencial $X = -\ln(1-U)/\lambda$.
+
+\subsection*{M\'etodo de Box-Muller}
+Dado $U_1, U_2 \sim \text{Uniforme}(0,1)$:
+\[
+Z_1 = \sqrt{-2\ln U_1}\cos(2\pi U_2), \quad Z_2 = \sqrt{-2\ln U_1}\sin(2\pi U_2).
+\]
+$Z_1, Z_2 \sim \mathcal{N}(0,1)$ independentes.
+
+\section*{Testes de Qualidade}
+
+\begin{itemize}
+  \item \textbf{Teste de unifomidade} ($\chi^2$): verifica se os n\'umeros est\~ao uniformemente distribu\'idos.
+  \item \textbf{Teste de Kolmogorov-Smirnov:} compara a CDF emp\'irica com a te\'orica.
+  \item \textbf{Teste de correla\c{c}\~ao:} verifica independ\^encia entre $X_n$ e $X_{n+k}$.
+  \item \textbf{Teste espectral:} visualiza a estrutura de grade em dimens\~oes m\'ultiplas.
+\end{itemize}
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- LCG: 5 primeiros valores}
+$a=13$, $c=0$, $m=31$, $X_0=1$: $X_1=13$, $X_2=169\bmod31=14$, $X_3=182\bmod31=27$, $X_4=351\bmod31=10$, $X_5=130\bmod31=6$.
+$U = \{13/31, 14/31, 27/31, 10/31, 6/31\} = \{0{,}419, 0{,}452, 0{,}871, 0{,}323, 0{,}194\}$.
+
+\subsection*{Exemplo 2 --- Box-Muller}
+$U_1=0{,}5$, $U_2=0{,}25$:
+$Z_1 = \sqrt{-2\ln0{,}5}\cos(\pi/2) = \sqrt{1{,}386}\times0 = 0$.
+$Z_2 = \sqrt{1{,}386}\times1 = 1{,}177$.
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(LCG)} Com $a=7$, $c=0$, $m=10$, $X_0=3$: gere 10 termos. O per\'iodo \'e 10? O que aconteceria com $X_0=0$?
+  
+  \item \textbf{(Transformada inversa)} Gere 3 amostras da distribui\c{c}\~ao Exponencial($\lambda=2$) usando $U_1=0{,}1$, $U_2=0{,}5$, $U_3=0{,}9$.
+  
+  \item \textbf{(Box-Muller)} Para $U_1=0{,}3$ e $U_2=0{,}7$, calcule $Z_1$ e $Z_2$. Verifique que $Z_1^2+Z_2^2 = -2\ln U_1$.
+  
+  \item \textbf{(Teste $\chi^2$)} 100 n\'umeros gerados por um LCG s\~ao divididos em 10 bins. A contagem \'e: $\{8, 12, 9, 11, 10, 9, 11, 10, 12, 8\}$. A estat\'istica $\chi^2 = \sum(O-E)^2/E$. Calcule $\chi^2$ (esperado: $E=10$ por bin).
+  
+  \item \textbf{(Qualidade)} Um LCG com $m=2^{32}$ tem per\'iodo $2^{32} \approx 4{,}3 \times 10^9$. Para uma simula\c{c}\~ao de Monte Carlo com $10^{10}$ amostras, isso \'e suficiente? Que problema pode ocorrer?
+  
+  \item \textbf{(Semente)} Por que fixar a semente do RNG \'e importante em pesquisa cient\'ifica? D\^e um exemplo de quando voc\^e deveria (e quando n\~ao deveria) fixar a semente.
+  
+  \item \textbf{(Distribui\c{c}\~ao Normal)} Usando Box-Muller, gere amostras de $\mathcal{N}(\mu=5, \sigma^2=4)$ a partir de $U_1=0{,}2$, $U_2=0{,}6$. (Dica: $X = \mu + \sigma Z$.)
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item LCG: $X_{n+1} = (aX_n + c)\bmod m$; $U = X/m$.
+  \item Transformada inversa: $X = F^{-1}(U)$.
+  \item Box-Muller: $Z = \sqrt{-2\ln U_1}\cos(2\pi U_2)$.
+  \item Mersenne Twister: per\'iodo $2^{19937}-1$ (padr\~ao moderno).
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Knuth, D.\ E.\ \textit{The Art of Computer Programming}, Vol.\ 2. Addison-Wesley, 1998.
+  \item L'Ecuyer, P.\ \textit{Handbook of Simulation}. Wiley, 1998.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

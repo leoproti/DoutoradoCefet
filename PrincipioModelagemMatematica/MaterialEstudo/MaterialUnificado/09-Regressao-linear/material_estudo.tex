@@ -1,0 +1,116 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Regress\~ao Linear}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 09}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Ajustar modelos lineares a dados experimentais, quantificar a qualidade do ajuste e interpretar os resultados.
+
+\section*{Conceitos Fundamentais}
+
+\subsection*{Regress\~ao Linear Simples}
+Modelo: $y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$, onde $\varepsilon_i$ \'e o erro aleat\'orio.\\
+M\'inimos Quadrados Ordin\'arios (OLS) minimiza $\sum(y_i - \hat y_i)^2$. Solu\c{c}\~ao:
+\[
+\hat\beta_1 = \frac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}, \qquad \hat\beta_0 = \bar y - \hat\beta_1\,\bar x.
+\]
+
+\subsection*{Coeficiente de Determina\c{c}\~ao $R^2$}
+\[
+R^2 = 1 - \frac{SS_\text{res}}{SS_\text{tot}}, \quad SS_\text{res} = \sum(y_i-\hat y_i)^2, \quad SS_\text{tot} = \sum(y_i-\bar y)^2.
+\]
+$R^2 = 1$: ajuste perfeito. $R^2 = 0$: o modelo n\~ao explica nada. $R^2 < 0$: pior que a m\'edia.
+
+\subsection*{Forma Matricial}
+Para $p$ vari\'aveis preditoras: $\mathbf{Y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$.
+Solu\c{c}\~ao OLS: $\hat{\boldsymbol\beta} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}$.
+
+\subsection*{Hip\'oteses do OLS (BLUE)}
+\begin{enumerate}
+  \item Linearidade: $E[\mathbf{Y}] = \mathbf{X}\boldsymbol\beta$.
+  \item Homocedasticidade: $\text{Var}(\varepsilon_i) = \sigma^2$ (constante).
+  \item Independ\^encia dos erros: $\text{Cov}(\varepsilon_i,\varepsilon_j) = 0$.
+  \item Normalidade dos erros: $\varepsilon_i \sim N(0,\sigma^2)$.
+\end{enumerate}
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Ajuste manual}
+Dados: $(x,y) = \{(1,2{,}1),(2,3{,}9),(3,6{,}2),(4,7{,}8),(5,10{,}1)\}$.
+\[
+\bar x = 3,\quad \bar y = 6{,}02.
+\]
+\[
+\hat\beta_1 = \frac{(1-3)(2{,}1-6{,}02)+\cdots+(5-3)(10{,}1-6{,}02)}{(1-3)^2+\cdots+(5-3)^2} = \frac{-7{,}84+\cdots+8{,}16}{4+1+0+1+4} = \frac{20{,}16}{10} \approx 2{,}016.
+\]
+\[
+\hat\beta_0 = 6{,}02 - 2{,}016 \times 3 = 6{,}02 - 6{,}048 \approx -0{,}028 \approx 0.
+\]
+Modelo: $\hat y \approx 2{,}016 x$. (Lei quase proporcional!)
+
+\subsection*{Exemplo 2 --- $R^2$}
+Para os dados acima:
+$SS_\text{tot} = (2{,}1-6{,}02)^2 + \cdots + (10{,}1-6{,}02)^2 \approx 40{,}33$.
+$SS_\text{res} = (2{,}1-2{,}02)^2 + \cdots + (10{,}1-10{,}08)^2 \approx 0{,}059$.
+$R^2 = 1 - 0{,}059/40{,}33 \approx 0{,}999$. Excelente ajuste.
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(C\'alculo manual)} Para os dados abaixo, calcule $\hat\beta_0$, $\hat\beta_1$ e $R^2$:
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    $x$ & 0 & 1 & 2 & 3 \\ \hline
+    $y$ & 1{,}0 & 2{,}8 & 5{,}1 & 7{,}2 \\ \hline
+    \end{tabular}
+    \end{center}
+  
+  \item \textbf{(Interpreta\c{c}\~ao)} Um modelo ajustado d\'a: pre\c{c}o $= 50000 + 200 \times \text{\'area}$ (pre\c{c}o em R\$ e \'area em m$^2$). Interprete $\hat\beta_0$ e $\hat\beta_1$ no contexto do problema. $R^2 = 0{,}82$: o que significa?
+  
+  \item \textbf{(Transforma\c{c}\~ao)} Os dados abaixo seguem $y = a e^{bx}$. Linearize tomando $\ln y$ e ajuste uma reta:
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    $x$ & 0 & 1 & 2 & 3 \\ \hline
+    $y$ & 2 & 5{,}4 & 14{,}8 & 40{,}2 \\ \hline
+    \end{tabular}
+    \end{center}
+    Determine $a$ e $b$.
+  
+  \item \textbf{(Res\'iduos)} Dado o ajuste $\hat y = 3 + 2x$, compute os res\'iduos para os pontos $(1,4)$, $(2,8)$, $(3,10)$, $(4,12)$. O que um padr\~ao sistem\'atico nos res\'iduos indicaria?
+  
+  \item \textbf{(Regress\~ao m\'ultipla)} Numa regress\~ao com 2 preditores, a matriz de projeto \'e:
+    \[
+    \mathbf{X} = \begin{pmatrix}1 & 1 & 2\\ 1 & 2 & 3\\ 1 & 3 & 1\end{pmatrix}, \quad \mathbf{Y} = \begin{pmatrix}5\\ 8\\ 6\end{pmatrix}.
+    \]
+    Calcule $\hat{\boldsymbol\beta} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}$.
+  
+  \item \textbf{(Overfitting)} Um polin\^omio de grau $n-1$ passa exatamente por $n$ pontos, dando $R^2=1$. Explique por que isso n\~ao significa que o modelo \'e bom. O que \'e overfitting?
+  
+  \item \textbf{(Homocedasticidade)} Numa regress\~ao de sal\'ario vs.\ experi\^encia, os res\'iduos crescem com a experi\^encia. Isso viola qual hip\'otese do OLS? Que transforma\c{c}\~ao pode corrigir isso?
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item OLS: minimiza $\sum(y_i - \hat y_i)^2$; f\'ormulas fechadas para regress\~ao simples.
+  \item $R^2 \in [0,1]$: fra\c{c}\~ao da vari\^ancia explicada pelo modelo.
+  \item Sempre verifique os res\'iduos: padr\~oes indicam hip\'oteses violadas.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Montgomery, D.\ C.; Runger, G.\ C.\ \textit{Applied Statistics and Probability for Engineers}. Wiley, 2014.
+  \item Freedman, D.\ et al.\ \textit{Statistics}. W.W. Norton, 2007.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

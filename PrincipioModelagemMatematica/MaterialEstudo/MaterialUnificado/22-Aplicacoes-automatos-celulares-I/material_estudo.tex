@@ -1,0 +1,100 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Aplica\c{c}\~oes de Aut\^omatos Celulares I}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 22}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Explorar duas aplica\c{c}\~oes fundamentais de AC: o Jogo da Vida de Conway e o modelo de tr\'afego Nagel-Schreckenberg.
+
+\section*{Jogo da Vida de Conway}
+
+Grade 2D infinita; c\'elulas com estados vivo (1) e morto (0). Regras baseadas nos 8 vizinhos de Moore:
+\begin{itemize}
+  \item \textbf{Sobreviv\^encia:} c\'elula viva com 2 ou 3 vizinhos vivos sobrevive (B3/S23).
+  \item \textbf{Nascimento:} c\'elula morta com exatamente 3 vizinhos vivos nasce.
+  \item \textbf{Morte:} outros casos $\to$ morte (isolamento ou superpopula\c{c}\~ao).
+\end{itemize}
+
+\subsection*{Estruturas Cl\'assicas}
+\begin{itemize}
+  \item \textbf{Bloco:} $2\times2$ est\'avel (ainda-vida).
+  \item \textbf{Piscador:} oscila com per\'iodo 2.
+  \item \textbf{Planador (glider):} translada diagonalmente a cada 4 gera\c{c}\~oes.
+  \item \textbf{Ca\~nhao de planadores:} produz planadores indefinidamente.
+\end{itemize}
+
+\subsection*{Significado}
+O Jogo da Vida \'e Turing-completo: pode simular qualquer computa\c{c}\~ao. Demonstra como comportamento complexo emerge de regras simples.
+
+\section*{Nagel-Schreckenberg (Revis\~ao e Aprofundamento)}
+
+Recapitulando as 4 etapas e acrescentando an\'alise de fluxo:
+
+\textbf{Diagrama fundamental do NaSch:} o fluxo $q$ vs.\ densidade $\rho$ obtido por simula\c{c}\~ao mostra:
+\begin{itemize}
+  \item Fase livre: $q = \rho v_\text{max}$ (linear).
+  \item Fase congestionada: $q$ cai com $\rho$.
+  \item Ponto de m\'aximo fluxo: depende de $p$ (prob.\ de aleatoriedade).
+\end{itemize}
+Para $p=0$: fluxo m\'aximo em $\rho^* = 1/(v_\text{max}+1)$ (em unidades de c\'elula).
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Jogo da Vida: piscador}
+Estado inicial (coluna vertical de 3): \texttt{.X.} / \texttt{.X.} / \texttt{.X.}
+Ap\'os 1 passo: \texttt{...} / \texttt{XXX} / \texttt{...} (linha horizontal).
+Ap\'os 2 passos: retorna ao estado inicial. Per\'iodo = 2.
+
+\subsection*{Exemplo 2 --- NaSch: fluxo m\'aximo}
+Via com $L=100$ c\'elulas, $v_\text{max}=5$, $p=0{,}1$. Densidade $\rho = 20/100 = 0{,}2$ ve\'ic/c\'el. Ap\'os estabiliza\c{c}\~ao, fluxo medido: $q \approx 0{,}8$ ve\'ic/passo. Compara\c{c}\~ao: sem aleatoriedade ($p=0$), $q = 0{,}2\times5 = 1{,}0$ ve\'ic/passo.
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Jogo da Vida)} Simule 3 gera\c{c}\~oes do padr\~ao ``L'' (c\'elulas em (0,0), (1,0), (0,1)):
+  \[
+  \begin{array}{cc} X & X \\ X & . \end{array}
+  \]
+  Qual \'e o estado ap\'os 3 passos?
+
+  \item \textbf{(Estabilidade)} Os seguintes padr\~oes s\~ao est\'aveis, oscilantes ou morrem?
+    \begin{enumerate}
+      \item[$a.$] Bloco $2\times2$.
+      \item[$b.$] Linha de 2 c\'elulas.
+      \item[$c.$] Linha de 4 c\'elulas.
+    \end{enumerate}
+
+  \item \textbf{(NaSch com $p=0$)} 5 carros em via circular de 15 c\'elulas, $v_\text{max}=3$. Posi\c{c}\~oes: 1, 4, 7, 10, 13; velocidades: 1, 1, 1, 1, 1. Simule 3 passos e calcule o fluxo m\'edio.
+  
+  \item \textbf{(Efeito de $p$)} Para o mesmo sistema, com $p=0{,}5$ e $\varepsilon_\text{aleatorio} = (0, 1, 0, 1, 0)$ no passo 1, simule 1 passo e compare com $p=0$.
+  
+  \item \textbf{(Diagrama fundamental)} Para NaSch com $v_\text{max}=2$ e $p=0$: (a) calcule o fluxo para $\rho = 1/6$, $2/6$, $3/6$, $4/6$, $5/6$. (b) Trace o diagrama fundamental.
+  
+  \item \textbf{(Jogo da Vida: densidade)} Se uma grade grande tem fra\c{c}\~ao aleat\'oria $\rho_0$ de c\'elulas vivas: para que valores de $\rho_0$ o sistema provavelmente sobrevive vs.\ morre? Explique qualitat\'ivamente.
+  
+  \item \textbf{(Conex\~ao)} O NaSch e o modelo de LWR (Unidade 12) modelam o mesmo fen\^omeno (tr\'afego) em escalas diferentes. Que vantagens cada abordagem oferece?
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item Jogo da Vida: B3/S23; estruturas: bloco, piscador, planador.
+  \item NaSch: acelera, freia, aleatoriza, move; $p>0 \Rightarrow$ congestionamentos espont\^aneos.
+  \item AC Classe IV: comportamento complexo emerge de regras simples.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Gardner, M.\ \textit{Scientific American}, Oct.\ 1970 (Jogo da Vida).
+  \item Nagel, K.; Schreckenberg, M.\ \textit{J.\ Phys.\ I France}, 2, 2221, 1992.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}
