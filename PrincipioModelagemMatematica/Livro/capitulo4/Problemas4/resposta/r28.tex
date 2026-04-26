@@ -1,0 +1,36 @@
+Partindo das equacoes normais obtidas no Problema 4.27,
+\[
+\sum y_i=m\sum x_i+nb,
+\]
+\[
+\sum x_i y_i=m\sum x_i^2+b\sum x_i,
+\]
+podemos resolver o sistema linear para $m$ e $b$.
+
+Da primeira equacao,
+\[
+b=\frac{\sum y_i-m\sum x_i}{n}.
+\]
+Substituindo na segunda,
+\[
+\sum x_i y_i=m\sum x_i^2+\frac{\sum x_i}{n}(\sum y_i-m\sum x_i).
+\]
+Multiplicando por $n$,
+\[
+n\sum x_i y_i=mn\sum x_i^2+(\sum x_i)(\sum y_i)-m(\sum x_i)^2.
+\]
+Isolando $m$,
+\[
+m\left(n\sum x_i^2-(\sum x_i)^2\right)=n\sum x_i y_i-(\sum x_i)(\sum y_i),
+\]
+de onde resulta
+\[
+m=\frac{n\sum x_i y_i-(\sum x_i)(\sum y_i)}{n\sum x_i^2-(\sum x_i)^2}.
+\]
+
+Depois de obter $m$, voltamos a
+\[
+b=\frac{\sum y_i-m\sum x_i}{n}.
+\]
+
+Portanto, as expressoes das eqs. (4.53) e (4.54) estao verificadas algebricamente.

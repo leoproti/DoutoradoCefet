@@ -1,0 +1,421 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[brazilian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{booktabs}
+\geometry{margin=2.5cm}
+
+\title{Formulario de Formulas\\Capitulos 2, 3, 4 e 5}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{1. Base da Analise Dimensional}
+
+\textbf{Dimensao geral:}
+\begin{equation}
+[Q] = M^a L^b T^c \Theta^d \cdots
+\end{equation}
+
+\textbf{Homogeneidade dimensional:}
+\begin{equation}
+A = B + C \;\Rightarrow\; [A]=[B]=[C]
+\end{equation}
+
+\textbf{Forma de potencia (ansatz):}
+\begin{equation}
+Y = C\,x_1^{\alpha_1}x_2^{\alpha_2}\cdots x_n^{\alpha_n}
+\end{equation}
+
+\textbf{Numero de grupos adimensionais (Buckingham Pi):}
+\begin{equation}
+N_\Pi = n - m
+\end{equation}
+onde $n$ = numero de variaveis e $m$ = numero de dimensoes fundamentais independentes.
+
+\textbf{Forma final do teorema Pi:}
+\begin{equation}
+\Phi(\Pi_1,\Pi_2,\ldots,\Pi_{n-m})=0
+\end{equation}
+
+\section*{2. Dimensoes Comuns}
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Quantidade & Dimensao \\
+\midrule
+Velocidade $v$ & $LT^{-1}$ \\
+Aceleracao $a$ & $LT^{-2}$ \\
+Forca $F$ & $MLT^{-2}$ \\
+Energia $E$ & $ML^2T^{-2}$ \\
+Potencia $P$ & $ML^2T^{-3}$ \\
+Pressao $p$ & $ML^{-1}T^{-2}$ \\
+Densidade $\rho$ & $ML^{-3}$ \\
+Viscosidade dinamica $\mu$ & $ML^{-1}T^{-1}$ \\
+Frequencia $f$ & $T^{-1}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{3. Formulas Classicas do Capitulo}
+
+\textbf{Pendulo simples (pequenas amplitudes):}
+\begin{equation}
+T_0 = 2\pi\sqrt{\frac{l}{g}}
+\end{equation}
+
+\textbf{Queda livre (escala dimensional):}
+\begin{equation}
+V = C\sqrt{gh}
+\end{equation}
+(com fisica completa: $V=\sqrt{2gh}$)
+
+\textbf{Velocidade do som (escala):}
+\begin{equation}
+c = C\sqrt{\frac{p}{\rho}}
+\end{equation}
+(com gas ideal: $c=\sqrt{\gamma\,p/\rho}$)
+
+\textbf{Arrasto viscoso (Stokes):}
+\begin{equation}
+F_D = 3\pi\mu V d
+\end{equation}
+
+\section*{4. Exemplo Pi -- Grua no Estadio}
+
+\textbf{Grupos adimensionais:}
+\begin{align}
+\Pi_1 &= \frac{L}{h}, \\
+\Pi_2 &= \frac{g}{h\omega^2}, \\
+\Pi_3 &= \frac{\tau}{m h\omega^2}
+\end{align}
+
+\textbf{Escalas para a frequencia:}
+\begin{align}
+\omega &\propto \sqrt{\frac{g}{h}}, \\
+\omega &\propto \sqrt{\frac{\tau}{m h}}
+\end{align}
+
+\section*{5. Principais Numeros Adimensionais}
+\begin{align}
+Re &= \frac{\rho U L}{\mu} & \text{(Reynolds)} \\
+Fr &= \frac{U}{\sqrt{gL}} & \text{(Froude)} \\
+Ma &= \frac{U}{c} & \text{(Mach)} \\
+We &= \frac{\rho U^2 L}{\sigma} & \text{(Weber)} \\
+Pe &= \frac{UL}{D} & \text{(Peclet)} \\
+Nu &= \frac{hL}{k} & \text{(Nusselt)} \\
+Pr &= \frac{\mu c_p}{k} & \text{(Prandtl)} \\
+Bi &= \frac{hL}{k_s} & \text{(Biot)} \\
+St &= \frac{fL}{U} & \text{(Stokes nao estacionario)} \\
+Eu &= \frac{\Delta p}{\rho U^2} & \text{(Euler)}
+\end{align}
+
+\section*{6. Conversao de Unidades (Exemplo)}
+\begin{equation}
+65\,\frac{\text{mi}}{\text{hr}}
+\cdot \frac{5280\,\text{ft}}{\text{mi}}
+\cdot \frac{0.3048\,\text{m}}{\text{ft}}
+\cdot \frac{1\,\text{hr}}{3600\,\text{s}}
+= 29.06\,\text{m/s}
+\end{equation}
+
+\section*{7. Formulas do Capitulo 3 (Escala, Escalabilidade e Fractais)}
+
+\textbf{Nao dimensionalizacao (transporte 1D):}
+\begin{equation}
+\frac{\partial c}{\partial t} + u\frac{\partial c}{\partial x} = D\frac{\partial^2 c}{\partial x^2}
+\end{equation}
+\begin{equation}
+\hat{x}=\frac{x}{L},\quad \hat{t}=\frac{t}{T},\quad \hat{c}=\frac{c}{C_0},\quad \hat{u}=\frac{u}{U}
+\end{equation}
+com $T=L/U$:
+\begin{equation}
+\frac{\partial \hat{c}}{\partial \hat{t}} + \hat{u}\frac{\partial \hat{c}}{\partial \hat{x}}
+= \frac{1}{Pe}\frac{\partial^2 \hat{c}}{\partial \hat{x}^2},
+\qquad
+Pe=\frac{UL}{D}
+\end{equation}
+
+\textbf{Lei de potencia:}
+\begin{equation}
+Y = kX^{\alpha}
+\end{equation}
+\begin{equation}
+\log Y = \log k + \alpha\log X
+\end{equation}
+
+\textbf{Escalas geometricas:}
+\begin{equation}
+A \propto L^2,\qquad V \propto L^3
+\end{equation}
+Se $L' = \lambda L$:
+\begin{equation}
+A' = \lambda^2 A,\qquad V' = \lambda^3 V
+\end{equation}
+
+\textbf{Pendulo (escala):}
+\begin{equation}
+T = 2\pi\sqrt{\frac{\ell}{g}},
+\qquad
+T\propto \ell^{1/2}
+\end{equation}
+
+\textbf{Escalabilidade computacional:}
+\begin{equation}
+C(N) = aN^2,
+\qquad
+C(2N)=4C(N)
+\end{equation}
+
+\textbf{Escala termica:}
+\begin{equation}
+\dot{Q}\sim hA\Delta T,\qquad \dot{Q}\propto L^2
+\end{equation}
+\begin{equation}
+E\propto L^3,
+\qquad
+\tau\sim\frac{E}{\dot{Q}}\propto L
+\end{equation}
+
+\textbf{Lei de Kleiber (alometria):}
+\begin{equation}
+q_0 \approx 70\,M^{3/4}
+\end{equation}
+
+\textbf{Dimensao fractal por auto-similaridade:}
+\begin{equation}
+D = \frac{\log N}{\log(1/r)}
+\end{equation}
+
+\textbf{Fractais classicos:}
+\begin{equation}
+D_{\text{Koch}} = \frac{\log 4}{\log 3} \approx 1.2619,
+\qquad
+D_{\text{Sierpinski}} = \frac{\log 3}{\log 2} \approx 1.585
+\end{equation}
+
+\textbf{Forma usada na prova (fractal auto-similar):}
+\begin{equation}
+D_f = \frac{\ln N_p}{\ln(1/p)}
+\end{equation}
+
+\section*{8. Formulas do Capitulo 4 (Expansao de Taylor)}
+
+\subsection*{Definicao e forma geral}
+
+\textbf{Serie de Taylor em torno de $a$:}
+\begin{equation}
+f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k + R_{n+1}(x)
+\end{equation}
+
+\textbf{Serie de Maclaurin (caso $a=0$):}
+\begin{equation}
+f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(0)}{k!}x^k + R_{n+1}(x)
+\end{equation}
+
+\textbf{Resto de Lagrange:}
+\begin{equation}
+R_{n+1}(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}, \quad \xi \text{ entre } a \text{ e } x
+\end{equation}
+
+\subsection*{Series fundamentais (Maclaurin)}
+
+\textbf{Exponencial:}
+\begin{equation}
+e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
+\end{equation}
+
+\textbf{Seno e cosseno:}
+\begin{align}
+\sin x &= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots \\
+\cos x &= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots
+\end{align}
+
+\textbf{Logaritmo natural (valido para $|x|<1$):}
+\begin{equation}
+\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots
+\end{equation}
+
+\textbf{Serie binomial (valida para $|x|<1$, $n \in \mathbb{R}$):}
+\begin{equation}
+(1+x)^n = 1 + nx + \frac{n(n-1)}{2!}x^2 + \frac{n(n-1)(n-2)}{3!}x^3 + \cdots
+\end{equation}
+
+\subsection*{Aproximacoes praticas}
+
+\textbf{Aproximacao binomial (primeira ordem):}
+\begin{equation}
+(1+x)^n \approx 1 + nx, \quad |x| \ll 1
+\end{equation}
+
+Casos frequentes:
+\begin{align}
+\sqrt{1+x} &\approx 1 + \frac{x}{2} \\
+(1+x)^{-1} &\approx 1 - x \\
+(1+x)^{-3/2} &\approx 1 - \frac{3}{2}x
+\end{align}
+
+\textbf{Angulos pequenos:}
+\begin{equation}
+\sin\theta \approx \theta, \quad \cos\theta \approx 1 - \frac{\theta^2}{2}, \quad |\theta| \ll 1
+\end{equation}
+
+\subsection*{Linearizacao de modelos nao lineares}
+
+\textbf{EDO nao linear perto de equilibrio $x^*$ (com $f(x^*)=0$):}
+\begin{equation}
+\dot{x} = f(x) \approx f'(x^*)(x-x^*), \quad \eta = x - x^*
+\end{equation}
+\begin{equation}
+\dot{\eta} \approx f'(x^*)\eta \quad \text{(modelo linearizado)}
+\end{equation}
+
+\subsection*{Aplicacoes em modelagem}
+
+\textbf{Pendulo simples:}
+\begin{equation}
+\ddot{\theta} + \frac{g}{\ell}\sin\theta = 0 \quad \Rightarrow \quad
+\ddot{\theta} + \frac{g}{\ell}\theta = 0, \quad |\theta| \ll 1
+\end{equation}
+\begin{equation}
+T = 2\pi\sqrt{\frac{\ell}{g}}
+\end{equation}
+
+\textbf{Modelo logistico:}
+\begin{equation}
+\dot{P} = rP\left(1 - \frac{P}{K}\right)
+\end{equation}
+Equilibrios: $P^* = 0$ (instavel) e $P^* = K$ (estavel se $r>0$).
+
+\textbf{Decaimento exponencial (ex: C-14):}
+\begin{equation}
+C(t) = C_0 e^{-\lambda t}, \quad \lambda = \frac{\ln 2}{t_{1/2}}
+\end{equation}
+\begin{equation}
+\delta t = \left|\frac{dt}{dN}\right|\Delta N
+= \left|\frac{dt}{dC}\right|\Delta C
+= \frac{t_{1/2}}{\ln 2\cdot C}\,\Delta C
+\end{equation}
+
+\textbf{Depreciacacao exponencial:}
+\begin{equation}
+V(t) = V_0 (1-r)^t = V_0 e^{-\lambda t}, \quad \lambda = -\ln(1-r) \approx r, \quad r \ll 1
+\end{equation}
+
+\section*{9. Formulas do Capitulo 5 (Comportamento Exponencial)}
+
+\subsection*{Modelo exponencial basico}
+
+\textbf{Crescimento/decaimento proporcional ao estado:}
+\begin{equation}
+\frac{dy}{dt} = ky
+\end{equation}
+\begin{equation}
+y(t) = y_0 e^{kt}
+\end{equation}
+
+\textbf{Forma de decaimento (com $\lambda>0$):}
+\begin{equation}
+\frac{dy}{dt} = -\lambda y
+\quad\Rightarrow\quad
+y(t) = y_0 e^{-\lambda t}
+\end{equation}
+
+\textbf{Constante de tempo e meia-vida:}
+\begin{equation}
+\tau = \frac{1}{\lambda},
+\qquad
+t_{1/2} = \frac{\ln 2}{\lambda},
+\qquad
+\lambda = \frac{\ln 2}{t_{1/2}}
+\end{equation}
+
+\subsection*{Linearizacao em escala logaritmica}
+
+\textbf{Reta em grafico semilog:}
+\begin{equation}
+\ln y = \ln y_0 + kt
+\end{equation}
+Inclinacao da reta: $k$.
+
+\subsection*{Modelos classicos do capitulo}
+
+\textbf{Juros compostos continuos:}
+\begin{equation}
+\frac{dC}{dt} = rC
+\quad\Rightarrow\quad
+C(t) = C_0 e^{rt}
+\end{equation}
+
+\textbf{Decaimento radioativo:}
+\begin{equation}
+\frac{dN}{dt} = -\lambda N
+\quad\Rightarrow\quad
+N(t) = N_0 e^{-\lambda t}
+\end{equation}
+
+\textbf{Resfriamento de Newton:}
+\begin{equation}
+\frac{dT}{dt} = -k(T-T_a)
+\quad\Rightarrow\quad
+T(t)=T_a + (T_0-T_a)e^{-kt}
+\end{equation}
+
+\textbf{Circuito RC (descarga):}
+\begin{equation}
+\frac{dV}{dt} = -\frac{1}{RC}V
+\quad\Rightarrow\quad
+V(t)=V_0 e^{-t/(RC)},
+\qquad \tau = RC
+\end{equation}
+
+\subsection*{Modelo logistico (Verhulst)}
+
+\textbf{Equacao diferencial:}
+\begin{equation}
+\frac{dP}{dt} = rP\left(1-\frac{P}{K}\right)
+\end{equation}
+
+\textbf{Solucao com $P(0)=P_0$:}
+\begin{equation}
+P(t) = \frac{K}{1 + \left(\dfrac{K-P_0}{P_0}\right)e^{-rt}}
+\end{equation}
+
+\textbf{Ponto de inflexao da curva logistica:}
+\begin{equation}
+t^* = \frac{1}{r}\ln\left(\frac{K-P_0}{P_0}\right)
+\end{equation}
+e ocorre quando $P=K/2$.
+
+\subsection*{Equacoes de Lanchester}
+
+\textbf{Sistema acoplado:}
+\begin{equation}
+\frac{dE}{dt} = -\lambda_F F,
+\qquad
+\frac{dF}{dt} = -\lambda_E E
+\end{equation}
+
+\textbf{Invariante (lei quadratica):}
+\begin{equation}
+\lambda_E E^2 - \lambda_F F^2 = \lambda_E E_0^2 - \lambda_F F_0^2 = \text{constante}
+\end{equation}
+
+\subsection*{Propagacao de incerteza no decaimento}
+
+Para $t = -\ln(C/C_0)/\lambda$:
+\begin{equation}
+\delta t = \left|\frac{dt}{dN}\right|\Delta N
+\end{equation}
+onde, para o caso de C-14 ($N\equiv C$):
+\begin{equation}
+\delta t = \left|\frac{dt}{dC}\right|\Delta C
+= \frac{1}{\lambda C}\,\Delta C
+= \frac{t_{1/2}}{\ln 2\cdot C}\,\Delta C
+\end{equation}
+
+\end{document}

@@ -1,0 +1,47 @@
+\noindent\textbf{Resolução:}
+
+Passo 1: Identificar as variáveis e suas dimensões no sistema $MLT$ (Massa, Comprimento, Tempo).
+\begin{align*}
+\text{Velocidade do som } (v): \quad [v] &= L \cdot T^{-1} \\
+\text{Densidade de massa } (\rho): \quad [\rho] &= M \cdot L^{-3} \\
+\text{Módulo de elasticidade } (E): \quad [E] &= \frac{\text{Força}}{\text{Área}} \\
+&= \frac{M \cdot L \cdot T^{-2}}{L^2} = M \cdot L^{-1} \cdot T^{-2}
+\end{align*}
+
+Passo 2: Assumir que a velocidade do som depende de $E$ e $\rho$ segundo uma lei de potências com uma constante adimensional $k$.
+\[ v = k \cdot E^\alpha \cdot \rho^\beta \]
+
+Passo 3: Substituir as variáveis pelas suas respectivas dimensões.
+\begin{align*}
+[v] &= [E]^\alpha \cdot [\rho]^\beta \\
+L \cdot T^{-1} &= (M \cdot L^{-1} \cdot T^{-2})^\alpha \cdot (M \cdot L^{-3})^\beta
+\end{align*}
+
+Passo 4: Agrupar as dimensões e igualar os expoentes de ambos os lados.
+\[ M^0 \cdot L^1 \cdot T^{-1} = M^{\alpha+\beta} \cdot L^{-\alpha-3\beta} \cdot T^{-2\alpha} \]
+
+Montando o sistema de equações para os expoentes de $M$, $L$ e $T$:
+\[
+\begin{cases}
+\text{M: } 0 = \alpha + \beta \\
+\text{T: } -1 = -2\alpha \\
+\text{L: } 1 = -\alpha - 3\beta
+\end{cases}
+\]
+
+Resolvendo o sistema:
+Da equação do Tempo (T), obtemos diretamente:
+\[ -2\alpha = -1 \implies \alpha = \frac{1}{2} \]
+
+Substituindo $\alpha$ na equação da Massa (M):
+\[ 0 = \frac{1}{2} + \beta \implies \beta = -\frac{1}{2} \]
+
+(Podemos verificar a consistência na equação do Comprimento (L): $1 = -1/2 - 3(-1/2) \implies 1 = -1/2 + 3/2 = 1$. Consistente.)
+
+Passo 5: Retornar com os valores encontrados para a equação original.
+\begin{align*}
+v &= k \cdot E^{1/2} \cdot \rho^{-1/2} \\
+v &= k \cdot \sqrt{\frac{E}{\rho}}
+\end{align*}
+
+Portanto, a análise dimensional demonstra que a velocidade do som no aço é proporcional à raiz quadrada da razão entre o módulo de elasticidade ($E$) e a sua densidade de massa ($\rho$).

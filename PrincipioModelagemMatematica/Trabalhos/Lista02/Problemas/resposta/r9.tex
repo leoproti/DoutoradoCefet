@@ -1,0 +1,66 @@
+\textbf{(a) Modelo matemático:}
+
+O crescimento exponencial de uma colônia bacteriana é descrito por:
+\[
+N(t)=N_0\,e^{kt},
+\]
+onde $N_0$ é a população inicial ($t=0$), $k>0$ é a taxa de crescimento e $t$ é o tempo.
+
+\textbf{(b) Linearização — método dos mínimos quadrados em escala log:}
+
+Tomando o logaritmo natural:
+\[
+\ln N(t) = \ln N_0 + k\,t.
+\]
+Definindo $y_i = \ln N_i$ e $x_i = t_i$, temos a regressão linear $y=a+bx$ com:
+\[
+b = k = \frac{n\sum x_i y_i - (\sum x_i)(\sum y_i)}{n\sum x_i^2 - (\sum x_i)^2},
+\]
+\[
+a = \ln N_0 = \frac{\sum y_i - b\sum x_i}{n}, \quad N_0=e^a.
+\]
+
+\textbf{Exemplo com dados típicos de colônia bacteriana}
+(com tempo de duplicação $\approx 20\,\mathrm{min}$):
+
+\begin{center}
+\begin{tabular}{ccc}
+\hline
+$t$ (min) & $N$ (UFC) & $\ln N$ \\
+\hline
+0 & 1000 & 6{,}908 \\
+20 & 2000 & 7{,}601 \\
+40 & 4000 & 8{,}294 \\
+60 & 8000 & 8{,}987 \\
+80 & 16000 & 9{,}680 \\
+\hline
+\end{tabular}
+\end{center}
+
+Calculando as somas ($n=5$):
+\[
+\sum t_i = 200,\quad \sum y_i = 41{,}470,\quad \sum t_i y_i = 1763{,}4,\quad \sum t_i^2=12000.
+\]
+
+\[
+b = k = \frac{5\times1763{,}4 - 200\times41{,}470}{5\times12000 - 200^2}
+= \frac{523}{20000}\approx0{,}03466\,\mathrm{min}^{-1}.
+\]
+\[
+a=\frac{41{,}470 - 0{,}03466\times200}{5}=\frac{41{,}470-6{,}931}{5}=\frac{34{,}539}{5}\approx6{,}908.
+\]
+\[
+N_0=e^{6{,}908}\approx1000\,\text{UFC}. \quad\checkmark
+\]
+
+O tempo de duplicação é:
+\[
+t_{\text{dup}}=\frac{\ln 2}{k}=\frac{0{,}6931}{0{,}03466}\approx20{,}0\,\mathrm{min}.\quad\checkmark
+\]
+
+\textbf{Equação final:}
+\[
+\boxed{N(t)=1000\,e^{0{,}0347\,t},}
+\]
+com $t$ em minutos e $N$ em unidades formadoras de colônia.
+

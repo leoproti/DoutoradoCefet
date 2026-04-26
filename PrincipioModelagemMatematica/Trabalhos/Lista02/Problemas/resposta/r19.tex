@@ -1,0 +1,49 @@
+\textbf{Definição do coeficiente de expansão linear:}
+
+Para um sólido com coeficiente de expansão linear $\alpha$, após uma variação de temperatura $\Delta T$:
+\[
+L = L_0(1+\alpha\Delta T),\quad W = W_0(1+\alpha\Delta T),\quad H = H_0(1+\alpha\Delta T).
+\]
+
+\textbf{Coeficiente de expansão de superfície $\gamma$:}
+
+Considerando face de área $A_0=L_0 W_0$:
+\[
+A = L\cdot W = L_0 W_0(1+\alpha\Delta T)^2 = A_0(1+2\alpha\Delta T+\alpha^2\Delta T^2).
+\]
+Para $\alpha\Delta T \ll 1$:
+\[
+\frac{\Delta A}{A_0}\approx 2\alpha\Delta T \implies \gamma=2\alpha.
+\]
+
+\textbf{Coeficiente de expansão de volume $\beta$:}
+
+O volume é $V=L\cdot W\cdot H$:
+\[
+V = L_0 W_0 H_0(1+\alpha\Delta T)^3 = V_0(1+\alpha\Delta T)^3.
+\]
+
+Expandindo $(1+\alpha\Delta T)^3$ pelo Binômio de Newton:
+\[
+(1+\alpha\Delta T)^3 = 1 + 3\alpha\Delta T + 3(\alpha\Delta T)^2 + (\alpha\Delta T)^3.
+\]
+
+Para $\alpha\Delta T\ll1$, desprezando os termos de ordem $\geq2$:
+\[
+V \approx V_0(1+3\alpha\Delta T).
+\]
+
+Portanto, a variação relativa de volume é:
+\[
+\frac{\Delta V}{V_0}\approx 3\alpha\Delta T \implies \beta=3\alpha.
+\]
+
+\textbf{Relação entre $\beta$ e $\gamma$:}
+\[
+\boxed{\beta = 3\alpha = \frac{3}{2}\gamma.}
+\]
+
+\textbf{Exemplo numérico} para aço ($\alpha=12\times10^{-6}\,\mathrm{K^{-1}}$) com $\Delta T=100\,\mathrm{K}$:
+\[
+\frac{\Delta V}{V_0}=3\times12\times10^{-6}\times100=3{,}6\times10^{-3}=0{,}36\%.
+\]

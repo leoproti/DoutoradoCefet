@@ -1,0 +1,48 @@
+\noindent\textbf{Resolução:}
+
+\textbf{Passo 1: Identificar as dimensões de cada variável no sistema $MLT$ (Massa, Comprimento, Tempo).}
+\begin{align*}
+\text{Velocidade } (v): \quad [v] &= L \cdot T^{-1} \\
+\text{Densidade } (\rho): \quad [\rho] &= M \cdot L^{-3} \\
+\text{Comprimento característico } (l): \quad [l] &= L \\
+\text{Tensão superficial } (\sigma): \quad [\sigma] &= \frac{\text{Força}}{\text{Comprimento}} \\
+&= \frac{M \cdot L \cdot T^{-2}}{L} = M \cdot T^{-2}
+\end{align*}
+
+\textbf{Passo 2: Configurar a equação do grupo adimensional.} \\
+Como o Número de Weber ($We$) é adimensional, temos $[We] = M^0 L^0 T^0$.
+Vamos assumir que ele é formado pelo produto das variáveis elevadas a expoentes arbitrários:
+\[ We = \sigma^\alpha \cdot v^\beta \cdot \rho^\gamma \cdot l^\delta \]
+
+\textbf{Passo 3: Substituir as dimensões na equação.}
+\begin{align*}
+M^0 \cdot L^0 \cdot T^0 &= (M \cdot T^{-2})^\alpha \cdot (L \cdot T^{-1})^\beta \cdot (M \cdot L^{-3})^\gamma \cdot (L)^\delta \\
+M^0 \cdot L^0 \cdot T^0 &= M^{\alpha+\gamma} \cdot L^{\beta-3\gamma+\delta} \cdot T^{-2\alpha-\beta}
+\end{align*}
+
+\textbf{Passo 4: Montar e resolver o sistema de equações.} \\
+Igualando os expoentes de cada dimensão de ambos os lados da igualdade:
+\[
+\begin{cases}
+\text{M: } 0 = \alpha + \gamma \implies \gamma = -\alpha \\
+\text{T: } 0 = -2\alpha - \beta \implies \beta = -2\alpha \\
+\text{L: } 0 = \beta - 3\gamma + \delta
+\end{cases}
+\]
+
+Substituindo $\gamma$ e $\beta$ na equação do Comprimento (L):
+\begin{align*}
+0 &= (-2\alpha) - 3(-\alpha) + \delta \\
+0 &= -2\alpha + 3\alpha + \delta \\
+0 &= \alpha + \delta \implies \delta = -\alpha
+\end{align*}
+
+\textbf{Passo 5: Formular o Número de Weber.} \\
+Substituindo $\beta$, $\gamma$ e $\delta$ de volta na equação original:
+\begin{align*}
+We &= \sigma^\alpha \cdot v^{-2\alpha} \cdot \rho^{-\alpha} \cdot l^{-\alpha} \\
+We &= \left( \frac{\sigma}{\rho \cdot v^2 \cdot l} \right)^\alpha
+\end{align*}
+
+Qualquer valor de $\alpha \neq 0$ resulta em um grupo adimensional válido. Na mecânica dos fluidos, o Número de Weber é tradicionalmente definido como a razão entre as forças inerciais e as forças de tensão superficial. Para atingir essa forma, adotamos $\alpha = -1$, invertendo a fração:
+\[ We = \frac{\rho \cdot v^2 \cdot l}{\sigma} \]

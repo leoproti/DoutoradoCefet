@@ -1,0 +1,280 @@
+\documentclass[12pt,a4paper]{article}
+
+% =====================================================================
+% PACOTES
+% =====================================================================
+\usepackage[brazilian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{lindenmayersystems}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm}
+
+% =====================================================================
+% AMBIENTES
+% =====================================================================
+\theoremstyle{definition}
+\newtheorem{questao}{Quest\~ao}
+
+\newenvironment{solucao}{%
+  \par\medskip\noindent\textbf{Solu\c{c}\~ao.}\quad\ignorespaces
+}{%
+  \par\medskip
+}
+
+% =====================================================================
+% DOCUMENTO
+% =====================================================================
+\begin{document}
+
+\begin{center}
+  {\large \textbf{SERVI\c{C}O P\'UBLICO FEDERAL -- MINIST\'ERIO DA EDUCA\c{C}\~AO}}\\[4pt]
+  {\large \textbf{CENTRO FEDERAL DE EDUCA\c{C}\~AO TECNOL\'OGICA DE MINAS GERAIS}}\\[4pt]
+  {\large \textbf{PROGRAMA DE P\'OS-GRADUA\c{C}\~AO EM MODELAGEM MATEM\'ATICA E COMPUTACIONAL}}\\[10pt]
+  \rule{\linewidth}{0.4pt}\\[6pt]
+  {\Large \textbf{Disciplina: Princ\'ipios de Modelagem Matem\'atica e Computacional}}\\[4pt]
+  {\large 1\textordmasculine{} semestre de 2026 -- Professor Albens Atman}\\[4pt]
+  {\large \textbf{Resolu\c{c}\~ao -- Prova 01 (2026)}}\\[4pt]
+  \rule{\linewidth}{0.4pt}
+\end{center}
+
+\bigskip
+
+% =====================================================================
+% QUESTÃO 1 -- Dimensão Fractal
+% =====================================================================
+\begin{questao}
+Determine a dimens\~ao fractal dos seguintes conjuntos: A (fractal tipo cruz/Vicsek), B (curva de Koch), C (tri\^angulo de Sierpinski).
+\end{questao}
+
+\begin{solucao}
+
+A dimens\~ao fractal de Hausdorff--Besicovitch \`e definida por
+\begin{equation}
+  d_f = \frac{\ln N}{\ln(1/r)},
+\end{equation}
+onde $N$ \'e o n\'umero de c\'opias auto-similares e $r$ \'e o fator de redu\c{c}\~ao de escala (razão de similaridade).
+
+\medskip
+\noindent\textbf{(A) Fractal tipo Cruz (Vicsek)}
+
+Em cada itera\c{c}\~ao, o gerador em forma de cruz produz $8$ c\'opias auto-similares com fator linear $r=1/4$ (conforme o desenho com os dois quadrados abertos):
+\[
+  N = 8, \quad r = \tfrac{1}{4}.
+\]
+Logo:
+\begin{equation}
+  \boxed{d_f^{(A)} = \frac{\ln 8}{\ln 4} = \frac{3}{2} = 1{,}5.}
+\end{equation}
+
+\medskip
+\noindent\textbf{(B) Curva de Koch}
+
+A curva de Koch \'e constru\'ida substituindo o ter\c{c}o central de cada segmento por dois lados de um tri\^angulo equil\'atero. Cada segmento origina 4 novos, cada um com $1/3$ do comprimento original:
+\[
+  N = 4, \quad r = \tfrac{1}{3}.
+\]
+Logo:
+\begin{equation}
+  \boxed{d_f^{(B)} = \frac{\ln 4}{\ln 3} \approx \frac{1{,}3863}{1{,}0986} \approx 1{,}262.}
+\end{equation}
+
+\noindent\textit{Interpreta\c{c}\~ao:} A dimens\~ao entre 1 e 2 reflete que a curva de Koch \'e mais complexa que uma linha reta ($d=1$) mas n\~ao preenche o plano ($d=2$).
+
+\medskip
+\noindent\textbf{(C) Tri\^angulo de Sierpinski}
+
+O tri\^angulo de Sierpinski \'e constru\'ido removendo o tri\^angulo central de cada itera\c{c}\~ao, restando 3 c\'opias auto-similares com metade do tamanho linear:
+\[
+  N = 3, \quad r = \tfrac{1}{2}.
+\]
+Logo:
+\begin{equation}
+  \boxed{d_f^{(C)} = \frac{\ln 3}{\ln 2} \approx \frac{1{,}0986}{0{,}6931} \approx 1{,}585.}
+\end{equation}
+
+\medskip
+\noindent\textbf{Resumo:}
+\begin{center}
+\begin{tabular}{clccc}
+\hline
+Conjunto & Nome & $N$ & $r$ & $d_f$ \\
+\hline
+A & Fractal Cruz & 8 & $1/4$ & $1{,}5$ \\
+B & Curva de Koch         & 4 & $1/3$ & $1{,}262$ \\
+C & Tri\^angulo de Sierpinski & 3 & $1/2$ & $1{,}585$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{solucao}
+
+% =====================================================================
+% QUESTÃO 3 -- Expansão de Virial / Van der Waals
+% =====================================================================
+\begin{questao}
+Uma das equa\c{c}\~oes de estado mais interessantes e vers\'ateis para descri\c{c}\~ao de gases reais \'e a \textbf{Expans\~ao de Virial}:
+\[
+  \frac{PV}{nRT} = 1 + c_0 + c_1\!\left(\frac{n}{V}\right) + c_2\!\left(\frac{n}{V}\right)^{\!2} + c_3\!\left(\frac{n}{V}\right)^{\!3} + \cdots
+\]
+A equa\c{c}\~ao do G\'as Ideal $PV = nRT$ equivale a um truncamento de ordem 0 com $c_k = 0$.
+Uma aproxima\c{c}\~ao mais consistente com gases reais \'e a equa\c{c}\~ao de Van der Waals:
+\[
+  \left(P - \frac{an^2}{V^2}\right)(V - nb) = nRT.
+\]
+\textbf{Encontre} qual a ordem de truncamento na Expans\~ao de Virial correspondente \`a equa\c{c}\~ao de Van der Waals, fornecendo as respectivas express\~oes para os coeficientes $c$ at\'e a ordem $i$ do truncamento.
+\end{questao}
+
+\begin{solucao}
+
+\noindent\textbf{Passo 1: Isolar $P$ na equa\c{c}\~ao de Van der Waals.}
+
+\[
+  P = \frac{nRT}{V - nb} - \frac{an^2}{V^2}.
+\]
+
+\medskip
+\noindent\textbf{Passo 2: Calcular $PV/(nRT)$ em fun\c{c}\~ao da densidade molar $\rho = n/V$.}
+
+\begin{align}
+  \frac{PV}{nRT} &= \frac{V}{V - nb} - \frac{an^2}{V^2 \cdot \frac{nRT}{V}} \notag \\
+                 &= \frac{V}{V - nb} - \frac{a\rho}{RT} \notag \\
+                 &= \frac{1}{1 - b\rho} - \frac{a\rho}{RT}.
+\end{align}
+
+\medskip
+\noindent\textbf{Passo 3: Expandir $\dfrac{1}{1-b\rho}$ em s\'erie de pot\^encias (s\'erie geom\'etrica, v\'alida para $b\rho < 1$).}
+
+\[
+  \frac{1}{1 - b\rho} = \sum_{k=0}^{\infty}(b\rho)^k = 1 + b\rho + b^2\rho^2 + b^3\rho^3 + \cdots
+\]
+
+Portanto:
+\begin{equation}
+  \frac{PV}{nRT} = 1 + \left(b - \frac{a}{RT}\right)\rho + b^2\rho^2 + b^3\rho^3 + \cdots
+\end{equation}
+
+\medskip
+\noindent\textbf{Passo 4: Identificar os coeficientes da Expans\~ao de Virial.}
+
+Comparando com
+\[
+  \frac{PV}{nRT} = 1 + c_0 + c_1\rho + c_2\rho^2 + c_3\rho^3 + \cdots
+\]
+obt\'em-se:
+\begin{align}
+  c_0 &= 0, \\
+  c_1 &= b - \frac{a}{RT}, \\
+  c_2 &= b^2, \\
+  c_3 &= b^3, \\
+  c_i &= b^i \quad (i \geq 2).
+\end{align}
+
+\medskip
+\noindent\textbf{Conclus\~ao sobre a ordem de truncamento.}
+
+A equa\c{c}\~ao de Van der Waals corresponde a uma \textbf{s\'erie de Virial de ordem infinita}, cujos coeficientes s\~ao todos determinados por apenas dois par\^ametros ($a$ e $b$):
+\[
+  \frac{PV}{nRT} = 1 + \underbrace{\left(b - \frac{a}{RT}\right)}_{c_1}\rho \;+\; \underbrace{b^2}_{c_2}\rho^2 \;+\; \underbrace{b^3}_{c_3}\rho^3 \;+\; \cdots
+\]
+
+Na pr\'atica, \textbf{truncando na ordem $i = 3$} (at\'e $\rho^3$), obt\'em-se a aproxima\c{c}\~ao mais usual consistente com Van der Waals:
+\begin{equation}
+  \boxed{\frac{PV}{nRT} \approx 1 + \left(b - \frac{a}{RT}\right)\rho + b^2\rho^2 + b^3\rho^3,}
+\end{equation}
+com $\rho = n/V$, o que captura tanto a repuls\~ao de volume exclu\'ido (par\^ametro $b$) quanto a atra\c{c}\~ao intermolecular (par\^ametro $a$) presentes na equa\c{c}\~ao de Van der Waals.
+
+\medskip
+\textit{Observa\c{c}\~ao:} O segundo coeficiente de Virial $c_1 = b - a/(RT)$ pode ser positivo ou negativo dependendo da temperatura; quando $T > a/(Rb)$ ele \'e positivo (repuls\~ao domina) e quando $T < a/(Rb)$ \'e negativo (atra\c{c}\~ao domina). A temperatura em que $c_1 = 0$ \'e chamada \textbf{temperatura de Boyle}.
+
+\end{solucao}
+
+% =====================================================================
+% QUESTÃO 4 -- Iodo-131
+% =====================================================================
+\begin{questao}
+A meia-vida do iodo-131 \'e de 8 dias. O percentual desse isótopo remanescente no corpo $d$ dias ap\'os sua introdu\c{c}\~ao \'e dado por
+\[
+  I(d) = 100\!\left(\tfrac{1}{2}\right)^{d/8}.
+\]
+Quando escrita em termos de $e$ (base dos logaritmos naturais), esta equa\c{c}\~ao \'e equivalente a $I(d) = 100\,e^{kd}$.
+\begin{enumerate}[label=\textbf{\alph*)}]
+  \item Qual \'e o valor aproximado da constante $k$?
+  \item Se a concentra\c{c}\~ao de iodo \'e determinada com uma precis\~ao de 1 parte em $10^{10}$, determine a incerteza na estimativa da quantidade de iodo-131 ap\'os 80 dias em um paciente que recebeu uma dose inicial de $10^{-5}$ moles de iodo-131.
+  \par\textit{Dado:} $1\,\text{mol} = 6{,}022\times 10^{23}$ \'atomos (n\'umero de Avogadro).
+\end{enumerate}
+\end{questao}
+
+\begin{solucao}
+
+\noindent\textbf{(a) Determinação de $k$}
+
+Igualando as duas formas da equa\c{c}\~ao:
+\[
+  100\!\left(\tfrac{1}{2}\right)^{d/8} = 100\,e^{kd}.
+\]
+Tomando logaritmo natural e igualando os expoentes:
+\[
+  \frac{d}{8}\ln\!\left(\frac{1}{2}\right) = kd \;\Longrightarrow\; k = \frac{\ln(1/2)}{8} = -\frac{\ln 2}{8}.
+\]
+Numericamente:
+\begin{equation}
+  \boxed{k = -\frac{\ln 2}{8} \approx -\frac{0{,}6931}{8} \approx -0{,}08664\;\text{dia}^{-1}.}
+\end{equation}
+
+Verifica\c{c}\~ao: $I(8) = 100\,e^{-0{,}08664\times 8} = 100\,e^{-\ln 2} = 100 \times \tfrac{1}{2} = 50\%$. \checkmark
+
+\medskip
+\noindent\textbf{(b) Incerteza na quantidade ap\'os 80 dias}
+
+\medskip
+\noindent\textit{Passo 1 -- Quantidade inicial em \'atomos.}
+
+\[
+  N_0 = 10^{-5}\,\text{mol} \times 6{,}022\times 10^{23}\,\text{\'atomos/mol} = 6{,}022\times 10^{18}\,\text{\'atomos}.
+\]
+
+\noindent\textit{Passo 2 -- Quantidade ap\'os 80 dias.}
+
+\[
+  N(80) = N_0\!\left(\tfrac{1}{2}\right)^{80/8} = N_0\!\left(\tfrac{1}{2}\right)^{10} = \frac{6{,}022\times 10^{18}}{1024} \approx 5{,}881\times 10^{15}\,\text{\'atomos}.
+\]
+
+\noindent\textit{Passo 3 -- Incerteza absoluta.}
+
+Precis\~ao de 1 parte em $10^{10}$ significa precis\~ao \textit{relativa}:
+\[
+  \frac{\delta N}{N(80)} = \frac{1}{10^{10}} = 10^{-10}.
+\]
+Portanto, a incerteza absoluta na quantidade \'e:
+\begin{equation}
+  \boxed{\delta N = N(80)\times 10^{-10} \approx 5{,}881\times 10^{15} \times 10^{-10} \approx 5{,}881\times 10^{5}\,\text{\'atomos}.}
+\end{equation}
+
+\noindent\textit{Interpreta\c{c}\~ao:} Mesmo com uma precis\~ao de 1 parte em $10^{10}$, a incerteza absoluta ainda corresponde a cerca de $\mathbf{5{,}9\times 10^5}$ \'atomos de iodo-131. Isto ocorre porque a quantidade total ap\'os 80 dias (ap\'os 10 meias-vidas) ainda \'e enorme em escala at\^omica: $\sim 5{,}9\times 10^{15}$ \'atomos.
+
+\medskip
+\noindent\textbf{Resumo dos resultados:}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+\textbf{Grandeza} & \textbf{Valor} \\
+\hline
+Constante $k$                         & $-\ln 2/8 \approx -0{,}0866\;\text{dia}^{-1}$ \\
+Quantidade inicial $N_0$              & $6{,}022\times 10^{18}\;\text{\'atomos}$ \\
+Quantidade ap\'os 80 dias $N(80)$     & $5{,}881\times 10^{15}\;\text{\'atomos}$ \\
+Incerteza $\delta N$                  & $\approx 5{,}881\times 10^{5}\;\text{\'atomos}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{solucao}
+
+\end{document}

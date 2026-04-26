@@ -1,0 +1,25 @@
+Para confirmar que a eq. (3.39) é a representação correta da eq. (3.37) em termos dos cinco fatores de escala de uma viga simples, aplica-se a mudança de variáveis adimensionais a cada grandeza.
+
+\textbf{Os cinco fatores de escala para uma viga simples:}
+Denotando o índice $m$ para modelo e $p$ para protótipo:
+\begin{itemize}
+\item Escala de comprimento: $\lambda_L = L_m/L_p$
+\item Escala de força: $\lambda_F = P_m/P_p$
+\item Escala de módulo: $\lambda_E = E_m/E_p$
+\item Escala de momento de inércia: $\lambda_I = I_m/I_p$
+\item Escala de deflexão: $\lambda_w = w_m/w_p$
+\end{itemize}
+
+\textbf{Derivação da eq. (3.39) a partir da eq. (3.37):}
+A eq. (3.37) expressa a deflexão em função das variáveis físicas do protótipo:
+\[
+w_p = \Phi(P_p,\,E_p,\,I_p,\,L_p).
+\]
+Substituindo cada grandeza do protótipo pela correspondente do modelo ($P_p = P_m/\lambda_F$, $E_p = E_m/\lambda_E$, etc.):
+\[
+\frac{w_m}{\lambda_w} = \Phi\!\left(\frac{P_m}{\lambda_F},\,\frac{E_m}{\lambda_E},\,\frac{I_m}{\lambda_I},\,\frac{L_m}{\lambda_L}\right).
+\]
+Reorganizando para isolar os grupos adimensionais equivalentes entre modelo e protótipo, obtém-se a eq. (3.39), que preserva a invariância de escala.
+
+\textbf{Conclusão:} A eq. (3.39) segue diretamente da eq. (3.37) após a substituição dos fatores de escala, confirmando que as relações entre modelo e protótipo são corretamente representadas.
+

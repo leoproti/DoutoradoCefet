@@ -1,0 +1,35 @@
+A passagem da equação diferencial logística (5.35) para a solução explícita (5.39) envolve quatro etapas.
+
+\textbf{Etapa 1 — Separação de variáveis:}
+\[
+\frac{dN}{N(1-N/K)} = \lambda\,dt.
+\]
+
+\textbf{Etapa 2 — Decomposição em frações parciais:}
+\[
+\frac{1}{N(1-N/K)} = \frac{1}{N} + \frac{1/K}{1-N/K}.
+\]
+Integrando ambos os lados:
+\[
+\ln N - \ln\!\left(1 - \frac{N}{K}\right) = \lambda t + C_0,
+\]
+onde $C_0$ é a constante de integração.
+
+\textbf{Etapa 3 — Aplicação da condição inicial $N(0) = N_0$:}
+\[
+C_0 = \ln N_0 - \ln\!\left(1 - \frac{N_0}{K}\right) = \ln\frac{N_0}{1-N_0/K}.
+\]
+
+\textbf{Etapa 4 — Isolação de $N(t)$:}
+\[
+\ln\frac{N}{1-N/K} = \lambda t + \ln\frac{N_0}{1-N_0/K}.
+\]
+Exponenciando:
+\[
+\frac{N}{1-N/K} = \frac{N_0}{1-N_0/K}\,e^{\lambda t}.
+\]
+Resolvendo para $N$:
+\[
+N(t) = \frac{K}{1 + \left(\dfrac{K}{N_0}-1\right)e^{-\lambda t}}.\quad\checkmark
+\]
+Esta é exatamente a \textbf{eq. (5.39)}. A passagem de (5.35) a (5.39) é válida passo a passo, sem perda de generalidade. 
