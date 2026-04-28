@@ -1,0 +1,28 @@
+\vspace{1em}
+% ------------------------------------------------------------------------------
+% Conclusão
+% ------------------------------------------------------------------------------
+
+
+\chapter{Conclusão}
+\label{chap_conclusao}
+
+Os resultados obtidos nesta prática mostram que o random walk simples em 1D é um modelo adequado para estudar, de forma objetiva, a relação entre simulação estocástica e probabilidade teórica.
+
+A simulação de 10 caminhadas com 100 passos permitiu observar trajetórias distintas e deslocamentos finais variados, como esperado em processos aleatórios. A análise teórica por meio de
+\begin{equation}
+P_n(d)=\frac{1}{2^n}\binom{n}{\frac{n+d}{2}}
+\end{equation}
+permitiu atribuir probabilidade aos deslocamentos observados no experimento.
+
+Com o reforço de Monte Carlo (20000 simulações), verificou-se boa concordância entre distribuição empírica e teórica, evidenciando que a implementação computacional está consistente com o modelo matemático.
+
+Conclui-se, portanto, que a prática atingiu seus objetivos de:
+\begin{itemize}
+    \item simular trajetórias de passeio aleatório;
+    \item analisar deslocamentos finais;
+    \item validar resultados numéricos com a formulação probabilística analítica.
+\end{itemize}
+
+Como continuidade, o mesmo procedimento pode ser estendido para estudar random walks com viés ($p\neq 1/2$), maior número de dimensões e estatísticas de primeira passagem.
+

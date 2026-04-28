@@ -1,0 +1,30 @@
+% ------------------------------------------------------------------------------
+% Resultados
+% ------------------------------------------------------------------------------
+
+\chapter{Resultados}
+
+Neste capítulo são discutidos os resultados obtidos para a prática de random walk com 10 caminhadas aleatórias de 100 passos cada, complementados por uma verificação estatística via Monte Carlo.
+
+\section{Trajetórias das 10 Caminhadas}
+
+As trajetórias simuladas mostram o comportamento típico de flutuação em torno da origem, com alternância de movimentos para a esquerda e para a direita. Mesmo com condições idênticas de geração, cada realização apresenta caminho distinto, evidenciando o caráter estocástico do processo.
+
+Observa-se que, após 100 passos, os deslocamentos finais variam entre as caminhadas, com valores positivos e negativos. Esse comportamento é esperado, pois o valor médio teórico do deslocamento é nulo, mas as realizações individuais podem se afastar consideravelmente de zero.
+
+\section{Deslocamentos Finais e Probabilidade Teórica}
+
+Para cada uma das 10 caminhadas foi computado o deslocamento final $d$. Em seguida, para cada valor observado, calculou-se a probabilidade teórica $P_{100}(d)$ por meio da expressão combinatória da fundamentação teórica.
+
+Essa comparação permite interpretar quão prováveis são os resultados observados no experimento principal. Valores de $d$ próximos de zero tendem a ter maior probabilidade, enquanto deslocamentos de grande magnitude apresentam menor probabilidade.
+
+\section{Comparação Empírica versus Teórica}
+
+Como 10 caminhadas constituem uma amostra pequena para estimar toda a distribuição de deslocamentos, foi executada uma simulação de Monte Carlo com 20000 caminhadas de 100 passos. A partir dessa amostra ampliada, obteve-se a distribuição empírica dos deslocamentos finais.
+
+Ao comparar a distribuição empírica com a distribuição teórica, verifica-se boa aderência global entre as curvas. O erro absoluto máximo entre probabilidades empíricas e teóricas permaneceu baixo, indicando consistência entre a simulação computacional e o modelo analítico.
+
+Em síntese, os resultados confirmam o comportamento esperado para o random walk simples em 1D e validam a implementação realizada no notebook.
+
+
+

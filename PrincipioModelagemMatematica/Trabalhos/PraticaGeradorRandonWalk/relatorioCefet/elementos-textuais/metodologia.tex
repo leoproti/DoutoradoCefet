@@ -1,0 +1,48 @@
+% ------------------------------------------------------------------------------
+% Metodologia
+% ------------------------------------------------------------------------------
+\chapter{Metodologia}
+\label{chap_metodologia}
+Este capítulo descreve os procedimentos adotados para simular caminhadas aleatórias unidimensionais e comparar os resultados obtidos com a distribuição teórica do deslocamento final.
+
+\section{Materiais Computacionais e Organização dos Dados}
+
+As simulações foram realizadas em Python, utilizando \texttt{numpy} para geração de amostras e operações vetorizadas, \texttt{math} para o cálculo combinatório e \texttt{matplotlib} para visualização gráfica.
+
+O experimento foi implementado em notebook Jupyter, disponível em \cite{github_random_walk}. O notebook está organizado para permitir reprodutibilidade completa dos resultados.
+
+\section{Configuração do Experimento}
+
+Foram definidos os seguintes parâmetros principais:
+\begin{itemize}
+    \item número de caminhadas: $10$;
+    \item número de passos por caminhada: $100$;
+    \item posição inicial: $S_0=0$;
+    \item probabilidade de passo à direita: $1/2$;
+    \item probabilidade de passo à esquerda: $1/2$.
+\end{itemize}
+
+Cada caminhada é construída a partir de uma sequência de 100 variáveis em $\{-1,+1\}$, com distribuição equiprovável. A posição em cada instante é obtida por soma cumulativa dos passos.
+
+\section{Procedimento Experimental}
+\label{sec_procedimento_experimental}
+
+O procedimento computacional foi dividido em duas partes:
+\begin{enumerate}
+    \item \textbf{Simulação principal (10 caminhadas):} geração das 10 trajetórias com 100 passos cada, armazenamento das posições ao longo do tempo e obtenção dos deslocamentos finais.
+    \item \textbf{Validação estatística (Monte Carlo):} geração de um conjunto ampliado de caminhadas (20000 simulações) para estimar probabilidades empíricas de deslocamento e compará-las com $P_n(d)$ teórico.
+\end{enumerate}
+
+Para a comparação empírico-teórica, foi calculada a frequência relativa de cada deslocamento final observado e, nos mesmos pontos, a probabilidade teórica via coeficiente binomial.
+
+\section{Métricas e Produtos Gerados}
+
+Foram produzidos os seguintes resultados:
+\begin{itemize}
+    \item gráfico das 10 trajetórias em função do número de passos;
+    \item lista dos deslocamentos finais das 10 caminhadas;
+    \item gráfico comparativo entre distribuição empírica (Monte Carlo) e distribuição teórica;
+    \item erro absoluto máximo entre probabilidades empíricas e teóricas, como medida sintética de aderência.
+\end{itemize}
+
+A metodologia adotada permite verificar, de forma visual e quantitativa, a consistência entre simulação e teoria para o random walk simples em 1D.

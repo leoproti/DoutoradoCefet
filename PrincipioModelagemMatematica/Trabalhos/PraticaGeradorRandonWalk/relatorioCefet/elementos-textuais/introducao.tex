@@ -1,0 +1,19 @@
+% ------------------------------------------------------------------------------
+% Introdução
+% ------------------------------------------------------------------------------
+
+\chapter{Introdução}
+\label{chap_introducao}
+
+Processos aleatórios discretos são fundamentais em modelagem matemática, estatística e computação científica. Entre eles, o passeio aleatório unidimensional (\textit{random walk} em 1D) é um modelo clássico para descrever sistemas que evoluem por passos independentes de igual probabilidade para a esquerda ou para a direita \cite{wiki_random_walk}.
+
+Além de seu papel conceitual em probabilidade, o random walk aparece em aplicações como difusão, flutuações em séries temporais, algoritmos estocásticos e aproximações para fenômenos físicos. Sua estrutura simples permite comparar diretamente resultados numéricos obtidos por simulação com fórmulas analíticas derivadas por argumentos combinatórios e pela distribuição binomial \cite{wiki_binomial}.
+
+Nesta prática, foi realizada a simulação de 10 caminhadas aleatórias unidimensionais, cada uma com 100 passos, partindo da origem. O objetivo principal é visualizar trajetórias, obter os deslocamentos finais e confrontar a distribuição observada com a probabilidade teórica de deslocamento após $n$ passos:
+\begin{equation}
+P_n(d) = \frac{1}{2^n}\binom{n}{\frac{n+d}{2}},
+\end{equation}
+válida quando $n+d$ é par e $|d| \leq n$.
+
+Para complementar a análise das 10 trajetórias, também foi utilizada uma simulação de Monte Carlo com maior número de realizações, permitindo comparar de forma mais estável a distribuição empírica com a distribuição teórica. Dessa forma, o relatório integra visualização, modelagem probabilística e validação computacional em um experimento reprodutível.
+

@@ -1,0 +1,55 @@
+% ------------------------------------------------------------------------------
+% Fundamentação Teórica
+% ------------------------------------------------------------------------------
+
+\chapter{Fundamentação Teórica}
+\label{chap_fundamentacao_teorica}
+
+Esta seção apresenta os conceitos probabilísticos necessários para a prática de random walk unidimensional, destacando a formulação do modelo, a distribuição do deslocamento final e a conexão com a distribuição binomial \cite{wiki_random_walk,wiki_binomial}.
+
+\section{Random Walk Simples em 1D}
+
+No passeio aleatório simples em uma dimensão, a posição após $n$ passos é dada por
+\begin{equation}
+S_n = \sum_{i=1}^{n} X_i,
+\end{equation}
+em que as variáveis aleatórias $X_i$ são independentes e identicamente distribuídas com
+\begin{equation}
+P(X_i=1)=P(X_i=-1)=\frac{1}{2}.
+\end{equation}
+
+Assumindo posição inicial $S_0=0$, cada passo altera a posição em uma unidade para a direita ($+1$) ou para a esquerda ($-1$).
+
+\section{Probabilidade de Deslocamento Final}
+
+Para que o deslocamento final seja $d$ após $n$ passos, é necessário que o número de passos positivos seja
+\begin{equation}
+k = \frac{n+d}{2}.
+\end{equation}
+
+Como cada sequência de $n$ passos tem probabilidade $2^{-n}$ e há $\binom{n}{k}$ sequências com exatamente $k$ passos positivos, obtém-se:
+\begin{equation}
+P_n(d) = \frac{1}{2^n}\binom{n}{\frac{n+d}{2}}.
+\label{eq:prob_teorica_random_walk}
+\end{equation}
+
+A Equação~\ref{eq:prob_teorica_random_walk} é válida quando $n+d$ é par e $|d|\le n$; caso contrário, $P_n(d)=0$.
+
+\section{Relação com a Distribuição Binomial}
+
+Seja $K$ o número de passos positivos em $n$ ensaios de Bernoulli com probabilidade $1/2$. Então,
+\begin{equation}
+K \sim \text{Binomial}(n, 1/2)
+\end{equation}
+e o deslocamento final pode ser escrito como
+\begin{equation}
+S_n = 2K - n.
+\end{equation}
+
+Essa relação permite interpretar o random walk como uma transformação linear da variável binomial, justificando o uso da fórmula combinatória para as probabilidades de deslocamento.
+
+\section{Interpretação para a Prática}
+
+Com $n=100$ passos, os deslocamentos possíveis são inteiros pares no intervalo $[-100,100]$. Em poucas trajetórias (como as 10 caminhadas solicitadas), a distribuição empírica pode apresentar flutuações visíveis. Ao aumentar o número de simulações, a distribuição observada tende a se aproximar da distribuição teórica dada na Equação~\ref{eq:prob_teorica_random_walk}, o que fornece uma validação prática do modelo.
+
+
