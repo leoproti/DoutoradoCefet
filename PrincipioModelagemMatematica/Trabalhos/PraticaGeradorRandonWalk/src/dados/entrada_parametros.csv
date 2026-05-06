@@ -1,0 +1,16 @@
+parametro,valor
+N_WALKS,10
+N_STEPS,10000
+LCG_A,1664525
+LCG_C,1013904223
+LCG_M,4294967296
+seed_walk_1,12345
+seed_walk_2,24690
+seed_walk_3,37035
+seed_walk_4,49380
+seed_walk_5,61725
+seed_walk_6,74070
+seed_walk_7,86415
+seed_walk_8,98760
+seed_walk_9,111105
+seed_walk_10,123450

@@ -1,0 +1,17 @@
+Objetivo: 
+
+Assimilar o conceito de camiinhadas aleatórias e implementar o método de Monte Carlo.
+
+ 
+
+Roteiro:
+
+1. Utilizando o gerador de números aleatórios congruencial, crie um algoritmo para simular o random walk em 1 + 1 dimensões (posição x e tempo);
+
+2. Execute pelo menos 10 caminhadas com pelo menos 10000 passos cada uma, e exiba um gráfico com as 10 caminhadas juntas.
+
+3. Calcule o desvio quadrático médio (<R^2>) para as 10 amostras e represente graficamente em escala log-log -- log <R^2> x log t.  Ajuste a curva encontrada com uma lei de potência (alométrica).
+
+4. Faça um teste de hipóteses com o valor obtido para o expoente da lei de potência no ítem anterior e verifique a hipótese de que o caminhante execute um verdadeiro random walk (expoente igual a 1). 
+
+5. Verifique o teorema Central do Limite para a simulação realizada
