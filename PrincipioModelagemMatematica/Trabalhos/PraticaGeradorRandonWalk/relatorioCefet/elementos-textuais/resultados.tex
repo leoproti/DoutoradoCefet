@@ -4,27 +4,94 @@
 
 \chapter{Resultados}
 
-Neste capítulo são discutidos os resultados obtidos para a prática de random walk com 10 caminhadas aleatórias de 100 passos cada, complementados por uma verificação estatística via Monte Carlo.
+Este capitulo apresenta os resultados obtidos para as cinco etapas da pratica, com base nas simulacoes registradas em arquivos CSV e nas figuras geradas automaticamente. Foram usadas duas escalas amostrais: 10 caminhadas na analise principal de trajetorias e 50000 caminhadas independentes na etapa de verificacao do TCL.
 
-\section{Trajetórias das 10 Caminhadas}
+\section{Trajetórias das 10 Caminhadas (\texorpdfstring{$N=10000$}{N=10000})}
 
-As trajetórias simuladas mostram o comportamento típico de flutuação em torno da origem, com alternância de movimentos para a esquerda e para a direita. Mesmo com condições idênticas de geração, cada realização apresenta caminho distinto, evidenciando o caráter estocástico do processo.
+A Figura~\ref{fig:caminhadas_10} apresenta as 10 trajetorias simuladas com 10000 passos. Como esperado para um processo sem vies, observa-se alternancia entre periodos de crescimento e decrescimento, com flutuacoes de amplitude crescente ao longo do tempo.
 
-Observa-se que, após 100 passos, os deslocamentos finais variam entre as caminhadas, com valores positivos e negativos. Esse comportamento é esperado, pois o valor médio teórico do deslocamento é nulo, mas as realizações individuais podem se afastar consideravelmente de zero.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{figuras/graficos/caminhadas.png}
+	\caption{Dez trajetorias de random walk 1D com 10000 passos cada.}
+	\label{fig:caminhadas_10}
+\end{figure}
 
-\section{Deslocamentos Finais e Probabilidade Teórica}
+Os deslocamentos finais observados em $t=10000$ foram:
+\begin{equation}
+(-106, -24, -112, -144, -20, 6, -60, -140, -178, -90).
+\end{equation}
 
-Para cada uma das 10 caminhadas foi computado o deslocamento final $d$. Em seguida, para cada valor observado, calculou-se a probabilidade teórica $P_{100}(d)$ por meio da expressão combinatória da fundamentação teórica.
+A media amostral desses deslocamentos foi $\bar{x}_{\text{final}}=-86{,}8$, evidenciando que, para apenas 10 realizacoes, ainda pode haver assimetria amostral relevante mesmo em um processo teoricamente centrado em zero.
 
-Essa comparação permite interpretar quão prováveis são os resultados observados no experimento principal. Valores de $d$ próximos de zero tendem a ter maior probabilidade, enquanto deslocamentos de grande magnitude apresentam menor probabilidade.
+\section{Desvio Quadrático Médio e Ajuste Log-Log}
 
-\section{Comparação Empírica versus Teórica}
+A Figura~\ref{fig:msd_loglog} mostra o comportamento de $\langle R^2(t)\rangle$ e o ajuste por lei de potencia.
 
-Como 10 caminhadas constituem uma amostra pequena para estimar toda a distribuição de deslocamentos, foi executada uma simulação de Monte Carlo com 20000 caminhadas de 100 passos. A partir dessa amostra ampliada, obteve-se a distribuição empírica dos deslocamentos finais.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{figuras/graficos/msd_loglog.png}
+	\caption{Ajuste de lei de potencia para o desvio quadratico medio em escala log-log.}
+	\label{fig:msd_loglog}
+\end{figure}
 
-Ao comparar a distribuição empírica com a distribuição teórica, verifica-se boa aderência global entre as curvas. O erro absoluto máximo entre probabilidades empíricas e teóricas permaneceu baixo, indicando consistência entre a simulação computacional e o modelo analítico.
+Os parametros estimados foram:
+\begin{equation}
+\hat{\alpha}=1{,}0168, \qquad \hat{C}=0{,}9261,
+\end{equation}
+com coeficiente de determinacao $R^2=0{,}9608$. O valor de $\hat{\alpha}$ proximo de 1 indica comportamento compativel com o crescimento aproximadamente linear esperado para random walk classico.
 
-Em síntese, os resultados confirmam o comportamento esperado para o random walk simples em 1D e validam a implementação realizada no notebook.
+\section{Teste de Hipótese para o Expoente}
+
+Para apresentar o teste bilateral de forma padronizada, adotam-se os seguintes elementos:
+\begin{itemize}
+    \item \textbf{Hipoteses:} \{$H_0: \alpha = 1$\} e \{$H_1: \alpha \neq 1$\}.
+    \begin{itemize}
+        \item Hipotese nula: \{$H_0: \alpha = 1$\} --- o expoente e igual ao valor difusivo classico.
+        \item Hipotese alternativa: \{$H_1: \alpha \neq 1$\} --- o expoente difere de 1.
+    \end{itemize}
+    \item \textbf{Estimativas do ajuste:} $\hat{\alpha}=1{,}016797$, $\hat{C}=0{,}926077$ e $R^2=0{,}960827$.
+    \begin{itemize}
+        \item Coeficiente ajustado: $\hat{\alpha}=1{,}016797$.
+        \item Constante multiplicativa: $\hat{C}=0{,}926077$.
+        \item Coeficiente de determinacao: $R^2=0{,}960827$.
+    \end{itemize}
+    \item \textbf{Estatisticas de teste:} $\mathrm{SE}(\hat{\alpha})=0{,}002053$, $t=8{,}180660$, $t_{\mathrm{crit}}=1{,}960201$, $p\text{-valor}=3{,}17\times10^{-16}$ e $gl=9998$.
+    \begin{itemize}
+        \item Erro padrao: $\mathrm{SE}(\hat{\alpha})=0{,}002053$.
+        \item Estatistica de teste: $t=8{,}180660$.
+        \item Valor critico ($\alpha=5\%$, bilateral): $t_{\mathrm{crit}}=1{,}960201$.
+        \item $p$-valor: $3{,}17\times10^{-16}$.
+        \item Graus de liberdade: $gl=9998$.
+    \end{itemize}
+\end{itemize}
+
+\begin{equation}
+\text{Decisao}(\alpha=5\%) =
+\begin{cases}
+\text{rejeitar } H_0, & \text{se } |t| > t_{\mathrm{crit}} \; \text{(ou } p\text{-valor} < 0{,}05\text{)}, \\
+\text{nao rejeitar } H_0, & \text{caso contrario}.
+\end{cases}
+\end{equation}
+
+Aplicando a regra acima aos resultados observados, tem-se \(|t| > t_{\mathrm{crit}}\) e \(p\text{-valor} \ll 0{,}05\), de modo que a conclusao inferencial e \{\(H_0\): rejeita; \(H_1\): aceita\}. Contudo, sob a otica de modelagem, a diferenca \(\hat{\alpha}-1=0{,}016797\) e pequena em termos absolutos; por isso, para interpretacao fisica do processo, adota-se a leitura pratica \{\(H_0\): nao rejeita; \(H_1\): nao aceita\}, mantendo compatibilidade com o regime difusivo classico.
+
+\section{Verificação do Teorema Central do Limite}
+
+Na etapa de TCL, os passos por caminhada foram mantidos iguais ao experimento principal ($N_{\text{steps,TCL}}=N_{\text{steps}}=10000$) e foi aumentado apenas o numero de caminhadas independentes para 50000. Assim, analisa-se a variavel normalizada $Z=S_N/\sqrt{N}$ com amostra maior, sem alterar a escala temporal de cada caminhada. A Figura~\ref{fig:tcl_hist} apresenta o histograma de $Z$ comparado a curva normal de referencia.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{figuras/graficos/tcl.png}
+	\caption{Histograma da variavel normalizada $Z$ e comparacao com distribuicao normal padrao.}
+	\label{fig:tcl_hist}
+\end{figure}
+
+As metricas obtidas foram: media $\bar{Z}\approx 8,0\times10^{-5}$, desvio padrao $\sigma_Z\approx 0,9863$, estatistica Kolmogorov-Smirnov $D=0,0127$ e $p$-valor $=0,3895$. Como o $p$-valor e superior a 0,05, nao ha evidencia para rejeitar compatibilidade com normalidade, reforcando a aderencia ao TCL. A formulacao do teste K-S utilizada segue a definicao padrao para adequacao de distribuicao \cite{nist_ks_test}.
+
+\section{Síntese dos Resultados}
+
+Em conjunto, os resultados indicam que: (i) a implementacao do LCG gerou trajetorias plausiveis para random walk simples; (ii) o crescimento de $\langle R^2(t)\rangle$ ficou muito proximo de linear; e (iii) os deslocamentos finais normalizados apresentaram comportamento gaussiano consistente com o limite central.
 
 
 

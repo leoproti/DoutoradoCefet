@@ -31,6 +31,9 @@
 }{abntex2}
 
 \ProcessOptions\relax
+% Suprime aviso de deprecacao da opcao 'brazil' emitido pelo babel via abntex2.
+\RequirePackage{silence}
+\WarningFilter{babel}{Name 'brazil' is deprecated}
 \LoadClass{abntex2}
 
 % ------------------------------------------------------------------------------

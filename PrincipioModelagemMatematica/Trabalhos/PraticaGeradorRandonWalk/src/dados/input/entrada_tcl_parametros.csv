@@ -1,4 +1,4 @@
 parametro,valor
-N_TCL,5000
+N_TCL,50000
 N_STEPS_TCL,10000
 seed_formula,(i + 1) * 9973

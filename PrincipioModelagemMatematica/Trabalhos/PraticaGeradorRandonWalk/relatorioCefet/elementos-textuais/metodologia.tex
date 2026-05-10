@@ -3,46 +3,61 @@
 % ------------------------------------------------------------------------------
 \chapter{Metodologia}
 \label{chap_metodologia}
-Este capítulo descreve os procedimentos adotados para simular caminhadas aleatórias unidimensionais e comparar os resultados obtidos com a distribuição teórica do deslocamento final.
+Este capitulo descreve os procedimentos adotados para implementar o random walk com gerador congruencial, executar as simulacoes e realizar as analises estatisticas do roteiro da pratica.
 
 \section{Materiais Computacionais e Organização dos Dados}
 
-As simulações foram realizadas em Python, utilizando \texttt{numpy} para geração de amostras e operações vetorizadas, \texttt{math} para o cálculo combinatório e \texttt{matplotlib} para visualização gráfica.
+As simulacoes foram realizadas em Python, com uso de \texttt{numpy} para operacoes vetorizadas, \texttt{matplotlib} para visualizacao grafica e rotinas proprias para geracao pseudoaleatoria e ajuste estatistico.
 
-O experimento foi implementado em notebook Jupyter, disponível em \cite{github_random_walk}. O notebook está organizado para permitir reprodutibilidade completa dos resultados.
+O experimento foi implementado em notebook Jupyter, disponivel em \cite{github_random_walk}. Os parametros de entrada e as saidas numericas foram persistidos em arquivos CSV para garantir rastreabilidade e reprodutibilidade.
 
 \section{Configuração do Experimento}
 
-Foram definidos os seguintes parâmetros principais:
+Foram definidos os seguintes parametros principais para as 10 caminhadas iniciais:
 \begin{itemize}
     \item número de caminhadas: $10$;
-    \item número de passos por caminhada: $100$;
+    \item número de passos por caminhada: $10000$;
     \item posição inicial: $S_0=0$;
     \item probabilidade de passo à direita: $1/2$;
     \item probabilidade de passo à esquerda: $1/2$.
 \end{itemize}
 
-Cada caminhada é construída a partir de uma sequência de 100 variáveis em $\{-1,+1\}$, com distribuição equiprovável. A posição em cada instante é obtida por soma cumulativa dos passos.
+Para o LCG, foram utilizados os parametros:
+\begin{itemize}
+    \item $a = 1664525$;
+    \item $c = 1013904223$;
+    \item $m = 2^{32}$.
+\end{itemize}
+
+As sementes das 10 caminhadas foram definidas por multiplos de 12345, de modo a produzir trajetorias independentes dentro da estrategia adotada. Cada caminhada e construida a partir de uma sequencia de $10000$ variaveis em $\{-1,+1\}$, e a posicao em cada instante e obtida por soma cumulativa dos passos.
 
 \section{Procedimento Experimental}
 \label{sec_procedimento_experimental}
 
-O procedimento computacional foi dividido em duas partes:
+O procedimento computacional foi dividido em cinco etapas:
 \begin{enumerate}
-    \item \textbf{Simulação principal (10 caminhadas):} geração das 10 trajetórias com 100 passos cada, armazenamento das posições ao longo do tempo e obtenção dos deslocamentos finais.
-    \item \textbf{Validação estatística (Monte Carlo):} geração de um conjunto ampliado de caminhadas (20000 simulações) para estimar probabilidades empíricas de deslocamento e compará-las com $P_n(d)$ teórico.
+    \item \textbf{Geracao do random walk:} implementacao do LCG, normalizacao para $[0,1)$ e mapeamento para passos $\pm 1$.
+    \item \textbf{Simulacao de 10 trajetorias:} execucao com $10000$ passos e armazenamento da serie temporal de cada caminhada.
+    \item \textbf{Calculo de $\langle R^2(t)\rangle$:} obtencao do desvio quadratico medio em funcao do tempo e ajuste de lei de potencia em escala log-log.
+    \item \textbf{Teste de hipotese para $\alpha$:} verificacao de $H_0: \alpha=1$ por estatistica t bilateral, com nivel de significancia de 5\%.
+    \item \textbf{Verificacao do TCL:} geracao de $50000$ caminhadas adicionais com $10000$ passos, analise da variavel normalizada $Z=S_n/\sqrt{n}$ e comparacao com distribuicao normal padrao.
 \end{enumerate}
 
-Para a comparação empírico-teórica, foi calculada a frequência relativa de cada deslocamento final observado e, nos mesmos pontos, a probabilidade teórica via coeficiente binomial.
+No teste de hipotese, a estatistica calculada foi
+\begin{equation}
+t = \frac{\hat{\alpha}-1}{\text{SE}(\hat{\alpha})},
+\end{equation}
+comparada ao valor critico da distribuicao t para o numero de pontos usados no ajuste.
 
 \section{Métricas e Produtos Gerados}
 
 Foram produzidos os seguintes resultados:
 \begin{itemize}
-    \item gráfico das 10 trajetórias em função do número de passos;
-    \item lista dos deslocamentos finais das 10 caminhadas;
-    \item gráfico comparativo entre distribuição empírica (Monte Carlo) e distribuição teórica;
-    \item erro absoluto máximo entre probabilidades empíricas e teóricas, como medida sintética de aderência.
+    \item grafico das 10 trajetorias em funcao do numero de passos;
+    \item grafico log-log de $\langle R^2(t)\rangle$ com ajuste de potencia;
+    \item estimativas numericas de $\hat{\alpha}$, $\hat{C}$ e coeficiente de determinacao do ajuste;
+    \item resultado do teste de hipotese para $\alpha$;
+    \item histograma de $Z$ e metricas de aderencia a normalidade para verificacao do TCL.
 \end{itemize}
 
-A metodologia adotada permite verificar, de forma visual e quantitativa, a consistência entre simulação e teoria para o random walk simples em 1D.
+A metodologia adotada combina evidencia visual, ajuste paramétrico e inferencia estatistica, permitindo avaliar de forma consistente se a simulacao implementada reproduz o comportamento esperado para random walk simples em 1D.

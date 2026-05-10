@@ -5,7 +5,29 @@
 \chapter{Fundamentação Teórica}
 \label{chap_fundamentacao_teorica}
 
-Esta seção apresenta os conceitos probabilísticos necessários para a prática de random walk unidimensional, destacando a formulação do modelo, a distribuição do deslocamento final e a conexão com a distribuição binomial \cite{wiki_random_walk,wiki_binomial}.
+Este capitulo apresenta os fundamentos matematicos necessarios para interpretar os resultados da pratica: geracao pseudoaleatoria por LCG, random walk simples em 1D, crescimento do desvio quadratico medio, ajuste em escala log-log e verificacao assintotica via Teorema Central do Limite (TCL).
+
+\section{Gerador Linear Congruencial (LCG)}
+
+O gerador linear congruencial e definido pela recorrencia
+\begin{equation}
+x_{n+1} = (a x_n + c) \bmod m,
+\end{equation}
+com $x_n$ inteiro e parametros $a$, $c$ e $m$ escolhidos para favorecer periodo longo e boa distribuicao estatistica em aplicacoes de simulacao. A sequencia uniforme utilizada no algoritmo e obtida por
+\begin{equation}
+u_n = \frac{x_n}{m}, \quad u_n \in [0,1).
+\end{equation}
+
+Essa formulacao e o criterio classico de periodo maximo (teorema de Hull-Dobell) sao referencias padrao para implementacoes de LCG \cite{hull_dobell_1962}.
+
+Na pratica, cada $u_n$ e convertido em passo do caminhante por regra de limiar:
+\begin{equation}
+X_n =
+\begin{cases}
++1, & u_n < 0{,}5, \\
+-1, & u_n \ge 0{,}5.
+\end{cases}
+\end{equation}
 
 \section{Random Walk Simples em 1D}
 
@@ -18,9 +40,10 @@ em que as variáveis aleatórias $X_i$ são independentes e identicamente distri
 P(X_i=1)=P(X_i=-1)=\frac{1}{2}.
 \end{equation}
 
-Assumindo posição inicial $S_0=0$, cada passo altera a posição em uma unidade para a direita ($+1$) ou para a esquerda ($-1$).
+Assumindo posição inicial $S_0=0$, cada passo altera a posição em uma unidade para a direita ($+1$) ou para a esquerda ($-1$), com media teorica nula e variancia unitária por passo.
+Essa caracterizacao coincide com o random walk simples em 1D descrito na literatura \cite{mathworld_random_walk_1d}.
 
-\section{Probabilidade de Deslocamento Final}
+\section{Distribuição do Deslocamento Final}
 
 Para que o deslocamento final seja $d$ após $n$ passos, é necessário que o número de passos positivos seja
 \begin{equation}
@@ -34,6 +57,7 @@ P_n(d) = \frac{1}{2^n}\binom{n}{\frac{n+d}{2}}.
 \end{equation}
 
 A Equação~\ref{eq:prob_teorica_random_walk} é válida quando $n+d$ é par e $|d|\le n$; caso contrário, $P_n(d)=0$.
+Essa expressao decorre diretamente da contagem combinatoria associada a distribuicao binomial \cite{mathworld_random_walk_1d,mathworld_binomial_distribution}.
 
 \section{Relação com a Distribuição Binomial}
 
@@ -48,8 +72,57 @@ S_n = 2K - n.
 
 Essa relação permite interpretar o random walk como uma transformação linear da variável binomial, justificando o uso da fórmula combinatória para as probabilidades de deslocamento.
 
+\section{Desvio Quadrático Médio e Lei de Potência}
+
+Uma grandeza central para caracterizar a espalhabilidade da caminhada e o desvio quadratico medio:
+\begin{equation}
+\langle R^2(t) \rangle = \frac{1}{N}\sum_{i=1}^{N} x_i(t)^2,
+\end{equation}
+em que $x_i(t)$ e a posicao da $i$-esima caminhada no instante $t$.
+
+Para random walk classico sem vies em 1D, espera-se crescimento linear com o tempo,
+\begin{equation}
+\langle R^2(t) \rangle \propto t,
+\end{equation}
+ou, de forma mais geral, uma lei de potencia
+\begin{equation}
+\langle R^2(t) \rangle = C t^{\alpha}.
+\end{equation}
+
+Aplicando logaritmo,
+\begin{equation}
+\log\langle R^2(t) \rangle = \alpha\log t + \log C,
+\end{equation}
+o que permite estimar $\alpha$ por regressao linear em escala log-log.
+O procedimento de ajuste por minimos quadrados lineares e uma abordagem classica para estimar parametros em modelos lineares nos parametros \cite{nist_linear_least_squares}.
+
+\section{Teste de Hipótese para o Expoente}
+
+Para avaliar se os dados sao compativeis com random walk verdadeiro, considera-se:
+\begin{equation}
+H_0: \alpha = 1
+\quad \text{versus} \quad
+H_1: \alpha \ne 1.
+\end{equation}
+
+Com estimativa $\hat{\alpha}$ e erro padrao $\text{SE}(\hat{\alpha})$, a estatistica de teste e
+\begin{equation}
+t = \frac{\hat{\alpha}-1}{\text{SE}(\hat{\alpha})}.
+\end{equation}
+Sob $H_0$, essa estatistica e comparada com a distribuicao t de Student com os graus de liberdade adequados.
+A regra de decisao bilateral por comparacao com valor critico t e descrita em tabelas e procedimentos estatisticos padrao \cite{nist_t_critical_values}.
+
+\section{Teorema Central do Limite}
+
+Para numero grande de passos, o TCL implica que a variavel normalizada
+\begin{equation}
+Z = \frac{S_n}{\sqrt{n}}
+\end{equation}
+converge em distribuicao para uma normal padrao $\mathcal{N}(0,1)$. Em termos praticos, isso significa que o histograma dos deslocamentos finais (devidamente normalizados) tende a uma curva gaussiana conforme aumenta o numero de realizacoes independentes.
+Essa convergencia e a forma classica do TCL para variaveis independentes e identicamente distribuidas com variancia finita \cite{mathworld_central_limit_theorem}.
+
 \section{Interpretação para a Prática}
 
-Com $n=100$ passos, os deslocamentos possíveis são inteiros pares no intervalo $[-100,100]$. Em poucas trajetórias (como as 10 caminhadas solicitadas), a distribuição empírica pode apresentar flutuações visíveis. Ao aumentar o número de simulações, a distribuição observada tende a se aproximar da distribuição teórica dada na Equação~\ref{eq:prob_teorica_random_walk}, o que fornece uma validação prática do modelo.
+Com $n=10000$ passos, as trajetorias individuais exibem flutuacoes expressivas, mas as estatisticas agregadas (como $\langle R^2(t)\rangle$ e distribuicao de $Z$) permitem confrontar simulacao e teoria de forma robusta. Essa complementaridade entre observacao de trajetorias, ajuste paramétrico e testes estatisticos sustenta a validacao do modelo implementado.
 
 
