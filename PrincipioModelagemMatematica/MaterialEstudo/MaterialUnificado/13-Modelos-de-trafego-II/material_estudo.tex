@@ -1,0 +1,97 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Modelos de Tr\'afego II}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 13}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Compreender ondas de choque em tr\'afego, modelos de segunda ordem e simula\c{c}\~oes discretas (Nagel-Schreckenberg).
+
+\section*{Ondas de Choque}
+
+Quando h\'a descontinuidade nas condi\c{c}\~oes de tr\'afego (ex.: sinal vermelho), forma-se uma \textbf{onda de choque}.
+
+\subsection*{Condi\c{c}\~ao de Rankine-Hugoniot}
+A velocidade da onda de choque entre dois estados $(\rho_L, q_L)$ e $(\rho_R, q_R)$ \'e:
+\[
+w = \frac{q_R - q_L}{\rho_R - \rho_L} = \frac{\Delta q}{\Delta\rho}.
+\]
+\begin{itemize}
+  \item $w > 0$: choque propaga no sentido do tr\'afego.
+  \item $w < 0$: choque propaga contra o tr\'afego (fila de espera se propagando para tr\'as).
+\end{itemize}
+
+\subsection*{Modelo de Nagel-Schreckenberg (NaSch)}
+Modelo celular discreto para simula\c{c}\~ao de tr\'afego. Em cada passo de tempo:
+\begin{enumerate}
+  \item \textbf{Acelera\c{c}\~ao:} $v_i \leftarrow \min(v_i+1, v_\text{max})$.
+  \item \textbf{Freada (seguran\c{c}a):} $v_i \leftarrow \min(v_i, d_i-1)$, onde $d_i$ = dist\^ancia ao pr\'oximo ve\'iculo.
+  \item \textbf{Aleatoriedade:} com probabilidade $p$, $v_i \leftarrow \max(v_i-1, 0)$ (motoristas hesitam).
+  \item \textbf{Movimento:} $x_i \leftarrow x_i + v_i$.
+\end{enumerate}
+A aleatoriedade $p$ \'e crucial para reproduzir congestionamentos espont\^aneos (\textit{phantom traffic jams}).
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Onda de choque em sinal vermelho}
+Via livre: $\rho_L = 20$ ve\'ic/km, $q_L = 1500$ ve\'ic/h.
+Ap\'os sinal: $\rho_R = 200$ ve\'ic/km (congestionamento), $q_R = 0$.
+\[
+w = \frac{0 - 1500}{200 - 20} = \frac{-1500}{180} \approx -8{,}3\,\text{km/h}.
+\]
+A onda de choque propaga a $-8{,}3$ km/h (para tr\'as), formando fila de espera.
+
+\subsection*{Exemplo 2 --- NaSch: um passo}
+3 carros em via circular de 10 c\'elulas, $v_\text{max}=2$, $p=0$.
+Estado inicial: carros nas c\'elulas 1, 4, 7 com velocidades $v = (1, 1, 1)$.
+\begin{itemize}
+  \item Dist\^ancias: $d_1=3-1=2$, $d_2=3$, $d_3=3$.
+  \item Acelera: $v=(2, 2, 2)$.
+  \item Freia: $v=(\min(2,2-1), \min(2,3-1), \min(2,3-1)) = (1, 2, 2)$.
+  \item Move: novas posi\c{c}\~oes $2, 6, 9$.
+\end{itemize}
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Rankine-Hugoniot)} Usando Greenshields com $v_f=100$ km/h, $\rho_\text{max}=200$ ve\'ic/km, calcule a velocidade de onda de choque entre:
+    \begin{enumerate}
+      \item[$a.$] $\rho_L=40$, $\rho_R=160$.
+      \item[$b.$] $\rho_L=10$, $\rho_R=100$.
+    \end{enumerate}
+  
+  \item \textbf{(Fila)} Na situa\c{c}\~ao do Exemplo 1, se o sinal fica vermelho por 2 minutos, at\'e que dist\^ancia da fila se propaga?
+  
+  \item \textbf{(NaSch)} Simule 3 passos do NaSch para 4 carros em via circular de 12 c\'elulas, $v_\text{max}=3$, $p=0$. Estado inicial: posi\c{c}\~oes 1, 4, 7, 10; velocidades 1, 1, 1, 1.
+  
+  \item \textbf{(Aleatoriedade)} No NaSch, o que acontece com o fluxo quando $p=0$? E quando $p=1$? Qual valor de $p$ representa melhor a realidade?
+  
+  \item \textbf{(Phantom jam)} Explique o mecanismo de uma congestionamento espont\^aneo (\textit{phantom traffic jam}) usando o NaSch. Por que a aleatoriedade \'e essencial?
+  
+  \item \textbf{(Diagrama NaSch)} No NaSch com $v_\text{max}=5$ e $p=0{,}1$, o diagrama fundamental \'e medido por simula\c{c}\~ao. Em que densidade voc\^e esperaria o fluxo m\'aximo? Compare com Greenshields.
+  
+  \item \textbf{(Engenharia)} Uma autoestrada tem capacidade de 2000 ve\'ic/h. Num acidente, uma faixa \'e bloqueada e a capacidade cai para 1400 ve\'ic/h. Se o fluxo de chegada \'e 1800 ve\'ic/h, calcule a taxa de crescimento da fila e estime o tempo para a fila atingir 5 km.
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item Choque: $w = \Delta q / \Delta\rho$ (Rankine-Hugoniot); $w<0 \Rightarrow$ fila propaga para tr\'as.
+  \item NaSch: 4 etapas (acelera, freia, aleatoriedade, move).
+  \item Aleatoriedade $\Rightarrow$ congestionamentos espont\^aneos.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Nagel, K.; Schreckenberg, M.\ \textit{J.\ Phys.\ I France}, 2, 2221, 1992.
+  \item Chowdhury, D.\ et al.\ \textit{Physics Reports}, 329, 199--329, 2000.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

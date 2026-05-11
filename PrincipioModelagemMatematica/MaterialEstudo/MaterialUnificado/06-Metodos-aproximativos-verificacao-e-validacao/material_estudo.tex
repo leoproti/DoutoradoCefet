@@ -1,0 +1,104 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: M\'etodos Aproximativos, Verifica\c{c}\~ao e Valida\c{c}\~ao}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 06}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Aprender a fazer estimativas de ordem de grandeza (problemas de Fermi), aplicar lineariza\c{c}\~ao e compreender o processo de V\&V em modelagem cient\'ifica.
+
+\section*{Problemas de Fermi --- Estimativa por Ordem de Grandeza}
+Enrico Fermi ficou famoso por estimar quantidades desconhecidas a partir de informa\c{c}\~oes b\'asicas e racioc\'inio l\'ogico. O objetivo n\~ao \'e precis\~ao, mas a \textbf{ordem de grandeza} correta (fator 10).
+
+\textbf{Estrat\'egia:}
+\begin{enumerate}
+  \item Decomponha o problema em sub-perguntas mais f\'aceis.
+  \item Estime cada fator (usando senso comum e unidades).
+  \item Multiplique/divida e arredonde para pot\^encias de 10.
+\end{enumerate}
+
+\subsection*{Lineariza\c{c}\~ao}
+Para uma fun\c{c}\~ao n\~ao-linear $f(x)$ em torno de $x_0$:
+\[
+f(x) \approx f(x_0) + f'(x_0)(x-x_0).
+\]
+\textbf{Aplica\c{c}\~ao:} p\^endulo n\~ao-linear $\ddot\theta = -(g/L)\sin\theta$.
+Para $\theta$ pequeno, $\sin\theta \approx \theta$, e o modelo se torna:
+\[
+\ddot\theta = -\frac{g}{L}\theta \quad \Rightarrow \quad T = 2\pi\sqrt{L/g}.
+\]
+
+\subsection*{Verifica\c{c}\~ao vs.\ Valida\c{c}\~ao (V\&V)}
+\begin{itemize}
+  \item \textbf{Verifica\c{c}\~ao:} ``Resolvi o modelo corretamente?'' --- compara\c{c}\~ao com solu\c{c}\~oes anal\'iticas, testes de convers\~ao de malha.
+  \item \textbf{Valida\c{c}\~ao:} ``O modelo representa o fen\^omeno real?'' --- compara\c{c}\~ao com dados experimentais.
+\end{itemize}
+Um modelo pode ser verificado (sem bugs) mas inv\'alido (hip\'oteses erradas).
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Fermi: Quantos afinadores de piano em Chicago?}
+\begin{itemize}
+  \item Popula\c{c}\~ao de Chicago: $\sim3 \times 10^6$ habitantes.
+  \item Raz\~ao pianos/hab.: $1$ piano por $20$ hab. $\Rightarrow$ $1{,}5 \times 10^5$ pianos.
+  \item Afina\c{c}\~oes/piano/ano: $\sim 1$.
+  \item Um afinador faz $\sim 4$ afina\c{c}\~oes/dia $\times 250$ dias $= 1000$/ano.
+  \item N\'umero de afinadores: $1{,}5 \times 10^5 / 10^3 = 150$.
+\end{itemize}
+Resposta real: $\approx 100$--$200$.
+
+\subsection*{Exemplo 2 --- Lineariza\c{c}\~ao de $\sqrt{1+x}$}
+Para $x$ pequeno: $f(x) = (1+x)^{1/2} \approx 1 + x/2$.
+Com $x=0{,}1$: exato $= 1{,}0488$; aproxima\c{c}\~ao $= 1{,}05$. Erro $< 0{,}2\%$.
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Fermi)} Estime quantos fios de cabelo uma pessoa perde por ano. (Use: n\'umero total de fios, tempo de vida de cada fio.)
+  
+  \item \textbf{(Fermi)} Quantos bal\~oes de g\'as s\~ao necess\'arios para levantar uma pessoa de 70 kg? (Use: empuxo do bal\~ao = volume $\times$ ($\rho_\text{ar} - \rho_\text{He}$) $\times g$, com bal\~ao de 30 cm de di\^ametro.)
+  
+  \item \textbf{(Fermi)} Em quantos segundos o sol converte massa em energia? (Use $E = mc^2$ e pot\^encia solar $\approx 3{,}8 \times 10^{26}$ W.)
+  
+  \item \textbf{(Lineariza\c{c}\~ao)} Linearize cada fun\c{c}\~ao em torno do ponto indicado:
+    \begin{enumerate}
+      \item[$a.$] $f(x) = e^x$ em torno de $x_0 = 0$.
+      \item[$b.$] $f(x) = \ln x$ em torno de $x_0 = 1$.
+      \item[$c.$] $f(x) = \sin x$ em torno de $x_0 = \pi/4$.
+      \item[$d.$] $f(x) = 1/(1+x)$ em torno de $x_0 = 0$.
+    \end{enumerate}
+    Para cada caso, calcule o erro percentual em $x=x_0 + 0{,}1$.
+  
+  \item \textbf{(P\^endulo)} O per\'iodo exato do p\^endulo \'e $T_\text{exato} = 2\pi\sqrt{L/g}\big(1 + \theta_0^2/16 + \ldots\big)$. Para $\theta_0 = 30^\circ = \pi/6$, calcule o erro percentual da aproxima\c{c}\~ao linear $T \approx 2\pi\sqrt{L/g}$.
+  
+  \item \textbf{(V\&V)} Um programa de din\^amica de flu\'idos calcula a press\~ao num tubo. Descreva:
+    \begin{enumerate}
+      \item[$a.$] Um teste de verifica\c{c}\~ao (como saber se o c\'odigo est\'a certo?).
+      \item[$b.$] Um teste de valida\c{c}\~ao (como saber se o modelo \'e adequado?).
+    \end{enumerate}
+  
+  \item \textbf{(Ordem de grandeza)} A dist\^ancia Terra-Lua \'e $\approx 384\,000$ km. Uma minhoca percorre $\approx 5$ m/dia. Em quantos anos uma minhoca percorreria a dist\^ancia Terra-Lua? (Resposta como pot\^encia de 10.)
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item Fermi: decomponha, estime, multiplique --- acertar a ordem de grandeza j\'a \'e \'util.
+  \item Lineariza\c{c}\~ao: $f(x) \approx f(x_0) + f'(x_0)(x-x_0)$ para $x$ pr\'oximo de $x_0$.
+  \item V\&V: verifica\c{c}\~ao = c\'odigo certo; valida\c{c}\~ao = modelo certo.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Weinstein, L.; Adam, J.\ \textit{Guesstimation}. Princeton UP, 2008.
+  \item Roache, P.\ J.\ \textit{Verification and Validation in Computational Science and Engineering}. Hermosa, 1998.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,101 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Expans\~ao em S\'eries de Taylor}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 07}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Dominar a expans\~ao em s\'eries de Taylor, us\'a-la para aproximar fun\c{c}\~oes e equa\c{c}\~oes, e quantificar o erro de truncamento.
+
+\section*{Conceitos Fundamentais}
+
+\subsection*{S\'erie de Taylor}
+Para $f$ anal\'itica em torno de $a$:
+\[
+f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \cdots
+\]
+\textbf{Maclaurin} ($a=0$): $f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(0)}{n!}x^n$.
+
+\subsection*{S\'eries Fundamentais (decorar!)}
+\begin{align*}
+e^x &= 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \cdots \quad (\text{conv.\ para todo } x) \\
+\sin x &= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots \\
+\cos x &= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots \\
+\ln(1+x) &= x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots \quad (|x| \le 1) \\
+\frac{1}{1-x} &= 1 + x + x^2 + x^3 + \cdots \quad (|x| < 1)
+\end{align*}
+
+\subsection*{Erro de Truncamento}
+Ao usar $n+1$ termos, o erro (resto de Lagrange) \'e:
+\[
+|R_n(x)| = \left|\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}\right| \le \frac{M\,|x-a|^{n+1}}{(n+1)!},
+\]
+onde $M = \max|f^{(n+1)}|$ no intervalo. Quanto mais termos, menor o erro.
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Aproximando $e^{0{,}5}$}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Termos & Aproxima\c{c}\~ao & Erro relativo \\ \hline
+1 & $1$ & $39{,}3\%$ \\ \hline
+2 & $1 + 0{,}5 = 1{,}5$ & $9{,}0\%$ \\ \hline
+3 & $1{,}5 + 0{,}125 = 1{,}625$ & $1{,}5\%$ \\ \hline
+4 & $1{,}625 + 0{,}0208 = 1{,}6458$ & $0{,}17\%$ \\ \hline
+Exato & $e^{0{,}5} = 1{,}6487\ldots$ & --- \\ \hline
+\end{tabular}
+\end{center}
+Com apenas 4 termos j\'a se t\^em 3 casas decimais corretas.
+
+\subsection*{Exemplo 2 --- F\'ormula de Euler}
+De $e^{i\theta} = \cos\theta + i\sin\theta$ (substituindo $x = i\theta$ na s\'erie de $e^x$):
+\[
+e^{i\pi} = \cos\pi + i\sin\pi = -1 + 0 = -1 \quad \Rightarrow \quad e^{i\pi}+1=0.
+\]
+
+\subsection*{Exemplo 3 --- Equa\c{c}\~ao do p\^endulo linearizada}
+$\ddot\theta = -(g/L)\sin\theta$. Para $|\theta| < 0{,}3$ rad: $\sin\theta \approx \theta - \theta^3/6$.
+Usando apenas o termo linear: $\ddot\theta \approx -(g/L)\theta$ $\Rightarrow$ oscila\c{c}\~ao harm\^onica com $T = 2\pi\sqrt{L/g}$.
+Erro do per\'iodo para $\theta_0=30^\circ$: $\approx 1{,}7\%$.
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(S\'eries b\'asicas)} Derive as s\'eries de Maclaurin de $e^x$ e $\sin x$ a partir da defini\c{c}\~ao ($f^{(n)}(0)/n!$).
+  
+  \item \textbf{(Aproxima\c{c}\~ao)} Calcule $\sin(10^\circ)$ usando 1, 2 e 3 termos da s\'erie. Compare com o valor exato ($\sin 10^\circ \approx 0{,}1736$). ($10^\circ = \pi/18 \approx 0{,}1745$ rad.)
+  
+  \item \textbf{(Raio de converg\^encia)} Usando o teste de d'Alembert $R = \lim_{n\to\infty}|a_n/a_{n+1}|$, determine o raio de converg\^encia de $\ln(1+x) = \sum_{n=1}^\infty (-1)^{n+1}x^n/n$.
+  
+  \item \textbf{(Erro)} Quantos termos s\~ao necess\'arios para aproximar $e^1$ com erro $< 10^{-6}$? Use a cota do erro $|R_n| \le e/(n+1)!$.
+  
+  \item \textbf{(Euler)} Use a f\'ormula de Euler $e^{i\theta} = \cos\theta + i\sin\theta$ para derivar: (a) $\cos\theta = (e^{i\theta}+e^{-i\theta})/2$; (b) $\sin\theta = (e^{i\theta}-e^{-i\theta})/(2i)$; (c) $\cos^2\theta + \sin^2\theta = 1$.
+  
+  \item \textbf{(Lineariza\c{c}\~ao)} Expanda $(1+x)^{1/2}$ at\'e segunda ordem em $x$ e use para calcular $\sqrt{1{,}04}$ e $\sqrt{1{,}09}$. Compare com os valores exatos.
+  
+  \item \textbf{(Método num\'erico)} A f\'ormula da derivada num\'erica \'e $f'(x) \approx [f(x+h) - f(x)]/h$. Use a expans\~ao de Taylor de $f(x+h)$ para mostrar que o erro desta aproxima\c{c}\~ao \'e $O(h)$. Mostre tamb\'em que a f\'ormula central $f'(x) \approx [f(x+h)-f(x-h)]/(2h)$ tem erro $O(h^2)$.
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item Taylor: $f(x) = \sum f^{(n)}(a)(x-a)^n/n!$. Maclaurin: $a=0$.
+  \item S\'eries-chave: $e^x$, $\sin x$, $\cos x$, $\ln(1+x)$, $1/(1-x)$.
+  \item Erro $\propto |x-a|^{n+1}/(n+1)!$: cresce com a dist\^ancia e decresce com mais termos.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Stewart, J.\ \textit{C\'alculo}. Cengage Learning, 2016.
+  \item Press, W.\ H.\ et al.\ \textit{Numerical Recipes}. Cambridge UP, 2007.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

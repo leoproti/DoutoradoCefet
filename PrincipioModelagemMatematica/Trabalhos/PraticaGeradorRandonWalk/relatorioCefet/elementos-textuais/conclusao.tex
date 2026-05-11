@@ -1,0 +1,27 @@
+\vspace{1em}
+% ------------------------------------------------------------------------------
+% Conclusão
+% ------------------------------------------------------------------------------
+
+
+\chapter{Conclusão}
+\label{chap_conclusao}
+
+Os resultados obtidos indicam que a implementacao desenvolvida atendeu ao objetivo central da pratica: reproduzir computacionalmente um random walk 1D e avaliar seu comportamento por meio de analise estatistica.
+
+As 10 trajetorias com 10000 passos evidenciaram o caracter estocastico esperado e permitiram calcular o desvio quadratico medio ao longo do tempo. O ajuste log-log forneceu $\hat{\alpha}=1{,}0168$, valor muito proximo do regime difusivo teorico ($\alpha=1$), com boa qualidade de ajuste ($R^2=0{,}9608$).
+
+No teste formal de hipotese para $\alpha$, a alta precisao numerica levou a rejeicao estatistica de $H_0: \alpha=1$ ao nivel de 5\%. Essa conclusao inferencial nao contradiz a interpretacao fisica do experimento: a diferenca absoluta encontrada para o expoente e pequena e permanece compativel, em termos praticos, com um comportamento difusivo quase linear no intervalo analisado.
+
+A verificacao do Teorema Central do Limite com 50000 realizacoes independentes reforcou a coerencia do modelo, com variavel normalizada apresentando media aproximadamente nula, desvio padrao proximo de 1 e ausencia de evidencia de nao normalidade pelo teste de Kolmogorov-Smirnov.
+
+Conclui-se, portanto, que a pratica atingiu os objetivos de:
+\begin{itemize}
+    \item implementar um gerador congruencial e utilizá-lo em simulacao de random walk;
+    \item quantificar o crescimento de $\langle R^2(t)\rangle$ por ajuste de lei de potencia;
+    \item realizar inferencia estatistica sobre o expoente de escala;
+    \item verificar numericamente a previsao do TCL para deslocamentos finais normalizados.
+\end{itemize}
+
+Como desdobramento natural deste estudo, recomenda-se investigar random walks com vies ($p\neq 1/2$), caminhadas em duas dimensoes, a influencia de diferentes geradores pseudoaleatorios e estatisticas de primeira passagem.
+

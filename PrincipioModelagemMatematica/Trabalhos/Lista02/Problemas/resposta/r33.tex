@@ -1,0 +1,20 @@
+\textbf{Solução:}
+
+Como $r \gg a$, a razão $a/r$ é muito pequena. Colocando $r^2$ em evidência:
+\[
+f(r) = \sqrt{r^2\!\left(1 + \frac{a^2}{r^2}\right)} = r\left(1 + \frac{a^2}{r^2}\right)^{1/2}.
+\]
+
+Aplicando a expansão binomial $(1+x)^{1/2} = 1 + \dfrac{1}{2}x - \dfrac{1}{8}x^2 + \cdots$,
+com $x = \dfrac{a^2}{r^2} \ll 1$:
+\[
+f(r) = r\left(1 + \frac{1}{2}\frac{a^2}{r^2} - \frac{1}{8}\frac{a^4}{r^4} + \cdots\right)
+      = r + \frac{a^2}{2r} - \frac{a^4}{8r^3} + \cdots
+\]
+
+Para $r \gg a$, o termo de segunda ordem $a^4/(8r^3)$ é desprezível em relação ao termo de primeira ordem $a^2/(2r)$. A \textbf{aproximação de campo distante} de primeira ordem é, portanto:
+\[
+f(r) \approx r + \frac{a^2}{2r}.
+\]
+
+O erro relativo desta aproximação é da ordem de $(a/r)^2 \ll 1$.

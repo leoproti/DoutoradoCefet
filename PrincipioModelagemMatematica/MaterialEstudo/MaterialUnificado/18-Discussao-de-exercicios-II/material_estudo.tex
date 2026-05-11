@@ -1,0 +1,78 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Discuss\~ao de Exerc\'icios II}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 18}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Integrar os t\'opicos estoc\'asticos (Unidades 16--17): equa\c{c}\~oes de Langevin, Fokker-Planck e cadeias de Markov em problemas realistas.
+
+\section*{Problemas Integrados}
+
+\subsection*{E1 --- Ornstein-Uhlenbeck: precifica\c{c}\~ao de commodities}
+O pre\c{c}o de uma commodity reverte \`a m\'edia: $dP = \theta(\mu - P)\,dt + \sigma\,dW$.
+\begin{enumerate}
+  \item[$a.$] Interprete cada par\^ametro ($\theta$, $\mu$, $\sigma$).
+  \item[$b.$] Escreva a equa\c{c}\~ao de Fokker-Planck para $p(P,t)$.
+  \item[$c.$] Qual a distribui\c{c}\~ao estacion\'aria? (Dica: Gaussiana com m\'edia $\mu$ e vari\^ancia $\sigma^2/(2\theta)$.)
+  \item[$d.$] Para $\mu=100$, $\theta=0{,}5$, $\sigma=10$: calcule a vari\^ancia estacion\'aria e o intervalo de 95\%.
+\end{enumerate}
+
+\subsection*{E2 --- SIR estoc\'astico como cadeia de Markov}
+Numa popula\c{c}\~ao de $N=10$ indiv\'iduos, o estado \'e $(S, I)$ com $R = N-S-I$.
+Transi\c{c}\~oes poss\'iveis em $\Delta t$:
+\begin{itemize}
+  \item Infec\c{c}\~ao: $(S, I) \to (S-1, I+1)$ com taxa $\beta SI/N$.
+  \item Recupera\c{c}\~ao: $(S, I) \to (S, I-1)$ com taxa $\gamma I$.
+\end{itemize}
+\begin{enumerate}
+  \item[$a.$] Por que $I=0$ \'e um estado absorvente?
+  \item[$b.$] Para $\beta=0{,}3$ e $\gamma=0{,}1$, calcule $\mathcal{R}_0 = \beta/\gamma$. A epidemia se propaga?
+  \item[$c.$] Liste os estados poss\'iveis se $I(0)=1$, $S(0)=9$.
+\end{enumerate}
+
+\subsection*{E3 --- Processo de Poisson para chegadas em banco}
+Clientes chegam ao banco como processo de Poisson com taxa $\lambda = 3$ clientes/min.
+\begin{enumerate}
+  \item[$a.$] Qual a probabilidade de 0 clientes em 1 min? E de 5 clientes?
+  \item[$b.$] Qual o n\'umero esperado de clientes em 10 min?
+  \item[$c.$] Qual a distribui\c{c}\~ao do tempo at\'e o pr\'oximo cliente? (Exponencial com par\^ametro $\lambda$.)
+\end{enumerate}
+
+\section*{Exerc\'icios de Revis\~ao}
+
+\begin{enumerate}
+  \item A equa\c{c}\~ao de Fokker-Planck para $dX = -\alpha X\,dt + \sigma\,dW$ \'e:
+  \[
+  \partial_t p = \alpha\partial_x(xp) + \frac{\sigma^2}{2}\partial_{xx}p.
+  \]
+  Verifique que $p^*(x) \propto \exp(-\alpha x^2/\sigma^2)$ \'e uma solu\c{c}\~ao estacion\'aria.
+  
+  \item Para a cadeia de Markov de 3 estados com matriz do exerc\'icio D3 (unidade 17), simule 5 passos partindo do estado 1.
+  
+  \item Explique com palavras: qual a diferen\c{c}a entre a distribui\c{c}\~ao estacion\'aria de uma cadeia de Markov e a distribui\c{c}\~ao de equil\'ibrio da equa\c{c}\~ao de Fokker-Planck?
+  
+  \item Um processo de nascimento-morte tem taxa de nascimento $\lambda$ e morte $\mu$. Se $\lambda = \mu$, a popula\c{c}\~ao esperada \'e constante, mas a vari\^ancia cresce com $t$. O que isso implica para previs\~oes de longo prazo?
+  
+  \item Na deriva gen\'etica ($N=100$, $p_0=0{,}5$): ap\'os $t$ gera\c{c}\~oes, $\text{Var}[p_t] \approx p_0(1-p_0)t/N$. Ap\'os quantas gera\c{c}\~oes a vari\^ancia atinge $0{,}1$?
+\end{enumerate}
+
+\section*{Gabarito Parcial}
+\textbf{E1d:} $\text{Var}^* = 10^2/(2\times0{,}5) = 100$; IC 95\%: $[100-1{,}96\times10, 100+1{,}96\times10] = [80{,}4, 119{,}6]$.\\
+\textbf{E3a:} $P(X=0) = e^{-3} \approx 0{,}050$; $P(X=5) = e^{-3}3^5/120 \approx 0{,}101$.\\
+\textbf{Rev.\ 5:} $t = 0{,}1 \times 100 / (0{,}5\times0{,}5) = 40$ gera\c{c}\~oes.
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Material das Unidades 16--17.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

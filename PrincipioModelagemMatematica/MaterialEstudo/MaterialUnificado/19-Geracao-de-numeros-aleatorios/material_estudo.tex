@@ -1,0 +1,558 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+\geometry{margin=2.5cm}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  showstringspaces=false,
+  frame=single,
+  breaklines=true
+}
+
+\title{\textbf{Material de Estudo --- Unidade 19}\\[0.4em]
+       \large Gera\c{c}\~ao de N\'umeros Aleat\'orios}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{CEFET-MG --- 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+%% ===========================================================
+\section{Motivac\~ao: por que gerar n\'umeros aleat\'orios?}
+%% ===========================================================
+
+Muitos problemas cient\'ificos n\~ao possuem solu\c{c}\~ao anal\'itica exata ou s\~ao computacionalmente intrat\'aveis de forma determin\'istica. A gera\c{c}\~ao de n\'umeros aleat\'orios \'e fundamental para:
+
+\begin{itemize}
+  \item \textbf{Simula\c{c}\~oes de Monte Carlo:} estimar integrais, probabilidades e valores esperados por amostragem.
+  \item \textbf{Modelos estoc\'asticos:} equa\c{c}\~oes diferenciais estoc\'asticas, processos de Markov, ru\'ido t\'ermico.
+  \item \textbf{Caminhada aleat\'oria (Random Walk):} modelos de difus\~ao, movimento Browniano, polim\'eros, mercado financeiro.
+  \item \textbf{Deposi\c{c}\~ao aleat\'oria:} crescimento de superf\'icies rugosas, filmes finos.
+  \item \textbf{Otimiza\c{c}\~ao estoc\'astica:} algoritmos gen\'eticos, Simulated Annealing.
+  \item \textbf{Criptografia:} gera\c{c}\~ao de chaves, nonces (requer geradores de alta qualidade).
+\end{itemize}
+
+\textbf{N\'umeros verdadeiramente aleat\'orios} s\~ao obtidos de fen\^omenos f\'isicos
+(ru\'ido t\'ermico, decaimento radioativo, f\'otons).
+
+Computadores geram \textbf{n\'umeros pseudo-aleat\'orios} (PRNG): sequ\^encias
+\emph{determin\'isticas} que imitam o comportamento aleat\'orio.
+Essas sequ\^encias dependem de uma \textbf{semente} (\emph{seed}) inicial.
+
+\textbf{Por que semente fixa?} Reproducibilidade cient\'ifica: a mesma semente gera os mesmos resultados, permitindo verificar experimentos.
+
+%% ===========================================================
+\section{Geradores Congruenciais}
+%% ===========================================================
+
+S\~ao os mais antigos e mais simples. A ideia \'e usar opera\c{c}\~oes modulares para produzir sequ\^encias de inteiros que aparentam uniformidade.
+
+\subsection{Gerador Congruencial Linear (LCG)}
+
+A recorr\^encia fundamental:
+\[
+  X_{n+1} = (a\,X_n + c) \bmod m,
+\]
+onde:
+\begin{itemize}
+  \item $m > 0$: \textbf{m\'odulo} --- define o dom\'inio $\{0, 1, \ldots, m-1\}$ e o per\'iodo m\'aximo.
+  \item $a$: \textbf{multiplicador} (``n\'umero m\'agico'').
+  \item $c$: \textbf{incremento} ($c=0$: LCG multiplicativo).
+  \item $X_0$: \textbf{semente}.
+  \item $U_n = X_n / m \in [0,1)$: n\'umero uniforme gerado.
+\end{itemize}
+
+\subsubsection*{Condi\c{c}\~oes de per\'iodo m\'aximo (Hull-Dobell, 1962)}
+
+O LCG atinge per\'iodo $m$ (m\'aximo) se e somente se:
+\begin{enumerate}
+  \item $\text{mdc}(c, m) = 1$ (c e m s\~ao coprimos).
+  \item Para todo primo $p$ que divide $m$: $p \mid (a-1)$.
+  \item Se $4 \mid m$, ent\~ao $4 \mid (a-1)$.
+\end{enumerate}
+
+\subsubsection*{Variantes}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}l l >{\raggedright\arraybackslash}X@{}}
+\toprule
+Variante & Recorr\^encia & Observa\c{c}\~ao \\
+\midrule
+Multiplicativo ($c=0$) & $X_{n+1} = aX_n \bmod m$ & Per\'iodo m\'ax.\ $m-1$ (se $m$ primo) \\
+Misto ($c \neq 0$) & $X_{n+1} = (aX_n+c) \bmod m$ & Per\'iodo m\'ax.\ $m$ \\
+Quadr\'atico & $X_{n+1} = (aX_n^2+bX_n+c) \bmod m$ & Raramente usado \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsubsection*{Par\^ametros hist\'oricos famosos}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Sistema & $a$ & $c$ & $m$ \\
+\midrule
+ANSI C \texttt{rand()} & 1103515245 & 12345 & $2^{31}$ \\
+Slides CEFET (I0) & 843314861 & 453816693 & $2^{30}$ \\
+Slides CEFET (I1) & 843314861 & 0 & $2^{30}$ \\
+Numerical Recipes & 1664525 & 1013904223 & $2^{32}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection*{Implementa\c{c}\~ao em C (dos slides)}
+
+\begin{lstlisting}[language=C, basicstyle=\ttfamily\small]
+#define M 1073741824   /* 2^30 */
+#define A 843314861
+#define B 453816693
+int sem = 123456789;   /* semente global */
+
+float aleat(int sem1) {
+    double aux = 0.5 / (1.0 * M);
+    sem1 = sem1 * A + B;
+    if (sem1 < 0)
+        sem1 = (sem1 + M) + M;
+    float xx = 1.0 * aux * sem1;
+    sem = sem1;
+    return xx;   /* retorna U in [0,1) */
+}
+\end{lstlisting}
+
+\subsection{Problemas do LCG}
+
+\begin{itemize}
+  \item \textbf{Estrutura de grade:} em $d$ dimens\~oes, os pontos $(U_n, U_{n+1}, \ldots, U_{n+d-1})$ caem em no m\'aximo $m^{1/d}$ hiperplanos paralelos (\emph{teste espectral}).
+  \item \textbf{Per\'iodo curto:} $m=2^{32}$ implica per\'iodo $\approx 4\times10^9$ --- insuficiente para Monte Carlo moderno.
+  \item \textbf{Correla\c{c}\~oes de baixa ordem:} geradores multiplicativos com $m=2^k$ apresentam padr\~oes nos bits menos significativos.
+\end{itemize}
+
+%% ===========================================================
+\section{Geradores Modernos}
+%% ===========================================================
+
+\subsection{Mersenne Twister (MT19937)}
+
+Proposto por Matsumoto e Nishimura (1998). Padr\~ao em Python (\texttt{random}), MATLAB, R (at\'e vers\~oes recentes).
+
+\begin{itemize}
+  \item Per\'iodo: $2^{19937} - 1$ (astronômico).
+  \item Dimensionalidade: equidistribuído em 623 dimens\~oes.
+  \item Baseado em \emph{twisted generalized feedback shift register} (TGFSR).
+  \item \textbf{N\~ao \'e criptograficamente seguro} (o estado interno \'e reconstru\'ivel ap\'os $624$ observa\c{c}\~oes).
+\end{itemize}
+
+\subsection{PCG64 (Permuted Congruential Generator)}
+
+Padr\~ao atual do NumPy (\texttt{np.random.default\_rng()}). Proposto por Melissa O'Neill (2014).
+
+\begin{itemize}
+  \item Baseado em LCG de 128 bits + fun\c{c}\~ao de permuta\c{c}\~ao de sa\'ida.
+  \item Per\'iodo: $2^{128}$.
+  \item Excelente qualidade estat\'istica, r\'apido, paraleliz\'avel.
+  \item Supera o MT19937 nos testes modernos (TestU01 BigCrush).
+\end{itemize}
+
+\begin{lstlisting}
+import numpy as np
+
+# Gerador moderno do NumPy (PCG64 internamente)
+rng = np.random.default_rng(seed=42)
+
+# Uniforme em [0, 1)
+u = rng.random(size=1000)
+
+# Inteiros em {-1, +1}
+passos = rng.choice([-1, 1], size=1000)
+\end{lstlisting}
+
+\subsection{Geradores Criptograficamente Seguros (CSPRNG)}
+
+Para aplica\c{c}\~oes de seguran\c{c}a (senhas, chaves):
+\begin{itemize}
+  \item \textbf{ChaCha20}, \textbf{AES-CTR}: stream ciphers usados como RNG.
+  \item Python: \texttt{secrets} module (\texttt{secrets.randbelow()}, \texttt{secrets.token\_bytes()}).
+  \item Baseados em entropia do sistema operacional
+        (Linux: \path{/dev/urandom}; Windows: API CryptGenRandom).
+\end{itemize}
+
+%% ===========================================================
+\section{Distribui\c{c}\~ao Gaussiana e o Teorema Central do Limite}
+%% ===========================================================
+
+\subsection{Distribui\c{c}\~ao Gaussiana}
+
+A distribui\c{c}\~ao normal \'e fundamental em processos estoc\'asticos:
+\[
+  f(x) = \frac{1}{\sigma\sqrt{2\pi}}\exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right).
+\]
+
+Par\^ametros: $\mu$ (m\'edia), $\sigma$ (desvio padr\~ao). FWHM (largura a meia altura): $\text{FWHM} = 2\sqrt{2\ln 2}\,\sigma \approx 2{,}355\,\sigma$.
+
+Integral \'util (dos slides):
+\[
+  \int_0^\infty x^{2n} e^{-x^2/a^2}\,dx = \frac{\sqrt{\pi}}{2}\frac{(2n)!}{n!}\left(\frac{a}{2}\right)^{2n+1}.
+\]
+
+\subsection{Teorema Central do Limite (TCL)}
+
+Se $X_1, X_2, \ldots, X_n$ s\~ao vari\'aveis aleat\'orias i.i.d.\ com m\'edia $\mu$ e vari\^ancia $\sigma^2 < \infty$:
+\[
+  S_n = \sum_{i=1}^n X_i \xrightarrow{d} \mathcal{N}(n\mu,\, n\sigma^2) \quad (n \to \infty).
+\]
+
+\textbf{Aplica\c{c}\~ao ao Random Walk:} com $X_i \in \{-1,+1\}$ equiprov\'aveis, $\mu=0$, $\sigma^2=1$:
+\[
+  S_n \xrightarrow{d} \mathcal{N}(0, n) \implies P_n(d) \approx \frac{1}{\sqrt{2\pi n}}\exp\!\left(-\frac{d^2}{2n}\right) \times 2,
+\]
+onde o fator $\times 2$ \'e a corre\c{c}\~ao de discretiza\c{c}\~ao (S$_n$ assume apenas valores com mesma paridade de $n$, espa\c{c}amento efetivo $= 2$).
+
+%% ===========================================================
+\section{Random Walk (Caminhada Aleat\'oria)}
+%% ===========================================================
+
+\subsection{Defini\c{c}\~ao}
+
+Random Walk em 1D: a cada passo de tempo, o caminhante se move $+1$ (direita) com probabilidade $p$ ou $-1$ (esquerda) com probabilidade $q = 1-p$.
+
+\[
+  S_n = \sum_{i=1}^n X_i, \quad X_i \in \{-1,+1\}, \quad P(X_i=+1) = p.
+\]
+
+Ap\'os $N$ passos, com $n_1$ passos \`a direita e $n_2 = N - n_1$ \`a esquerda:
+\[
+  d_N = n_1 - n_2 = 2n_1 - N.
+\]
+
+\subsection{Distribui\c{c}\~ao de Probabilidade}
+
+A probabilidade de $n_1$ passos \`a direita segue a \textbf{distribui\c{c}\~ao binomial}:
+\[
+  P(n_1) = \binom{N}{n_1} p^{n_1} q^{N-n_1}.
+\]
+
+Para $p = q = 1/2$ (caso sim\'etrico), a probabilidade de deslocamento final $d$ ap\'os $N$ passos:
+\[
+  \boxed{P_N(d) = \frac{1}{2^N}\binom{N}{\dfrac{N+d}{2}}},
+\]
+v\'alida quando $N+d$ \'e par e $|d| \leq N$; caso contr\'ario, $P_N(d) = 0$.
+
+\subsection{Tri\^angulo de Pascal para o RW}
+
+\begin{center}
+\begin{tabular}{c|ccccccccccc}
+\toprule
+$N$ & $-5$ & $-4$ & $-3$ & $-2$ & $-1$ & $0$ & $+1$ & $+2$ & $+3$ & $+4$ & $+5$ \\
+\midrule
+0 & & & & & & 1 & & & & & \\
+1 & & & & & $\tfrac{1}{2}$ & & $\tfrac{1}{2}$ & & & & \\
+2 & & & & $\tfrac{1}{4}$ & & $\tfrac{1}{2}$ & & $\tfrac{1}{4}$ & & & \\
+3 & & & $\tfrac{1}{8}$ & & $\tfrac{3}{8}$ & & $\tfrac{3}{8}$ & & $\tfrac{1}{8}$ & & \\
+4 & & $\tfrac{1}{16}$ & & $\tfrac{4}{16}$ & & $\tfrac{6}{16}$ & & $\tfrac{4}{16}$ & & $\tfrac{1}{16}$ & \\
+5 & $\tfrac{1}{32}$ & & $\tfrac{5}{32}$ & & $\tfrac{10}{32}$ & & $\tfrac{10}{32}$ & & $\tfrac{5}{32}$ & & $\tfrac{1}{32}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Propriedades Estat\'isticas}
+
+\begin{itemize}
+  \item \textbf{M\'edia:} $\langle S_n \rangle = 0$ (caso sim\'etrico).
+  \item \textbf{Vari\^ancia:} $\langle S_n^2 \rangle = n$ (cresce linearmente com o n\'umero de passos).
+  \item \textbf{Desvio padr\~ao:} $\sigma_n = \sqrt{n}$ (difus\~ao normal).
+  \item Para grandes $N$: $P_N(d) \approx \dfrac{2}{\sqrt{2\pi N}}\exp\!\left(-\dfrac{d^2}{2N}\right)$ (TCL).
+\end{itemize}
+
+\subsection{Movimento Browniano}
+
+No limite cont\'inuo ($n \to \infty$, passo $\to 0$), o RW converge para o \textbf{Movimento Browniano} $B(t)$:
+\begin{itemize}
+  \item $B(0) = 0$.
+  \item Incrementos $B(t) - B(s)$ s\~ao independentes para intervalos disjuntos.
+  \item $B(t) - B(s) \sim \mathcal{N}(0, t-s)$.
+  \item Trajet\'orias cont\'inuas mas n\~ao diferenci\'aveis (fractal, dimens\~ao $D = 3/2$).
+\end{itemize}
+
+%% ===========================================================
+\section{Aplica\c{c}\~ao: Deposi\c{c}\~ao Aleat\'oria}
+%% ===========================================================
+
+\subsection{Modelo Discreto}
+
+Dep\'osito de part\'iculas sobre uma rede 1D de tamanho $L$. A cada passo de tempo, escolhe-se aleatoriamente uma coluna $i$ e a altura $h_i$ aumenta em 1:
+\[
+  h_i(t+1) = h_i(t) + 1 \quad \text{(coluna sorteada)}.
+\]
+
+\subsection{Rugosidade da Superf\'icie}
+
+O desvio padr\~ao das alturas mede a \textbf{rugosidade}:
+\[
+  w(L, t) = \left[\frac{1}{L}\sum_{i=1}^{L}(h_i(t) - \bar{h}(t))^2\right]^{1/2}.
+\]
+
+Para Deposi\c{c}\~ao Aleat\'oria pura: $w(L,t) \sim t^{1/2}$ (cresce indefinidamente).
+
+\subsection{Deposi\c{c}\~ao Aleat\'oria com Relaxa\c{c}\~ao Superficial (DARS/EW)}
+
+A part\'iculan\'ao fica no s\'itio sorteado, mas na coluna de menor altura entre $\{i-1, i, i+1\}$:
+\[
+  h_i(t+1) = \min(h_{i-1}(t), h_i(t), h_{i+1}(t)) + 1.
+\]
+
+Equa\c{c}\~ao cont\'inua correspondente (Edwards-Wilkinson):
+\[
+  \frac{\partial h}{\partial t} = \nu \nabla^2 h + \eta(x,t),
+\]
+com expoentes cr\'iticos: $\alpha = 1/2$, $\beta_w = 1/4$, $z = 2$.
+
+\subsection{Expoentes Cr\'iticos e Lei de Family-Vicsek}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Expoente & S\'imbolo & Significado \\
+\midrule
+Rugosidade & $\alpha$ & $w(L, \infty) \sim L^\alpha$ \\
+Crescimento & $\beta_w$ & $w(L, t) \sim t^{\beta_w}$ para $t \ll L^z$ \\
+Din\^amico & $z$ & $t^* \sim L^z$ (tempo de satura\c{c}\~ao) \\
+Hurst & $H$ & Auto-afinidade: $h(x) \sim b^{-H} h(bx)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Lei de escala de Family-Vicsek:}
+\[
+  w(L,t) \sim L^\alpha f\!\left(\frac{t}{L^z}\right), \quad z = \frac{\alpha}{\beta_w}.
+\]
+
+\textbf{Rela\c{c}\~ao com dimens\~ao fractal:} $H = d - D$, onde $d$ \'e a dimens\~ao do espa\c{c}o e $D$ \'e a dimens\~ao fractal do perfil.
+
+%% ===========================================================
+\section{Transforma\c{c}\~ao de Distribui\c{c}\~oes}
+%% ===========================================================
+
+Para gerar amostras de distribui\c{c}\~oes arbitr\'arias a partir de n\'umeros uniformes $U \sim \mathcal{U}(0,1)$.
+
+\subsection{M\'etodo da Transformada Inversa}
+
+Se $F$ \'e a CDF (fun\c{c}\~ao de distribui\c{c}\~ao acumulada) de $X$:
+\[
+  X = F^{-1}(U).
+\]
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Distribui\c{c}\~ao & CDF $F(x)$ & Inversa $F^{-1}(u)$ \\
+\midrule
+Exponencial($\lambda$) & $1 - e^{-\lambda x}$ & $-\ln(1-u)/\lambda$ \\
+Uniforme$(a,b)$ & $(x-a)/(b-a)$ & $a + (b-a)u$ \\
+Geom\'etrica($p$) & $1-(1-p)^{\lfloor x\rfloor}$ & $\lceil \ln(u)/\ln(1-p) \rceil$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{M\'etodo de Box-Muller}
+
+Gera pares de normais padr\~ao a partir de dois uniformes independentes:
+\[
+  Z_1 = \sqrt{-2\ln U_1}\cos(2\pi U_2), \quad Z_2 = \sqrt{-2\ln U_1}\sin(2\pi U_2),
+\]
+com $Z_1, Z_2 \sim \mathcal{N}(0,1)$ independentes. Verifique-se facilmente que $Z_1^2 + Z_2^2 = -2\ln U_1 \sim \chi^2(2)$.
+
+Para gerar $X \sim \mathcal{N}(\mu, \sigma^2)$: $X = \mu + \sigma Z$.
+
+\subsection{M\'etodo de Rejeic\~ao (Acceptance-Rejection)}
+
+Para amostrar $f(x)$ usando uma distribui\c{c}\~ao envelope $g(x)$ com $f(x) \leq M\,g(x)$:
+\begin{enumerate}
+  \item Gere $Y \sim g$ e $U \sim \mathcal{U}(0,1)$.
+  \item Aceite $X = Y$ se $U \leq f(Y) / (M\,g(Y))$; caso contr\'ario, rejeite e recomece.
+\end{enumerate}
+Efici\^encia: propor\c{c}\~ao de aceita\c{c}\~ao $= 1/M$.
+
+%% ===========================================================
+\section{Testes de Qualidade}
+%% ===========================================================
+
+Um bom PRNG deve satisfazer:
+
+\begin{itemize}
+  \item \textbf{Uniformidade:} $U_n$ distribu\'ido uniformemente em $[0,1)$.
+  \item \textbf{Independ\^encia:} sem correla\c{c}\~ao entre $U_n$ e $U_{n+k}$.
+  \item \textbf{Per\'iodo longo:} suficiente para a simula\c{c}\~ao.
+  \item \textbf{Reprodutibilidade:} mesma semente $\Rightarrow$ mesma sequ\^encia.
+  \item \textbf{Velocidade:} gera\c{c}\~ao eficiente.
+\end{itemize}
+
+\subsection{Teste \texorpdfstring{$\chi^2$}{chi2} de Uniformidade}
+
+Divide $[0,1)$ em $k$ intervalos iguais. Para $n$ amostras, conta $O_j$ em cada bin. Esperado: $E = n/k$. Estat\'istica:
+\[
+  \chi^2 = \sum_{j=1}^k \frac{(O_j - E)^2}{E} \sim \chi^2(k-1).
+\]
+Rejeita uniformidade se $\chi^2 > \chi^2_{1-\alpha}(k-1)$.
+
+\subsection{Teste de Kolmogorov-Smirnov (KS)}
+
+Compara a CDF emp\'irica $F_n(x)$ com a te\'orica $F(x)$:
+\[
+  D_n = \sup_x |F_n(x) - F(x)|.
+\]
+Valor cr\'itico: $D_{n, \alpha} \approx \sqrt{-\ln(\alpha/2)/(2n)}$.
+
+\subsection{Teste Espectral}
+
+Visualiza a estrutura de grade: em 2D, plota $(U_n, U_{n+1})$ para detectar hiperplanos. Boa qualidade: pontos sem padr\~ao vis\'ivel.
+
+\subsection{TestU01 (Bateria Moderna)}
+
+L'Ecuyer e Simard (2007) propuseram a bateria \textbf{BigCrush} (254 testes). PCG64 e ChaCha20 passam; MT19937 e LCG simples falham em alguns testes.
+
+%% ===========================================================
+\section{Exemplos Resolvidos}
+%% ===========================================================
+
+\subsection*{Exemplo 1 --- LCG: calcule os 5 primeiros valores}
+
+Par\^ametros: $a = 13$, $c = 0$, $m = 31$, $X_0 = 1$.
+
+\begin{align*}
+X_1 &= 13 \times 1 \bmod 31 = 13 \\ 
+X_2 &= 13 \times 13 \bmod 31 = 169 \bmod 31 = 14 \\
+X_3 &= 13 \times 14 \bmod 31 = 182 \bmod 31 = 27 \\
+X_4 &= 13 \times 27 \bmod 31 = 351 \bmod 31 = 10 \\
+X_5 &= 13 \times 10 \bmod 31 = 130 \bmod 31 = 6
+\end{align*}
+N\'umeros uniformes: $U = \{0{,}419;\ 0{,}452;\ 0{,}871;\ 0{,}323;\ 0{,}194\}$.
+
+\subsection*{Exemplo 2 --- Box-Muller}
+
+$U_1 = 0{,}5$, $U_2 = 0{,}25$:
+\begin{align*}
+Z_1 &= \sqrt{-2\ln(0{,}5)}\cos(2\pi \times 0{,}25) = \sqrt{1{,}386}\cos(\pi/2) = 1{,}177 \times 0 = 0.\\
+Z_2 &= \sqrt{-2\ln(0{,}5)}\sin(\pi/2) = 1{,}177 \times 1 = 1{,}177.
+\end{align*}
+
+\subsection*{Exemplo 3 --- Transformada inversa (Exponencial)}
+
+$\lambda = 2$, $U_1 = 0{,}3$: $X_1 = -\ln(1 - 0{,}3)/2 = -\ln(0{,}7)/2 = 0{,}357/2 = 0{,}178$.
+
+\subsection*{Exemplo 4 --- Random Walk: probabilidade te\'orica}
+
+$N = 4$, $d = 2$: $k = (4+2)/2 = 3$.
+\[
+  P_4(2) = \frac{1}{2^4}\binom{4}{3} = \frac{4}{16} = 0{,}25.
+\]
+(Confirma linha $N=4$ do tri\^angulo de Pascal: $4/16$ em $d=+2$.)
+
+\subsection*{Exemplo 5 --- Rugosidade da DA 1D}
+
+Para Deposi\c{c}\~ao Aleat\'oria pura em 1D, $w(L,t) \sim t^{1/2}$. Ap\'os $t = 10^4$ passos: $w \approx \sqrt{10^4} = 100$ unidades de altura. Isso ocorre porque o gerador descorrelacionado produz alturas independentes; a rugosidade \'e simplesmente o desvio padr\~ao de uma distribui\c{c}\~ao de Poisson.
+
+\subsection*{Exemplo 6 --- Teste $\chi^2$}
+
+100 amostras, 10 bins, $E = 10$. Contagens: $\{8, 12, 9, 11, 10, 9, 11, 10, 12, 8\}$.
+\begin{align*}
+  \chi^2
+  &= \frac{(8-10)^2 + (12-10)^2 + \cdots + (8-10)^2}{10} \\
+  &= \frac{4+4+1+1+0+1+1+0+4+4}{10} = \frac{20}{10} = 2{,}0.
+\end{align*}
+Valor cr\'itico ($\alpha=0{,}05$, 9 g.l.):
+\[
+  \chi^2_{0{,}95}(9) = 16{,}9.
+\]
+Como $2{,}0 < 16{,}9$, n\~ao h\'a evid\^encia contra uniformidade.
+
+%% ===========================================================
+\section{Exerc\'icios}
+%% ===========================================================
+
+\begin{enumerate}
+
+\item \textbf{(LCG --- per\'iodo)} Com $a=7$, $c=0$, $m=10$, $X_0=3$: gere 15 termos. Qual o per\'iodo? O que acontece com $X_0=5$? E com $X_0=0$?
+
+\item \textbf{(Hull-Dobell)} Verifique se o LCG com $a=5$, $c=1$, $m=8$ possui per\'iodo m\'aximo aplicando as tr\^es condi\c{c}\~oes de Hull-Dobell.
+
+\item \textbf{(Transformada inversa --- Exponencial)} Gere 3 amostras de Exp$(\lambda=1{,}5)$ com $U = \{0{,}1;\ 0{,}5;\ 0{,}9\}$.
+
+\item \textbf{(Box-Muller)} Para $U_1=0{,}3$ e $U_2=0{,}7$, calcule $Z_1$ e $Z_2$. Verifique que $Z_1^2 + Z_2^2 = -2\ln U_1$.
+
+\item \textbf{(Box-Muller generalizado)} Gere amostras de $\mathcal{N}(\mu=3, \sigma^2=9)$ a partir de $U_1=0{,}2$ e $U_2=0{,}6$.
+
+\item \textbf{(Random Walk te\'orico)} Calcule $P_6(0)$ e $P_6(2)$ usando a f\'ormula $P_N(d)$. Qual possi\c{c}\~ao de chegada tem maior probabilidade ap\'os 6 passos?
+
+\item \textbf{(Propriedades do RW)} Para $N = 10^4$ passos: (a) calcule $\langle S_N \rangle$ e $\sigma_N$; (b) qual a probabilidade aproximada (gaussiana) de $|S_N| > 300$? (Use tabela normal: $P(Z > 3) \approx 0{,}0013$.)
+
+\item \textbf{(TCL e RW)} Por que $P_N(d)$ precisa ser multiplicado por 2 ao comparar com a gaussiana cont\'inua? Explique o conceito de corre\c{c}\~ao de discretiza\c{c}\~ao.
+
+\item \textbf{(Deposi\c{c}\~ao Aleat\'oria)} Uma rede de $L=100$ s\'itios recebe $t=10^6$ part\'iculas aleatoriamente. Estime a altura m\'edia $\bar{h}$ e a rugosidade esperada $w$.
+
+\item \textbf{(Teste $\chi^2$)} Repita o c\'alculo do Exemplo 6 com as contagens:
+  5, 15, 8, 12, 10, 7, 13, 11, 9 e 10.
+  Rejeita-se a uniformidade ao n\'ivel de 5\%?
+
+\item \textbf{(Qualidade do gerador)} Um LCG com $m=2^{32}$ tem per\'iodo $\approx 4\times10^9$. Uma simula\c{c}\~ao precisa de $10^{10}$ amostras. Que problema ocorre? Qual gerador voc\^e escolheria?
+
+\item \textbf{(Semente cient\'ifica)} Por que fixar a semente do RNG \'e importante em pesquisa cient\'ifica? D\^e um exemplo em que fixar a semente seria incorreto.
+
+\end{enumerate}
+
+%% ===========================================================
+\section{Resumo R\'apido}
+%% ===========================================================
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Conceito & F\'ormula / Defini\c{c}\~ao \\
+\midrule
+LCG & $X_{n+1} = (aX_n + c)\bmod m$;\ \ $U_n = X_n/m$ \\
+Per\'iodo m\'aximo & Condi\c{c}\~oes de Hull-Dobell \\
+Mersenne Twister & Per\'iodo $2^{19937}-1$; padr\~ao hist\'orico \\
+PCG64 & LCG 128 bits + permuta\c{c}\~ao; padr\~ao NumPy atual \\
+Transformada inversa & $X = F^{-1}(U)$ \\
+Box-Muller & $Z = \sqrt{-2\ln U_1}\cos(2\pi U_2)$ \\
+RW sim\'etrico & $P_N(d) = \binom{N}{(N+d)/2}/2^N$ \\
+TCL (RW) & $S_N \to \mathcal{N}(0,N)$ para $N \to \infty$ \\
+Rugosidade DA & $w(L,t) \sim t^{1/2}$ \\
+Family-Vicsek & $z = \alpha/\beta_w$ \\
+Teste $\chi^2$ & $\chi^2 = \sum(O-E)^2/E$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%% ===========================================================
+\section*{Refer\^encias}
+%% ===========================================================
+
+\begin{itemize}
+  \item \textbf{Knuth, D.\ E.} \textit{The Art of Computer Programming}, Vol.\ 2: Seminumerical Algorithms. Addison-Wesley, 1998. (Refer\^encia cl\'assica sobre PRNG e LCG.)
+  \item \textbf{L'Ecuyer, P.} \textit{Random Number Generation}. In: \textit{Handbook of Simulation}. Wiley, 1998.
+  \item \textbf{Matsumoto, M.; Nishimura, T.} Mersenne Twister: A 623-dimensionally equidistributed uniform pseudo-random number generator. \textit{ACM Trans.\ Model.\ Comput.\ Simul.}, 8(1), 1998.
+  \item \textbf{O'Neill, M.\ E.} PCG: A Family of Simple Fast Space-Efficient Statistically Good Algorithms for Random Number Generation. Harvey Mudd College, 2014.
+  \item \textbf{Faria, A.\ A.\ P.} Aspectos Fractais em Sistemas Complexos. Tese de Doutorado, UFMG, 2002.
+  \item \textbf{Family, F.; Vicsek, T.} Scaling of the active zone in the Eden process on percolation networks. \textit{J.\ Phys.\ A}, 18, L75, 1985.
+  \item \textbf{Edwards, S.\ F.; Wilkinson, D.\ R.} The surface statistics of a granular aggregate. \textit{Proc.\ R.\ Soc.\ Lond.\ A}, 381, 17--31, 1982.
+  \item \textbf{Wikipedia.} Random number generation. \url{https://en.wikipedia.org/wiki/Random_number_generation}
+  \item \textbf{Wikipedia.} Random walk. \url{https://en.wikipedia.org/wiki/Random_walk}
+  \item Slides da disciplina: \textit{Mestrado em Modelagem Matem\'atica e Computacional} --- Gera\c{c}\~ao de N\'umeros Aleat\'orios (\texttt{pmmat\_aula07.pdf}).
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,55 @@
+%------------------------------------------------------------------
+% Questão 4.2 – Primeiros quatro termos de tan x e cot x em x = 0
+%------------------------------------------------------------------
+
+\textbf{1. Expansão de $\tan x$}
+
+Começamos com as séries básicas:
+\[
+\sin x = x - \frac{x^3}{6} + \frac{x^5}{120} - \frac{x^7}{5040}+\cdots,
+\qquad
+\cos x = 1 - \frac{x^2}{2} + \frac{x^4}{24} - \cdots
+\]
+
+Como $\tan x = \frac{\sin x}{\cos x}$, dividimos $\sin x$ por $\cos x$ (ou multiplicamos $\sin x$ por $\frac{1}{\cos x}$). 
+
+Para $x$ pequeno, aproximando e multiplicando termo a termo:
+\[
+\tan x = x \cdot 1 + x \cdot \frac{x^2}{2} + \cdots - \frac{x^3}{6} + \cdots = x + \frac{x^3}{3} + \frac{2x^5}{15} + \frac{17x^7}{315} + \cdots
+\]
+
+\textbf{Resultado:}
+\[
+\boxed{\tan x = x + \frac{x^3}{3} + \frac{2x^5}{15} + \frac{17x^7}{315} + \cdots}
+\]
+
+%------------------------------------------------------------------
+\textbf{2. Expansão de $\cot x$}
+
+\textbf{Atenção:} $\cot x = \frac{\cos x}{\sin x}$ \emph{não está definida} em $x=0$. Portanto, sua expansão é uma \textbf{série de Laurent} (com termo $\frac{1}{x}$), não uma série de Taylor.
+
+Escrevemos:
+\[
+\cot x = \frac{1}{x} \cdot \frac{\cos x}{\sin x / x}
+\]
+
+Expandindo e multiplicando:
+\[
+\cot x = \frac{1}{x} \left(1 - \frac{x^2}{2} + \cdots\right)\left(1 + \frac{x^2}{6} + \cdots\right) = \frac{1}{x} - \frac{x}{3} - \frac{x^3}{45} - \frac{2x^5}{945} + \cdots
+\]
+
+\textbf{Resultado:}
+\[
+\boxed{\cot x = \frac{1}{x} - \frac{x}{3} - \frac{x^3}{45} - \frac{2x^5}{945} - \cdots}
+\]
+
+%------------------------------------------------------------------
+\textbf{Resumo – Os quatro primeiros termos:}
+
+\[
+\tan x \approx x + \frac{x^3}{3} + \frac{2x^5}{15} + \frac{17x^7}{315}
+\]
+
+\[
+\cot x \approx \frac{1}{x} - \frac{x}{3} - \frac{x^3}{45} - \frac{2x^5}{945}
+\]

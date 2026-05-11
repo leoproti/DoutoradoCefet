@@ -1,0 +1,109 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Equa\c{c}\~oes Diferenciais Estoc\'asticas}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 16}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Compreender a diferen\c{c}a entre modelos determin\'isticos e estoc\'asticos, o processo de Wiener, a equa\c{c}\~ao de Langevin e a equa\c{c}\~ao de Fokker-Planck.
+
+\section*{Motivação}
+
+Por que EDEs? Em muitos sistemas reais, \textbf{ru\'ido} \'e intr\'inseco:
+\begin{itemize}
+  \item Movimento Browniano de uma part\'icula no l\'iquido.
+  \item Flutua\c{c}\~oes na concentra\c{c}\~ao de mol\'eculas numa c\'elula.
+  \item Varia\c{c}\~oes no pre\c{c}o de a\c{c}\~oes no mercado financeiro.
+\end{itemize}
+Uma EDE acrescenta um termo aleat\'orio a uma EDO.
+
+\section*{Processo de Wiener (Movimento Browniano)}
+
+Um processo de Wiener $W(t)$ \'e:
+\begin{itemize}
+  \item $W(0) = 0$.
+  \item $W(t) - W(s) \sim \mathcal{N}(0, t-s)$ para $t > s$ (incrementos Gaussianos).
+  \item Incrementos n\~ao sobrepostos s\~ao independentes.
+  \item Caminhos cont\'inuos mas n\~ao diferenci\'aveis (em nenhum ponto).
+\end{itemize}
+Intuitivamente: $dW = \varepsilon\sqrt{dt}$ com $\varepsilon \sim \mathcal{N}(0,1)$.
+
+\section*{Equa\c{c}\~ao de Langevin}
+
+\[
+\frac{dX}{dt} = \mu(X,t) + \sigma(X,t)\,\xi(t),
+\]
+ou na forma diferencial:
+\[
+dX = \mu(X,t)\,dt + \sigma(X,t)\,dW.
+\]
+\begin{itemize}
+  \item $\mu$: \textbf{drift} (tend\^encia determin\'istica).
+  \item $\sigma$: \textbf{difus\~ao} (intensidade do ru\'ido).
+\end{itemize}
+
+\textbf{Exemplo:} Ornstein-Uhlenbeck (revers\~ao \`a m\'edia):
+\[
+dX = -\theta X\,dt + \sigma\,dW, \quad \theta > 0.
+\]
+Representa uma part\'icula presa num po\c{c}o de pot\^encial com ru\'ido t\'ermico.
+
+\section*{Equa\c{c}\~ao de Fokker-Planck}
+
+Descreve como a \textbf{distribui\c{c}\~ao de probabilidade} $p(x,t)$ evolui:
+\[
+\frac{\partial p}{\partial t} = -\frac{\partial}{\partial x}[\mu\, p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2 p].
+\]
+Soluc\~ao estacion\'aria: $\partial_t p = 0$ (distribui\c{c}\~ao de equil\'ibrio).
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Movimento Browniano: vari\^ancia}
+Para $dX = dW$ (drift nulo, $\sigma=1$): $\mathbb{E}[X^2(t)] = t$ e $\text{Var}[X(t)] = t$.
+A difus\~ao aumenta como $\sqrt{t}$.
+
+\subsection*{Exemplo 2 --- Ornstein-Uhlenbeck: equil\'ibrio}
+Solu\c{c}\~ao estacion\'aria da FP: $p^*(x) \propto e^{-\theta x^2/\sigma^2}$ (Gaussiana com vari\^ancia $\sigma^2/(2\theta)$).
+Para $\theta=1$, $\sigma=0{,}5$: $\text{Var}^* = 0{,}25/2 = 0{,}125$.
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Browniano)} Simule 3 passos do movimento Browniano usando $\Delta t=0{,}01$: gere 3 n\'umeros de $\mathcal{N}(0,1)$: $\varepsilon_1=0{,}5$, $\varepsilon_2=-0{,}8$, $\varepsilon_3=1{,}2$. Calcule $X(0{,}01)$, $X(0{,}02)$, $X(0{,}03)$ com $X(0)=0$.
+  
+  \item \textbf{(Drift)} Para a EDE $dX = 2\,dt + dW$, $X(0)=0$: (a) qual $\mathbb{E}[X(t)]$? (b) qual $\text{Var}[X(t)]$? (c) interprete o drift $\mu=2$.
+  
+  \item \textbf{(Ornstein-Uhlenbeck)} Para $dX = -X\,dt + \sigma\,dW$: (a) qual o equil\'ibrio determin\'istico (sem ru\'ido)? (b) Com ru\'ido, a distribui\c{c}\~ao estacion\'aria \'e Gaussiana com qual vari\^ancia?
+  
+  \item \textbf{(Fokker-Planck)} Escreva a equa\c{c}\~ao de Fokker-Planck para $dX = -2X\,dt + 3\,dW$. O que determina a largura da distribui\c{c}\~ao estacion\'aria?
+  
+  \item \textbf{(Aplica\c{c}\~ao biol\'ogica)} Em gen\'etica de popula\c{c}\~oes, a frequ\^encia de um alelo segue $dp = p(1-p)\,dW$ (deriva gen\'etica). Por que $p=0$ e $p=1$ s\~ao estados absorventes? O que isso significa biologicamente?
+  
+  \item \textbf{(Financeiro)} O modelo de Black-Scholes usa $dS = \mu S\,dt + \sigma S\,dW$ (movimento Browniano geom\'etrico). Mostre que $\ln S$ segue movimento Browniano com drift $(\mu - \sigma^2/2)$.
+  
+  \item \textbf{(Compara\c{c}\~ao)} Uma EDO $dx/dt = -x$ tem solu\c{c}\~ao $x(t)=x_0 e^{-t}$. A EDE $dX = -X\,dt + dW$ tem a mesma tend\^encia m\'edia, mas as trajet\'orias individuais flutuam. Fa\c{c}a um esbo\c{c}o qualitativo das duas situa\c{c}\~oes e explique a diferen\c{c}a.
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item $dX = \mu\,dt + \sigma\,dW$: EDE geral.
+  \item Browniano: $\text{Var}[X(t)] = \sigma^2 t$.
+  \item Ornstein-Uhlenbeck: revers\~ao \`a m\'edia com ru\'ido.
+  \item Fokker-Planck: evolu\c{c}\~ao da distribui\c{c}\~ao de probabilidade.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Gardiner, C.\ \textit{Handbook of Stochastic Methods}. Springer, 2004.
+  \item Risken, H.\ \textit{The Fokker-Planck Equation}. Springer, 1996.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

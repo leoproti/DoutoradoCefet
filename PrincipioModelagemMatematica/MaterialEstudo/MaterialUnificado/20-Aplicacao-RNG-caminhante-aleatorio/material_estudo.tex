@@ -1,0 +1,91 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Caminhante Aleat\'orio e Difus\~ao}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 20}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Compreender o modelo de caminhante aleat\'orio, sua rela\c{c}\~ao com difus\~ao macrosc\'opica e aplica\c{c}\~oes em transporte e biologia.
+
+\section*{Caminhante Aleat\'orio 1D}
+
+Um caminhante come\c{c}a em $x=0$ e d\'a $n$ passos de comprimento $\ell$, cada um com prob.\ $1/2$ para direita e $1/2$ para esquerda.
+\begin{itemize}
+  \item Posi\c{c}\~ao ap\'os $n$ passos: $X_n = \sum_{i=1}^n s_i$ onde $s_i \in \{+\ell, -\ell\}$.
+  \item $\mathbb{E}[X_n] = 0$ (sem drift).
+  \item $\mathbb{E}[X_n^2] = n\ell^2$ (dispers\~ao cresce com $\sqrt{n}$).
+\end{itemize}
+
+\subsection*{Liga\c{c}\~ao com Difus\~ao}
+Seja $\Delta t$ o tempo por passo. Ent\~ao $t = n\Delta t$ e:
+\[
+\mathbb{E}[X^2(t)] = n\ell^2 = \frac{t\ell^2}{\Delta t} = 2Dt,
+\]
+onde $D = \ell^2/(2\Delta t)$ \'e o \textbf{coeficiente de difus\~ao}.
+
+\subsection*{Generaliza\c{c}\~ao para $d$ dimens\~oes}
+\[
+\mathbb{E}[|\vec{r}|^2] = 2dDt.
+\]
+\begin{itemize}
+  \item 1D: $\langle x^2 \rangle = 2Dt$.
+  \item 2D: $\langle r^2 \rangle = 4Dt$.
+  \item 3D: $\langle r^2 \rangle = 6Dt$.
+\end{itemize}
+
+\subsection*{Lei de Fick}
+A equa\c{c}\~ao de difus\~ao macrosc\'opica:
+\[
+\frac{\partial c}{\partial t} = D\nabla^2 c.
+\]
+O caminhante aleat\'orio \'e o modelo \textbf{microsc\'opico} que gera essa equa\c{c}\~ao.
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Dispers\~ao de um poluente}
+Uma mol\'ecula de poluente em \'agua tem $D = 10^{-9}$ m$^2$/s. Ap\'os $t=1$ s:
+$\langle x^2\rangle = 2Dt = 2\times10^{-9}$ m$^2$; $\langle|x|\rangle \approx \sqrt{2\times10^{-9}} \approx 45\,\mu$m.
+
+\subsection*{Exemplo 2 --- Estimativa de $\pi$ por Monte Carlo}
+Lance pontos aleat\'orios em $[0,1]^2$. Conte os que caem no quarto de c\'irculo ($x^2+y^2\le1$). Se $N_\text{dentro}/N \approx \pi/4$, ent\~ao $\pi \approx 4N_\text{dentro}/N$.
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Simula\c{c}\~ao)} Um caminhante d\'a 4 passos 1D. (a) Liste todos os $2^4=16$ caminhos poss\'iveis. (b) Calcule $P(X_4 = 2)$. (c) Calcule $\mathbb{E}[X_4^2]$ diretamente.
+  
+  \item \textbf{(Difus\~ao)} O coeficiente de difus\~ao do O$_2$ em tecido biol\'ogico \'e $D = 2\times10^{-9}$ m$^2$/s. Em quanto tempo uma mol\'ecula de O$_2$ difunde em m\'edia 100 $\mu$m? (Use $\langle r^2\rangle = 6Dt$.)
+  
+  \item \textbf{(Monte Carlo)} Use os n\'umeros aleat\'orios gerados anteriormente para estimar $\pi$: pares $(U_1, U_2)$: $(0{,}2, 0{,}9)$, $(0{,}7, 0{,}4)$, $(0{,}5, 0{,}8)$, $(0{,}1, 0{,}3)$. Quantos caem dentro do c\'irculo? Estime $\pi$.
+  
+  \item \textbf{(Polimero)} O comprimento ponta-a-ponta de um pol\'imero linear com $N=1000$ monômeros de tamanho $a=0{,}3$ nm \'e dado por $\langle r^2\rangle = Na^2$. Calcule a dist\^ancia RMS.
+  
+  \item \textbf{(Caminhante com drift)} Se o caminhante vai para direita com prob.\ $p=0{,}6$ e esquerda com $q=0{,}4$: (a) $\mathbb{E}[X_n]$; (b) $\text{Var}[X_n]$; (c) ap\'os $n=100$ passos com $\ell=1$, qual o intervalo $\mathbb{E}\pm2\sigma$?
+  
+  \item \textbf{(Monte Carlo: integral)} Use Monte Carlo para estimar $\int_0^1 e^{-x^2}\,dx$ usando $N=5$ amostras. (Gere $U \sim \text{Uniforme}(0,1)$ e use $\bar{f} = \frac{1}{N}\sum e^{-U_i^2}$.)
+  
+  \item \textbf{(Ergodicidade)} A m\'edia temporal de um caminhante aleat\'orio (m\'edia sobre $t$) \'e igual \`a m\'edia do ensemble (sobre muitos caminhantes)? Discuta o conceito de ergodicidade e d\^e um contra-exemplo simples.
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item $\langle X^2\rangle = n\ell^2 = 2Dt$ (1D); $\langle r^2\rangle = 2dDt$ ($d$D).
+  \item $D = \ell^2/(2\Delta t)$ (coeficiente de difus\~ao).
+  \item Monte Carlo: estima integrais e probabilidades por amostragem aleat\'oria.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Berg, H.\ C.\ \textit{Random Walks in Biology}. Princeton University Press, 1993.
+  \item Rubinstein, R.\ Y.; Kroese, D.\ P.\ \textit{Simulation and the Monte Carlo Method}. Wiley, 2016.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

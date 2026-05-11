@@ -1,0 +1,94 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Diferen\c{c}as Finitas II --- M\'etodos Impl\'icitos}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 25}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Compreender os m\'etodos de Euler impl\'icito e Crank-Nicolson, sua estabilidade incondicional e compara\c{c}\~ao com m\'etodos expl\'icitos.
+
+\section*{Euler Impl\'icito}
+
+Em vez de usar $f(y_n, t_n)$, usa $f(y_{n+1}, t_{n+1})$:
+\[
+y_{n+1} = y_n + \Delta t\,f(y_{n+1}, t_{n+1}).
+\]
+\begin{itemize}
+  \item Requer resolver uma equa\c{c}\~ao (possivelmente n\~ao-linear) em cada passo.
+  \item \textbf{Incondicionalmente est\'avel:} qualquer $\Delta t$ \'e permitido.
+  \item Erro global: $O(\Delta t)$ (mesma ordem que Euler expl\'icito).
+\end{itemize}
+
+Para a equa\c{c}\~ao do calor:
+\[
+u_i^{n+1} - r(u_{i-1}^{n+1} - 2u_i^{n+1} + u_{i+1}^{n+1}) = u_i^n,
+\]
+que resulta em um sistema linear tridiagonal a resolver em cada passo.
+
+\section*{M\'etodo de Crank-Nicolson}
+
+M\'edia entre Euler expl\'icito e impl\'icito:
+\[
+y_{n+1} = y_n + \frac{\Delta t}{2}[f(y_n, t_n) + f(y_{n+1}, t_{n+1})].
+\]
+\begin{itemize}
+  \item Incondicionalmente est\'avel.
+  \item Erro global: $O(\Delta t^2)$ --- mais acurado que ambos os Eulers!
+  \item Para a equa\c{c}\~ao do calor: esquema semi-impl\'icito de segunda ordem.
+\end{itemize}
+
+\section*{Rigidez (Stiffness)}
+
+Um sistema \'e \textbf{r\'igido} quando a escala de tempo da solu\c{c}\~ao \'e muito maior que a escala de estabilidade do m\'etodo expl\'icito. Exemplo: $dy/dt = -1000y + 1$. A solu\c{c}\~ao varia lentamente, mas Euler expl\'icito exige $\Delta t < 0{,}001$.
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Euler impl\'icito para $dy/dt = -\lambda y$}
+$y_{n+1} = y_n + \Delta t(-\lambda y_{n+1}) \Rightarrow y_{n+1}(1+\lambda\Delta t) = y_n \Rightarrow y_{n+1} = \frac{y_n}{1+\lambda\Delta t}$.
+Para $\lambda=10$, $\Delta t=0{,}5$: $y_1 = y_0/6$. Exato: $e^{-5} \approx 0{,}0067$. Impl\'icito: $1/6 \approx 0{,}167$.
+(O m\'etodo \'e est\'avel mas impreciso com $\Delta t$ grande!)
+
+\subsection*{Exemplo 2 --- Crank-Nicolson para $dy/dt = -\lambda y$}
+$y_{n+1} = y_n + \frac{\Delta t}{2}(-\lambda y_n - \lambda y_{n+1}) \Rightarrow y_{n+1} = y_n\frac{1-\lambda\Delta t/2}{1+\lambda\Delta t/2}$.
+Para $\lambda=1$, $\Delta t=0{,}1$: $y_1 = y_0(0{,}95/1{,}05) \approx 0{,}9048$. Exato: $e^{-0{,}1} = 0{,}9048$. Excelente concord\^ancia!
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Euler impl\'icito)} Resolva $dy/dt = -5y$, $y(0)=1$ por Euler impl\'icito com $\Delta t=0{,}4$ para 5 passos. Compare com o exato $e^{-5t}$.
+  
+  \item \textbf{(Crank-Nicolson)} Resolva $dy/dt = y\cos t$, $y(0)=1$ por Crank-Nicolson com $\Delta t=0{,}5$ at\'e $t=2$. (Linearize implicitamente: na iter., use $y^{(k)}$.)
+  
+  \item \textbf{(Estabilidade comparada)} Para $dy/dt = -100y$, $y(0)=1$: qual o $\Delta t$ m\'aximo para Euler expl\'icito ser est\'avel? Euler impl\'icito tem essa restri\c{c}\~ao?
+  
+  \item \textbf{(Calor impl\'icito)} Para a equa\c{c}\~ao do calor com $\kappa=1$, $\Delta x=0{,}5$, $\Delta t=0{,}5$: (a) calcule $r$; (b) o esquema expl\'icito \'e est\'avel? (c) escreva o sistema linear para Euler impl\'icito.
+  
+  \item \textbf{(Crank-Nicolson: equa\c{c}\~ao do calor)} Escreva o esquema de Crank-Nicolson para a equa\c{c}\~ao do calor. Qual \'e a ordem de precis\~ao em $\Delta t$ e $\Delta x$?
+  
+  \item \textbf{(Rigidez)} Considere $\dot y = -1000y + 1000\sin t$. (a) Qual a escala de tempo da solu\c{c}\~ao particular $y_p = \sin(t)/(1+10^6)^{1/2}$? (b) Qual $\Delta t$ Euler expl\'icito exige? (c) Por que um m\'etodo impl\'icito \'e melhor?
+  
+  \item \textbf{(Compara\c{c}\~ao global)} Fa\c{c}a uma tabela comparando: m\'etodo, ordem de precis\~ao, estabilidade (condicional/incondicional), custo computacional por passo.
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item Euler impl\'icito: $O(\Delta t)$, incond.\ est\'avel; resolve sistema em cada passo.
+  \item Crank-Nicolson: $O(\Delta t^2)$, incond.\ est\'avel; melhor precis\~ao.
+  \item Rigidez: use m\'etodos impl\'icitos quando $\lambda\Delta t \gg 1$ com expl\'icito.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Press, W.\ H.\ et al.\ \textit{Numerical Recipes}. Cambridge, 2007.
+  \item Strikwerda, J.\ C.\ \textit{Finite Difference Schemes and PDEs}. SIAM, 2004.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

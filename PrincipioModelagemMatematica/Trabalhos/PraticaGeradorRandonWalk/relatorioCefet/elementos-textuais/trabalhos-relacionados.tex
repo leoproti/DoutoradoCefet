@@ -1,0 +1,14 @@
+% ------------------------------------------------------------------------------
+% Trabalhos Relacionados
+% ------------------------------------------------------------------------------
+
+\chapter{Trabalhos Relacionados}
+\label{chap_trabalhos_relacionados}
+
+O random walk simples e amplamente utilizado como modelo de referencia para processos difusivos e como caso-base para validacao de algoritmos estocasticos. Em materiais introdutorios de probabilidade e simulacao, e comum utilizar esse sistema para comparar previsoes teoricas fechadas com resultados obtidos por Monte Carlo \cite{mathworld_random_walk_1d,mathworld_binomial_distribution}.
+
+No contexto computacional, diferentes implementacoes de random walk variam principalmente no gerador de numeros pseudoaleatorios adotado, no numero de realizacoes e nas metricas de avaliacao. Trabalhos didaticos frequentemente enfatizam tres verificacoes: crescimento linear do desvio quadratico medio, estimativa do expoente de escala em grafico log-log e aproximacao gaussiana dos deslocamentos finais normalizados para grandes horizontes temporais.
+
+Esta pratica se alinha a essa linha de validacao, com a especificidade de implementar explicitamente um LCG para controle total da cadeia de geracao pseudoaleatoria. Esse aspecto aproxima o trabalho de estudos de metodos numericos que avaliam nao apenas o modelo fisico-probabilistico, mas tambem os impactos de implementacao na qualidade dos resultados.
+
+Como diferencial adicional, o presente relatorio integra visualizacao de trajetorias, ajuste quantitativo de lei de potencia e teste de hipotese para o expoente estimado. Essa abordagem oferece uma ponte entre analise exploratoria (graficos), inferencia estatistica (teste t) e teoria assintotica (TCL), compondo uma avaliacao mais completa da aderencia do experimento ao random walk classico.

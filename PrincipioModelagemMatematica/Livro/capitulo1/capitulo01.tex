@@ -1,0 +1,377 @@
+\documentclass[12pt,a4paper,oneside]{book}
+
+% =====================================================================
+% PACOTES ESSENCIAIS
+% =====================================================================
+\usepackage[brazilian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{mathtools}
+
+% =====================================================================
+% GEOMETRIA
+% =====================================================================
+\geometry{
+    left=2.5cm,
+    right=2.5cm,
+    top=3cm,
+    bottom=3cm,
+    headheight=14pt
+}
+
+% =====================================================================
+% CABECALHO E RODAPE
+% =====================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{Capitulo 01: Fundamentos de Modelagem Matematica}}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{\small Principios de Modelagem Matematica}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% =====================================================================
+% AMBIENTES
+% =====================================================================
+\theoremstyle{definition}
+\newtheorem{definition}{Definicao}[chapter]
+\newtheorem{example}[definition]{Exemplo}
+\newtheorem{remark}[definition]{Observacao}
+\newtheorem{problem}{Problema}
+
+% =====================================================================
+% DOCUMENTO
+% =====================================================================
+\title{\textbf{Capitulo 01: Fundamentos de Modelagem Matematica}\\[0.4cm]
+\large Principios de Modelagem Matematica}
+\author{Baseado em Dym, C. L.}
+\date{2026-04-14}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\chapter{Fundamentos de Modelagem Matematica}
+
+\section{Ideia central do capitulo}
+
+Modelagem matematica e o processo de representar um sistema real por meio de variaveis,
+hipoteses e equacoes, com objetivo de explicar, prever ou otimizar comportamentos.
+
+Em termos simples, modelar e traduzir uma pergunta do mundo real para a linguagem da matematica.
+
+\section{O que e um modelo?}
+
+\begin{definition}[Modelo matematico]
+Um modelo matematico e uma representacao simplificada de um fenomeno real,
+construida com variaveis, parametros, relacoes funcionais e condicoes de contorno/iniciais.
+\end{definition}
+
+Todo modelo envolve compromisso entre realismo e simplicidade.
+
+\begin{remark}
+Um modelo nao precisa ser perfeito para ser util. Ele precisa ser adequado ao objetivo.
+\end{remark}
+
+\section{Etapas classicas da modelagem}
+
+\begin{enumerate}
+    \item Definir o problema e o objetivo da analise.
+    \item Identificar variaveis relevantes e parametros.
+    \item Formular hipoteses simplificadoras.
+    \item Escrever equacoes do modelo.
+    \item Resolver analitica ou numericamente.
+    \item Validar com dados reais.
+    \item Refinar o modelo, se necessario.
+\end{enumerate}
+
+\subsection{Exemplo de fluxo pratico}
+
+Problema: prever a temperatura de um cafe ao longo do tempo.
+
+\begin{itemize}
+    \item Variavel de estado: $T(t)$.
+    \item Parametros: temperatura ambiente $T_a$, constante de troca termica $k$.
+    \item Hipotese: taxa de resfriamento proporcional a diferenca $T-T_a$.
+\end{itemize}
+
+Modelo:
+\begin{equation}
+\frac{dT}{dt}=-k(T-T_a).
+\end{equation}
+
+Esse exemplo mostra como uma frase fisica vira equacao diferencial.
+
+\section{Tipos de modelos}
+
+A tabela a seguir resume as principais categorias de modelos matematicos usados neste livro:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Categoria} & \textbf{Estrutura matematica} & \textbf{Exemplo tipico} \\
+\midrule
+Algebrico & equacoes sem derivadas & balanco de massa, lei de Hooke \\
+EDO & derivadas no tempo & crescimento populacional, circuito RC \\
+EDP & derivadas no tempo e espaco & difusao de calor, vibracao \\
+Estocastico & variaveis aleatorias & ruido, filas, Monte Carlo \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Por natureza das variaveis}
+
+\begin{itemize}
+    \item \textbf{Continuos}: variaveis definidas em intervalos reais (tempo continuo).
+    \item \textbf{Discretos}: variaveis em passos (dias, iteracoes, ciclos).
+\end{itemize}
+
+\subsection{Por estrutura matematica}
+
+\begin{itemize}
+    \item \textbf{Algebricos}: sem derivadas.
+    \item \textbf{Diferenciais ordinarios (EDO)}: derivadas no tempo.
+    \item \textbf{Diferenciais parciais (EDP)}: derivadas no tempo e no espaco.
+    \item \textbf{Estocasticos}: incluem aleatoriedade.
+\end{itemize}
+
+\subsection{Por objetivo}
+
+\begin{itemize}
+    \item \textbf{Descritivo}: explica o fenomeno.
+    \item \textbf{Preditivo}: antecipa comportamento futuro.
+    \item \textbf{Otimizacao}: busca melhor decisao sob restricoes.
+\end{itemize}
+
+\section{Hipoteses e parametros}
+
+Uma boa modelagem depende de hipoteses claras.
+
+Exemplos de hipoteses comuns:
+\begin{itemize}
+    \item sistema fechado (sem troca de massa);
+    \item propriedades constantes no tempo;
+    \item efeitos secundarios despreziveis.
+\end{itemize}
+
+\begin{definition}[Parametro]
+Parametro e uma quantidade fixa dentro de uma simulacao, mas que pode mudar entre experimentos.
+\end{definition}
+
+\begin{definition}[Variavel de estado]
+Variavel de estado descreve a condicao instantanea do sistema e evolui no tempo ou no espaco.
+\end{definition}
+
+\section{Exemplos introdutorios}
+
+\subsection{Exemplo 1: crescimento populacional simples}
+
+Hipotese: taxa de crescimento proporcional a populacao atual.
+
+\begin{equation}
+\frac{dP}{dt}=rP, \qquad P(0)=P_0.
+\end{equation}
+
+Solucao:
+\begin{equation}
+P(t)=P_0e^{rt}.
+\end{equation}
+
+Interpretacao:
+\begin{itemize}
+    \item $r>0$: crescimento.
+    \item $r<0$: decaimento.
+\end{itemize}
+
+\subsection{Exemplo 2: queda livre sem resistencia do ar}
+
+Hipoteses:
+\begin{itemize}
+    \item aceleracao constante $g$;
+    \item sem arrasto do ar.
+\end{itemize}
+
+Modelo:
+\begin{equation}
+\frac{dv}{dt}=g, \qquad \frac{dy}{dt}=v.
+\end{equation}
+
+Com $v(0)=0$ e $y(0)=h$:
+\begin{equation}
+v(t)=gt, \qquad y(t)=h-\frac{1}{2}gt^2.
+\end{equation}
+
+Esse modelo e simples e util, mas perde precisao em altas velocidades por ignorar arrasto.
+
+\subsection{Exemplo 3: mistura em tanque}
+
+Tanque bem misturado de volume constante $V$, entrada de concentracao $c_{in}$ e vazao $q$.
+
+Se $c(t)$ e concentracao no tanque:
+\begin{equation}
+V\frac{dc}{dt}=q(c_{in}-c).
+\end{equation}
+
+Esse modelo aparece em engenharia quimica, ambiental e biologica.
+
+\section{Validacao e limites do modelo}
+
+Validar e comparar previsoes com observacoes.
+
+Indicadores comuns:
+\begin{itemize}
+    \item erro medio absoluto;
+    \item erro relativo;
+    \item tendencia sistematica de superestimar/subestimar.
+\end{itemize}
+
+\begin{remark}
+Quando o erro e grande, nao significa que a matematica esta errada; geralmente as hipoteses precisam ser revistas.
+\end{remark}
+
+\section{Boas praticas para modelar}
+
+\begin{enumerate}
+    \item Comece com modelo minimo viavel (simples e interpretavel).
+    \item Nomeie variaveis e unidades com clareza.
+    \item Registre hipoteses explicitamente.
+    \item Verifique consistencia dimensional das equacoes.
+    \item So adicione complexidade se houver ganho comprovado.
+\end{enumerate}
+
+\section{Exercicios curtos}
+
+\begin{problem}
+Escreva um modelo simples para saldo bancario com deposito mensal constante e juros proporcionais ao saldo atual.
+\end{problem}
+
+\begin{problem}
+No modelo de queda livre sem arrasto, determine o tempo para um objeto atingir o solo, partindo de altura $h$ e $v(0)=0$.
+\end{problem}
+
+\begin{problem}
+Para o modelo de mistura em tanque, encontre o estado estacionario da concentracao.
+\end{problem}
+
+% =====================================================================
+% EXEMPLO TIPO PROVA
+% =====================================================================
+\section{Exemplo tipo prova: identificacao de variaveis e hipoteses}
+
+\begin{problem}
+Uma bola de borracha e lancada verticalmente para cima com velocidade inicial $v_0$.
+Ela sofre resistencia do ar proporcional a sua velocidade.
+\begin{enumerate}
+    \item Identifique as variaveis dinamicas e os parametros do problema.
+    \item Classifique o modelo matematico quanto a sua natureza.
+    \item Escreva a equacao governante para a fase de subida.
+    \item Cite tres hipoteses explicitamente assumidas.
+\end{enumerate}
+\end{problem}
+
+\textbf{Solucao}:
+
+\textbf{1. Variaveis e parametros}:
+\begin{itemize}
+    \item Variaveis dinamicas: posicao $y(t)$ e velocidade $v(t) = \dot{y}$.
+    \item Parametros: massa $m$, aceleracao gravitacional $g$, coeficiente de arrasto $b>0$.
+\end{itemize}
+
+\textbf{2. Classificacao}: modelo continuo, dinamico, deterministico, governado por uma
+EDO de primeira ordem na velocidade (ou segunda ordem na posicao).
+
+\textbf{3. Equacao governante}:
+
+Aplicando a Segunda Lei de Newton na fase de subida ($v>0$):
+\begin{equation}
+m\frac{dv}{dt} = -mg - bv, \qquad v(0) = v_0 > 0.
+\end{equation}
+Reescrevendo em termos de posicao: $m\ddot{y} = -mg - b\dot{y}$.
+
+\textbf{4. Hipoteses}:
+\begin{enumerate}
+    \item Arrasto linear em $v$ (regime laminar, valido para Reynolds baixo).
+    \item Gravidade $g$ constante (valido para $h \ll R_{\text{Terra}}$).
+    \item Massa $m$ constante ao longo do movimento.
+\end{enumerate}
+
+\begin{remark}
+Esse e o tipo de questao que aparece no inicio das provas: apresentar uma situacao
+fisica e pedir que o aluno identifique variaveis, parametros, tipo de modelo e
+equacao governante. A diferenciacao entre \emph{variavel} (muda com o tempo) e
+\emph{parametro} (fixo no contexto do modelo) e frequentemente cobrada.
+\end{remark}
+
+\section{Resumo final}
+
+O capitulo 01 estabelece a base da modelagem matematica:
+\begin{itemize}
+    \item formular perguntas de forma quantitativa;
+    \item transformar fenomenos em equacoes;
+    \item explicitar hipoteses e parametros;
+    \item validar e refinar com dados.
+\end{itemize}
+
+Com essa base, os capitulos seguintes aprofundam ferramentas especificas como analise dimensional, escala, aproximacoes e dinamicas exponenciais.
+
+\section{Ciclo iterativo de modelagem}
+
+Na pratica, modelar nao e linear. E um ciclo de refinamentos sucessivos.
+Dym descreve esse processo como o nucleo da modelagem matematica:
+
+\begin{enumerate}
+    \item \textbf{Hipoteses iniciais}: simplifique ao maximo para comecar.
+    \item \textbf{Formulacao}: escreva as equacoes baseadas nas hipoteses.
+    \item \textbf{Solucao}: resolva analitica ou numericamente.
+    \item \textbf{Comparacao com dados}: valide o modelo contra observacoes.
+    \item \textbf{Revisao}: se necessario, retorne ao passo 1 com hipoteses mais refinadas.
+\end{enumerate}
+
+A chave e saber quando parar: um modelo e bom o suficiente quando atende ao objetivo com custo aceitavel.
+
+\begin{remark}
+Comecar pelo modelo mais simples possivel (modelo minimo viavel) e uma estrategia poderosa.
+Adicionar complexidade so e justificado se houver ganho mensuravel na precisao ou no entendimento.
+\end{remark}
+
+\subsection{Exemplo: modelo de queda livre revisitado}
+
+No modelo de queda livre, a sequencia e:
+\begin{enumerate}
+    \item Hipotese inicial: sem resistencia do ar. Modelo: $\ddot{y} = -g$.
+    \item Solucao: $y(t) = h - \tfrac{1}{2}gt^2$.
+    \item Validacao: bom para objetos densos em baixas velocidades.
+    \item Refinamento: adicionar arrasto $F_d = -bv$. Novo modelo: $m\ddot{y} = -mg - b\dot{y}$.
+    \item Segunda validacao: melhor para altas velocidades ou objetos leves.
+\end{enumerate}
+
+\section{Conexao entre os capitulos}
+
+Este livro e organizado como uma sequencia de ferramentas que se complementam:
+
+\begin{itemize}
+    \item \textbf{Capitulo 2 (Analise Dimensional)}: antes de resolver, verifique se as dimensoes fazem sentido
+          e reduza o numero de parametros pelo Teorema Pi.
+    \item \textbf{Capitulo 3 (Escala e Fractais)}: entenda como o comportamento muda com o tamanho;
+          leis de potencia $Y \propto X^\alpha$ identificam os mecanismos dominantes.
+    \item \textbf{Capitulo 4 (Serie de Taylor)}: linearize equacoes nao lineares perto de equilibrio
+          para analise de estabilidade e simplificacao.
+    \item \textbf{Capitulo 5 (Comportamento Exponencial)}: solucao analitica da classe mais frequente
+          de EDOs, incluindo crescimento, decaimento e modelos populacionais.
+\end{itemize}
+
+\begin{remark}
+Os quatro capitulos formam um kit de ferramentas complementar: analise dimensional prepara o modelo,
+escala identifica termos dominantes, Taylor lineariza e o comportamento exponencial resolve a EDO resultante.
+\end{remark}
+
+\end{document}

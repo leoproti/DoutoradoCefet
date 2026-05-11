@@ -1,0 +1,90 @@
+%------------------------------------------------------------------
+% Questão 4.6 – Variação do peso com altitude
+%------------------------------------------------------------------
+
+\textbf{Fórmula da gravitação}
+
+O peso a uma altura $h$ acima da superfície é:
+\[
+W(h) = \frac{GM_E m}{(R+h)^2}
+\]
+
+Na superfície ($h=0$): $W_0 = mg = 10\,\text{N}$.
+
+Reescrevendo em termos de $W_0$:
+\[
+W(h) = W_0 \left(\frac{R}{R+h}\right)^2
+\]
+
+%------------------------------------------------------------------
+\textbf{Dados:} $R = 6371\,\text{km}$, $W_0 = 10\,\text{N}$
+
+%------------------------------------------------------------------
+\textbf{Caso 1: $h = 10\,\text{m}$ (apartamento no 10º andar)}
+
+Usando diretamente a fórmula exata:
+\[
+W(10) = 10\left(\frac{6{,}371\times10^6}{6{,}371\times10^6+10}\right)^2
+\]
+\[
+W(10) \approx 9{,}99997\,\text{N}
+\]
+
+Agora calculamos a variação relativa:
+\[
+\frac{\Delta W}{W_0} = \frac{W(10)-W_0}{W_0}
+= \frac{9{,}99997-10}{10}
+= -3\times 10^{-6}
+\]
+\[
+\frac{\Delta W}{W_0}\times 100\% = -3\times 10^{-4}\% \approx \boxed{-0{,}0003\%}
+\]
+
+(imperceptível!)
+
+%------------------------------------------------------------------
+\textbf{Caso 2: $h = 8848\,\text{m}$ (Monte Everest)}
+
+\[
+\frac{R}{R+h} = \frac{6{,}371 \times 10^6}{6{,}371 \times 10^6 + 8848} \approx 0{,}99861
+\]
+
+\[
+W(8848) = 10 \times (0{,}99861)^2 = 10 \times 0{,}99723 = 9{,}9723\,\text{N}
+\]
+
+Agora a conta da variação percentual:
+\[
+\frac{\Delta W}{W_0} = \frac{W(8848)-W_0}{W_0}
+= \frac{9{,}9723-10}{10}
+= -0{,}00277
+\]
+\[
+\frac{\Delta W}{W_0}\times 100\% = -0{,}277\% \approx \boxed{-0{,}277\%}
+\]
+
+(notável, mas pequena)
+
+\medskip
+\textit{Observação (aproximação de Taylor):} para $h\ll R$, vale
+\[
+\left(\frac{R}{R+h}\right)^2 = (1+h/R)^{-2} \approx 1-2\frac{h}{R},
+\]
+o que leva à mesma conclusão física de que a variação é muito pequena para altitudes baixas.
+
+%------------------------------------------------------------------
+\textbf{Resumo}
+
+\begin{center}
+\begin{tabular}{lrr}
+\hline
+\textbf{Local} & \textbf{Peso (N)} & \textbf{Variação} \\
+\hline
+Superfície & $10{,}0000$ & --- \\
+Apartamento 10º andar ($10\,\text{m}$) & $9{,}99997$ & $-0{,}0003\%$ \\
+Monte Everest ($8848\,\text{m}$) & $9{,}9723$ & $-0{,}277\%$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Conclusão:} O peso diminui muito pouco com altitude! Para uso prático, $g \approx 10\,\text{m/s}^2$ em qualquer lugar na superfície terrestre.

@@ -1,0 +1,85 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Apresenta\c{c}\~ao de Trabalhos IV --- S\'intese e Temas Transversais}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 35}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Identificar temas transversais que conectam os diferentes modelos da disciplina e sintetizar os princ\'ipios fundamentais da modelagem matem\'atica.
+
+\section*{Temas Transversais da Disciplina}
+
+\subsection*{1.\ Hierarquia de escalas}
+Todo modelo opera em uma escala espec\'ifica. O mesmo fen\^omeno pode ser modelado em n\'iveis diferentes:
+\begin{itemize}
+  \item \textbf{Microsc\'opico:} DM (\'atomos, LJ), CA (c\'elulas individuais).
+  \item \textbf{Mesoesc\'opico:} cadeias de Markov, gas de rede (LBM).
+  \item \textbf{Macrosc\'opico:} EDOs (SIR, Lotka-Volterra), PDEs (LWR, equa\c{c}\~ao do calor).
+\end{itemize}
+Pergunta central: \textit{em qual escala o fen\^omeno de interesse emerge?}
+
+\subsection*{2.\ Emerg\^encia}
+Comportamentos complexos surgem de regras simples:
+\begin{itemize}
+  \item Jogo da Vida: regras locais simples $\to$ estruturas globais (planeadores, osciladores).
+  \item NaSch: regras simples $\to$ ondas de tr\'afego (engarrafamentos fant\'asma).
+  \item SIR-CA: contato local $\to$ din\^amica epidêmica global.
+\end{itemize}
+
+\subsection*{3.\ Leis de escala e universalidade}
+Muitos fen\^omenos seguem leis de pot\^encia $y \sim x^\alpha$:
+\begin{itemize}
+  \item Lei de Kleiber: metabolismo $\sim M^{3/4}$.
+  \item Fractais: comprimento de costa $\sim \epsilon^{1-D}$.
+  \item Difus\~ao an\'omala: MSD $\sim t^\alpha$.
+  \item Perola\c{c}\~ao: $\xi \sim |p - p_c|^{-\nu}$ (comprimento de correla\c{c}\~ao).
+\end{itemize}
+
+\subsection*{4.\ Incerteza e valida\c{c}\~ao}
+Todo modelo tem limites. A honestidade cient\'ifica exige:
+\begin{itemize}
+  \item Propaga\c{c}\~ao de erros ($\sigma_f^2 = \sum (\partial f/\partial x_i)^2\sigma_{x_i}^2$).
+  \item Verifica\c{c}\~ao (o c\'odigo resolve o modelo?) vs.\ valida\c{c}\~ao (o modelo descreve a realidade?).
+  \item An\'alise de sensibilidade: quais par\^ametros mais afetam o resultado?
+\end{itemize}
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Hierarquia)} Escolha um fen\^omeno (ex: transporte de calor, espalhamento de doença). Descreva como seria modelado nos tr\^es n\'iveis (microsc\'opico, mesoeesc\'opico, macrosc\'opico). Quais informa\c{c}\~oes se perdem em cada n\'ivel de agrega\c{c}\~ao?
+  
+  \item \textbf{(Emerg\^encia)} Cite um exemplo de emerg\^encia que estudamos. Explique: (a) quais s\~ao as regras locais; (b) qual \'e o comportamento emergente; (c) por que esse comportamento n\~ao \'e previs\'ivel apenas olhando as regras locais.
+  
+  \item \textbf{(Lei de pot\^encia)} Dados de metabolismo de mam\'iferos: ($M$ em kg, $B$ em W): (1, 3), (10, 17), (100, 95), (1000, 540). Fa\c{c}a um gr\'afico log-log e ajuste a lei de pot\^encia. Qual o expoente?
+  
+  \item \textbf{(Valida\c{c}\~ao)} Descreva como voc\^e validaria seu modelo de trabalho final. Quais dados reais usaria? Quais m\'etricas de compara\c{c}\~ao (RMSE, $R^2$, distribui\c{c}\~ao)?
+  
+  \item \textbf{(Sensibilidade)} Para o SIR cl\'assico com $\mathcal{R}_0 = \beta/\gamma$: como o pico de infectados $I_\text{max}$ muda se $\beta$ aumentar 10\%? E se $\gamma$ aumentar 10\%? Qual par\^ametro \'e mais cr\'itico para o controle da epidemia?
+  
+  \item \textbf{(S\'intese)} Em 200 palavras: qual foi o modelo mais impactante que voc\^e estudou na disciplina? Justifique pela sua elegância matem\'atica, aplicabilidade e lições sobre o fen\^omeno modelado.
+  
+  \item \textbf{(Futuro)} Identifique um problema real (cient\'ifico, social ou tecnol\'ogico) que poderia ser abordado com os m\'etodos que aprendemos. Qual m\'etodo usaria? Quais seriam os desafios principais?
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item Hierarquia de escalas: micro, meso, macro --- cada uma revela algo diferente.
+  \item Emerg\^encia: comportamento global n\~ao \'e previs\'ivel s\'o pelas regras locais.
+  \item Leis de pot\^encia e universalidade: padr\~oes que transcendem o sistema espec\'ifico.
+  \item Valida\c{c}\~ao \'e obrigat\'oria; limita\c{c}\~oes s\~ao partes do modelo.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Material de todas as unidades anteriores.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

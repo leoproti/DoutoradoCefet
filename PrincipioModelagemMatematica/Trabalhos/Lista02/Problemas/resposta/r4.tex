@@ -1,0 +1,58 @@
+Queremos mostrar que
+\[
+\lambda \approx \frac{2{,}303}{t_{\text{decaimento}}}
+\]
+implica
+\[
+V(t) \approx V_0\,e^{-2{,}303\left(\frac{t}{t_{\text{decaimento}}}\right)}.
+\]
+
+\textbf{Demonstracao.}
+
+A descarga de um capacitor em circuito RC e modelada por
+\[
+V(t)=V_0e^{-t/\tau},
+\]
+onde $\tau=RC$.
+
+Usando mudanca de base,
+\[
+e^x=10^{x/\ln 10},
+\]
+logo
+\[
+e^{-t/\tau}=10^{-t/(\tau\ln 10)}.
+\]
+
+Como $\ln 10\approx 2{,}303$, segue que
+\[
+e^{-t/\tau}\approx 10^{-t/(2{,}303\,\tau)}.
+\]
+
+Definindo o tempo de decaimento decimal por
+\[
+t_{\text{decaimento}}=2{,}303\,\tau,
+\]
+obtemos
+\[
+V(t)\approx V_0\,10^{-t/t_{\text{decaimento}}}.
+\]
+
+Agora, usando $10^{-x}=e^{-x\ln 10}\approx e^{-2{,}303x}$,
+\[
+V(t)\approx V_0\,e^{-2{,}303\left(\frac{t}{t_{\text{decaimento}}}\right)}.
+\]
+
+Equivalentemente, se
+\[
+\lambda\approx\frac{2{,}303}{t_{\text{decaimento}}},
+\]
+entao
+\[
+V(t)=V_0e^{-\lambda t}\approx V_0\,e^{-2{,}303\left(\frac{t}{t_{\text{decaimento}}}\right)}.
+\]
+
+Portanto, a forma proposta esta demonstrada.
+
+
+

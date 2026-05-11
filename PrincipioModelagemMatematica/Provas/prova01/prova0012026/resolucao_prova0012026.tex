@@ -1,0 +1,481 @@
+\documentclass[12pt,a4paper]{article}
+
+% =====================================================================
+% PACOTES
+% =====================================================================
+\usepackage[brazilian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{lindenmayersystems}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm}
+
+% =====================================================================
+% AMBIENTES
+% =====================================================================
+\theoremstyle{definition}
+\newtheorem{questao}{Quest\~ao}
+
+\newenvironment{solucao}{%
+  \par\medskip\noindent\textbf{Solu\c{c}\~ao.}\quad\ignorespaces
+}{%
+  \par\medskip
+}
+
+% =====================================================================
+% DOCUMENTO
+% =====================================================================
+\begin{document}
+
+\begin{center}
+  {\large \textbf{SERVI\c{C}O P\'UBLICO FEDERAL -- MINIST\'ERIO DA EDUCA\c{C}\~AO}}\\[4pt]
+  {\large \textbf{CENTRO FEDERAL DE EDUCA\c{C}\~AO TECNOL\'OGICA DE MINAS GERAIS}}\\[4pt]
+  {\large \textbf{PROGRAMA DE P\'OS-GRADUA\c{C}\~AO EM MODELAGEM MATEM\'ATICA E COMPUTACIONAL}}\\[10pt]
+  \rule{\linewidth}{0.4pt}\\[6pt]
+  {\Large \textbf{Disciplina: Princ\'ipios de Modelagem Matem\'atica e Computacional}}\\[4pt]
+  {\large 1\textordmasculine{} semestre de 2026 -- Professor Albens Atman}\\[4pt]
+  {\large \textbf{Resolu\c{c}\~ao -- Prova 01 (2026)}}\\[4pt]
+  \rule{\linewidth}{0.4pt}
+\end{center}
+
+\bigskip
+
+% =====================================================================
+% QUESTÃO 1 -- Dimensão Fractal
+% =====================================================================
+\begin{questao}
+Determine a dimens\~ao fractal dos seguintes conjuntos: A (fractal tipo cruz/Vicsek), B (curva de Koch), C (tri\^angulo de Sierpinski).
+\end{questao}
+
+\begin{solucao}
+
+A dimens\~ao fractal de Hausdorff--Besicovitch \`e definida por
+\begin{equation}
+  d_f = \frac{\ln N}{\ln(1/r)},
+\end{equation}
+onde $N$ \'e o n\'umero de c\'opias auto-similares e $r$ \'e o fator de redu\c{c}\~ao de escala (razão de similaridade).
+
+\medskip
+\noindent\textbf{(A) Fractal tipo Cruz (Vicsek)}
+
+Em cada itera\c{c}\~ao, o gerador em forma de cruz produz $8$ c\'opias auto-similares com fator linear $r=1/4$ (conforme o desenho com os dois quadrados abertos):
+\[
+  N = 8, \quad r = \tfrac{1}{4}.
+\]
+Logo:
+\begin{equation}
+  \boxed{d_f^{(A)} = \frac{\ln 8}{\ln 4} = \frac{3}{2} = 1{,}5.}
+\end{equation}
+
+\medskip
+\noindent\textbf{(B) Curva de Koch}
+
+A curva de Koch \'e constru\'ida substituindo o ter\c{c}o central de cada segmento por dois lados de um tri\^angulo equil\'atero. Cada segmento origina 4 novos, cada um com $1/3$ do comprimento original:
+\[
+  N = 4, \quad r = \tfrac{1}{3}.
+\]
+Logo:
+\begin{equation}
+  \boxed{d_f^{(B)} = \frac{\ln 4}{\ln 3} \approx \frac{1{,}3863}{1{,}0986} \approx 1{,}262.}
+\end{equation}
+
+\noindent\textit{Interpreta\c{c}\~ao:} A dimens\~ao entre 1 e 2 reflete que a curva de Koch \'e mais complexa que uma linha reta ($d=1$) mas n\~ao preenche o plano ($d=2$).
+
+\medskip
+\noindent\textbf{(C) Tri\^angulo de Sierpinski}
+
+O tri\^angulo de Sierpinski \'e constru\'ido removendo o tri\^angulo central de cada itera\c{c}\~ao, restando 3 c\'opias auto-similares com metade do tamanho linear:
+\[
+  N = 3, \quad r = \tfrac{1}{2}.
+\]
+Logo:
+\begin{equation}
+  \boxed{d_f^{(C)} = \frac{\ln 3}{\ln 2} \approx \frac{1{,}0986}{0{,}6931} \approx 1{,}585.}
+\end{equation}
+
+\medskip
+\noindent\textbf{Resumo:}
+\begin{center}
+\begin{tabular}{clccc}
+\hline
+Conjunto & Nome & $N$ & $r$ & $d_f$ \\
+\hline
+A & Fractal Cruz & 8 & $1/4$ & $1{,}5$ \\
+B & Curva de Koch         & 4 & $1/3$ & $1{,}262$ \\
+C & Tri\^angulo de Sierpinski & 3 & $1/2$ & $1{,}585$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{solucao}
+
+% =====================================================================
+% QUESTÃO 2 -- Análise dimensional (Buckingham) para fluxo em tubo
+% =====================================================================
+\begin{questao}
+Encontre uma express\~ao para o fluxo volum\'etrico $Q$ de um fluido de viscosidade din\^amica $\mu$ escoando em um canal de di\^ametro $d$, sob queda de press\~ao por unidade de comprimento $\Delta p/L$.
+
+Dados dimensionais:
+\[
+\left[\frac{\Delta p}{L}\right] = M L^{-2}T^{-2},
+\qquad
+[\mu] = M L^{-1}T^{-1},
+\qquad
+[d]=L,
+\qquad
+[Q]=L^3T^{-1}.
+\]
+\end{questao}
+
+\begin{solucao}
+
+\noindent\textbf{Objetivo.} Encontrar a forma funcional de $Q$ usando o Teorema $\Pi$ de Buckingham.
+
+\medskip
+\noindent\textbf{Nomes das vari\'aveis usadas.}
+\begin{itemize}
+  \item $Q$: fluxo volum\'etrico (vaz\~ao volum\'etrica) do fluido.
+  \item $\Delta p$: queda de press\~ao entre dois pontos do canal.
+  \item $L$: comprimento do trecho considerado do canal.
+  \item $\Delta p/L$: gradiente de press\~ao (queda de press\~ao por unidade de comprimento).
+  \item $\mu$ (mu): viscosidade din\^amica do fluido.
+  \item $d$: di\^ametro interno do canal.
+  \item $C$: constante adimensional (depende da geometria e do regime de escoamento).
+\end{itemize}
+
+\medskip
+\noindent\textbf{Passo 1: Vari\'aveis do problema.}
+
+Assumimos que
+\[
+Q = f\!\left(\mu,\,d,\,\frac{\Delta p}{L}\right).
+\]
+Temos $n=4$ vari\'aveis e $k=3$ dimens\~oes fundamentais ($M$, $L$, $T$), logo o n\'umero de grupos adimensionais \'e:
+\[
+n-k = 4-3 = 1.
+\]
+
+\medskip
+\noindent\textbf{Passo 2: Construir o grupo adimensional.}
+
+Tomamos
+\[
+\Pi = Q\,\mu^a\,d^b\left(\frac{\Delta p}{L}\right)^c.
+\]
+Substituindo dimens\~oes:
+\[
+[\Pi] = (L^3T^{-1})\,(ML^{-1}T^{-1})^a\,(L)^b\,(ML^{-2}T^{-2})^c.
+\]
+Portanto,
+\[
+[\Pi] = M^{a+c}\,L^{3-a+b-2c}\,T^{-1-a-2c}.
+\]
+Para $\Pi$ ser adimensional:
+\begin{align}
+M:&\quad a+c=0, \\
+L:&\quad 3-a+b-2c=0, \\
+T:&\quad -1-a-2c=0.
+\end{align}
+
+Da equa\c{c}\~ao de $M$: $a=-c$.
+
+Na de $T$: $-1-(-c)-2c=0 \Rightarrow -1-c=0 \Rightarrow c=-1$.
+
+Logo $a=1$.
+
+Na de $L$: $3-1+b-2(-1)=0 \Rightarrow 4+b=0 \Rightarrow b=-4$.
+
+Assim,
+\[
+\Pi = Q\,\mu\,d^{-4}\left(\frac{\Delta p}{L}\right)^{-1}
+= \frac{Q\,\mu}{d^4\left(\frac{\Delta p}{L}\right)}.
+\]
+
+Como h\'a apenas um grupo $\Pi$, ele deve ser constante:
+\[
+\frac{Q\,\mu}{d^4\left(\frac{\Delta p}{L}\right)} = C
+\quad\Longrightarrow\quad
+\boxed{Q = C\,\frac{d^4}{\mu}\,\frac{\Delta p}{L}.}
+\]
+
+\medskip
+\noindent\textbf{Passo 3: Interpreta\c{c}\~ao f\'isica.}
+
+\begin{itemize}
+  \item $Q \propto \Delta p/L$: quanto maior o gradiente de press\~ao, maior o fluxo.
+  \item $Q \propto d^4$: o di\^ametro impacta fortemente a vaz\~ao.
+  \item $Q \propto 1/\mu$: maior viscosidade reduz o fluxo.
+\end{itemize}
+
+\medskip
+\noindent\textbf{Passo 4: Rela\c{c}\~ao com a lei de Hagen--Poiseuille.}
+
+A an\'alise dimensional n\~ao determina $C$. Para escoamento laminar totalmente desenvolvido em tubo circular,
+\[
+Q = \frac{\pi}{128}\,\frac{d^4}{\mu}\,\frac{\Delta p}{L},
+\]
+ou seja, nesse caso espec\'ifico:
+\[
+\boxed{C=\frac{\pi}{128}.}
+\]
+
+\medskip
+\noindent\textbf{Conclus\~ao.}
+
+Pelo Teorema de Buckingham, a forma correta procurada na prova \'e
+\[
+\boxed{Q \sim \frac{d^4}{\mu}\,\frac{\Delta p}{L}}
+\]
+e, com solu\c{c}\~ao hidrodin\^amica completa para tubo circular laminar, obt\'em-se o fator num\'erico $\pi/128$.
+
+\end{solucao}
+
+% =====================================================================
+% QUESTÃO 3 -- Expansão de Virial / Van der Waals
+% =====================================================================
+\begin{questao}
+Uma das equa\c{c}\~oes de estado mais interessantes e vers\'ateis para descri\c{c}\~ao de gases reais \'e a \textbf{Expans\~ao de Virial}:
+\[
+  \frac{PV}{nRT} = 1 + c_0 + c_1\!\left(\frac{n}{V}\right) + c_2\!\left(\frac{n}{V}\right)^{\!2} + c_3\!\left(\frac{n}{V}\right)^{\!3} + \cdots
+\]
+A equa\c{c}\~ao do G\'as Ideal $PV = nRT$ equivale a um truncamento de ordem 0 com $c_k = 0$.
+Uma aproxima\c{c}\~ao mais consistente com gases reais \'e a equa\c{c}\~ao de Van der Waals:
+\[
+  \left(P - \frac{an^2}{V^2}\right)(V - nb) = nRT.
+\]
+\textbf{Encontre} qual a ordem de truncamento na Expans\~ao de Virial correspondente \`a equa\c{c}\~ao de Van der Waals, fornecendo as respectivas express\~oes para os coeficientes $c$ at\'e a ordem $i$ do truncamento.
+\end{questao}
+
+\begin{solucao}
+
+\noindent\textbf{Passo 1: Escrever a EoS de Van der Waals em forma conveniente.}
+
+Usaremos a forma f\'isica usual da equa\c{c}\~ao de Van der Waals,
+\[
+\left(P + a\frac{n^2}{V^2}\right)(V-nb)=nRT,
+\]
+equivalente a
+\[
+P=\frac{nRT}{V-nb}-a\frac{n^2}{V^2}.
+\]
+
+Definindo densidade molar $\rho=n/V$ e fator de compressibilidade $Z$,
+\[
+Z\equiv\frac{PV}{nRT},
+\]
+temos
+\begin{align}
+Z &= \frac{V}{V-nb} - \frac{a n^2}{V^2}\,\frac{V}{nRT} \notag \\
+  &= \frac{1}{1-b\rho} - \frac{a}{RT}\rho.
+\end{align}
+
+\medskip
+\noindent\textbf{Passo 2: Expans\~ao em s\'erie de virial (pot\^encias de $\rho$).}
+
+Para $|b\rho|<1$,
+\[
+\frac{1}{1-b\rho}=1+b\rho+b^2\rho^2+b^3\rho^3+\cdots.
+\]
+Logo,
+\begin{equation}
+Z=1+\left(b-\frac{a}{RT}\right)\rho+b^2\rho^2+b^3\rho^3+\cdots
+\label{eq:virial-rho-vdw}
+\end{equation}
+
+Comparando com
+\[
+Z=1+c_1\rho+c_2\rho^2+c_3\rho^3+\cdots,
+\]
+resulta
+\begin{align}
+c_1(T) &= b-\frac{a}{RT}, \\
+c_2(T) &= b^2, \\
+c_3(T) &= b^3, \\
+c_i(T) &= b^i \quad (i\ge 2).
+\end{align}
+
+\medskip
+\noindent\textbf{Passo 3: Mesma conclus\~ao na forma padr\~ao em volume molar.}
+
+Se $v=V/n=1/\rho$, ent\~ao
+\[
+P=\frac{RT}{v-b}-\frac{a}{v^2},
+\qquad
+Z=\frac{Pv}{RT}=1+\frac{B(T)}{v}+\frac{C(T)}{v^2}+\frac{D(T)}{v^3}+\cdots
+\]
+com
+\[
+B(T)=b-\frac{a}{RT},\qquad C(T)=b^2,\qquad D(T)=b^3,\ldots
+\]
+
+\medskip
+\noindent\textbf{Conclus\~ao sobre truncamento.}
+
+A equa\c{c}\~ao de Van der Waals \textbf{n\~ao corresponde a um truncamento finito} da s\'erie de virial; ela gera uma s\'erie \textbf{infinita} (Eq.~\eqref{eq:virial-rho-vdw}).
+
+Se for pedido truncamento pr\'atico at\'e ordem $i$, escreve-se:
+\[
+Z\approx 1+\left(b-\frac{a}{RT}\right)\rho+b^2\rho^2+\cdots+b^i\rho^i.
+\]
+Por exemplo, at\'e terceira ordem:
+\begin{equation}
+\boxed{\frac{PV}{nRT}\approx 1+\left(b-\frac{a}{RT}\right)\rho+b^2\rho^2+b^3\rho^3.}
+\end{equation}
+
+\medskip
+\textit{Observa\c{c}\~ao importante:} $c_1(T)=b-a/(RT)$ muda de sinal na temperatura de Boyle $T_B=a/(Rb)$.
+
+\end{solucao}
+
+% =====================================================================
+% QUESTÃO 4 -- Iodo-131
+% =====================================================================
+\begin{questao}
+A meia-vida do iodo-131 \'e de 8 dias. O percentual desse isótopo remanescente no corpo $d$ dias ap\'os sua introdu\c{c}\~ao \'e dado por
+\[
+  I(d) = 100\!\left(\tfrac{1}{2}\right)^{d/8}.
+\]
+Quando escrita em termos de $e$ (base dos logaritmos naturais), esta equa\c{c}\~ao \'e equivalente a $I(d) = 100\,e^{kd}$.
+\begin{enumerate}[label=\textbf{\alph*)}]
+  \item Qual \'e o valor aproximado da constante $k$?
+  \item Se a concentra\c{c}\~ao de iodo \'e determinada com uma precis\~ao de 1 parte em $10^{10}$, determine a incerteza na estimativa da quantidade de iodo-131 ap\'os 80 dias em um paciente que recebeu uma dose inicial de $10^{-5}$ moles de iodo-131.
+  \par\textit{Dado:} $1\,\text{mol} = 6{,}022\times 10^{23}$ \'atomos (n\'umero de Avogadro).
+\end{enumerate}
+\end{questao}
+
+\begin{solucao}
+
+\noindent\textbf{(a) Determinação de $k$}
+
+Igualando as duas formas da equa\c{c}\~ao:
+\[
+  100\!\left(\tfrac{1}{2}\right)^{d/8} = 100\,e^{kd}.
+\]
+Tomando logaritmo natural e igualando os expoentes:
+\[
+  \frac{d}{8}\ln\!\left(\frac{1}{2}\right) = kd \;\Longrightarrow\; k = \frac{\ln(1/2)}{8} = -\frac{\ln 2}{8}.
+\]
+Numericamente:
+\begin{equation}
+  \boxed{k = -\frac{\ln 2}{8} \approx -\frac{0{,}6931}{8} \approx -0{,}08664\;\text{dia}^{-1}.}
+\end{equation}
+
+Verifica\c{c}\~ao: $I(8) = 100\,e^{-0{,}08664\times 8} = 100\,e^{-\ln 2} = 100 \times \tfrac{1}{2} = 50\%$. \checkmark
+
+\medskip
+\noindent\textbf{(b) Incerteza na quantidade ap\'os 80 dias}
+
+\medskip
+\noindent\textbf{Defini\c{c}\~oes importantes (antes da conta).}
+\begin{itemize}
+  \item \textbf{Precis\~ao:} indica o quanto medidas repetidas ficam pr\'oximas entre si (repetibilidade).\\
+  Exemplo: medir 10 vezes e obter $9{,}98$, $9{,}99$, $10{,}00$ g indica alta precis\~ao.
+
+  \item \textbf{Exatid\~ao:} indica o qu\~ao pr\'oximo o resultado est\'a do valor verdadeiro.\\
+  Exemplo: se o valor verdadeiro \'e $10{,}00$ g e a m\'edia medida \'e $9{,}20$ g, a exatid\~ao \'e ruim.
+
+  \item \textbf{Erro} (quando o valor verdadeiro \'e conhecido):
+  \[
+    e_a = x_{\text{medido}} - x_{\text{verdadeiro}},
+    \qquad
+    e_r = \frac{|e_a|}{|x_{\text{verdadeiro}}|}.
+  \]
+  \textit{Observa\c{c}\~ao:} na pr\'atica experimental, muitas vezes $x_{\text{verdadeiro}}$ n\~ao \'e conhecido; por isso reportamos \textbf{incerteza}.
+
+  \item \textbf{Incerteza absoluta:} intervalo na mesma unidade da grandeza, por exemplo $\delta N$ (\'atomos) ou $\delta n$ (mol).
+
+  \item \textbf{Incerteza relativa:}
+  \[
+    \delta_r = \frac{\delta x}{|x|}.
+  \]
+
+  \item \textbf{Incerteza percentual:}
+  \[
+    \delta_\% = 100\,\delta_r\%.
+  \]
+  Exemplo simples: se $x=200$ e $\delta x=2$, ent\~ao $\delta_r=2/200=0{,}01$ e $\delta_\%=1\%$.
+\end{itemize}
+
+\noindent\textbf{F\'ormulas gerais usadas nesta quest\~ao.}
+\begin{align}
+  \delta x &= |x|\,\delta_r, \\
+  \delta_r &= \frac{\delta x}{|x|}, \\
+  \text{se } y = a x \text{ (com } a \text{ constante), }\quad \delta y &= |a|\,\delta x \quad\text{e}\quad \frac{\delta y}{|y|} = \frac{\delta x}{|x|}.
+\end{align}
+
+\noindent No enunciado, ``1 parte em $10^{10}$'' significa
+\[
+\delta_r = 10^{-10}.
+\]
+Assim, para a quantidade remanescente de iodo, usamos diretamente
+\[
+\delta N = N\,\delta_r = N\times 10^{-10}.
+\]
+
+\medskip
+\noindent\textit{Passo 1 -- Quantidade inicial em \'atomos.}
+
+\[
+  N_0 = 10^{-5}\,\text{mol} \times 6{,}022\times 10^{23}\,\text{\'atomos/mol} = 6{,}022\times 10^{18}\,\text{\'atomos}.
+\]
+
+\noindent\textit{Passo 2 -- Quantidade ap\'os 80 dias.}
+
+\[
+  N(80) = N_0\!\left(\tfrac{1}{2}\right)^{80/8} = N_0\!\left(\tfrac{1}{2}\right)^{10} = \frac{6{,}022\times 10^{18}}{1024} \approx 5{,}881\times 10^{15}\,\text{\'atomos}.
+\]
+
+Equivalentemente, em mol:
+\[
+n(80)=10^{-5}\left(\tfrac{1}{2}\right)^{10}=9{,}765625\times 10^{-9}\,\text{mol}.
+\]
+
+\noindent\textit{Passo 3 -- Incerteza absoluta.}
+
+Precis\~ao de 1 parte em $10^{10}$ significa precis\~ao \textit{relativa}:
+\[
+  \frac{\delta N}{N(80)} = \frac{1}{10^{10}} = 10^{-10}.
+\]
+Pela propaga\c{c}\~ao de incerteza de uma grandeza multiplicativa ($N\mapsto \alpha N$):
+\[
+\delta N = N\,\delta_r,\qquad \delta_r=10^{-10}.
+\]
+Portanto, a incerteza absoluta na quantidade \'e:
+\begin{equation}
+  \boxed{\delta N = N(80)\times 10^{-10} \approx 5{,}881\times 10^{15} \times 10^{-10} \approx 5{,}881\times 10^{5}\,\text{\'atomos}.}
+\end{equation}
+
+Em mol, isso equivale a:
+\[
+\delta n = n(80)\times 10^{-10} = 9{,}765625\times 10^{-19}\,\text{mol}.
+\]
+
+\noindent\textit{Interpreta\c{c}\~ao:} Mesmo com uma precis\~ao de 1 parte em $10^{10}$, a incerteza absoluta ainda corresponde a cerca de $\mathbf{5{,}9\times 10^5}$ \'atomos de iodo-131. Isto ocorre porque a quantidade total ap\'os 80 dias (ap\'os 10 meias-vidas) ainda \'e enorme em escala at\^omica: $\sim 5{,}9\times 10^{15}$ \'atomos.
+
+\medskip
+\noindent\textbf{Resumo dos resultados:}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+\textbf{Grandeza} & \textbf{Valor} \\
+\hline
+Constante $k$                         & $-\ln 2/8 \approx -0{,}0866\;\text{dia}^{-1}$ \\
+Quantidade inicial $N_0$              & $6{,}022\times 10^{18}\;\text{\'atomos}$ \\
+Quantidade ap\'os 80 dias $N(80)$     & $5{,}881\times 10^{15}\;\text{\'atomos}$ \\
+Quantidade ap\'os 80 dias $n(80)$     & $9{,}766\times 10^{-9}\;\text{mol}$ \\
+Incerteza $\delta N$                  & $\approx 5{,}881\times 10^{5}\;\text{\'atomos}$ \\
+Incerteza $\delta n$                  & $\approx 9{,}766\times 10^{-19}\;\text{mol}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{solucao}
+
+\end{document}

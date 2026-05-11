@@ -1,0 +1,103 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Cadeias de Markov e Vari\'aveis Aleat\'orias}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 17}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Compreender vari\'aveis aleat\'orias discretas e cont\'inuas, cadeias de Markov, matrizes de transi\c{c}\~ao e distribui\c{c}\~oes estacion\'arias.
+
+\section*{Vari\'aveis Aleat\'orias}
+
+\subsection*{Discretas}
+$X$ toma valores em $\{x_1, x_2, \ldots\}$ com $P(X=x_i) = p_i$, $\sum p_i = 1$.
+\begin{itemize}
+  \item Bernoulli: $P(X=1)=p$, $P(X=0)=1-p$. $\mathbb{E}[X]=p$.
+  \item Binomial: $P(X=k) = \binom{n}{k}p^k(1-p)^{n-k}$. $\mathbb{E}[X]=np$.
+  \item Poisson: $P(X=k) = e^{-\lambda}\lambda^k/k!$. $\mathbb{E}[X]=\lambda$.
+\end{itemize}
+
+\subsection*{Cont\'inuas}
+$X$ tem fun\c{c}\~ao de densidade $f(x)$: $P(a\le X\le b) = \int_a^b f(x)\,dx$.
+\begin{itemize}
+  \item Uniforme: $f(x) = 1/(b-a)$ em $[a,b]$.
+  \item Exponencial: $f(x) = \lambda e^{-\lambda x}$, $x\ge0$. $\mathbb{E}[X]=1/\lambda$.
+  \item Gaussiana: $f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/(2\sigma^2)}$.
+\end{itemize}
+
+\section*{Cadeias de Markov}
+
+Uma \textbf{cadeia de Markov} \'e uma sequ\^encia de estados com a propriedade de Markov:
+\[
+P(X_{n+1}=j \mid X_n=i, X_{n-1}, \ldots) = P(X_{n+1}=j \mid X_n=i) = P_{ij}.
+\]
+A \textbf{matriz de transi\c{c}\~ao} $P$ \'e tal que $P_{ij} \ge 0$ e $\sum_j P_{ij} = 1$ (linhas somam 1).
+
+\subsection*{Distribui\c{c}\~ao Estacion\'aria}
+O vetor $\pi^* = (\pi_1^*, \pi_2^*, \ldots)$ com $\sum_i \pi_i^* = 1$ satisfaz:
+\[
+\pi^* P = \pi^*.
+\]
+Representa a distribui\c{c}\~ao de longo prazo dos estados.
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- Modelo de clima}
+Estados: Sol (S), Chuva (C). Matriz de transi\c{c}\~ao:
+\[
+P = \begin{pmatrix} 0{,}8 & 0{,}2 \\ 0{,}4 & 0{,}6 \end{pmatrix}.
+\]
+Distribui\c{c}\~ao estacion\'aria: $\pi_S = 0{,}4/(0{,}2+0{,}4) = 2/3$, $\pi_C = 1/3$.
+Interpreta\c{c}\~ao: em equil\'ibrio, 67\% dos dias ser\~ao ensolarados.
+
+\subsection*{Exemplo 2 --- 2 passos de Markov}
+A partir do estado Sol, probabilidade de estar em Chuva ap\'os 2 dias:
+\[
+P^2 = P\times P = \begin{pmatrix} 0{,}72 & 0{,}28 \\ 0{,}56 & 0{,}44 \end{pmatrix}.
+\]
+$P(\text{Chuva em 2 dias} \mid \text{Sol hoje}) = 0{,}28$.
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(Distribui\c{c}\~ao)} Calcule $\mathbb{E}[X]$ e $\text{Var}[X]$ para: (a) $X \sim \text{Binomial}(10, 0{,}3)$; (b) $X \sim \text{Poisson}(5)$; (c) $X \sim \text{Exponencial}(2)$.
+  
+  \item \textbf{(Markov: clima)} Com a matriz do Exemplo 1, se hoje \'e Chuva: (a) qual a probabilidade de Sol amanh\~a? (b) ap\'os 3 dias? (c) qual a distribui\c{c}\~ao estacion\'aria?
+  
+  \item \textbf{(Google PageRank)} O PageRank \'e a distribui\c{c}\~ao estacion\'aria de uma cadeia de Markov sobre p\'aginas web. Se 3 p\'aginas t\^em matriz:
+  \[
+  P = \begin{pmatrix} 0 & 1/2 & 1/2 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix},
+  \]
+  encontre a distribui\c{c}\~ao estacion\'aria.
+  
+  \item \textbf{(Classifica\c{c}\~ao)} Uma cadeia tem estados $\{1, 2, 3\}$ com $P_{11}=1$, $P_{23}=1$, $P_{31}=0{,}5$, $P_{32}=0{,}5$. (a) Desenhe o diagrama de estados. (b) Identifique estados absorventes e transientes. (c) Qual a probabilidade de acabar no estado 1 partindo do estado 2?
+  
+  \item \textbf{(SIR-Markov)} Un indiv\'iduo pode ser S (suscet\'ivel), I (infectado), R (recuperado). Defina uma matriz de transi\c{c}\~ao plaus\'ivel com $\beta=0{,}3$, $\gamma=0{,}1$. Mostre que R \'e absorvente.
+  
+  \item \textbf{(Tempo m\'edio)} Numa cadeia de 2 estados com $P_{12}=p$ e $P_{21}=q$, o tempo m\'edio no estado 1 antes de ir para o 2 \'e $1/p$. Para $p=0{,}1$ e $q=0{,}3$, calcule os tempos m\'edios e a distribui\c{c}\~ao estacion\'aria.
+  
+  \item \textbf{(Aplica\c{c}\~ao)} O modelo de din\^amica de emprego tem 3 estados: Empregado (E), Desempregado (D), Inativo (I). Com $P_{ED}=0{,}05$, $P_{EI}=0{,}02$, $P_{DE}=0{,}3$, $P_{DI}=0{,}1$, $P_{IE}=0{,}05$, $P_{ID}=0{,}02$, e probabilidades de perman\^encia complementares, calcule a distribui\c{c}\~ao estacion\'aria.
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item Markov: $P_{ij}$ = prob.\ de $i \to j$; linhas somam 1.
+  \item Estacion\'aria: $\pi^* P = \pi^*$.
+  \item Distribui\c{c}\~oes: Bernoulli, Binomial, Poisson, Exponencial, Gaussiana.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Norris, J.\ R.\ \textit{Markov Chains}. Cambridge University Press, 1997.
+  \item Ross, S.\ M.\ \textit{Introduction to Probability Models}. Elsevier, 2014.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

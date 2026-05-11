@@ -1,0 +1,94 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{Material de Estudo: Aplica\c{c}\~oes de Aut\^omatos Celulares II}
+\author{Princ\'ipio de Modelagem Matem\'atica}
+\date{Unidade 23}
+\begin{document}
+\maketitle
+
+\section*{Objetivo}
+Aplicar aut\^omatos celulares a modelos de epidemia (SIR-AC), morfog\^enese de Turing, e inc\^endios florestais (perola\c{c}\~ao).
+
+\section*{SIR em Aut\^omato Celular}
+
+Cada c\'elula \'e um indiv\'iduo com estado S, I ou R.
+\begin{itemize}
+  \item \textbf{Infec\c{c}\~ao:} S $\to$ I com probabilidade $\beta \times (\text{n\'umero de vizinhos I})$.
+  \item \textbf{Recupera\c{c}\~ao:} I $\to$ R com probabilidade $\gamma$.
+  \item \textbf{R \'e absorvente:} n\~ao h\'a reinfec\c{c}\~ao (neste modelo simples).
+\end{itemize}
+Diferen\c{c}a com o SIR de equa\c{c}\~ao: o AC captura \textbf{heterogeneidade espacial} e forma\c{c}\~ao de clusters de infec\c{c}\~ao.
+
+\section*{Morfog\^enese de Turing: Modelo de Rea\c{c}\~ao-Difus\~ao}
+
+Alan Turing (1952) propôs que padr\~oes biol\'ogicos surgem de \textbf{instabilidade de Turing}:
+\[
+\frac{\partial u}{\partial t} = f(u,v) + D_u\nabla^2 u, \quad \frac{\partial v}{\partial t} = g(u,v) + D_v\nabla^2 v.
+\]
+Com $D_v \gg D_u$ (inibidor difunde muito mais r\'apido que ativador), surgem padr\~oes estacion\'arios (listras, pontos, labirintos).
+
+Na versão AC discreto:
+\begin{itemize}
+  \item Ativador $u$: ativa-se e ativa $v$.
+  \item Inibidor $v$: inibe $u$ e difunde mais r\'apido.
+\end{itemize}
+
+\section*{Inc\^endio Florestal e Perola\c{c}\~ao}
+
+\begin{itemize}
+  \item Grade 2D; cada c\'elula \'e \'Arvore (T), em Chamas (F) ou Vazia (E).
+  \item \textbf{Regras:} F $\to$ E (sempre); T adjacente a F $\to$ F; T sem vizinho em chamas fica T.
+  \item \textbf{Perola\c{c}\~ao:} para densidade de \'arvores $p < p_c \approx 0{,}593$, o fogo n\~ao se propaga. Para $p > p_c$, o fogo percola o sistema.
+\end{itemize}
+
+\section*{Exemplos Resolvidos}
+
+\subsection*{Exemplo 1 --- SIR-AC: 1 passo}
+Grade $3\times3$; estado central: I; todos os outros: S. $\beta=0{,}4$, $\gamma=0{,}2$.
+\begin{itemize}
+  \item Cada S adjacente ao I central: prob.\ de infec\c{c}\~ao $= 0{,}4$.
+  \item C\'elula I: recupera com prob.\ $0{,}2$.
+\end{itemize}
+
+\subsection*{Exemplo 2 --- Inc\^endio: limiar de perola\c{c}\~ao}
+Em uma grade $100\times100$ com $p=0{,}6 > p_c$: o fogo provavelmente percola de uma margem \`a outra.
+Com $p=0{,}5 < p_c$: fogo confinado a pequenos clusters.
+
+\section*{Exerc\'icios}
+
+\begin{enumerate}
+  \item \textbf{(SIR-AC)} Em uma grade $5\times5$ com um infectado central, $\beta=0{,}5$ e $\gamma=0{,}3$: (a) quais c\'elulas s\~ao vizinhos diretos (Von Neumann) do infectado? (b) Qual o n\'umero esperado de novas infec\c{c}\~oes no passo 1?
+  
+  \item \textbf{(Heterogeneidade)} Por que o SIR em AC pode mostrar ondas de infec\c{c}\~ao que o SIR de equa\c{c}\~oes diferenciais n\~ao captura?
+  
+  \item \textbf{(Turing)} As condi\c{c}\~oes para instabilidade de Turing incluem: (a) sistema est\'avel sem difus\~ao; (b) $D_v \gg D_u$. Por que o inibidor precisa difundir mais r\'apido? Pense intuitivamente: o que acontece se o inibidor ficar localizado?
+  
+  \item \textbf{(Padr\~oes)} Quais padr\~oes de Turing voc\^e reconhece na natureza? Liste 3 exemplos biol\'ogicos e associe cada um a listras ou pontos.
+  
+  \item \textbf{(Inc\^endio)} Em uma grade 1D de 10 c\'elulas, todas \'arvores exceto a c\'elula 1 em chamas. Simule 5 passos (fogo se propaga para c\'elulas adjacentes com T; cada c\'elula em chamas vira vazia ap\'os 1 passo). Quando o fogo se extingue?
+  
+  \item \textbf{(Perola\c{c}\~ao)} Para $p > p_c$: (a) o que acontece com o tamanho do cluster gigante? (b) como isso se relaciona com epidemias (pense em $\mathcal{R}_0$)?
+  
+  \item \textbf{(Compara\c{c}\~ao)} Compare os tr\^es modelos desta unidade (SIR-AC, Turing, Inc\^endio) em termos de: (1) estados das c\'elulas; (2) tipo de regra; (3) tipo de padr\~ao que produzem.
+\end{enumerate}
+
+\section*{Resumo R\'apido}
+\begin{itemize}
+  \item SIR-AC: captura heterogeneidade espacial e clusters de infec\c{c}\~ao.
+  \item Turing: $D_v \gg D_u \Rightarrow$ listras e pontos.
+  \item Inc\^endio/Perola\c{c}\~ao: limiar $p_c\approx0{,}593$; transi\c{c}\~ao de fase.
+\end{itemize}
+
+\section*{Refer\^encias}
+\begin{itemize}
+  \item Turing, A.\ M.\ \textit{Phil.\ Trans.\ R.\ Soc.\ B}, 237, 37--72, 1952.
+  \item Stauffer, D.; Aharony, A.\ \textit{Introduction to Percolation Theory}. Taylor \& Francis, 1992.
+  \item Notas de aula da disciplina.
+\end{itemize}
+
+\end{document}

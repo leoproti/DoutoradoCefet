@@ -1,0 +1,25 @@
+\textbf{Dados:} $F_0=54\,000$ (EUA), $E_0=21\,500$ (Japão), $\lambda_F=0{,}0106$/dia, $\lambda_E=0{,}0544$/dia.
+
+\textbf{Parâmetro $\alpha$:}
+\[
+\alpha = \sqrt{\lambda_F\,\lambda_E} = \sqrt{0{,}0106\times0{,}0544} \approx 0{,}02401\ \text{dia}^{-1}.
+\]
+
+\textbf{Verificação do vencedor:}
+\[
+\lambda_F F_0^2 = 0{,}0106\times54\,000^2 = 3{,}091\times10^7 > \lambda_E E_0^2 = 0{,}0544\times21\,500^2 = 2{,}515\times10^7.
+\]
+Portanto, o exército $F$ (EUA) vence.
+
+\textbf{Tempo de batalha} (até $E(t_c)=0$):
+\[
+\tanh(\alpha t_c) = \frac{E_0}{F_0}\sqrt{\frac{\lambda_E}{\lambda_F}} = \frac{21\,500}{54\,000}\sqrt{\frac{0{,}0544}{0{,}0106}} \approx 0{,}3981\times2{,}265 \approx 0{,}9020.
+\]
+\[
+t_c = \frac{\operatorname{arctanh}(0{,}9020)}{\alpha} = \frac{1{,}480}{0{,}02401} \approx 61{,}6\ \mathrm{dias}.
+\]
+
+\textbf{Tropas restantes de $F$ (EUA):}
+\[
+F(t_c) = \sqrt{F_0^2 - \frac{\lambda_E}{\lambda_F}E_0^2} = \sqrt{54\,000^2 - \frac{0{,}0544}{0{,}0106}\cdot21\,500^2} = \sqrt{5{,}436\times10^8} \approx 23\,316.
+\]

@@ -1,0 +1,41 @@
+
+
+\begin{equation*}
+    \text{deflexão} = \text{carga} \times \text{conformidade} = P \times C = \frac{Pl^3}{48EI} 
+\end{equation*}
+\textit{Solução:}
+A forma geral da equação é do tipo $y = ax + b$. Substituindo pelos eixos:
+\begin{center}
+     $y=log_{10}(CEd)$ \\
+     \vspace{0,2cm}
+     $x=log_{10}(\frac{l}{d})$
+\end{center}
+Temos: 
+\begin{center}
+    $\log_{10}(CEd) = 3 \log_{10}(\frac{l}{d}) - 0,6$ 
+\end{center}
+Exponenciando ambos os membros, obtemos:
+\begin{center}
+    $CEd = 10^{\log_{10}(\frac{l}{d})^3} \cdot 10^{-0,6}$ \\
+    \vspace{0,2cm}
+    $CEd = (\frac{l}{d})^3 \cdot 10^{-0,6}$ \\
+    \vspace{0,2cm}
+    $CEd = (\frac{l}{d})^3 \cdot \frac{1}{4}$ \\
+\end{center}
+Isolando $C$, 
+\begin{center}
+    $C = \frac{1}{4}\cdot\frac{1}{Ed}\cdot(\frac{l}{d})^3$ \\
+    \vspace{0,2cm}
+    $C = \frac{1}{4}\cdot\frac{l^3}{Ed^4}$ \\
+\end{center}
+Sabendo que $I = \frac{d^4}{12}$, então $d^4=12I$. Logo, 
+\begin{center}
+     $C = \frac{1}{4}\cdot\frac{l^3}{E(12I)}$ \\
+     \vspace{0,2cm}
+      $C = \frac{l^3}{48EI}$ \\
+\end{center}
+Por fim,
+\begin{equation*}
+    \text{deflexão} = P\cdot\frac{l^3}{48EI} = \frac{Pl^3}{48EI} = P \times C
+\end{equation*}
+Como queríamos demonstrar.

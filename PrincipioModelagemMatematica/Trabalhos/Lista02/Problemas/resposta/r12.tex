@@ -1,0 +1,70 @@
+% Question 4.3:: Taylor and Laurent Expansions of $\tanh x$ and $\coth x$
+Etapa 1: determinar as derivadas de $\tanh x$ em $x=0$ (supondo série de Maclaurin)  para f(x) = $\tanh x$, avaliou-se a função e suas derivadas em $x = 0$ considerando $\frac{d}{dx}\tanh x = \text{sech}^2 x = 1 - \tanh^2 x$:
+
+\begin{equation} \label{eq:r12_1}
+\begin{split}
+f(0) & = \tanh(0) = 0 \\
+f'(0) & = 1 - \tanh^2(0) = 1 \\
+f''(x) & = -2\tanh x \cdot \text{sech}^2 x \implies f''(0) = 0 \\
+f'''(x) & = -2\text{sech}^4 x + 4\tanh^2 x \cdot \text{sech}^2 x \implies f'''(0) = -2 \\
+f^{(4)}(0) & = 0 \\
+f^{(5)}(0) & = 16
+\end{split}
+\end{equation}
+
+Etapa 2: Construção da série de Taylor para $\tanh x$ (Equação \ref{eq:r12_taylor}) considerando $x = a = 0$, ou seja, P(0) (Equação \ref{eq:r12_maclaurin_simplificada}).
+
+\begin{equation}
+\label{eq:r12_taylor}
+    f(x) = \sum \frac{f^{(n)}(0)}{n!}(x - a)^n
+\end{equation}
+
+\begin{equation}
+    \label{eq:r12_taylor_p0}
+    f(x) \cong f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \dots + \frac{f^{(n)}(a)}{n!}(x-a)^n
+\end{equation}
+
+\begin{equation}
+\label{eq:r12_maclaurin}
+f(x) \cong f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \dots + \frac{f^{(n)}(0)}{n!}x^n
+\end{equation}
+
+\begin{equation}
+    \label{eq:r12_maclaurin_simplificada}
+    f(x) = \sum \frac{f^{(n)}(0)}{n!}x^n
+\end{equation}
+
+Substituímos as derivadas para encontrar os quatro primeiros termos:
+
+\begin{equation} \label{eq:r12_2}
+\begin{split}
+\tanh x & = 0 + \frac{1}{1!}x + 0x^2 + \frac{-2}{3!}x^3 + 0x^4 + \frac{16}{5!}x^5 + 0x^6 + \frac{-272}{7!}x^7 + \dots \\
+& = x - \frac{2}{6}x^3 + \frac{16}{120}x^5 - \frac{272}{5040}x^7 + \dots \\
+& = x - \frac{1}{3}x^3 + \frac{2}{15}x^5 - \frac{17}{315}x^7 + \dots
+\end{split}
+\end{equation}
+
+Etapa 3: Analisando a expansão de $\coth x = \frac{1}{\tanh x}$ não está definida em x=0 porque $\tanh(0) = 0$. Portanto, ela não possui uma série de Taylor padrão neste ponto. Em vez disso, encontramos sua série de Laurent usando o inverso da expansão de $\tanh x$:
+
+\begin{equation}
+\begin{split}
+\coth x &= \frac{1}{x - \frac{1}{3}x^3 + \frac{2}{15}x^5 - \frac{17}{315}x^7 + \dots} \\
+&= \frac{1}{x} \left( 1 - \left[ \frac{1}{3}x^2 - \frac{2}{15}x^4 + \frac{17}{315}x^6 + \dots \right] \right)^{-1}
+\end{split}
+\end{equation}
+
+Etapa 4: Aplicando a expansão em série geométrica, usamos a expansão binomial $(1-u)^{-1} = 1 + u + u^2 + u^3 + \dots$ onde $u = \frac{1}{3}x^2 - \frac{2}{15}x^4 + \frac{17}{315}x^6$. Agrupamos os termos até $x^6$ antes de multiplicar por $\frac{1}{x}$:
+
+\begin{equation} \label{eq:r12_3}
+\begin{split}
+\coth x & = \frac{1}{x} \left[ 1 + \left(\frac{1}{3}x^2 - \frac{2}{15}x^4 + \dots\right) + \left(\frac{1}{3}x^2 - \dots\right)^2 + \left(\frac{1}{3}x^2\right)^3 + \dots \right] \\
+& = \frac{1}{x} \left[ 1 + \frac{1}{3}x^2 + \left(-\frac{2}{15} + \frac{1}{9}\right)x^4 + \left(\frac{17}{315} - \frac{4}{45} + \frac{1}{27}\right)x^6 + \dots \right] \\
+& = \frac{1}{x} + \frac{1}{3}x - \frac{1}{45}x^3 + \frac{2}{945}x^5 + \dots
+\end{split}
+\end{equation}
+
+Finalmente, os primeiros quatro termos da expansão em torno de $x=0$ são:
+
+Para $\tanh x$: $x - \dfrac{1}{3}x^3 + \dfrac{2}{15}x^5 - \dfrac{17}{315}x^7$
+
+Para $\coth x$: $\dfrac{1}{x} + \dfrac{1}{3}x - \dfrac{1}{45}x^3 + \dfrac{2}{945}x^5$
