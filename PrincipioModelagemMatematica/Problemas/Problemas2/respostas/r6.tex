@@ -1,0 +1,26 @@
+A etapa anterior do método básico nos deixou com a equação funcional revisada (2.19b), onde a dimensão de tempo e comprimento já haviam sido eliminadas, restando apenas a dimensão de massa ($M^{-1/2}$) no lado esquerdo [2]:
+$$ \frac{T_R \sqrt{G}}{\sqrt{r^3}} = TR_2(m_1, m_2) $$
+
+\vspace{0.3cm}
+\textbf{Passo 1: Multiplicar pela raiz da primeira massa} \\
+Para eliminar a dimensão de massa restante, o texto original multiplicou a equação por $\sqrt{m_2}$ [2]. O problema pede que refaçamos isso usando a primeira massa, $\sqrt{m_1}$. Multiplicando ambos os lados por $\sqrt{m_1}$, obtemos:
+$$ \frac{T_R \sqrt{G m_1}}{\sqrt{r^3}} = \sqrt{m_1} TR_2(m_1, m_2) $$
+
+\vspace{0.3cm}
+\textbf{Passo 2: Formar a relação adimensional} \\
+O lado esquerdo da equação agora é completamente adimensional. Para que a equação seja consistente e homogênea, o lado direito também deve ser adimensional. A única forma de uma função dependente de duas massas ($m_1$ e $m_2$) ser adimensional é se ela depender apenas da razão (proporção) entre essas massas [2, 3]. Assim, podemos definir uma nova função adimensional genérica $TR_3^*$:
+$$ \sqrt{m_1} TR_2(m_1, m_2) \equiv TR_3^*\left(\frac{m_1}{m_2}\right) $$
+O que nos leva à forma:
+$$ T_R = \sqrt{\frac{r^3}{G m_1}} TR_3^*\left(\frac{m_1}{m_2}\right) $$
+
+\vspace{0.3cm}
+\textbf{Passo 3: Provar a equivalência com a eq. (2.21)} \\
+A equação (2.21) obtida no livro texto usando $m_2$ para a eliminação foi [3]:
+$$ T_R = \sqrt{\frac{r^3}{G m_2}} TR_3\left(\frac{m_1}{m_2}\right) $$
+Para mostrar que a nossa nova equação deduzida no Passo 2 é equivalente a esta, podemos manipular algebricamente o nosso resultado, multiplicando e dividindo o lado direito por $\sqrt{m_2}$:
+$$ T_R = \sqrt{\frac{r^3}{G m_1}} \cdot \frac{\sqrt{m_2}}{\sqrt{m_2}} \cdot TR_3^*\left(\frac{m_1}{m_2}\right) $$
+Reagrupando os termos dentro e fora da raiz, temos:
+$$ T_R = \sqrt{\frac{r^3}{G m_2}} \left[ \sqrt{\frac{m_2}{m_1}} TR_3^*\left(\frac{m_1}{m_2}\right) \right] $$
+Observe atentamente o termo isolado entre colchetes: ele é simplesmente o produto de um fator que depende da razão das massas ($\sqrt{m_2/m_1}$) por uma função que também depende apenas da razão das massas ($TR_3^*$). Portanto, este termo inteiro entre colchetes atua, em conjunto, como uma única função genérica da razão de massas. Esta é exatamente a definição da função $TR_3(m_1/m_2)$ presente na eq. (2.21) [3].
+
+Logo, as duas formas são estritamente e matematicamente equivalentes. Isso demonstra um princípio importante: a escolha arbitrária de qual variável base usar para cancelar uma dimensão (neste caso, $m_1$ em vez de $m_2$) altera a aparência algébrica da função, mas não altera a física do problema e nem os grupos adimensionais fundamentais do sistema [2, 3].

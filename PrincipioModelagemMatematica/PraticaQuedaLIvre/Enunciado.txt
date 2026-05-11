@@ -1,0 +1,31 @@
+Objetivo:
+
+Implementar computacionalmente um modelo de queda livre.
+
+Roteiro:
+
+1. A partir do qpresentado em sala de aula, implemente computacionalmente um modelo para calcular o movimento de queda livre de uma partícula em queda livre nas imediações da Terra, dada a altura inicial H e velocidade v0 . 
+
+ 
+
+2. Apresente os gráficos para a posição, velocidade e aceleração da partícula em função do tempo.
+
+ 
+
+3. Discuta as implicações e possíveis alterações na modelagem se fosse considerado um corpo rígido em queda livre nas mesmas condições.
+
+ 
+
+4. Implemente a resistência do ar (2 pontos extras).
+
+ 
+
+5. Estude a acurácia o resultado em função do tamanho do passo de tempo (2 pontos extras). 
+
+ 
+
+Valor: 3  pts
+
+ 
+
+Formato de entrega:  arquivo devidamente identificado em formato pdf.

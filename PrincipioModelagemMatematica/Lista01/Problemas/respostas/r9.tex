@@ -1,0 +1,138 @@
+\textbf{Questão 2.9:} Confirme a eq. (2.30) aplicando o restante do teorema Pi de Buckingham ao problema do pêndulo.
+
+\vspace{0,25cm}
+\textit{Solução:}
+Consideremos as equações iniciais:
+\begin{center}
+    $\pi_{1} = \frac{T_{0}}{\sqrt{\frac{l}{g}}}$  \\
+    \vspace{0,2cm}
+    $\pi_{2} = \theta$ \\
+     \vspace{0,2cm}
+    $\pi_{3} = \frac{T}{m \cdot g}$
+\end{center}
+
+Agora, construindo a tabela de dimensões:
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Grandeza} & \textbf{Símbolo} & \textbf{Dimensão} \\ \midrule
+Comprimento & $l$ & $L$  \\
+Aceleração gravitacional & $g$ & $LT^{-2}$  \\
+Massa & $m$ & $M$  \\
+Período & $T_0$ & $T$ \\
+Ângulo & $\theta$ & $1$ (adimensional)  \\
+Tensão da corda & $T$ & $MLT^{-2}$  \\ \bottomrule
+\end{tabular}
+\end{table}
+    
+
+As dimensões básicas são $L$, $M$, $T$ e temos 6 variáveis. Consideraremos como variáveis básicas $l$, $m$, $g$. 
+
+Além disso, pelo Teorema Pi de Buckingham, teremos 3 grupos $\pi$.
+
+Vamos construir os grupos $\pi$:
+\begin{center}
+$\pi_{1} = l^{a_1} g^{b_1} m^{c_1} T_{0}$ \\
+ \vspace{0,2cm}
+$\pi_{2} = l^{a_2} g^{b_2} m^{c_2} \theta$ \\
+ \vspace{0,2cm}
+$\pi_{3} = l^{a_3} g^{b_3} m^{c_3} T$ \\
+\end{center}
+
+Para cada grupo $\pi$ vamos impor a condição que seja adimensional, ou seja, $\pi=M^0L^0T^0$.
+
+
+Tomando $\pi_{1}$, 
+\begin{center}
+    $\pi_{1} = l^{a_1} g^{b_1} m^{c_1} T_{0}$ \\
+     \vspace{0,2cm}
+     $(L)^{a_1} (LT^{-2})^{b_1} (M)^{c_1} (T)^1 = M^0 L^0 T^0$
+\end{center}
+
+\begin{itemize}
+    \item Para a massa $M$ \\
+    $c_{1}=0$
+    \item Para o comprimento $L$ \\
+    $a_{1}+b_{1}=0 \Leftrightarrow a_{1}=-b_{1}$
+    \item Para o tempo $T$ \\
+    $-2b_{1}+1=0 \Rightarrow b_{1}=\frac{1}{2}$ \\
+Sendo assim, $a_{1}=-\frac{1}{2}$
+\end{itemize}
+
+Agora que temos os valores dos expoentes, vamos voltar à fórmula $\pi_1$:
+
+\begin{center}
+     $\pi_{1} = l^{a_1} g^{b_1} m^{c_1} T_{0}$ \\
+      \vspace{0,2cm}
+      $\pi_{1} = l^{-\frac{1}{2}} g^{\frac{1}{2}} m^{0} T_{0}$ \\
+       \vspace{0,2cm}
+     $\pi_1=(L)^{-\frac{1}{2}} (LT^{-2})^{\frac{1}{2}} (M)^{0} (T)^1$ \\
+     \vspace{0,2cm}
+     $\pi_1=1$
+\end{center}
+
+Com isso, verificamos que a fórmula dada em $\pi_1$ é válida. 
+
+Agora, tomando $\pi_{2}$, 
+\begin{center}
+    $\pi_{2} = l^{a_2} g^{b_2} m^{c_2}\theta$ \\
+     \vspace{0,2cm}
+     $(L)^{a_2} (LT^{-2})^{b_2} (M)^{c_2}1 = M^0 L^0 T^0$
+\end{center}
+
+\begin{itemize}
+    \item Para a massa $M$ \\
+    $c_{2}=0$
+    \item Para o comprimento $L$ \\
+    $a_{2}+b_{2}=0 \Leftrightarrow a_{2}=-b_{2}$
+    \item Para o tempo $T$ \\
+    $-2b_{2}=0 \Rightarrow b_{2}=0$ \\
+Sendo assim, $a_{2}=0$
+\end{itemize}
+
+Agora que temos os valores dos expoentes, vamos voltar à fórmula $\pi_2$:
+
+\begin{center}
+     $\pi_{2} = l^{a_2} g^{b_2} m^{c_2} \theta$ \\
+      \vspace{0,2cm}
+      $\pi_{2} = l^{0} g^{0} m^{0}\theta$ \\
+       \vspace{0,2cm}
+     $\pi_{2}=(L)^{0} (LT^{-2})^{0} (M)^{0} 1$ \\
+     \vspace{0,2cm}
+     $\pi_{2}=1$
+\end{center}
+
+Com isso, verificamos que a fórmula dada em $\pi_{2}$ é válida.
+
+Por fim, tomando $\pi_{3}$, 
+\begin{center}
+    $\pi_{3} = l^{a_1} g^{b_1} m^{c_1} T$ \\
+     \vspace{0,2cm}
+     $(L)^{a_3} (LT^{-2})^{b_3} (M)^{c_3} (MLT^{-2}) = M^0 L^0 T^0$
+\end{center}
+
+\begin{itemize}
+    \item Para a massa $M$ \\
+    $c_{3}+1=0 \Rightarrow c_{3}=-1$
+    \item Para o comprimento $L$ \\
+    $a_{3}+b_{3}+1=0 \Leftrightarrow a_{3}+b_{3}=-1$
+    \item Para o tempo $T$ \\
+    $-2b_{3}-2=0 \Rightarrow b_{3}=-1$ \\
+Sendo assim, \\
+$a_{3}+b_{3}=-1 \Rightarrow a_{3}-1=-1 \Rightarrow a_{3}=0$
+\end{itemize}
+
+Agora que temos os valores dos expoentes, vamos voltar à fórmula $\pi_{3}$:
+
+\begin{center}
+     $\pi_{3} = l^{a_3} g^{b_3} m^{c_3} T$ \\
+      \vspace{0,2cm}
+      $\pi_{3} = l^{0} g^{-1} m^{-1} T$ \\
+       \vspace{0,2cm}
+     $\pi_{3}=(L)^{0} (LT^{-2})^{-1} (M)^{-1} (MLT^{-2})$ \\
+     \vspace{0,2cm}
+     $\pi_{3}=1$
+\end{center}
+
+Com isso, verificamos que a fórmula dada em $\pi_3$ é válida.

@@ -1,0 +1,75 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- PACOTES BÁSICOS ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{pdflscape}
+\usepackage{booktabs}
+\usepackage{pgffor}
+\usepackage{xifthen} % <--- melhora testes condicionais
+\usepackage[alf]{abntex2cite}
+
+\geometry{a4paper, left=3cm, top=3cm, right=2cm, bottom=2cm}
+
+\newcommand{\enunciado}[1]{\noindent \textit{\large #1}}
+
+% --- DOCUMENTO ---
+\begin{document}
+
+% --- CAPA ---
+\begin{titlepage}
+    \begin{center}
+        \textbf{Centro Federal de Educação Tecnológica de Minas Gerais (CEFET-MG)}\\[0.2cm]
+        \textbf{Programa de Pós-Graduação em Modelagem Matemática e Computacional}\\[3cm]
+
+        \large{Disciplina: Princípios de Modelagem Matemática}\\[3cm]
+
+        \LARGE\textbf{Principles of Mathematical Modeling (2nd Edition):\\
+            Solução dos Problemas Selecionados}\\[3cm]
+
+        \large{
+        Alexandre Oliveira, Ariel, Ectori, Erasmo, Frederico,\\
+        Glauber Silveira, Israel, Jeancarlo Campos Leão, Júlia,\\
+        Leonardo V. Guimarães, Marcus Santos, Renan Machado,\\
+        Rodrigo Favato, Sergio.
+        }\\[3cm]
+
+        \large{Belo Horizonte -- MG -- Brazil}\\
+        \large{2026}
+    \end{center}
+\end{titlepage}
+
+% --- CONTEÚDO ---
+\foreach [count=\i from 1] \prob in {3.3,3.6,3.9,3.18,3.19,3.28,3.32,3.35,4.1,4.2,4.3,4.4,4.6,4.10,4.11,4.12,4.13,4.14,4.17,4.18,4.19,4.20,4.21,4.22,4.24,4.35,4.36,4.37,4.39,4.45,4.46,4.50,5.8,5.9,5.35,5.40,5.47} {
+
+    \section*{Problema \prob}
+
+    % Enunciado
+    \IfFileExists{enunciado/e\i.tex}{
+        \noindent \large \textit{\input{enunciado/e\i.tex}}
+    }{
+        \textbf{Enunciado não encontrado para o Problema \prob}
+    }
+
+    \vspace{1cm}
+
+    % Resposta
+    \IfFileExists{resposta/r\i.tex}{
+        \input{resposta/r\i.tex}
+    }{
+        \textbf{Resposta não encontrada para o Problema \prob}
+    }
+
+    \newpage
+}
+
+
+\bibliographystyle{abntex2-alf}
+\bibliography{references}
+
+\end{document}
+

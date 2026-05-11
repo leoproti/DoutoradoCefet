@@ -1,0 +1,100 @@
+\subsection*{Variáveis e Dimensões (Tabela 2.1)}
+
+De acordo com o modelo do misturador de manteiga de amendoim, as cinco grandezas derivadas para o experimento e suas dimensões primárias (Massa $M$, Comprimento $L$, Tempo $T$) são:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lc}
+\toprule
+
+\textbf{Grandeza Derivada} & \textbf{Dimensões} \\ \midrule
+Velocidade ($V$) & $L/T$ \\
+Largura da lâmina ($d$) & $L$ \\
+Densidade ($\rho$) & $M/L^3$ \\
+Viscosidade ($\mu$) & $M/(L \cdot T)$ \\
+Força de arrasto ($F_D$) & $(M \cdot L)/T^2$ \\ \bottomrule
+\end{tabular}
+\end{table}
+
+Identificamos $n=5$ variáveis e $m=3$ dimensões fundamentais ($M, L, T$).
+
+O problema envolve o movimento de uma lâmina de largura $d$ através de um fluido com propriedades $\rho$ e $\mu$ a uma velocidade $V$. O método básico de análise dimensional permite mostrar que a força $F_D$ não precisa ser estudada isoladamente contra cada variável, mas sim dentro dos blocos adimensionais $\Pi_1$ e $\Pi_2$.
+
+%\subsubsection*{1. Variáveis e Dimensões Físicas}
+
+%\subsubsection*{3. Grupos Adimensionais (Alvo da Prova)}
+Assim, o autor demonstra, via Teorema Pi, que os dois grupos adimensionais que governam o fenômeno são:
+\begin{equation*}
+    \Pi_1 = \left( \frac{\mu}{\rho V d} \right), \quad \Pi_2 = \left( \frac{F_D}{\rho V^2 d^2} \right) 
+\end{equation*}
+
+\subsubsection*{1. Equação Funcional}
+A dependência funcional postulada é expressa pela função:
+\begin{equation*}
+    F_D = F_D(V; d, \rho, \mu) \tag{2.7} 
+    %F_D = f(V, d, \rho, \mu) \tag{2.7}
+    \label{eq:misturador_pasta_amendoim}
+\end{equation*}
+
+\vspace{0.5cm}
+
+\subsubsection*{2. Prova pela Aplicação do Método Básico (Eliminação Sucessiva)}
+
+Diferente do Teorema Pi, o método básico elimina dimensões sucessivamente para limpar a equação funcional.
+Partimos da Equação \ref{eq:misturador_pasta_amendoim} e seguindo os passos do método básico descritos na Seção 2.4.1:
+
+\begin{itemize}
+\item \textbf{Passo 1: Eliminar a dimensão de Massa ($M$)} \\
+%Usamos a densidade $\rho$ para eliminar a massa de $F_D$ e $\mu$:
+A densidade $\rho$ é a variável mais simples com massa. Dividimos $F_D$ e $\mu$ por $\rho$:
+\begin{equation*}
+    %\left[ \frac{F_D}{\rho} \right] = \frac{MLT^{-2}}{ML^{-3}} = L^4 T^{-2}
+    \frac{F_D}{\rho} = \frac{[ML/T^2]}{[M/L^3]} = [L^4/T^2]; \quad \frac{\mu}{\rho} = \frac{[M/LT]}{[M/L^3]} = [L^2/T]
+\end{equation*}
+\begin{equation*}
+    \left[ \frac{\mu}{\rho} \right] = \frac{ML^{-1}T^{-1}}{ML^{-3}} = L^2 T^{-1}
+\end{equation*}
+A nova equação funcional (eequação revisada) é: $\frac{F_D}{\rho} = f_1(V, d, \frac{\mu}{\rho})$.
+
+
+\item \textbf{Passo 2: Eliminar a dimensão de Tempo ($T$)} \\
+Usamos a velocidade $V$ para eliminar o tempo dos termos restantes:
+%Usamos a velocidade $V [L/T]$ para cancelar o tempo das variáveis restantes:
+\begin{equation*}
+    %\left[ \frac{F_D}{\rho V^2} \right] = \frac{L^4 T^{-2}}{(LT^{-1})^2} = L^2
+    \frac{F_D}{\rho V^2} = \frac{[L^4/T^2]}{[L^2/T^2]} = [L^2]; \quad \frac{\mu}{\rho V} = \frac{[L^2/T]}{[L/T]} = [L]
+\end{equation*}
+\begin{equation*}
+    \left[ \frac{\mu}{\rho V} \right] = \frac{L^2 T^{-1}}{LT^{-1}} = L
+\end{equation*}
+A equação revisada é: $\frac{F_D}{\rho V^2} = f_2(d, \frac{\mu}{\rho V})$.
+
+\item \textbf{Passo 3: Eliminar a dimensão de Comprimento ($L$)} \\
+Usamos a largura da lâmina $d$ para tornar os termos adimensionais:
+%Usamos a largura da lâmina $d [L]$ para tornar tudo adimensional:
+\begin{equation*}
+%    \Pi_2 = \frac{F_D}{\rho V^2 d^2} \implies [L^2] / [L^2] = 1
+    \Pi_2 = \frac{F_D}{\rho V^2 d^2} \implies \frac{[L^2]}{[L^2]} = 1; \quad \Pi_1 = \frac{\mu}{\rho V d} \implies \frac{[L]}{[L]} = 1
+\end{equation*}
+\begin{equation*}
+    \Pi_1^{-1} = \frac{\mu}{\rho V d} \implies [L] / [L] = 1
+\end{equation*}
+\end{itemize}
+
+%\subsubsection*{3. Resultado Final}
+%O processo de eliminação resulta na relação entre dois grupos adimensionais:
+%\textbf{Conclusão:} 
+Portanto, ambos os métodos chegam à mesma relação funcional adimensional:
+
+\begin{equation*}
+    \frac{F_D}{\rho V^2 d^2} = \Phi \left( \frac{\mu}{\rho V d} \right)
+\end{equation*}
+Os grupos encontrados são precisamente aqueles definidos da {Eq. (2.28)} do livro \cite{PMMDym2004}:
+\begin{equation*}
+    \Pi_1 = \left( \frac{\mu}{\rho V d} \right), \quad \Pi_2 = \left( \frac{F_D}{\rho V^2 d^2} \right)
+\end{equation*}
+
+%\subsection*{Conclusão}
+A aplicação do método básico confirma que um problema complexo com cinco variáveis físicas pode ser reduzido a uma relação entre apenas dois grupos adimensionais. Isso valida a estrutura necessária para o design de experimentos do misturador, reduzindo drasticamente a quantidade de testes necessários para prever a força de arrasto.
+
+%Motivação: No projeto de um misturador industrial, a força de arrasto ($F_D$) depende da velocidade da lâmina ($V$), de sua largura ($d$), da densidade do fluido ($\rho$) e de sua viscosidade ($\mu$). Para evitar a execução de dezenas de experimentos isolados, aplicamos a análise dimensional para encontrar os grupos que governam o fenômeno.
