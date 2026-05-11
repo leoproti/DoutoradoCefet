@@ -3,13 +3,13 @@
 % ------------------------------------------------------------------------------
 \chapter{Metodologia}
 \label{chap_metodologia}
-Este capitulo descreve os procedimentos adotados para implementar o random walk com gerador congruencial, executar as simulacoes e realizar as analises estatisticas do roteiro da pratica.
+Este capitulo descreve os procedimentos adotados para implementar o random walk com gerador congruencial, executar as simulacoes e conduzir as analises estatisticas previstas no roteiro da pratica.
 
 \section{Materiais Computacionais e Organização dos Dados}
 
 As simulacoes foram realizadas em Python, com uso de \texttt{numpy} para operacoes vetorizadas, \texttt{matplotlib} para visualizacao grafica e rotinas proprias para geracao pseudoaleatoria e ajuste estatistico.
 
-O experimento foi implementado em notebook Jupyter, disponivel em \cite{github_random_walk}. Os parametros de entrada e as saidas numericas foram persistidos em arquivos CSV para garantir rastreabilidade e reprodutibilidade.
+O experimento foi implementado em notebook Jupyter, disponivel em \cite{github_random_walk}. Os parametros de entrada e as saidas numericas foram registrados em arquivos CSV, de modo a assegurar rastreabilidade e reprodutibilidade dos resultados.
 
 \section{Configuração do Experimento}
 
@@ -29,7 +29,7 @@ Para o LCG, foram utilizados os parametros:
     \item $m = 2^{32}$.
 \end{itemize}
 
-As sementes das 10 caminhadas foram definidas por multiplos de 12345, de modo a produzir trajetorias independentes dentro da estrategia adotada. Cada caminhada e construida a partir de uma sequencia de $10000$ variaveis em $\{-1,+1\}$, e a posicao em cada instante e obtida por soma cumulativa dos passos.
+As sementes das 10 caminhadas foram definidas por multiplos de 12345, de modo a produzir trajetorias independentes dentro da estrategia adotada. Cada caminhada foi construida a partir de uma sequencia de $10000$ variaveis em $\{-1,+1\}$, e a posicao em cada instante foi obtida por soma cumulativa dos passos.
 
 \section{Procedimento Experimental}
 \label{sec_procedimento_experimental}
@@ -43,11 +43,11 @@ O procedimento computacional foi dividido em cinco etapas:
     \item \textbf{Verificacao do TCL:} geracao de $50000$ caminhadas adicionais com $10000$ passos, analise da variavel normalizada $Z=S_n/\sqrt{n}$ e comparacao com distribuicao normal padrao.
 \end{enumerate}
 
-No teste de hipotese, a estatistica calculada foi
+No teste de hipotese, a estatistica utilizada foi
 \begin{equation}
 t = \frac{\hat{\alpha}-1}{\text{SE}(\hat{\alpha})},
 \end{equation}
-comparada ao valor critico da distribuicao t para o numero de pontos usados no ajuste.
+e comparada ao valor critico da distribuicao t para o numero de pontos utilizados no ajuste.
 
 \section{Métricas e Produtos Gerados}
 
@@ -60,4 +60,4 @@ Foram produzidos os seguintes resultados:
     \item histograma de $Z$ e metricas de aderencia a normalidade para verificacao do TCL.
 \end{itemize}
 
-A metodologia adotada combina evidencia visual, ajuste paramétrico e inferencia estatistica, permitindo avaliar de forma consistente se a simulacao implementada reproduz o comportamento esperado para random walk simples em 1D.
+A metodologia adotada combina evidencia visual, ajuste parametrico e inferencia estatistica, permitindo avaliar, de forma consistente, se a simulacao implementada reproduz o comportamento esperado para random walk simples em 1D.

@@ -3,8 +3,9 @@
 % ------------------------------------------------------------------------------
 
 \chapter{Resultados}
+\label{chap_resultados}
 
-Este capitulo apresenta os resultados obtidos para as cinco etapas da pratica, com base nas simulacoes registradas em arquivos CSV e nas figuras geradas automaticamente. Foram usadas duas escalas amostrais: 10 caminhadas na analise principal de trajetorias e 50000 caminhadas independentes na etapa de verificacao do TCL.
+Este capitulo apresenta os resultados obtidos nas cinco etapas da pratica, com base nas simulacoes registradas em arquivos CSV e nas figuras geradas automaticamente. Consideraram-se duas escalas amostrais: 10 caminhadas na analise principal de trajetorias e 50000 caminhadas independentes na etapa de verificacao do TCL.
 
 \section{Trajetórias das 10 Caminhadas (\texorpdfstring{$N=10000$}{N=10000})}
 
@@ -22,7 +23,7 @@ Os deslocamentos finais observados em $t=10000$ foram:
 (-106, -24, -112, -144, -20, 6, -60, -140, -178, -90).
 \end{equation}
 
-A media amostral desses deslocamentos foi $\bar{x}_{\text{final}}=-86{,}8$, evidenciando que, para apenas 10 realizacoes, ainda pode haver assimetria amostral relevante mesmo em um processo teoricamente centrado em zero.
+A media amostral desses deslocamentos foi $\bar{x}_{\text{final}}=-86{,}8$, indicando que, para apenas 10 realizacoes, ainda pode ocorrer assimetria amostral relevante, mesmo em um processo teoricamente centrado em zero.
 
 \section{Desvio Quadrático Médio e Ajuste Log-Log}
 
@@ -39,31 +40,23 @@ Os parametros estimados foram:
 \begin{equation}
 \hat{\alpha}=1{,}0168, \qquad \hat{C}=0{,}9261,
 \end{equation}
-com coeficiente de determinacao $R^2=0{,}9608$. O valor de $\hat{\alpha}$ proximo de 1 indica comportamento compativel com o crescimento aproximadamente linear esperado para random walk classico.
+com coeficiente de determinacao $R^2=0{,}9608$. O valor de $\hat{\alpha}$, proximo de 1, indica comportamento compativel com o crescimento aproximadamente linear esperado para random walk classico.
 
 \section{Teste de Hipótese para o Expoente}
 
-Para apresentar o teste bilateral de forma padronizada, adotam-se os seguintes elementos:
+Para o teste bilateral previsto no item 4 do roteiro, considerou-se:
+\begin{equation}
+H_0: \alpha = 1
+\quad \text{versus} \quad
+H_1: \alpha \neq 1.
+\end{equation}
+
+Os valores obtidos no ajuste e no teste foram:
 \begin{itemize}
-    \item \textbf{Hipoteses:} \{$H_0: \alpha = 1$\} e \{$H_1: \alpha \neq 1$\}.
-    \begin{itemize}
-        \item Hipotese nula: \{$H_0: \alpha = 1$\} --- o expoente e igual ao valor difusivo classico.
-        \item Hipotese alternativa: \{$H_1: \alpha \neq 1$\} --- o expoente difere de 1.
-    \end{itemize}
-    \item \textbf{Estimativas do ajuste:} $\hat{\alpha}=1{,}016797$, $\hat{C}=0{,}926077$ e $R^2=0{,}960827$.
-    \begin{itemize}
-        \item Coeficiente ajustado: $\hat{\alpha}=1{,}016797$.
-        \item Constante multiplicativa: $\hat{C}=0{,}926077$.
-        \item Coeficiente de determinacao: $R^2=0{,}960827$.
-    \end{itemize}
-    \item \textbf{Estatisticas de teste:} $\mathrm{SE}(\hat{\alpha})=0{,}002053$, $t=8{,}180660$, $t_{\mathrm{crit}}=1{,}960201$, $p\text{-valor}=3{,}17\times10^{-16}$ e $gl=9998$.
-    \begin{itemize}
-        \item Erro padrao: $\mathrm{SE}(\hat{\alpha})=0{,}002053$.
-        \item Estatistica de teste: $t=8{,}180660$.
-        \item Valor critico ($\alpha=5\%$, bilateral): $t_{\mathrm{crit}}=1{,}960201$.
-        \item $p$-valor: $3{,}17\times10^{-16}$.
-        \item Graus de liberdade: $gl=9998$.
-    \end{itemize}
+    \item $\hat{\alpha}=1{,}016797$ e $\mathrm{SE}(\hat{\alpha})=0{,}002053$;
+    \item $t=8{,}180660$ com $gl=9998$;
+    \item $t_{\mathrm{crit}}=1{,}960201$ (nivel de 5\%, bilateral);
+    \item $p\text{-valor}=3{,}17\times10^{-16}$.
 \end{itemize}
 
 \begin{equation}
@@ -74,7 +67,9 @@ Para apresentar o teste bilateral de forma padronizada, adotam-se os seguintes e
 \end{cases}
 \end{equation}
 
-Aplicando a regra acima aos resultados observados, tem-se \(|t| > t_{\mathrm{crit}}\) e \(p\text{-valor} \ll 0{,}05\), de modo que a conclusao inferencial e \{\(H_0\): rejeita; \(H_1\): aceita\}. Contudo, sob a otica de modelagem, a diferenca \(\hat{\alpha}-1=0{,}016797\) e pequena em termos absolutos; por isso, para interpretacao fisica do processo, adota-se a leitura pratica \{\(H_0\): nao rejeita; \(H_1\): nao aceita\}, mantendo compatibilidade com o regime difusivo classico.
+Aplicando a regra acima, tem-se \(|t| > t_{\mathrm{crit}}\) e \(p\text{-valor} < 0{,}05\); portanto, \textbf{rejeita-se} $H_0$ no sentido estritamente estatistico. Um intervalo de confianca aproximado de 95\% para $\alpha$ e $[1{,}0128,\,1{,}0208]$, que nao contem 1.
+
+Essa conclusao estatistica nao invalida a interpretacao fisica geral de processo difusivo: com grande numero de pontos no ajuste, desvios pequenos de $\alpha$ em relacao a 1 tendem a se tornar estatisticamente detectaveis. Desse modo, o resultado pode ser interpretado como evidencia de leve desvio do valor ideal em um experimento numerico finito, mantendo comportamento global proximo ao random walk classico.
 
 \section{Verificação do Teorema Central do Limite}
 
@@ -87,11 +82,11 @@ Na etapa de TCL, os passos por caminhada foram mantidos iguais ao experimento pr
 	\label{fig:tcl_hist}
 \end{figure}
 
-As metricas obtidas foram: media $\bar{Z}\approx 8,0\times10^{-5}$, desvio padrao $\sigma_Z\approx 0,9863$, estatistica Kolmogorov-Smirnov $D=0,0127$ e $p$-valor $=0,3895$. Como o $p$-valor e superior a 0,05, nao ha evidencia para rejeitar compatibilidade com normalidade, reforcando a aderencia ao TCL. A formulacao do teste K-S utilizada segue a definicao padrao para adequacao de distribuicao \cite{nist_ks_test}.
+As metricas obtidas foram: media $\bar{Z}\approx 8,0\times10^{-5}$, desvio padrao $\sigma_Z\approx 0,9863$, estatistica Kolmogorov-Smirnov $D=0,0127$ e $p$-valor $=0,3895$. Como o $p$-valor e superior a 0,05, nao ha evidencia para rejeitar a compatibilidade com normalidade, reforcando a aderencia ao TCL. A formulacao do teste K-S utilizada segue a definicao padrao para adequacao de distribuicao \cite{nist_ks_test}.
 
 \section{Síntese dos Resultados}
 
-Em conjunto, os resultados indicam que: (i) a implementacao do LCG gerou trajetorias plausiveis para random walk simples; (ii) o crescimento de $\langle R^2(t)\rangle$ ficou muito proximo de linear; e (iii) os deslocamentos finais normalizados apresentaram comportamento gaussiano consistente com o limite central.
+Em conjunto, os resultados indicam que: (i) a implementacao do LCG gerou trajetorias plausiveis para random walk simples; (ii) o crescimento de $\langle R^2(t)\rangle$ permaneceu muito proximo de linear; e (iii) os deslocamentos finais normalizados apresentaram comportamento gaussiano consistente com o limite central.
 
 
 
