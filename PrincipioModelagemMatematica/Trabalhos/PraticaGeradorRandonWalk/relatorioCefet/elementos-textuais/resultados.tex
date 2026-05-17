@@ -18,10 +18,9 @@ A Figura~\ref{fig:caminhadas_10} apresenta as 10 trajetorias simuladas com 10000
 	\label{fig:caminhadas_10}
 \end{figure}
 
-Os deslocamentos finais observados em $t=10000$ foram:
-\begin{equation}
-(-106, -24, -112, -144, -20, 6, -60, -140, -178, -90).
-\end{equation}
+Os deslocamentos finais observados em $t=10000$ sao apresentados na Tabela~\ref{tab:saida_deslocamentos_finais}:
+
+\input{tabelas/output/saida_deslocamentos_finais.tex}
 
 A media amostral desses deslocamentos foi $\bar{x}_{\text{final}}=-86{,}8$, indicando que, para apenas 10 realizacoes, ainda pode ocorrer assimetria amostral relevante, mesmo em um processo teoricamente centrado em zero.
 
@@ -44,20 +43,15 @@ com coeficiente de determinacao $R^2=0{,}9608$. O valor de $\hat{\alpha}$, proxi
 
 \section{Teste de Hipótese para o Expoente}
 
-Para o teste bilateral previsto no item 4 do roteiro, considerou-se:
+Para o teste bilateral previsto no item 4 do roteiro, considerou-se a hipótese
+
 \begin{equation}
-H_0: \alpha = 1
-\quad \text{versus} \quad
-H_1: \alpha \neq 1.
+H_0: \alpha = 1 \quad \text{versus} \quad H_1: \alpha \neq 1.
 \end{equation}
 
-Os valores obtidos no ajuste e no teste foram:
-\begin{itemize}
-    \item $\hat{\alpha}=1{,}016797$ e $\mathrm{SE}(\hat{\alpha})=0{,}002053$;
-    \item $t=8{,}180660$ com $gl=9998$;
-    \item $t_{\mathrm{crit}}=1{,}960201$ (nivel de 5\%, bilateral);
-    \item $p\text{-valor}=3{,}17\times10^{-16}$.
-\end{itemize}
+Os valores numericos completos do teste (\(\hat{\alpha}\), erro padrao, estatistica \(t\), valor critico, valor-\(p\) e graus de liberdade) sao apresentados na Tabela~\ref{tab:saida_teste_hipotese}:
+
+\input{tabelas/output/saida_teste_hipotese.tex}
 
 \begin{equation}
 \text{Decisao}(\alpha=5\%) =
@@ -67,7 +61,7 @@ Os valores obtidos no ajuste e no teste foram:
 \end{cases}
 \end{equation}
 
-Aplicando a regra acima, tem-se \(|t| > t_{\mathrm{crit}}\) e \(p\text{-valor} < 0{,}05\); portanto, \textbf{rejeita-se} $H_0$ no sentido estritamente estatistico. Um intervalo de confianca aproximado de 95\% para $\alpha$ e $[1{,}0128,\,1{,}0208]$, que nao contem 1.
+Aplicando a regra acima com os valores da Tabela~\ref{tab:saida_teste_hipotese}, \textbf{rejeita-se} $H_0$ no sentido estritamente estatistico. Um intervalo de confianca aproximado de 95\% para $\alpha$ e $[1{,}0128,\,1{,}0208]$, que nao contem 1.
 
 Essa conclusao estatistica nao invalida a interpretacao fisica geral de processo difusivo: com grande numero de pontos no ajuste, desvios pequenos de $\alpha$ em relacao a 1 tendem a se tornar estatisticamente detectaveis. Desse modo, o resultado pode ser interpretado como evidencia de leve desvio do valor ideal em um experimento numerico finito, mantendo comportamento global proximo ao random walk classico.
 
@@ -82,7 +76,9 @@ Na etapa de TCL, os passos por caminhada foram mantidos iguais ao experimento pr
 	\label{fig:tcl_hist}
 \end{figure}
 
-As metricas obtidas foram: media $\bar{Z}\approx 8,0\times10^{-5}$, desvio padrao $\sigma_Z\approx 0,9863$, estatistica Kolmogorov-Smirnov $D=0,0127$ e $p$-valor $=0,3895$. Como o $p$-valor e superior a 0,05, nao ha evidencia para rejeitar a compatibilidade com normalidade, reforcando a aderencia ao TCL. A formulacao do teste K-S utilizada segue a definicao padrao para adequacao de distribuicao \cite{nist_ks_test}.
+As metricas numericas da etapa (media, desvio padrao, estatistica Kolmogorov-Smirnov e valor-\(p\)) sao apresentadas na Tabela~\ref{tab:saida_tcl_resumo}. Como o valor-\(p\) permanece superior a 0,05, nao ha evidencia para rejeitar a compatibilidade com normalidade, reforcando a aderencia ao TCL. A formulacao do teste K-S utilizada segue a definicao padrao para adequacao de distribuicao \cite{nist_ks_test}.
+
+\input{tabelas/output/saida_tcl_resumo.tex}
 
 \section{Síntese dos Resultados}
 

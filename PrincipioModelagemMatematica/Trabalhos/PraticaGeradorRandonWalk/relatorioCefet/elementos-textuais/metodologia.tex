@@ -9,7 +9,7 @@ Este capitulo descreve os procedimentos adotados para implementar o random walk 
 
 As simulacoes foram realizadas em Python, com uso de \texttt{numpy} para operacoes vetorizadas, \texttt{matplotlib} para visualizacao grafica e rotinas proprias para geracao pseudoaleatoria e ajuste estatistico.
 
-O experimento foi implementado em notebook Jupyter, disponivel no repositorio da pratica em \url{https://github.com/LeonardoVieiraGuimaraes/DoutoradoCefet/tree/main/PrincipioModelagemMatematica/Trabalhos/PraticaGeradorRandonWalk} (ver \cite{github_random_walk}). Os parametros de entrada e as saidas numericas foram registrados em arquivos CSV, de modo a assegurar rastreabilidade e reprodutibilidade dos resultados.
+O experimento foi implementado em notebook Jupyter, disponivel no repositorio da pratica em \href{https://github.com/LeonardoVieiraGuimaraes/DoutoradoCefet/tree/main/PrincipioModelagemMatematica/Trabalhos/PraticaGeradorRandonWalk}{Repositorio da pratica no GitHub} (ver \cite{github_random_walk}). Os parametros de entrada e as saidas numericas foram registrados em arquivos CSV, de modo a assegurar rastreabilidade e reprodutibilidade dos resultados.
 
 \section{Configuração do Experimento}
 
@@ -30,6 +30,12 @@ Para o LCG, foram utilizados os parametros:
 \end{itemize}
 
 As sementes das 10 caminhadas foram definidas por multiplos de 12345, de modo a produzir trajetorias independentes dentro da estrategia adotada. Cada caminhada foi construida a partir de uma sequencia de $10000$ variaveis em $\{-1,+1\}$, e a posicao em cada instante foi obtida por soma cumulativa dos passos.
+
+Para garantir consistencia entre texto e dados, os parametros de entrada do experimento principal e da etapa de TCL sao apresentados, respectivamente, nas Tabelas~\ref{tab:entrada_parametros} e~\ref{tab:entrada_tcl_parametros}:
+
+\input{tabelas/input/entrada_parametros.tex}
+
+\input{tabelas/input/entrada_tcl_parametros.tex}
 
 \section{Procedimento Experimental}
 \label{sec_procedimento_experimental}

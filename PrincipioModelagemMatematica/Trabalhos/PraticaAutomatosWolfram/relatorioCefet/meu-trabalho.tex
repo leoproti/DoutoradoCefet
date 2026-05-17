@@ -1,0 +1,44 @@
+% ------------------------------------------------------------------------------
+% Relatorio - Automatos de Wolfram
+% ------------------------------------------------------------------------------
+
+\documentclass[oneside,brazilian]{cefetmg}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{microtype}
+\usepackage{icomma}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{newtxtext,newtxmath}
+\usepackage{url}
+
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0.0cm}
+
+\providecommand{\htmladdnormallink}[2]{#2}
+\AtBeginDocument{\renewcommand{\htmladdnormallink}[2]{\url{#2}}}
+
+\input{elementos-pre-textuais/preambulo.tex}
+
+\begin{document}
+
+\pretextual
+\imprimircapa
+\imprimirsumario
+
+\textual
+\input{elementos-textuais/introducao.tex}
+\input{elementos-textuais/fundamentacao-teorica.tex}
+\input{elementos-textuais/metodologia.tex}
+\input{elementos-textuais/resultados.tex}
+\input{elementos-textuais/conclusao.tex}
+
+\postextual
+\imprimirreferencias{referencias.bib}
+\printindex
+
+\end{document}

@@ -1,0 +1,16 @@
+Objetivo:
+Aplicar o conteudo ministrado sobre os automatos de Wolfram.
+
+Roteiro:
+1) Construir um codigo para implementar os automatos de Wolfram.
+2) Encontrar pelo menos 2 regras para cada classificacao:
+   - homogeneo
+   - periodico
+   - caotico
+   - complexo
+
+Valor: 10 pts
+
+Formato de entrega:
+- relatorio em PDF devidamente identificado
+- arquivo executavel do codigo
