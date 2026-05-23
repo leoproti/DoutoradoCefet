@@ -1,15 +1,22 @@
 \chapter{Metodologia}
 \label{chap_metodologia}
 
-A implementacao foi realizada em Python, com interface de linha de comando para execucao do automato.
+A implementacao foi realizada em Python, com uso das bibliotecas \texttt{numpy} e \texttt{matplotlib}. O fluxo computacional foi organizado em funcoes para conversao de regra, evolucao temporal, persistencia de dados e geracao de figuras.
 
-As funcionalidades implementadas foram:
+O procedimento adotado foi:
 \begin{enumerate}
-    \item entrada do numero da regra de Wolfram;
-    \item escolha do estado inicial (um sitio ocupado ou aleatorio);
-    \item configuracao da densidade inicial de sitios ocupados;
-    \item escolha entre sitios agrupados ou espalhados no estado inicial aleatorio;
-    \item exibicao da evolucao espaco-temporal e opcao de salvar figura e matriz de dados.
+    \item converter o numero da regra (0 a 255) para representacao binaria com 8 bits;
+    \item aplicar a regra sobre vizinhanca \((esquerda, centro, direita)\), com borda periodica;
+    \item definir como condicao inicial um unico sitio ativo no centro da malha;
+    \item simular a evolucao por um numero fixo de passos;
+    \item registrar os dados de entrada e de saida em CSV;
+    \item salvar a visualizacao espaco-temporal em formato PNG.
 \end{enumerate}
 
-Para cumprir o roteiro, foram testadas varias regras com diferentes configuracoes iniciais, buscando ao menos duas regras representativas para cada classe.
+Foram realizados dois grupos de experimentos:
+\begin{itemize}
+    \item classificacao por classes de Wolfram, com \(tamanho=101\) e \(passos=100\), usando as regras: 0, 32, 4, 108, 30, 45, 54 e 110;
+    \item comparacao de escala para regras 30, 45, 54 e 110, com \(passos=200\) e dois tamanhos de malha (101 e 200).
+\end{itemize}
+
+Os nomes dos arquivos foram padronizados no formato \texttt{regra\_n\_tamanho\_n\_passos\_n} (ou \texttt{classe\_regra\_n\_tamanho\_n\_passos\_n} quando ha classificacao), garantindo rastreabilidade entre parametro, tabela e figura.

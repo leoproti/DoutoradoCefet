@@ -1,16 +1,185 @@
 \chapter{Fundamentacao Teorica}
 \label{chap_fundamentacao_teorica}
 
-Um automato celular elementar e definido por uma malha unidimensional binaria e uma regra de transicao local baseada na vizinhanca de tres celulas. Existem 8 padroes possiveis de vizinhanca, e cada padrao produz 0 ou 1 na proxima etapa temporal.
+Autômatos celulares sao sistemas dinamicos discretos em espaco, tempo e estado. Em uma malha de \(L\) sitios, a configuracao no instante \(t\) e representada por
+\[
+\mathbf{x}^{(t)} = \big(x_0^{(t)},x_1^{(t)},\dots,x_{L-1}^{(t)}\big),
+\qquad x_i^{(t)}\in\{0,1\}.
+\]
 
-Com isso, existem $2^8=256$ regras possiveis, numeradas de 0 a 255, conhecidas como regras de Wolfram \cite{wolfram1983,wolfram2002}.
+Historicamente, esse formalismo foi desenvolvido para investigar auto-organizacao e computacao em sistemas complexos, com bases classicas em von Neumann e desenvolvimentos posteriores em modelagem computacional \cite{vonneumann1966,toffoli1987,chopard1998,ilachinski2001}.
 
-As regras podem ser agrupadas em quatro classes qualitativas:
+\section{Regra local e dinamica global}
+
+No caso dos automatos celulares elementares, a regra local possui raio \(r=1\) e depende da vizinhanca
+\((x_{i-1}^{(t)},x_i^{(t)},x_{i+1}^{(t)})\). A evolucao e dada por
+\[
+x_i^{(t+1)} = f\big(x_{i-1}^{(t)},x_i^{(t)},x_{i+1}^{(t)}\big),
+\]
+com condicao de contorno periodica, isto e, os indices sao tomados modulo \(L\).
+
+A funcao local
+\[
+f:\{0,1\}^3\to\{0,1\}
+\]
+possui 8 entradas possiveis. Como cada entrada pode ser mapeada para 0 ou 1, existem
+\(2^8=256\) regras distintas, numeradas de 0 a 255 \cite{wolfram1983,wolfram2002}.
+
+Equivalentemente, define-se a aplicacao global
+\[
+F:\{0,1\}^L\to\{0,1\}^L,
+\qquad \mathbf{x}^{(t+1)} = F\big(\mathbf{x}^{(t)}\big),
+\]
+de modo que o automato e um sistema dinamico discreto iterado.
+
+\section{Codificacao numerica da regra de Wolfram}
+
+Se \(a,b,c\in\{0,1\}\), define-se o indice da vizinhanca por
+\[
+p = 4a + 2b + c \in \{0,\dots,7\}.
+\]
+Para uma regra \(R\), escreve-se sua forma binaria com 8 bits,
+\[
+R = \sum_{k=0}^{7} b_k 2^k,
+\qquad b_k\in\{0,1\}.
+\]
+Com a convencao de Wolfram (ordem 111,110,\dots,000), a atualizacao local pode ser escrita como
+\[
+x_i^{(t+1)} = b_{7-p},
+\]
+o que implementa diretamente a tabela de transicao da regra.
+
+\section{Metricas matematicas para analise}
+
+Para analisar quantitativamente os padroes gerados, utilizam-se metricas no tempo e no espaco:
+
+\textbf{Densidade de sitios ativos}
+\[
+\rho(t)=\frac{1}{L}\sum_{i=0}^{L-1} x_i^{(t)}.
+\]
+
+\textbf{Atividade temporal}
+\[
+A(t)=\frac{1}{L}\sum_{i=0}^{L-1}\left|x_i^{(t+1)}-x_i^{(t)}\right|,
+\]
+que mede a fracao de celulas que mudam de estado entre dois instantes consecutivos.
+
+\textbf{Entropia binaria instantanea}
+\[
+H(t)=-\rho(t)\log_2\rho(t)-\big(1-\rho(t)\big)\log_2\big(1-\rho(t)\big),
+\]
+com a convencao de que termos do tipo \(0\log 0\) valem 0.
+
+\textbf{Correlacao espacial de alcance \(r\)}
+\[
+C_t(r)=\frac{1}{L}\sum_{i=0}^{L-1}x_i^{(t)}x_{i+r}^{(t)}-\rho(t)^2,
+\]
+util para detectar periodicidade, agrupamento e estrutura de longo alcance.
+
+\textbf{Espalhamento de dano (sensibilidade a perturbacoes)}
+\[
+d_H(t)=\frac{1}{L}\sum_{i=0}^{L-1}\left|x_i^{(t)}-y_i^{(t)}\right|,
+\]
+onde \(\mathbf{x}^{(t)}\) e \(\mathbf{y}^{(t)}\) evoluem pela mesma regra a partir de condicoes iniciais quase identicas.
+
+Essas grandezas ajudam a separar regimes dinamicos: regras homogeneas tendem a \(\rho(t)\to 0\) ou 1 e baixa atividade; regras periodicas mantem oscilacoes regulares em \(A(t)\) e \(C_t(r)\); regras caoticas exibem alta entropia e maior crescimento de \(d_H(t)\); e regras complexas combinam ordem local com interacoes nao triviais \cite{wolfram1983,wolfram2002,langton1990,li1990}.
+
+\section{Classes de Wolfram e universalidade}
+
+Os autômatos celulares elementares (Elementary Cellular Automata -- ECA) podem ser modelados como sistemas dinâmicos discretos. Seja o espaço de configurações dado por:
+
+\[
+X = \{0,1\}^{\mathbb{Z}}
+\]
+
+onde cada célula assume valores binários. A evolução do sistema é definida por uma função global:
+
+\[
+x^{(t+1)} = F(x^{(t)})
+\]
+
+onde $F$ é induzida por uma regra local:
+
+\[
+f : \{0,1\}^3 \rightarrow \{0,1\}
+\]
+
+tal que:
+
+\[
+(F(x))_i = f(x_{i-1}, x_i, x_{i+1})
+\]
+
+A classificação proposta por Wolfram organiza os comportamentos assintóticos desses sistemas em quatro classes fundamentais, com base na evolução a partir de condições iniciais desordenadas.
+
+\subsection{Classe 1 -- Homogênea}
+
+Autômatos da Classe 1 convergem rapidamente para um estado estacionário uniforme. Formalmente, existe um estado fixo $x^*$ tal que:
+
+\[
+\exists T \; : \; \forall t \ge T, \quad x^{(t)} = x^*
+\]
+
+ou seja, o sistema atinge um ponto fixo do operador $F$:
+
+\[
+F(x^*) = x^*
+\]
+
+Nesse tipo de comportamento, perturbações nas condições iniciais desaparecem ao longo do tempo, levando o sistema sempre ao mesmo estado final.
+
+\subsection{Classe 2 -- Periódica}
+
+Na Classe 2, o sistema evolui para ciclos periódicos ou estruturas estáveis. Nesse caso, existem inteiros $T$ e $p \geq 1$ tais que:
+
+\[
+\forall t \ge T, \quad x^{(t+p)} = x^{(t)}
+\]
+
+O sistema entra, portanto, em um ciclo limite. As configurações resultantes consistem de padrões repetitivos ou estruturas locais estáveis que oscilam no tempo.
+
+Perturbações podem persistir, porém permanecem confinadas a regiões limitadas do espaço.
+
+\subsection{Classe 3 -- Caótica}
+
+Autômatos da Classe 3 apresentam comportamento aparentemente aleatório e não periódico. Matematicamente, a órbita do sistema não converge para ciclos de pequeno período e apresenta alta sensibilidade às condições iniciais.
+
+Pequenas perturbações em $x^{(0)}$ resultam em divergências significativas ao longo do tempo:
+
+\[
+\| F^t(x) - F^t(x + \delta) \| \not\to 0
+\]
+
+Além disso, embora a dinâmica seja determinística, propriedades estatísticas globais (como densidade de células ativas) tendem a valores estáveis.
+
+\subsection{Classe 4 -- Complexa}
+
+A Classe 4 representa um comportamento intermediário entre ordem e caos. Nessa classe, coexistem:
+
 \begin{itemize}
-    \item Classe 1 (homogeneo): evolui para estado uniforme.
-    \item Classe 2 (periodico): evolui para padroes repetitivos.
-    \item Classe 3 (caotico): evolucao aparentemente aleatoria.
-    \item Classe 4 (complexo): estruturas localizadas e interacoes ricas.
+    \item regiões ordenadas (fundos periódicos)
+    \item estruturas localizadas persistentes (gliders)
 \end{itemize}
 
-Essa classificacao e amplamente usada para discutir emergencia de complexidade em sistemas discretos \cite{chopard1998,wolfram2002}.
+Essas estruturas podem se propagar e interagir, formando um sistema altamente dinâmico. O comportamento global não é puramente periódico nem totalmente caótico.
+
+Esse tipo de sistema é particularmente importante, pois pode suportar processamento de informação. Um exemplo clássico é a Regra 110.
+
+\subsection{Universalidade Computacional da Regra 110}
+
+A Regra 110 é um autômato celular elementar que pertence à Classe 4 e apresenta comportamento complexo. Matthew Cook (2004) demonstrou que essa regra é capaz de computação universal, isto é, pode simular uma máquina de Turing.
+
+Isso implica que, em princípio, qualquer algoritmo computacional pode ser emulado por meio da evolução desse autômato. Esse resultado evidencia que regras locais extremamente simples podem gerar comportamentos computacionalmente completos.
+
+\subsection{Discussão}
+
+A classificação de Wolfram permite compreender como diferentes tipos de dinâmica emergem a partir de regras locais simples. Em particular:
+
+\begin{itemize}
+    \item Classe 1: comportamento trivial, convergente
+    \item Classe 2: comportamento periódico ou estável
+    \item Classe 3: comportamento caótico, sensível a condições inicais
+    \item Classe 4: comportamento complexo com estruturas emergentes
+\end{itemize}
+
+Dessa forma, os autômatos celulares constituem um modelo fundamental para o estudo da emergência de complexidade em sistemas dinâmicos discretos.
