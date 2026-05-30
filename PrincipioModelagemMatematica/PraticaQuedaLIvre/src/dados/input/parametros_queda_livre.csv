@@ -1,0 +1,4 @@
+Parâmetro,Descrição,Valor,Unidade
+H,Altura Inicial,10000.0000,m
+V,Velocidade Inicial,0.0000,m/s
+g,Aceleração da Gravidade,9.8100,m/s²

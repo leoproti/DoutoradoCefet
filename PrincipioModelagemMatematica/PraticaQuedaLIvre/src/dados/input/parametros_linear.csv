@@ -1,0 +1,8 @@
+Parâmetro,Descrição,Valor,Unidade
+H,Altura Inicial,10000.0000,m
+V,Velocidade Inicial,0.0000,m/s
+g,Aceleração da Gravidade,9.8100,m/s²
+m,Massa,1.0000,kg
+eta,Viscosidade do Ar,0.0000,Pa·s
+r,Raio da Esfera,0.0100,m
+k,Coeficiente Linear (Stokes),0.0000,1/s

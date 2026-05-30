@@ -1,0 +1,22 @@
+\chapter{Metodologia}
+\label{chap_metodologia}
+
+A implementacao foi realizada em Python, com uso das bibliotecas \texttt{numpy} e \texttt{matplotlib}. O fluxo computacional foi organizado em funcoes para conversao de regra, evolucao temporal, persistencia de dados e geracao de figuras.
+
+O procedimento adotado foi:
+\begin{enumerate}
+    \item converter o numero da regra (0 a 255) para representacao binaria com 8 bits;
+    \item aplicar a regra sobre vizinhanca \((esquerda, centro, direita)\), com borda periodica;
+    \item definir como condicao inicial um unico sitio ativo no centro da malha;
+    \item simular a evolucao por um numero fixo de passos;
+    \item registrar os dados de entrada e de saida em CSV;
+    \item salvar a visualizacao espaco-temporal em formato PNG.
+\end{enumerate}
+
+Foram realizados dois grupos de experimentos:
+\begin{itemize}
+    \item classificacao por classes de Wolfram, com \(tamanho=101\) e \(passos=100\), usando as regras: 0, 32, 4, 108, 30, 45, 54 e 110;
+    \item comparacao de escala para regras 30, 45, 54 e 110, com \(passos=200\) e dois tamanhos de malha (101 e 200).
+\end{itemize}
+
+Os nomes dos arquivos foram padronizados no formato \texttt{regra\_n\_tamanho\_n\_passos\_n} (ou \texttt{classe\_regra\_n\_tamanho\_n\_passos\_n} quando ha classificacao), garantindo rastreabilidade entre parametro, tabela e figura.

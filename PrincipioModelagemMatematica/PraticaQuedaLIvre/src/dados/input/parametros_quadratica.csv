@@ -1,0 +1,9 @@
+Parâmetro,Descrição,Valor,Unidade
+H,Altura Inicial,10000.0000,m
+V,Velocidade Inicial,0.0000,m/s
+g,Aceleração da Gravidade,9.8100,m/s²
+m,Massa,1.0000,kg
+Cd,Coeficiente de Arrasto,0.4700,-
+A,Área Frontal,0.0100,m²
+rho,Densidade do Ar,1.2250,kg/m³
+c,Coeficiente Quadrático,0.0029,kg/m

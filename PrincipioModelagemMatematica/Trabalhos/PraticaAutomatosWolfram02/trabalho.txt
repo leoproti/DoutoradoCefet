@@ -1,0 +1,27 @@
+Objetivo: 
+
+Aplicar o conteúdo ministrado sobre os autômatos de Wolfram.
+
+ 
+
+Roteiro: 
+
+1. Construir um código para implementar os autômatos de Wolfram, na linguagem de sua preferência, que gere um executável com as seguintes funcionalidades:
+
+A. O usuário entra com o número da regra desejada e o executável deve mostrar como saída a evolução espácio-temporal do autômato.
+
+B. O usuário pode escolher o estado inicial do sistema (um sítio ocupado ou aleatório). 
+
+C. O usuário pode escolher a densidade inicial de sítios ocupados e a se os sitios ficam agrupados ou espalhados. 
+
+ 
+
+2.  Encontrar pelo menos 2 regras para cada uma das classificações dos autômatos de Wolfram - homogêneo, periódico, caótico ou complexo. 
+
+ 
+
+Valor:  10 pts
+
+ 
+
+Formato de entrega: relatório em formato .pdf devidamente identificado e arquivo executável do código.
