@@ -1,0 +1,6 @@
+regra,30
+tamanho,101
+passos,100
+tipo_ini,aleatorio
+densidade,0.5
+agrupado,False
