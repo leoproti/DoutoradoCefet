@@ -68,7 +68,7 @@ def main():
         [sg.Text('Regra:', size=(12,1)), sg.Slider(range=(0,255), orientation='h', size=(20,20), default_value=30, key='regra', enable_events=True)],
         [sg.Text('Tamanho:', size=(12,1)), sg.Slider(range=(21,201), orientation='h', size=(20,20), default_value=101, key='tamanho', enable_events=True)],
         [sg.Text('Passos:', size=(12,1)), sg.Slider(range=(10,200), orientation='h', size=(20,20), default_value=100, key='passos', enable_events=True)],
-        [sg.Text('Estado inicial:', size=(12,1)), sg.Combo(['central', 'aleatorio'], default_value='central', key='tipo_ini', size=(12,1))],
+        [sg.Text('Estado inicial:', size=(12,1)), sg.Combo(['Central', 'Aleatório'], default_value='Central', key='tipo_ini', size=(12,1))],
         [sg.Text('Densidade:', size=(12,1)), sg.Slider(range=(0.05,1.0), resolution=0.05, orientation='h', size=(20,20), default_value=0.5, key='densidade')],
         [sg.Text('Agrupado:', size=(12,1)), sg.Combo(['Não', 'Sim'], default_value='Não', key='agrupado', size=(12,1))],
         [sg.Button('Simular', size=(12,1), button_color=('white', '#007ACC')), sg.Button('Sair', size=(8,1))],
