@@ -72,6 +72,11 @@ build/
 dist/
 *.spec
 
+# Excecao: versionar somente o executavel final da pratica de Wolfram
+!Trabalhos/PraticaAutomatosWolfram/PraticaAutomatosWolfram02/src/dist/
+Trabalhos/PraticaAutomatosWolfram/PraticaAutomatosWolfram02/src/dist/*
+!Trabalhos/PraticaAutomatosWolfram/PraticaAutomatosWolfram02/src/dist/automatos_wolfram_gui.exe
+
 # Metadados de empacotamento
 *.egg-info/
 .eggs/
