@@ -19,8 +19,8 @@ docker compose up --build -d
 
 Acessos:
 
-- Frontend: http://localhost:3000
-- Backend: http://localhost:8000/docs
+- Frontend: http://localhost:8089
+- Backend: http://localhost:3000/docs
 
 ## Parar
 
