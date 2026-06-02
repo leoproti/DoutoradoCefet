@@ -1,0 +1,37 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ferramentas Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Dados e saídas geradas
+data/raw/
+data/processed/
+outputs/
+
+# LaTeX build
+paper/build/
+paper/*.pdf
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+
+# Sistema e editor
+.DS_Store
+Thumbs.db
+.vscode/
