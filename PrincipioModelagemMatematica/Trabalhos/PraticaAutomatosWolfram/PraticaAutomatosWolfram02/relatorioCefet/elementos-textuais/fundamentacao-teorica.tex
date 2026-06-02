@@ -1,31 +1,31 @@
-\chapter{Fundamentacao Teorica}
+\chapter{Fundamentação Teórica}
 \label{chap_fundamentacao_teorica}
 
-Automatos celulares sao sistemas dinamicos discretos em espaco, tempo e estado. Em uma malha com \(L\) sitios, a configuracao no instante \(t\) e
+Autômatos celulares são sistemas dinâmicos discretos em espaço, tempo e estado. Em uma malha com \(L\) sítios, a configuração no instante \(t\) é
 \[
 \mathbf{x}^{(t)} = \big(x_0^{(t)},x_1^{(t)},\dots,x_{L-1}^{(t)}\big),
 \qquad x_i^{(t)}\in\{0,1\}.
 \]
 
-Esse formalismo foi consolidado em estudos classicos sobre auto-organizacao, modelagem discreta e computacao em sistemas complexos \cite{vonneumann1966,toffoli1987,chopard1998,ilachinski2001}.
+Esse formalismo foi consolidado em estudos clássicos sobre auto-organização, modelagem discreta e computação em sistemas complexos \cite{vonneumann1966,toffoli1987,chopard1998,ilachinski2001}.
 
-No caso dos automatos celulares elementares (ECA), a regra local tem raio \(r=1\) e depende da vizinhanca \((x_{i-1}^{(t)},x_i^{(t)},x_{i+1}^{(t)})\):
+No caso dos autômatos celulares elementares (ECA), a regra local tem raio \(r=1\) e depende da vizinhança \((x_{i-1}^{(t)},x_i^{(t)},x_{i+1}^{(t)})\):
 \[
 x_i^{(t+1)} = f\big(x_{i-1}^{(t)},x_i^{(t)},x_{i+1}^{(t)}\big),
 \]
-com contorno periodico (indices modulo \(L\)). Como
+com contorno periódico (índices módulo \(L\)). Como
 \[
 f:\{0,1\}^3\to\{0,1\},
 \]
-existem \(2^8=256\) regras possiveis, numeradas de 0 a 255 \cite{wolfram1983,wolfram2002,mathworldECA}. A dinamica global pode ser escrita como
+existem \(2^8=256\) regras possíveis, numeradas de 0 a 255 \cite{wolfram1983,wolfram2002,mathworldECA}. A dinâmica global pode ser escrita como
 \[
 \mathbf{x}^{(t+1)} = F\big(\mathbf{x}^{(t)}\big),
 \qquad F:\{0,1\}^L\to\{0,1\}^L.
 \]
 
-Na visualizacao espaco-temporal, adota-se a convencao usual de ECA: \(t=0\) na linha superior e tempo crescente para baixo \cite{wikipediaECA,mathworldECA}.
+Na visualização espaço-temporal, adota-se a convenção usual de ECA: \(t=0\) na linha superior e tempo crescente para baixo \cite{wikipediaECA,mathworldECA}.
 
-Na codificacao de Wolfram, para \(a,b,c\in\{0,1\}\), define-se
+Na codificação de Wolfram, para \(a,b,c\in\{0,1\}\), define-se
 \[
 p = 4a + 2b + c \in \{0,\dots,7\}.
 \]
@@ -34,16 +34,16 @@ Se
 R = \sum_{k=0}^{7} b_k 2^k,
 \qquad b_k\in\{0,1\},
 \]
-entao, na ordem \(111,110,\dots,000\), a atualizacao local e
+então, na ordem \(111,110,\dots,000\), a atualização local é
 \[
 x_i^{(t+1)} = b_{7-p}.
 \]
 
-\section{Metricas de analise}
+\section{Métricas de análise}
 
-As metricas usadas para interpretar os padroes sao consistentes com a analise de transicoes de fase e complexidade em automatos celulares \cite{langton1990,li1990,wolfram2002}:
+As métricas usadas para interpretar os padrões são consistentes com a análise de transições de fase e complexidade em autômatos celulares \cite{langton1990,li1990,wolfram2002}:
 
-\textbf{Densidade de sitios ativos}
+\textbf{Densidade de sítios ativos}
 \[
 \rho(t)=\frac{1}{L}\sum_{i=0}^{L-1} x_i^{(t)}.
 \]
@@ -53,13 +53,13 @@ As metricas usadas para interpretar os padroes sao consistentes com a analise de
 A(t)=\frac{1}{L}\sum_{i=0}^{L-1}\left|x_i^{(t+1)}-x_i^{(t)}\right|.
 \]
 
-\textbf{Entropia binaria instantanea}
+\textbf{Entropia binária instantânea}
 \[
 H(t)=-\rho(t)\log_2\rho(t)-\big(1-\rho(t)\big)\log_2\big(1-\rho(t)\big),
 \]
 adotando \(0\log 0=0\).
 
-\textbf{Correlacao espacial de alcance \(r\)}
+\textbf{Correlação espacial de alcance \(r\)}
 \[
 C_t(r)=\frac{1}{L}\sum_{i=0}^{L-1}x_i^{(t)}x_{i+r}^{(t)}-\rho(t)^2.
 \]
@@ -68,29 +68,29 @@ C_t(r)=\frac{1}{L}\sum_{i=0}^{L-1}x_i^{(t)}x_{i+r}^{(t)}-\rho(t)^2.
 \[
 d_H(t)=\frac{1}{L}\sum_{i=0}^{L-1}\left|x_i^{(t)}-y_i^{(t)}\right|,
 \]
-com \(\mathbf{x}^{(t)}\) e \(\mathbf{y}^{(t)}\) evoluindo pela mesma regra a partir de condicoes iniciais proximas.
+com \(\mathbf{x}^{(t)}\) e \(\mathbf{y}^{(t)}\) evoluindo pela mesma regra a partir de condições iniciais próximas.
 
 \section{Classes de Wolfram}
 
-A classificacao classica de Wolfram separa os ECA em quatro regimes \cite{wolfram1983,wolfram2002}:
+A classificação clássica de Wolfram separa os ECA em quatro regimes \cite{wolfram1983,wolfram2002}:
 
-\textbf{Classe 1 (Homogenea)}: convergencia para ponto fixo,
+\textbf{Classe 1 (Homogênea)}: convergência para ponto fixo,
 \[
 \exists T:\forall t\ge T,\; x^{(t)}=x^*, \qquad F(x^*)=x^*.
 \]
 
-\textbf{Classe 2 (Periodica)}: convergencia para ciclo limite,
+\textbf{Classe 2 (Periódica)}: convergência para ciclo limite,
 \[
 \exists T,\,p\ge 1:\forall t\ge T,\; x^{(t+p)}=x^{(t)}.
 \]
 
-\textbf{Classe 3 (Caotica)}: alta sensibilidade a perturbacoes,
+\textbf{Classe 3 (Caótica)}: alta sensibilidade a perturbações,
 \[
 \|F^t(x)-F^t(x+\delta)\|\not\to 0.
 \]
 
-\textbf{Classe 4 (Complexa)}: coexistencia de ordem local e estruturas propagantes (gliders), com interacoes nao triviais.
+\textbf{Classe 4 (Complexa)}: coexistência de ordem local e estruturas propagantes (gliders), com interações não triviais.
 
-No contexto de computacao, a Regra 110 (Classe 4) e universal no sentido de Turing \cite{cook2004}. Assim, regras locais simples podem produzir dinamicas de alta complexidade.
+No contexto de computação, a Regra 110 (Classe 4) é universal no sentido de Turing \cite{cook2004}. Assim, regras locais simples podem produzir dinâmicas de alta complexidade.
 
-As definicoes acima sao consistentes com a teoria classica e fundamentam a analise qualitativa apresentada neste trabalho \cite{wolfram1983,wolfram2002,langton1990,li1990}.
+As definições acima são consistentes com a teoria clássica e fundamentam a análise qualitativa apresentada neste trabalho \cite{wolfram1983,wolfram2002,langton1990,li1990}.

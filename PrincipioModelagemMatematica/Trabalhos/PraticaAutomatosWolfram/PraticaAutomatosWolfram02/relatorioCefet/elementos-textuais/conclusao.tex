@@ -1,15 +1,32 @@
-\chapter{Conclusao}
+\chapter{Conclusão}
 \label{chap_conclusao}
 
-O trabalho atingiu o objetivo proposto de aplicar o conteudo de automatos de Wolfram em uma implementacao executavel e documentada em relatorio tecnico. Foram contemplados os controles de regra, estado inicial, densidade e agrupamento, com visualizacao da evolucao espaco-temporal em saida grafica.
+Os resultados obtidos confirmam que a implementação atende ao objetivo proposto: simular autômatos celulares elementares em um executável com controle de regra, estado inicial, densidade e agrupamento, produzindo visualizações espaço-temporais consistentes com a literatura.
 
-Do ponto de vista de classificacao, foram selecionadas duas regras por classe (homogenea, periodica, caotica e complexa), em conformidade com o roteiro da pratica. As imagens apresentadas confirmam qualitativamente os padroes esperados para cada regime dinamico.
+Com base nas figuras analisadas, observou-se que as regras homogêneas (0 e 255) convergem para padrões estáveis, as periódicas (4 e 108) preservam regularidade estrutural, as caóticas (30 e 90) exibem alta irregularidade e sensibilidade às condições iniciais, e as complexas (54 e 110) apresentam coexistência de organização local com estruturas propagantes. As variações de densidade e de estado inicial alteram a textura dos padrões, sem descaracterizar o regime dinâmico dominante de cada regra.
 
-Assim, os entregaveis solicitados foram atendidos: arquivo executavel do codigo e relatorio em PDF com fundamentacao teorica, metodologia, resultados e referencias.
+Quanto aos resultados das simulações, após conferência dos arquivos gerados foram identificadas \textbf{27 simulações} efetivamente realizadas, considerando apenas \(tamanho=101\):
 
-Como continuidade, recomenda-se:
-\begin{itemize}
-    \item incluir metricas adicionais de complexidade (entropia e compressibilidade);
-    \item automatizar a classificacao das regras com base em descritores numericos;
-    \item expandir a analise para condicoes iniciais alternativas.
-\end{itemize}
+\begin{table}[H]
+\centering
+\caption{Resumo das simulações realizadas, incluindo o parâmetro de agrupamento.}
+\label{tab:resumo-completo-simulacoes}
+\begin{tabular}{lllll}
+\toprule
+Regra & Estado & Densidades & Tamanho & Agrupado \\
+\midrule
+0 & central & 0,5 & 101 & não \\
+255 & central/aleatório & 0,2; 0,5; 0,8 & 101 & não \\
+4 & central/aleatório & 0,5 & 101 & não \\
+108 & central/aleatório & 0,2; 0,5; 0,8 & 101 & não \\
+30 & central/aleatório & 0,2; 0,5; 0,8 & 101 & não \\
+30 & aleatório & 0,5; 0,8 & 101 & sim \\
+90 & central/aleatório & 0,5 & 101 & não \\
+54 & central/aleatório & 0,5 & 101 & não \\
+110 & central/aleatório & 0,2; 0,5; 0,8 & 101 & não \\
+110 & aleatório & 0,2; 0,5 & 101 & sim \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Conclui-se que os experimentos realizados foram suficientes para caracterizar, de forma qualitativa, os diferentes regimes dinâmicos das regras analisadas.
