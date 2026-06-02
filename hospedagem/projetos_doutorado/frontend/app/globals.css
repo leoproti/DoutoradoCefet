@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --ink: #0f172a;
+  --muted: #475569;
+  --line: #dbe2f0;
+  --accent: #0ea5e9;
+  --accent-2: #0284c7;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, #e0f2fe 0, transparent 40%),
+    radial-gradient(circle at bottom right, #dbeafe 0, transparent 40%),
+    var(--bg);
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+h1 {
+  margin: 0 0 8px;
+}
+
+p {
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 320px 1fr;
+  }
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+input,
+select {
+  width: 100%;
+  margin-top: 6px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.canvas {
+  display: grid;
+  gap: 1px;
+  background: #0f172a;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cell {
+  width: 100%;
+  aspect-ratio: 1;
+  background: #f8fafc;
+}
+
+.cell.on {
+  background: #111827;
+}
+
+.meta {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--muted);
+}

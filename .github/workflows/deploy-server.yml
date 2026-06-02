@@ -1,0 +1,50 @@
+name: Deploy Server
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - hospedagem/projetos_doutorado/**
+      - .github/workflows/deploy-server.yml
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Preparar Ambiente SSH
+        run: |
+          wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+          sudo dpkg -i cloudflared-linux-amd64.deb
+
+          mkdir -p ~/.ssh
+          echo "${{ secrets.HOME_SERVER_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+          echo "Host leoproti-root" > ~/.ssh/config
+          echo "  HostName ssh.leoproti.com.br" >> ~/.ssh/config
+          echo "  User root" >> ~/.ssh/config
+          echo "  IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
+          echo "  ProxyCommand cloudflared access ssh --hostname %h" >> ~/.ssh/config
+          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+
+      - name: Sincronizar Arquivos
+        run: |
+          ssh leoproti-root "mkdir -p /home/leonardovieiraxy/projetos/projetos_doutorado"
+          scp -r hospedagem/projetos_doutorado/* leoproti-root:/home/leonardovieiraxy/projetos/projetos_doutorado/
+
+      - name: Build e Deploy
+        run: |
+          ssh leoproti-root << 'EOF'
+            cd /home/leonardovieiraxy/projetos/projetos_doutorado
+
+            docker compose build --pull --no-cache
+            docker compose up -d
+
+            docker system prune -f
+
+            echo "Deploy concluido em $(date)"
+          EOF
