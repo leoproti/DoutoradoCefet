@@ -1,0 +1,191 @@
+\chapter{Resultados}
+\label{chap_resultados}
+
+Neste capitulo sao apresentados os resultados de simulacao gerados pelo executavel desenvolvido para o projeto. As figuras apresentam a evolucao espaco-temporal com tempo crescente para baixo (\(t=0\) no topo), seguindo a convencao utilizada na literatura de ECA.
+Essa mesma convencao foi adotada na interface Python do executavel, mantendo consistencia entre a visualizacao da aplicacao e as figuras deste relatorio.
+As conclusoes desta secao sao qualitativas e baseadas nas imagens geradas durante a execucao do aplicativo.
+
+\section{Regras representativas por classe}
+
+As Figuras~\ref{fig:homogeneo-r0} a~\ref{fig:complexo-r110} mostram duas regras por classe de Wolfram. Em todos os casos, os parametros foram: \(tamanho=101\), \(passos=120\), estado inicial central, densidade \(0{,}5\) e agrupado = nao.
+
+\begin{table}[H]
+\centering
+\caption{Regras selecionadas por classe para atendimento ao roteiro da pratica.}
+\label{tab:regras-classes}
+\begin{tabular}{ll}
+\toprule
+Classe & Regras utilizadas \\
+\midrule
+Homogenea & 0, 255 \\
+Periodica & 4, 108 \\
+Caotica & 30, 90 \\
+Complexa & 54, 110 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figuras/resultados/regra_0_tamanho_101_passos_120_estado_central_densidade_0_5_agrupado_nao_classe_homogeneo.png}
+    \caption{Classe homogenea, Regra 0 (tam101, passos120, estado central, dens05, agrupado nao).}
+    \label{fig:homogeneo-r0}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figuras/resultados/regra_255_tamanho_101_passos_120_estado_central_densidade_0_5_agrupado_nao_classe_homogeneo.png}
+    \caption{Classe homogenea, Regra 255 (tam101, passos120, estado central, dens05, agrupado nao).}
+    \label{fig:homogeneo-r255}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figuras/resultados/regra_4_tamanho_101_passos_120_estado_central_densidade_0_5_agrupado_nao_classe_periodico.png}
+    \caption{Classe periodica, Regra 4 (tam101, passos120, estado central, dens05, agrupado nao).}
+    \label{fig:periodico-r4}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figuras/resultados/regra_108_tamanho_101_passos_120_estado_central_densidade_0_5_agrupado_nao_classe_periodico.png}
+    \caption{Classe periodica, Regra 108 (tam101, passos120, estado central, dens05, agrupado nao).}
+    \label{fig:periodico-r108}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figuras/resultados/regra_30_tamanho_101_passos_120_estado_central_densidade_0_5_agrupado_nao_classe_caotico.png}
+    \caption{Classe caotica, Regra 30 (tam101, passos120, estado central, dens05, agrupado nao).}
+    \label{fig:caotico-r30}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figuras/resultados/regra_90_tamanho_101_passos_120_estado_central_densidade_0_5_agrupado_nao_classe_caotico.png}
+    \caption{Classe caotica, Regra 90 (tam101, passos120, estado central, dens05, agrupado nao).}
+    \label{fig:caotico-r90}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figuras/resultados/regra_54_tamanho_101_passos_120_estado_central_densidade_0_5_agrupado_nao_classe_complexo.png}
+    \caption{Classe complexa, Regra 54 (tam101, passos120, estado central, dens05, agrupado nao).}
+    \label{fig:complexo-r54}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figuras/resultados/regra_110_tamanho_101_passos_120_estado_central_densidade_0_5_agrupado_nao_classe_complexo.png}
+    \caption{Classe complexa, Regra 110 (tam101, passos120, estado central, dens05, agrupado nao).}
+    \label{fig:complexo-r110}
+\end{figure}
+
+A classificacao visual e coerente com a literatura: as regras 0 e 255 convergem para padroes homogeneos; 4 e 108 apresentam regularidade periodica; 30 e 90 exibem comportamento irregular tipico de classe caotica; e 54 e 110 mostram coexistencia de estruturas locais com interacoes nao triviais, caracterizando classe complexa \cite{wolfram2002,wikipediaECA,wolframAtlas}.
+
+\section{Comparacoes adicionais com estado aleatorio e densidade}
+
+Para complementar a analise, tambem foram incluidos experimentos com estado inicial aleatorio e variacao de densidade, mantendo \(tamanho=101\), \(passos=120\) e agrupado = nao.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figuras/resultados/regra_255_tamanho_101_passos_120_estado_aleatorio_densidade_0_5_agrupado_nao_classe_homogeneo.png}
+    \caption{Regra 255 com estado aleatorio e densidade 0,5.}
+    \label{fig:extra-r255-a05}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figuras/resultados/regra_108_tamanho_101_passos_120_estado_aleatorio_densidade_0_5_agrupado_nao_classe_periodico.png}
+    \caption{Regra 108 com estado aleatorio e densidade 0,5.}
+    \label{fig:extra-r108-a05}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figuras/resultados/regra_30_tamanho_101_passos_120_estado_aleatorio_densidade_0_5_agrupado_nao_classe_caotico.png}
+    \caption{Regra 30 com estado aleatorio e densidade 0,5.}
+    \label{fig:extra-r30-a05}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figuras/resultados/regra_30_tamanho_101_passos_120_estado_aleatorio_densidade_0_2_agrupado_nao_classe_caotico.png}
+    \caption{Regra 30 com densidade 0,2 (estado aleatorio).}
+    \label{fig:extra-r30-a02}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figuras/resultados/regra_30_tamanho_101_passos_120_estado_aleatorio_densidade_0_8_agrupado_nao_classe_caotico.png}
+    \caption{Regra 30 com densidade 0,8 (estado aleatorio).}
+    \label{fig:extra-r30-a08}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figuras/resultados/regra_110_tamanho_101_passos_120_estado_aleatorio_densidade_0_2_agrupado_nao_classe_complexo.png}
+    \caption{Regra 110 com densidade 0,2 (estado aleatorio).}
+    \label{fig:extra-r110-a02}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figuras/resultados/regra_110_tamanho_101_passos_120_estado_aleatorio_densidade_0_8_agrupado_nao_classe_complexo.png}
+    \caption{Regra 110 com densidade 0,8 (estado aleatorio).}
+    \label{fig:extra-r110-a08}
+\end{figure}
+
+Essas figuras adicionais reforcam que a classe global da regra se preserva, mas o padrao visual depende da condicao inicial e da densidade, especialmente para regras caoticas e complexas.
+
+\section{Resumo das simulacoes realizadas}
+
+No conjunto atual, foram realizadas 23 simulacoes com \(tamanho=101\), \(passos=120\) e agrupado = nao. O resumo por classe e configuracao e apresentado na Tabela~\ref{tab:resumo-simulacoes-realizadas}.
+
+\begin{table}[H]
+\centering
+\caption{Resumo das simulacoes realizadas no executavel.}
+\label{tab:resumo-simulacoes-realizadas}
+\begin{tabular}{llll}
+\toprule
+Classe & Regras & Estado inicial & Densidades \\
+\midrule
+Homogenea & 0, 255 & central & 0,5 \\
+Homogenea & 255 & aleatorio & 0,2; 0,5; 0,8 \\
+Periodica & 4, 108 & central & 0,5 \\
+Periodica & 4, 108 & aleatorio & 0,5 \\
+Periodica & 108 & aleatorio & 0,2; 0,8 \\
+Caotica & 30, 90 & central & 0,5 \\
+Caotica & 30, 90 & aleatorio & 0,5 \\
+Caotica & 30 & aleatorio & 0,2; 0,8 \\
+Complexa & 54, 110 & central & 0,5 \\
+Complexa & 54, 110 & aleatorio & 0,5 \\
+Complexa & 110 & aleatorio & 0,2; 0,8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Simulacoes complementares sugeridas}
+
+Como o requisito de agrupamento foi implementado no executavel, mas os resultados apresentados usam agrupado = nao, recomenda-se incluir um bloco curto de comparacao com agrupado = sim para fortalecer a discussao:
+\begin{itemize}
+\item Regra 30, estado aleatorio, densidade 0,5, comparando agrupado = nao vs sim;
+\item Regra 110, estado aleatorio, densidade 0,5, comparando agrupado = nao vs sim;
+\item Regra 30, estado aleatorio, densidade 0,8, agrupado = sim;
+\item Regra 110, estado aleatorio, densidade 0,2, agrupado = sim.
+\end{itemize}
+Essas simulacoes extras tornam explicito, no relatorio, o efeito da opcao de agrupamento solicitada no roteiro.
+
+\section{Atendimento aos requisitos do roteiro}
+
+Com base nas simulacoes e nas figuras apresentadas, os requisitos solicitados foram atendidos:
+\begin{itemize}
+\item entrada da regra de Wolfram no executavel;
+\item escolha de estado inicial (central ou aleatorio);
+\item controle da densidade inicial e opcao de agrupamento;
+\item exibicao da evolucao espaco-temporal em imagem;
+\item identificacao de pelo menos duas regras para cada uma das quatro classes.
+\end{itemize}
+
+Adicionalmente, os nomes dos arquivos das figuras ja incluem os parametros de entrada, facilitando a rastreabilidade experimental e a reproducao dos resultados.
+

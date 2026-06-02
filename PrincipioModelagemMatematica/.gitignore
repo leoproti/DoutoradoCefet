@@ -55,3 +55,24 @@
 # Pastas auxiliares
 _build/
 latex.out/
+
+# Python e Jupyter
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+
+# Ambientes virtuais
+.venv/
+venv/
+
+# Build de executaveis (PyInstaller/Nuitka)
+build/
+dist/
+*.spec
+
+# Metadados de empacotamento
+*.egg-info/
+.eggs/
+pip-wheel-metadata/

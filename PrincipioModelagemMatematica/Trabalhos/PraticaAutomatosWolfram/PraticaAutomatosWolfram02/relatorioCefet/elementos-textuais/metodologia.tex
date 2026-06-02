@@ -1,0 +1,36 @@
+\chapter{Metodologia}
+\label{chap_metodologia}
+
+A implementacao foi realizada em Python, com uso das bibliotecas \texttt{numpy}, \texttt{matplotlib} e \texttt{PySimpleGUI}. O fluxo computacional foi organizado em funcoes para conversao de regra, evolucao temporal, persistencia de dados e geracao de figuras.
+
+No desenvolvimento pratico desta entrega, as simulacoes utilizadas no relatorio foram executadas pela interface grafica empacotada em executavel, sem uso de notebook \texttt{.ipynb}.
+
+Foi construido um executavel da interface grafica utilizando \texttt{PyInstaller} \cite{pyinstaller}, atendendo ao requisito de entrega em formato executavel. Na interface, o usuario informa os parametros da simulacao e visualiza imediatamente a evolucao espaco-temporal.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{figuras/imagem_executavel.png}
+    \caption{Tela do executavel desenvolvido para simulacao dos automatos celulares de Wolfram.}
+    \label{fig:executavel-gui}
+\end{figure}
+
+O procedimento adotado foi:
+\begin{enumerate}
+    \item converter o numero da regra (0 a 255) para representacao binaria com 8 bits;
+    \item aplicar a regra sobre vizinhanca \((esquerda, centro, direita)\), com borda periodica;
+    \item definir o estado inicial como central ou aleatorio;
+    \item configurar densidade inicial e opcao de agrupamento dos sitios ativos;
+    \item simular a evolucao por um numero fixo de passos;
+    \item salvar a visualizacao espaco-temporal em formato PNG.
+\end{enumerate}
+
+Foram realizados dois grupos de experimentos:
+\begin{itemize}
+    \item classificacao por classes de Wolfram, com \(tamanho=101\), \(passos=120\), estado inicial central, densidade \(0{,}5\) e sem agrupamento;
+    \item selecao de duas regras por classe: homogenea (0, 255), periodica (4, 108), caotica (30, 90) e complexa (54, 110).
+\end{itemize}
+
+As figuras finais usadas no relatorio foram nomeadas com os parametros empregados, por exemplo:
+\texttt{regra\_110\_tamanho\_101\_passos\_120\_estado\_central\_densidade\_0\_5\_agrupado\_nao\_classe\_complexo\_20260601\_213713.png},
+garantindo rastreabilidade direta entre configuracao, simulacao e resultado visual.
+
