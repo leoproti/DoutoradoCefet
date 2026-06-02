@@ -5,7 +5,7 @@ services:
     container_name: doutorado-backend
     restart: unless-stopped
     ports:
-      - "8000:8000"
+      - "3000:8000"
 
   frontend:
     build:
@@ -17,4 +17,4 @@ services:
     environment:
       - BACKEND_INTERNAL_URL=http://backend:8000
     ports:
-      - "3000:3000"
+      - "8089:3000"
